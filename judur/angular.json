@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "judur": {
+    "tester": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/judur",
+            "outputPath": "dist/tester",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -27,9 +27,13 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+                "node_modules/bootstrap/dist/css/bootstrap.min.css",
+                "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+                  "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -59,10 +63,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "judur:build:production"
+              "buildTarget": "tester:build:production"
             },
             "development": {
-              "buildTarget": "judur:build:development"
+              "buildTarget": "tester:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -94,6 +98,6 @@
     }
   },
   "cli": {
-    "analytics": "0485d2a0-1db9-4b00-a907-5e4e1709e670"
+    "analytics": "99a12dfc-b922-41d7-b39e-2231320646a4"
   }
 }
