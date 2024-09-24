@@ -1,0 +1,78 @@
+/* General styles for the auction form */
+.container {
+    max-width: 800px; /* Adjust width as necessary */
+  }
+  
+  .card-header {
+    background-color: #16423C; /* Dark navy background for the header */
+    color: #E9EFEC; /* Off white text for contrast */
+  }
+  
+  .card-body {
+    background-color: #E9EFEC; /* Light background for the body */
+    padding: 20px;
+  }
+  
+  .form-label {
+    display: flex;
+    align-items: center; /* Aligns label text with icons */
+    margin-bottom: .5rem;
+  }
+  
+  .form-label i {
+    color: #6A9C89; /* Teal icon color */
+    margin-right: 10px; /* Space between icon and text */
+  }
+  
+  .form-control, .form-check-input {
+    height: auto; /* Adjusts height based on content */
+    padding: .375rem .75rem; /* Standard padding */
+    border: 1px solid #C4DAD2; /* Light teal border */
+    border-radius: .25rem; /* Rounded borders for inputs */
+    background-color: #E9EFEC; /* Light background for inputs */
+  }
+  
+  .form-control:hover {
+    border-color: #6A9C89; /* Teal border on hover */
+    box-shadow: 0 0 8px rgba(106, 156, 137, 0.6); /* Custom teal hover shadow */
+  }
+  
+  .form-control:focus {
+    border-color: #6A9C89; /* Teal border for focus */
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(106, 156, 137, 0.25); /* Subtle teal focus glow */
+  }
+  
+  .input-group-text {
+    background-color: #C4DAD2; /* Light teal background for input group */
+    border: 1px solid #6A9C89; /* Teal border matching with inputs */
+    color: #16423C; /* Dark navy text for contrast */
+  }
+  
+  .btn-dark {
+    background-color: #16423C; /* Dark navy background for buttons */
+    color: #E9EFEC; /* Off white text for contrast */
+    border: none;
+  }
+  
+  .btn-dark:hover {
+    background-color: #6A9C89; /* Teal background on hover */
+    color: #E9EFEC;
+  }
+  
+  .form-check-label {
+    cursor: pointer; /* Indicates the label is clickable */
+    color: #16423C; /* Dark navy text */
+  }
+  
+  .form-check-input:checked {
+    background-color: #6A9C89;
+    border-color: #6A9C89;
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      padding: 15px; /* Provides padding on smaller screens */
+    }
+  }
+  

@@ -1,5 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
-body{
+/* profile css  */
+/* General body and container styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
     margin: 0;
-    padding: 0%;
+    padding: 0;
+}
+
+
+/* Variables */
+:root {
+    --primary: #16423C;
+    --secondary: #6A9C89;
+    --light: #E9EFEC;
+    --dark: #001D23;
+    --font-color: var(--dark);
+    --font-family: 'Arial', sans-serif;
 }

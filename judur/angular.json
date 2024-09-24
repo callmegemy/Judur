@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "judur": {
+    "tester": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/judur",
+            "outputPath": "dist/tester",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -22,12 +22,17 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               {
-                "glob": "**/*",
-                "input": "src/assets"
-              }
+                "glob": "/*",
+                "input": "public"
+              },
+              "src/favicon.ico",
+              "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+            
+             
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
@@ -71,10 +76,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "judur:build:production"
+              "buildTarget": "tester:build:production"
             },
             "development": {
-              "buildTarget": "judur:build:development"
+              "buildTarget": "tester:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -92,12 +97,17 @@
             "tsConfig": "tsconfig.spec.json",
             "assets": [
               {
-                "glob": "**/*",
-                "input": "src/assets"
-              }
+                "glob": "/*",
+                "input": "public"
+              },
+              "src/favicon.ico",
+              "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              
+             
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
@@ -110,6 +120,6 @@
     }
   },
   "cli": {
-    "analytics": false
+    "analytics": "99a12dfc-b922-41d7-b39e-2231320646a4"
   }
 }
