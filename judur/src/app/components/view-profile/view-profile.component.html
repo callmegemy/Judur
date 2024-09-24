@@ -1,0 +1,34 @@
+<div class="container">
+    <h1>Profile</h1>
+
+    <div class="profile-container">
+        <div class="profile-pic">
+            <img src="assets/img/profile-picture.jpg" alt="Profile Picture">
+        </div>
+
+        <div class="profile-info">
+            <p><strong>Name:</strong> Admin Name</p>
+            <p><strong>Email:</strong> admin&#64;example.com</p>
+
+
+            <!-- Link to Edit Profile Page -->
+            <a routerLink="/edit-profile" class="btn">Edit Profile</a>
+        </div>
+    </div>
+
+    <!-- Conditional sections based on user type -->
+    <div class="user-type-section doner" *ngIf="userType === 'doner'">
+        <h2>Donor Information</h2>
+        <p>Donation Amount: $100</p>
+        <p>Last Donation Date: 2024-09-01</p>
+        <p>Favorite Causes: Education, Health</p>
+    </div>
+
+    <div class="user-type-section volunteer" *ngIf="userType === 'volunteer'">
+        <h2>Volunteer Information</h2>
+        <p>Hours Volunteered: 50</p>
+        <p>Current Projects: Community Cleanup, Food Drive</p>
+    </div>
+
+  
+</div>

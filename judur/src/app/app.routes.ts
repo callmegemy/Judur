@@ -9,7 +9,8 @@ import { DonationHistoryComponent } from './components/donation-history/donation
 import { DonationItemDetailsComponent } from './components/donation-item-details/donation-item-details.component';
 import { DonationLandDetailsComponent } from './components/donation-land-details/donation-land-details.component';
 import { DonationMoneyDetailsComponent } from './components/donation-money-details/donation-money-details.component';
-
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';  
+import { ViewProfileComponent } from './components/view-profile/view-profile.component';
 export const routes: Routes = [
   { path: 'landowner-registration', component: LandownerRegistrationComponent },
   { path: 'volunteer-registration', component: VolunteerRegistrationComponent },
@@ -22,8 +23,11 @@ export const routes: Routes = [
   { path: 'donation-money-details/:id', component: DonationMoneyDetailsComponent },
   { path: 'donation-land-details/:id', component: DonationLandDetailsComponent },
 
-  { path: '', redirectTo: '/donation-history', pathMatch: 'full' },
-  { path: '**', redirectTo: '/donation-history' }
+  // { path: 'view-profile', component: ViewProfileComponent},
+  { path: '', component: ViewProfileComponent },
+  { path: 'edit-profile', component: EditProfileComponent }
+  // { path: '', redirectTo: '/donation-history', pathMatch: 'full' },
+  // { path: '**', redirectTo: '/donation-history' }
 ];
 
 @NgModule({

@@ -5,11 +5,13 @@ import { DonationHistoryComponent } from './components/donation-history/donation
 import { compileNgModule } from '@angular/compiler';
 import { CommonModule } from '@angular/common';
 
-
+import { ViewProfileComponent } from './components/view-profile/view-profile.component'; 
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component'; 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterModule, RouterOutlet,DonationHistoryComponent , CommonModule],
+  imports: [RouterModule, RouterOutlet,DonationHistoryComponent , CommonModule ,ViewProfileComponent,
+    EditProfileComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
