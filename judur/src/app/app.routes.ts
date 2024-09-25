@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';  
 import { LandownerRegistrationComponent } from './components/landowner-registration/landowner-registration.component';
 import { VolunteerRegistrationComponent } from './components/volunteer-registration/volunteer-registration.component';
-import { AuctionComponent } from './components/auction/auction.component';
+  import { AuctionComponent } from './components/auction/auction.component';
 import { VolunteerToExaminerComponent } from './components/volunteer-to-examiner/volunteer-to-examiner.component';
 import { DonationHistoryComponent } from './components/donation-history/donation-history.component';
 import { DonationItemDetailsComponent } from './components/donation-item-details/donation-item-details.component';
@@ -17,7 +17,7 @@ export const routes: Routes = [
   { path: 'volunteer-to-examiner', component: VolunteerToExaminerComponent },
   { path: 'donation-history', component: DonationHistoryComponent },
 
-  // Donation details routes by category
+
   { path: 'donation-item-details/:id', component: DonationItemDetailsComponent },
   { path: 'donation-money-details/:id', component: DonationMoneyDetailsComponent },
   { path: 'donation-land-details/:id', component: DonationLandDetailsComponent },
