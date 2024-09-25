@@ -17,7 +17,7 @@ export class RegisterChoiceComponent {
   constructor(private router: Router) {}
 
   navigateToDonorRegistration(): void {
-    this.router.navigate(['/donor-registration']);
+    this.router.navigate(['/register']);
   }
 
   registerAs(type: string): void {
