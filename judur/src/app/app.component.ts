@@ -4,7 +4,7 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 import { DonationHistoryComponent } from './components/donation-history/donation-history.component';
 import { compileNgModule } from '@angular/compiler';
 import { CommonModule } from '@angular/common';
-
+import { ExaminerReportsComponent } from './components/dashboard/examiner-reports/examiner-reports.component';
 import { ViewProfileComponent } from './components/view-profile/view-profile.component'; 
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component'; 
 import { MainComponent } from './components/dashboard/main/main.component';
@@ -15,7 +15,7 @@ import { EventDetailsComponent } from './components/event-details/event-details.
   selector: 'app-root',
   standalone: true,
   imports: [RouterModule, RouterOutlet,NavbarComponent,DonationHistoryComponent , CommonModule ,ViewProfileComponent,
-    EditProfileComponent, MainComponent, EventListComponent, EventDetailsComponent],
+    EditProfileComponent, MainComponent, EventListComponent, EventDetailsComponent, ExaminerReportsComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

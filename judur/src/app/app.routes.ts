@@ -23,6 +23,7 @@ import { ParticipationDetailsComponent } from './components/participation-detail
 import { PerformanceReportsComponent } from './components/performance-reports/performance-reports.component';
 import { SuitabilityEvaluationsComponent } from './components/suitability-evaluations/suitability-evaluations.component';
 import { EventDetailsComponent } from './components/event-details/event-details.component';
+import { ExaminerReportsComponent } from './components/dashboard/examiner-reports/examiner-reports.component';
 export const routes: Routes = [
   {
     path: '',
@@ -60,6 +61,7 @@ export const routes: Routes = [
   { path: 'view-profile', component: ViewProfileComponent },
   { path: 'edit-profile', component: EditProfileComponent },
   { path: 'list-event', component: EventListComponent },
+  { path: 'examiner-reports', component: ExaminerReportsComponent },
   // { path: '', redirectTo: '/donation-history', pathMatch: 'full' },
   // { path: '**', redirectTo: '/donation-history' }
 
