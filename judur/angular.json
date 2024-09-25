@@ -22,17 +22,25 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               {
-                "glob": "**/*",
+                "glob": "/*",
                 "input": "public"
-              }
+              },
+              "src/favicon.ico",
+              "src/assets"
             ],
             "styles": [
-                "node_modules/bootstrap/dist/css/bootstrap.min.css",
-                "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
-                  "src/styles.css"
+              "src/styles.css",
+              "src/assets/css/bootstrap.min.css",
+          
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
             ],
             "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/jquery.easing/jquery.easing.min.js",
+              "src/assets/vendor/bootstrap/js/bootstrap.bundle.js",
+               "src/assets/lib/owlcarousel/owl.carousel.min.js",
+              "src/assets/js/main.js"
+
             ]
           },
           "configurations": {
@@ -40,13 +48,20 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "880kb",  
+                  "maximumError": "1000kb"    
                 },
                 {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2kB",
-                  "maximumError": "4kB"
+                  "type": "bundle",
+                  "name": "sb-admin-2.css",
+                  "maximumWarning": "200kb",  
+                  "maximumError": "250kb"     
+                },
+                {
+                  "type": "bundle",
+                  "name": "all.min.css",
+                  "maximumWarning": "100kb",  
+                  "maximumError": "150kb"     
                 }
               ],
               "outputHashing": "all"
@@ -84,14 +99,26 @@
             "tsConfig": "tsconfig.spec.json",
             "assets": [
               {
-                "glob": "**/*",
+                "glob": "/*",
                 "input": "public"
-              }
+              },
+              "src/favicon.ico",
+              "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/css/bootstrap.min.css",
+             
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              
+              "node_modules/jquery.easing/jquery.easing.min.js",
+              "src/assets/vendor/bootstrap/js/bootstrap.bundle.js",
+               "src/assets/lib/owlcarousel/owl.carousel.min.js",
+              "src/assets/js/main.js"
+            ]
           }
         }
       }
