@@ -15,6 +15,8 @@ import { MainComponent } from './components/dashboard/main/main.component';
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
 import { DonateComponent } from './components/donate/donate.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 export const routes: Routes = [
   {
     path: '',
@@ -29,10 +31,10 @@ export const routes: Routes = [
   path: 'donate', 
   component: DonateComponent
   },
-  // { path: 'login', component: LoginComponent},
-  // { path: 'register', component: RegisterComponent},
+   { path: 'login', component: LoginComponent},
+   { path: 'register', component: RegisterComponent},
   // // { path: 'forgot-password', component: ForgotPasswordComponent },
-  // { path: '', redirectTo: '/login', pathMatch: 'full' },
+   { path: '', redirectTo: '/login', pathMatch: 'full' },
   // { path: 'volunteer-analytics', component: VolunteerAnalyticsComponent},
   // { path: 'participation-details', component: ParticipationDetailsComponent },
   // { path: 'performance-report', component: PerformanceReportsComponent },

@@ -1,0 +1,21 @@
+<div class="login-container">
+    <img src="assets/img/ju.png" alt="Judur Logo" class="logo">
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input formControlName="email" type="email" class="form-control" id="email" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input formControlName="password" type="password" class="form-control" id="password" placeholder="Enter your password" required>
+        </div>
+        <div class="form-check mb-3">
+            <input formControlName="remember" type="checkbox" class="form-check-input" id="remember">
+            <label class="form-check-label" for="remember">Remember Me</label>
+        </div>
+        <button type="submit" class="btn login-btn btn-block" [disabled]="loginForm.invalid">Login</button>
+        <a routerLink="/forgot-password" class="d-block text-center mt-3 forgot-password">Forgot Password?</a>
+        <a routerLink="/register" class="d-block mt-3 register-link">Don't have an account? Register</a>
+    </form>
+</div>
