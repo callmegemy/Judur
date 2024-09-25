@@ -1,0 +1,57 @@
+.container {
+    max-width: 1200px;
+    margin: 50px auto; /* Adjusted top margin to 50px */
+    color: #16423C;
+
+}
+
+.card {
+    cursor: pointer;
+    border-color: #6A9C89;
+    background-color: #E9EFEC;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 20px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+.icon-donor {
+    font-size: 60px;
+    color: #6A9C89; 
+}
+
+.icon-volunteer {
+    font-size: 60px;
+    color: #6A9C89; 
+}
+
+.card-title, .card-text {
+    color: #16423C; 
+}
+
+.btn-outline-primary {
+    border-color: #6A9C89;
+    color: #6A9C89;
+}
+
+.btn-outline-primary:hover {
+    background-color: #6A9C89;
+    color: #E9EFEC;
+}
+
+.btn-outline-success {
+    border-color: #6A9C89;
+    color: #6A9C89;
+}
+
+.btn-outline-success:hover {
+    background-color: #6A9C89;
+    color: #E9EFEC;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
