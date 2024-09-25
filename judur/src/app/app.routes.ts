@@ -24,6 +24,7 @@ import { PerformanceReportsComponent } from './components/performance-reports/pe
 import { SuitabilityEvaluationsComponent } from './components/suitability-evaluations/suitability-evaluations.component';
 import { EventDetailsComponent } from './components/event-details/event-details.component';
 import { ExaminerReportsComponent } from './components/dashboard/examiner-reports/examiner-reports.component';
+import { RegisterChoiceComponent } from './components/register-choice/register-choice.component';
 export const routes: Routes = [
   {
     path: '',
@@ -51,7 +52,7 @@ export const routes: Routes = [
   { path: 'auction', component: AuctionComponent },
   { path: 'volunteer-to-examiner', component: VolunteerToExaminerComponent },
   { path: 'donation-history', component: DonationHistoryComponent },
-
+  { path: 'register-choice', component: RegisterChoiceComponent },
 
   { path: 'donation-item-details/:id', component: DonationItemDetailsComponent },
   { path: 'donation-money-details/:id', component: DonationMoneyDetailsComponent },
