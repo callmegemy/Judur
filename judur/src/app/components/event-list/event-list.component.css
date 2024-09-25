@@ -511,7 +511,39 @@ input[type="file"] {
     }
 }
 
+/* Back to Top */
+/* 
+.back-to-top-event {
+    position: fixed; 
+    right: 2%;
+    bottom: 2%;
+    z-index: 9;
+   text-align: right;
+}
 
+.back-to-top-event > a {
+    display: inline-block;
+    width: 4rem; 
+    height:4rem;
+    border-radius: 50%; 
+    background: var(--primary);
+    text-align: center;
+    font-size:1.5rem;
+    line-height: 4rem;
+    transition: background 0.5s;
+   margin-left: 94%;
+    margin-top: 5px;
+}
 
+.back-to-top-event i {
+    color: var(--light);
+}
 
+.back-to-top-event:hover a {
+    background: var(--secondary); 
+}
 
+.back-to-top-event:hover i {
+    color: var(--dark);
+}
+ */

@@ -22,6 +22,7 @@ import { VolunteerAnalyticsComponent } from './components/volunteer-analytics/vo
 import { ParticipationDetailsComponent } from './components/participation-details/participation-details.component';
 import { PerformanceReportsComponent } from './components/performance-reports/performance-reports.component';
 import { SuitabilityEvaluationsComponent } from './components/suitability-evaluations/suitability-evaluations.component';
+import { EventDetailsComponent } from './components/event-details/event-details.component';
 export const routes: Routes = [
   {
     path: '',
@@ -54,7 +55,7 @@ export const routes: Routes = [
   { path: 'donation-item-details/:id', component: DonationItemDetailsComponent },
   { path: 'donation-money-details/:id', component: DonationMoneyDetailsComponent },
   { path: 'donation-land-details/:id', component: DonationLandDetailsComponent },
-
+  { path: 'event-details', component: EventDetailsComponent },
   // { path: 'view-profile', component: ViewProfileComponent},
   { path: 'view-profile', component: ViewProfileComponent },
   { path: 'edit-profile', component: EditProfileComponent },

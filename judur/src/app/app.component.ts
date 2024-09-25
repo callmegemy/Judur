@@ -10,11 +10,12 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
 import { MainComponent } from './components/dashboard/main/main.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { EventListComponent } from './components/event-list/event-list.component';
+import { EventDetailsComponent } from './components/event-details/event-details.component';
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterModule, RouterOutlet,NavbarComponent,DonationHistoryComponent , CommonModule ,ViewProfileComponent,
-    EditProfileComponent, MainComponent, EventListComponent],
+    EditProfileComponent, MainComponent, EventListComponent, EventDetailsComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
