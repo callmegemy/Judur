@@ -30,14 +30,16 @@
             ],
             "styles": [
               "src/styles.css",
-            
-             
+              "src/assets/css/bootstrap.min.css",
+              "src/assets/css/style.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/jquery.easing/jquery.easing.min.js",
-              "src/assets/vendor/bootstrap/js/bootstrap.bundle.js"
+              "src/assets/vendor/bootstrap/js/bootstrap.bundle.js",
+               "src/assets/lib/owlcarousel/owl.carousel.min.js",
+              "src/assets/js/main.js"
 
             ]
           },
@@ -105,14 +107,16 @@
             ],
             "styles": [
               "src/styles.css",
-              
-             
+              "src/assets/css/bootstrap.min.css",
+              "src/assets/css/style.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/jquery.easing/jquery.easing.min.js",
-              "src/assets/vendor/bootstrap/js/bootstrap.bundle.js"
+              "src/assets/vendor/bootstrap/js/bootstrap.bundle.js",
+               "src/assets/lib/owlcarousel/owl.carousel.min.js",
+              "src/assets/js/main.js"
             ]
           }
         }

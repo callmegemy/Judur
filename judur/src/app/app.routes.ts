@@ -12,7 +12,13 @@ import { DonationMoneyDetailsComponent } from './components/donation-money-detai
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';  
 import { ViewProfileComponent } from './components/view-profile/view-profile.component';
 import { MainComponent } from './components/dashboard/main/main.component';
+import { HomeComponent } from './components/home/home.component';
 export const routes: Routes = [
+  {
+    path: '',
+    component: HomeComponent,
+    title: 'Home Page',
+  },
   { path: 'landowner-registration', component: LandownerRegistrationComponent },
   { path: 'volunteer-registration', component: VolunteerRegistrationComponent },
   { path: 'auction', component: AuctionComponent },
@@ -25,7 +31,7 @@ export const routes: Routes = [
   { path: 'donation-land-details/:id', component: DonationLandDetailsComponent },
 
   // { path: 'view-profile', component: ViewProfileComponent},
-  { path: '', component: ViewProfileComponent },
+  { path: 'view-profile', component: ViewProfileComponent },
   { path: 'edit-profile', component: EditProfileComponent },
   // { path: '', redirectTo: '/donation-history', pathMatch: 'full' },
   // { path: '**', redirectTo: '/donation-history' }
