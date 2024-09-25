@@ -17,6 +17,10 @@ import { AboutComponent } from './components/about/about.component';
 import { DonateComponent } from './components/donate/donate.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { VolunteerAnalyticsComponent } from './components/volunteer-analytics/volunteer-analytics.component';
+import { ParticipationDetailsComponent } from './components/participation-details/participation-details.component';
+import { PerformanceReportsComponent } from './components/performance-reports/performance-reports.component';
+import { SuitabilityEvaluationsComponent } from './components/suitability-evaluations/suitability-evaluations.component';
 export const routes: Routes = [
   {
     path: '',
@@ -35,10 +39,10 @@ export const routes: Routes = [
    { path: 'register', component: RegisterComponent},
   // // { path: 'forgot-password', component: ForgotPasswordComponent },
    { path: '', redirectTo: '/login', pathMatch: 'full' },
-  // { path: 'volunteer-analytics', component: VolunteerAnalyticsComponent},
-  // { path: 'participation-details', component: ParticipationDetailsComponent },
-  // { path: 'performance-report', component: PerformanceReportsComponent },
-  // { path: 'suitability-evaluations', component: SuitabilityEvaluationsComponent },
+  { path: 'volunteer-analytics', component: VolunteerAnalyticsComponent},
+   { path: 'participation-details', component: ParticipationDetailsComponent },
+   { path: 'performance-report', component: PerformanceReportsComponent },
+   { path: 'suitability-evaluations', component: SuitabilityEvaluationsComponent },
   { path: 'landowner-registration', component: LandownerRegistrationComponent },
   { path: 'volunteer-registration', component: VolunteerRegistrationComponent },
   { path: 'auction', component: AuctionComponent },
