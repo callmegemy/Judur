@@ -16,6 +16,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
 import { DonateComponent } from './components/donate/donate.component';
 import { LoginComponent } from './components/login/login.component';
+import { EventListComponent } from './components/event-list/event-list.component';
 import { RegisterComponent } from './components/register/register.component';
 import { VolunteerAnalyticsComponent } from './components/volunteer-analytics/volunteer-analytics.component';
 import { ParticipationDetailsComponent } from './components/participation-details/participation-details.component';
@@ -57,6 +58,7 @@ export const routes: Routes = [
   // { path: 'view-profile', component: ViewProfileComponent},
   { path: 'view-profile', component: ViewProfileComponent },
   { path: 'edit-profile', component: EditProfileComponent },
+  { path: 'list-event', component: EventListComponent },
   // { path: '', redirectTo: '/donation-history', pathMatch: 'full' },
   // { path: '**', redirectTo: '/donation-history' }
 
