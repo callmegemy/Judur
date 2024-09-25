@@ -1,1 +1,4 @@
-/* General body and container styling for View Profile */
+body{
+    display: flex;
+    justify-content: center;
+}

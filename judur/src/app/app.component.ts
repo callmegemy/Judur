@@ -8,10 +8,11 @@ import { CommonModule } from '@angular/common';
 import { ViewProfileComponent } from './components/view-profile/view-profile.component'; 
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component'; 
 import { MainComponent } from './components/dashboard/main/main.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterModule, RouterOutlet,DonationHistoryComponent , CommonModule ,ViewProfileComponent,
+  imports: [RouterModule, RouterOutlet,NavbarComponent,DonationHistoryComponent , CommonModule ,ViewProfileComponent,
     EditProfileComponent, MainComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']

@@ -13,12 +13,30 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
 import { ViewProfileComponent } from './components/view-profile/view-profile.component';
 import { MainComponent } from './components/dashboard/main/main.component';
 import { HomeComponent } from './components/home/home.component';
+import { AboutComponent } from './components/about/about.component';
+import { DonateComponent } from './components/donate/donate.component';
 export const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
     title: 'Home Page',
-  },
+  }, {
+  path: 'about', 
+  component: AboutComponent
+  }
+  ,
+  {
+  path: 'donate', 
+  component: DonateComponent
+  },
+  // { path: 'login', component: LoginComponent},
+  // { path: 'register', component: RegisterComponent},
+  // // { path: 'forgot-password', component: ForgotPasswordComponent },
+  // { path: '', redirectTo: '/login', pathMatch: 'full' },
+  // { path: 'volunteer-analytics', component: VolunteerAnalyticsComponent},
+  // { path: 'participation-details', component: ParticipationDetailsComponent },
+  // { path: 'performance-report', component: PerformanceReportsComponent },
+  // { path: 'suitability-evaluations', component: SuitabilityEvaluationsComponent },
   { path: 'landowner-registration', component: LandownerRegistrationComponent },
   { path: 'volunteer-registration', component: VolunteerRegistrationComponent },
   { path: 'auction', component: AuctionComponent },
