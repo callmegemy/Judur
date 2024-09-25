@@ -25,6 +25,10 @@ import { SuitabilityEvaluationsComponent } from './components/suitability-evalua
 import { EventDetailsComponent } from './components/event-details/event-details.component';
 import { ExaminerReportsComponent } from './components/dashboard/examiner-reports/examiner-reports.component';
 import { ReportDetailsComponent } from './components/dashboard/report-details/report-details.component';
+import { PostsDashboardComponent } from './components/dashboard/posts-dashboard/posts-dashboard.component';
+import { ViewPostComponent } from './components/dashboard/view-post/view-post.component';
+import { EditPostComponent } from './components/dashboard/edit-post/edit-post.component';
+import { CreatePostComponent } from './components/dashboard/create-post/create-post.component';
 export const routes: Routes = [
   {
     path: '',
@@ -64,6 +68,10 @@ export const routes: Routes = [
   { path: 'list-event', component: EventListComponent },
   { path: 'examiner-reports', component: ExaminerReportsComponent },
   { path: 'report-details/:id', component: ReportDetailsComponent },
+  { path: 'posts', component: PostsDashboardComponent },
+  { path: 'create-post', component: CreatePostComponent },
+  { path: 'view-post/:id', component: ViewPostComponent },
+  { path: 'edit-post/:id', component: EditPostComponent },
   // { path: '', redirectTo: '/donation-history', pathMatch: 'full' },
   // { path: '**', redirectTo: '/donation-history' }
 
