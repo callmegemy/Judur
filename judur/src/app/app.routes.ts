@@ -24,6 +24,7 @@ import { PerformanceReportsComponent } from './components/performance-reports/pe
 import { SuitabilityEvaluationsComponent } from './components/suitability-evaluations/suitability-evaluations.component';
 import { EventDetailsComponent } from './components/event-details/event-details.component';
 import { ExaminerReportsComponent } from './components/dashboard/examiner-reports/examiner-reports.component';
+import { ReportDetailsComponent } from './components/dashboard/report-details/report-details.component';
 export const routes: Routes = [
   {
     path: '',
@@ -62,6 +63,7 @@ export const routes: Routes = [
   { path: 'edit-profile', component: EditProfileComponent },
   { path: 'list-event', component: EventListComponent },
   { path: 'examiner-reports', component: ExaminerReportsComponent },
+  { path: 'report-details/:id', component: ReportDetailsComponent },
   // { path: '', redirectTo: '/donation-history', pathMatch: 'full' },
   // { path: '**', redirectTo: '/donation-history' }
 

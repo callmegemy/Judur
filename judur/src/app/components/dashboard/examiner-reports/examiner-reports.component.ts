@@ -1,17 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { ActivatedRoute, RouterLink, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-examiner-reports',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,RouterModule],
   templateUrl: './examiner-reports.component.html',
   styleUrl: './examiner-reports.component.css'
 })
 export class ExaminerReportsComponent {
   reports = [
-    { place: 'Place 1', examiner: 'Examiner Name 1', date: '2024-09-20' },
-    { place: 'Place 2', examiner: 'Examiner Name 2', date: '2024-09-21' },
-    { place: 'Place 3', examiner: 'Examiner Name 3', date: '2024-09-22' }
+    { id: 1, place: 'Place 1', examiner: 'Examiner Name', date: '2024-09-20' },
+    { id: 2, place: 'Place 2', examiner: 'Examiner Name 2', date: '2024-09-21' },
+    { id: 3, place: 'Place 3', examiner: 'Examiner Name 3', date: '2024-09-22' }
   ];
 }
