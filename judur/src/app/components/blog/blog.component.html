@@ -5,7 +5,7 @@
       <h2>Latest news & articles directly from our blog</h2>
     </div>
     <div class="row">
-      <div class="col-lg-4" *ngFor="let post of blogPosts">
+      <div class="col-lg-4" *ngFor="let post of paginatedPosts">
         <div class="blog-item">
           <div class="blog-img">
             <img [src]="post.imgSrc" alt="Blog Image" />
@@ -27,6 +27,23 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- Pagination Controls -->
+    <div class="pagination">
+      <button
+        (click)="currentPage = currentPage - 1"
+        [disabled]="currentPage === 1"
+      >
+        Previous
+      </button>
+      <span>Page {{ currentPage }}</span>
+      <button
+        (click)="currentPage = currentPage + 1"
+        [disabled]="currentPage * pageSize >= blogPosts.length"
+      >
+        Next
+      </button>
     </div>
   </div>
 </div>

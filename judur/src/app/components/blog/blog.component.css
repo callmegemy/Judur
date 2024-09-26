@@ -1,0 +1,72 @@
+.blog {
+  margin-top: 100px; /* Adjust based on the navbar's height */
+}
+
+.container {
+  padding-top: 20px; /* Optional, add some space above */
+}
+
+.section-header {
+  margin-bottom: 40px; /* Space below the header */
+}
+
+.blog-item {
+  border: 1px solid #ddd; /* Optional border */
+  border-radius: 10px; /* Round edges */
+  overflow: hidden; /* Ensure child elements respect the border radius */
+  transition: box-shadow 0.3s;
+  margin-bottom: 20px; /* Add space between blog items */
+}
+
+.blog-item:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Shadow effect on hover */
+}
+
+.blog-img img {
+  width: 100%; /* Ensure the image covers the container */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.blog-text {
+  padding: 15px; /* Space inside the blog item */
+}
+
+.blog-meta {
+  padding: 10px 15px;
+  background-color: #f9f9f9; /* Light background for meta info */
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.pagination button {
+  background-color: #007bff; /* Bootstrap primary color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 16px;
+}
+
+.pagination button:disabled {
+  background-color: #ccc; /* Grey color for disabled state */
+  cursor: not-allowed;
+}
+
+.pagination button:hover:not(:disabled) {
+  background-color: #0056b3; /* Darker shade for hover effect */
+}
+
+.pagination span {
+  margin: 0 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333; /* Dark color for better visibility */
+}
