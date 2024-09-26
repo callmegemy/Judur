@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';  
+import { FormsModule } from '@angular/forms';
 import { LandownerRegistrationComponent } from './components/landowner-registration/landowner-registration.component';
 import { VolunteerRegistrationComponent } from './components/volunteer-registration/volunteer-registration.component';
 import { AuctionComponent } from './components/auction/auction.component';
@@ -9,7 +9,7 @@ import { DonationHistoryComponent } from './components/donation-history/donation
 import { DonationItemDetailsComponent } from './components/donation-item-details/donation-item-details.component';
 import { DonationLandDetailsComponent } from './components/donation-land-details/donation-land-details.component';
 import { DonationMoneyDetailsComponent } from './components/donation-money-details/donation-money-details.component';
-import { EditProfileComponent } from './components/edit-profile/edit-profile.component';  
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { ViewProfileComponent } from './components/view-profile/view-profile.component';
 import { MainComponent } from './components/dashboard/main/main.component';
 import { HomeComponent } from './components/home/home.component';
@@ -21,18 +21,19 @@ import { VolunteerAnalyticsComponent } from './components/volunteer-analytics/vo
 import { ParticipationDetailsComponent } from './components/participation-details/participation-details.component';
 import { PerformanceReportsComponent } from './components/performance-reports/performance-reports.component';
 import { SuitabilityEvaluationsComponent } from './components/suitability-evaluations/suitability-evaluations.component';
+import { BlogComponent } from './components/blog/blog.component';
 export const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
     title: 'Home Page',
   }, {
-  path: 'about', 
+  path: 'about',
   component: AboutComponent
   }
   ,
   {
-  path: 'donate', 
+  path: 'donate',
   component: DonateComponent
   },
    { path: 'login', component: LoginComponent},
@@ -59,11 +60,10 @@ export const routes: Routes = [
   { path: 'edit-profile', component: EditProfileComponent },
   // { path: '', redirectTo: '/donation-history', pathMatch: 'full' },
   // { path: '**', redirectTo: '/donation-history' }
-
   // Dashboard routes >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   { path: 'dashboard', component: MainComponent },
   // dashboard Routs End
-  
+{path: 'blog', component:BlogComponent}
 
 ];
 
