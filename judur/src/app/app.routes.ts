@@ -92,11 +92,11 @@ export const routes: Routes = [
   { path: 'dashboard/request/view/ex', component: ExaminerRequestComponent },
   { path: 'dashboard/userProfile/volunteer', component: VolunteerProfileComponent },
   { path: 'dashboard/userProfile/doner', component: DonerProfileComponent },
-  { path: 'listing-auctions' , component: ListingAuctionsComponent},
-  { path: 'details-auctions' , component:DetailsAuctionsComponent},
+
   // dashboard Routs End
   
-
+  { path: 'listing-auctions' , component: ListingAuctionsComponent},
+  { path: 'details-auctions' , component:DetailsAuctionsComponent},
 ];
 
 @NgModule({
