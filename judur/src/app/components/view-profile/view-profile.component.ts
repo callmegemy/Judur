@@ -10,6 +10,6 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './view-profile.component.css'
 })
 export class ViewProfileComponent {
-  userType: string = 'doner';
+  userType: string = 'volunteer';
 
 }

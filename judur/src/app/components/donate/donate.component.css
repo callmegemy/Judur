@@ -130,8 +130,8 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: rgba(0, 29, 35, .8);
-    z-index: 1;
+    background: rgba(0, 15, 15, .6);  
+      z-index: 1;
 }
 
 .carousel-control-prev,

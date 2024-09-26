@@ -22,12 +22,14 @@
         <p>Donation Amount: $100</p>
         <p>Last Donation Date: 2024-09-01</p>
         <p>Favorite Causes: Education, Health</p>
+        <a routerLink="/donation-history" class="btn">My Donations</a>
     </div>
 
     <div class="user-type-section volunteer" *ngIf="userType === 'volunteer'">
         <h2>Volunteer Information</h2>
         <p>Hours Volunteered: 50</p>
         <p>Current Projects: Community Cleanup, Food Drive</p>
+        <a routerLink="/volunteer-analytics" class="btn"> History</a>
     </div>
 
   
