@@ -21,6 +21,12 @@ import { VolunteerAnalyticsComponent } from './components/volunteer-analytics/vo
 import { ParticipationDetailsComponent } from './components/participation-details/participation-details.component';
 import { PerformanceReportsComponent } from './components/performance-reports/performance-reports.component';
 import { SuitabilityEvaluationsComponent } from './components/suitability-evaluations/suitability-evaluations.component';
+import { UsersAdminComponent } from './components/dashboard/users-admin/users-admin.component';
+import { RequestsComponent } from './components/dashboard/requests/requests.component';
+import { VolunteerRequestComponent } from './components/dashboard/volunteer-request/volunteer-request.component';
+import { ExaminerRequestComponent } from './components/dashboard/examiner-request/examiner-request.component';
+import { VolunteerProfileComponent } from './components/dashboard/volunteer-profile/volunteer-profile.component';
+import { DonerProfileComponent } from './components/dashboard/doner-profile/doner-profile.component';
 export const routes: Routes = [
   {
     path: '',
@@ -62,6 +68,12 @@ export const routes: Routes = [
 
   // Dashboard routes >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   { path: 'dashboard', component: MainComponent },
+  { path: 'dashboard/users', component: UsersAdminComponent },
+  { path: 'dashboard/requests', component: RequestsComponent },
+  { path: 'dashboard/request/view/v', component: VolunteerRequestComponent },
+  { path: 'dashboard/request/view/ex', component: ExaminerRequestComponent },
+  { path: 'dashboard/userProfile/volunteer', component: VolunteerProfileComponent },
+  { path: 'dashboard/userProfile/doner', component: DonerProfileComponent },
   // dashboard Routs End
   
 
