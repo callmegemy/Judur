@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';  
 import { LandownerRegistrationComponent } from './components/landowner-registration/landowner-registration.component';
 import { VolunteerRegistrationComponent } from './components/volunteer-registration/volunteer-registration.component';
-import { AuctionComponent } from './components/auction/auction.component';
+  import { AuctionComponent } from './components/auction/auction.component';
 import { VolunteerToExaminerComponent } from './components/volunteer-to-examiner/volunteer-to-examiner.component';
 import { DonationHistoryComponent } from './components/donation-history/donation-history.component';
 import { DonationItemDetailsComponent } from './components/donation-item-details/donation-item-details.component';
@@ -16,6 +16,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
 import { DonateComponent } from './components/donate/donate.component';
 import { LoginComponent } from './components/login/login.component';
+import { EventListComponent } from './components/event-list/event-list.component';
 import { RegisterComponent } from './components/register/register.component';
 import { VolunteerAnalyticsComponent } from './components/volunteer-analytics/volunteer-analytics.component';
 import { ParticipationDetailsComponent } from './components/participation-details/participation-details.component';
@@ -27,6 +28,14 @@ import { VolunteerRequestComponent } from './components/dashboard/volunteer-requ
 import { ExaminerRequestComponent } from './components/dashboard/examiner-request/examiner-request.component';
 import { VolunteerProfileComponent } from './components/dashboard/volunteer-profile/volunteer-profile.component';
 import { DonerProfileComponent } from './components/dashboard/doner-profile/doner-profile.component';
+import { EventDetailsComponent } from './components/event-details/event-details.component';
+import { ExaminerReportsComponent } from './components/dashboard/examiner-reports/examiner-reports.component';
+import { ReportDetailsComponent } from './components/dashboard/report-details/report-details.component';
+import { PostsDashboardComponent } from './components/dashboard/posts-dashboard/posts-dashboard.component';
+import { ViewPostComponent } from './components/dashboard/view-post/view-post.component';
+import { EditPostComponent } from './components/dashboard/edit-post/edit-post.component';
+import { CreatePostComponent } from './components/dashboard/create-post/create-post.component';
+import { RegisterChoiceComponent } from './components/register-choice/register-choice.component';
 export const routes: Routes = [
   {
     path: '',
@@ -54,15 +63,22 @@ export const routes: Routes = [
   { path: 'auction', component: AuctionComponent },
   { path: 'volunteer-to-examiner', component: VolunteerToExaminerComponent },
   { path: 'donation-history', component: DonationHistoryComponent },
+  { path: 'register-choice', component: RegisterChoiceComponent },
 
-  // Donation details routes by category
   { path: 'donation-item-details/:id', component: DonationItemDetailsComponent },
   { path: 'donation-money-details/:id', component: DonationMoneyDetailsComponent },
   { path: 'donation-land-details/:id', component: DonationLandDetailsComponent },
-
+  { path: 'event-details', component: EventDetailsComponent },
   // { path: 'view-profile', component: ViewProfileComponent},
   { path: 'view-profile', component: ViewProfileComponent },
   { path: 'edit-profile', component: EditProfileComponent },
+  { path: 'list-event', component: EventListComponent },
+  { path: 'examiner-reports', component: ExaminerReportsComponent },
+  { path: 'report-details/:id', component: ReportDetailsComponent },
+  { path: 'posts', component: PostsDashboardComponent },
+  { path: 'create-post', component: CreatePostComponent },
+  { path: 'view-post/:id', component: ViewPostComponent },
+  { path: 'edit-post/:id', component: EditPostComponent },
   // { path: '', redirectTo: '/donation-history', pathMatch: 'full' },
   // { path: '**', redirectTo: '/donation-history' }
 

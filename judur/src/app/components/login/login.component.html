@@ -1,4 +1,4 @@
-<div class="login-container">
+<div class="login-container" style="display: flex; justify-content: center;">
     <img src="assets/img/ju.png" alt="Judur Logo" class="logo">
 
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
@@ -16,6 +16,6 @@
         </div>
         <button type="submit" class="btn login-btn btn-block" [disabled]="loginForm.invalid">Login</button>
         <a routerLink="/forgot-password" class="d-block text-center mt-3 forgot-password">Forgot Password?</a>
-        <a routerLink="/register" class="d-block mt-3 register-link">Don't have an account? Register</a>
+        <a routerLink="/register-choice" class="d-block mt-3 register-link">Don't have an account? Register</a>
     </form>
 </div>

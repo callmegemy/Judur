@@ -1,0 +1,29 @@
+<div class="container">
+    <h1>Edit Post</h1>
+
+    <form action="update-post.html" method="POST">
+        <div class="form-group">
+            <label for="title">Post Title</label>
+            <input type="text" id="title" name="title" class="form-control" value="Post Title 1" required>
+        </div>
+        <div class="form-group">
+            <label for="profile-picture">Update Event Picture:</label>
+            <input type="file" id="profile-picture" name="profile-picture">
+        </div>
+        <div class="form-group">
+            <label for="content">Post Content</label>
+            <textarea id="content" name="content" class="form-control" rows="6" required>Current content of the post...</textarea>
+        </div>
+        <div class="form-group">
+            <label for="category">Category</label>
+            <select id="category" name="category" class="form-control">
+                <option value="news" selected>News</option>
+                <option value="auctions">Auctions</option>
+                <option value="feeding-events">Feeding Events</option>
+            </select>
+        </div>
+        <button type="submit" class="btn">Update</button>
+    </form>
+
+    <button class="btn back-btn" (click)="goBack()">Back to Posts</button>
+</div>
