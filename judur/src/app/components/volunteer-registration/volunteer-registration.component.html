@@ -1,46 +1,69 @@
-<!-- volunteer-registration.component.html -->
-<div class="container mt-4">
-    <div class="card">
-      <div class="card-header bg-dark text-white">
-        <h2>Volunteer Registration</h2>
-      </div>
-      <div class="card-body bg-light">
-        <form>
-          <div class="mb-3">
-            <label for="fullName" class="form-label"><i class="fas fa-user me-2"></i>Full Name</label>
-            <input type="text" class="form-control" id="fullName" placeholder="Enter full name">
-          </div>
-          <div class="mb-3">
-            <label for="email" class="form-label"><i class="fas fa-envelope me-2"></i>Email Address</label>
-            <input type="email" class="form-control" id="email" placeholder="Enter email">
-          </div>
-          <div class="mb-3">
-            <label for="skills" class="form-label"><i class="fas fa-tools me-2"></i>Skills</label>
-            <input type="text" class="form-control" id="skills" placeholder="Specify skills">
-          </div>
-          <div class="mb-3">
-            <label for="age" class="form-label"><i class="fas fa-birthday-cake me-2"></i>Age</label>
-            <input type="number" class="form-control" id="age" placeholder="Enter your age">
-          </div>
-          <div class="mb-3">
-            <label for="availability" class="form-label"><i class="fas fa-calendar-alt me-2"></i>Availability</label>
-            <input type="text" class="form-control" id="availability" placeholder="Enter availability">
-          </div>
-          <div class="mb-3">
-            <label for="preferredRoles" class="form-label"><i class="fas fa-heart me-2"></i>Preferred Volunteer Roles</label>
-            <input type="text" class="form-control" id="preferredRoles" placeholder="e.g., Fundraising, Teaching">
-          </div>
-          <div class="mb-3">
-            <label for="experience" class="form-label"><i class="fas fa-history me-2"></i>Past Volunteering Experience</label>
-            <textarea class="form-control" id="experience" placeholder="Describe any past volunteering experience"></textarea>
-          </div>
-          <div class="mb-3">
-            <label for="motivation" class="form-label"><i class="fas fa-search me-2"></i>Why do you want to volunteer?</label>
-            <textarea class="form-control" id="motivation" placeholder="What motivates you to volunteer with us?"></textarea>
-          </div>
-          <button type="submit" class="btn btn-success"><i class="fas fa-paper-plane me-2"></i>Register</button>
-        </form>
+<div class="register-container">
+  <img src="assets/img/ju.png" alt="Judur Logo" class="logo">
+  <form [formGroup]="volunteerForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="fullName"><i class="fas fa-user me-2"></i>Full Name</label>
+      <input formControlName="fullName" type="text" class="form-control" id="fullName" placeholder="Enter full name">
+      <div *ngIf="volunteerForm.controls['fullName'].invalid && volunteerForm.controls['fullName'].touched" class="text-danger">
+        Full Name is required (min 2 characters).
       </div>
     </div>
-  </div>
-  
+
+    <div class="form-group">
+      <label for="email"><i class="fas fa-envelope me-2"></i>Email Address</label>
+      <input formControlName="email" type="email" class="form-control" id="email" placeholder="Enter email">
+      <div *ngIf="volunteerForm.controls['email'].invalid && volunteerForm.controls['email'].touched" class="text-danger">
+        Valid Email is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="skills"><i class="fas fa-tools me-2"></i>Skills</label>
+      <input formControlName="skills" type="text" class="form-control" id="skills" placeholder="Specify skills">
+      <div *ngIf="volunteerForm.controls['skills'].invalid && volunteerForm.controls['skills'].touched" class="text-danger">
+        Skills are required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="age"><i class="fas fa-birthday-cake me-2"></i>Age</label>
+      <input formControlName="age" type="number" class="form-control" id="age" placeholder="Enter your age">
+      <div *ngIf="volunteerForm.controls['age'].invalid && volunteerForm.controls['age'].touched" class="text-danger">
+        Age is required (minimum 18).
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="availability"><i class="fas fa-calendar-alt me-2"></i>Availability</label>
+      <input formControlName="availability" type="text" class="form-control" id="availability" placeholder="Enter availability">
+      <div *ngIf="volunteerForm.controls['availability'].invalid && volunteerForm.controls['availability'].touched" class="text-danger">
+        Availability is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="preferredRoles"><i class="fas fa-heart me-2"></i>Preferred Volunteer Roles</label>
+      <input formControlName="preferredRoles" type="text" class="form-control" id="preferredRoles" placeholder="e.g., Fundraising, Teaching">
+      <div *ngIf="volunteerForm.controls['preferredRoles'].invalid && volunteerForm.controls['preferredRoles'].touched" class="text-danger">
+        Preferred Roles are required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="experience"><i class="fas fa-history me-2"></i>Past Volunteering Experience</label>
+      <textarea formControlName="experience" class="form-control" id="experience" placeholder="Describe any past volunteering experience"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="motivation"><i class="fas fa-search me-2"></i>Why do you want to volunteer?</label>
+      <textarea formControlName="motivation" class="form-control" id="motivation" placeholder="What motivates you to volunteer with us?"></textarea>
+      <div *ngIf="volunteerForm.controls['motivation'].invalid && volunteerForm.controls['motivation'].touched" class="text-danger">
+        Motivation is required.
+      </div>
+    </div>
+
+    <button type="submit" class="btn register-btn btn-block" [disabled]="volunteerForm.invalid">
+      <i class="fas fa-paper-plane me-2"></i>Register
+    </button>
+  </form>
+</div>
