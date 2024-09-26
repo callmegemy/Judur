@@ -30,6 +30,9 @@ import { ViewPostComponent } from './components/dashboard/view-post/view-post.co
 import { EditPostComponent } from './components/dashboard/edit-post/edit-post.component';
 import { CreatePostComponent } from './components/dashboard/create-post/create-post.component';
 import { RegisterChoiceComponent } from './components/register-choice/register-choice.component';
+import { ListingAuctionsComponent } from './components/listing-auctions/listing-auctions.component';
+import { DetailsAuctionsComponent } from './components/details-auctions/details-auctions.component';
+
 export const routes: Routes = [
   {
     path: '',
@@ -73,6 +76,8 @@ export const routes: Routes = [
   { path: 'create-post', component: CreatePostComponent },
   { path: 'view-post/:id', component: ViewPostComponent },
   { path: 'edit-post/:id', component: EditPostComponent },
+  { path: 'listing-auctions' , component: ListingAuctionsComponent},
+  { path: 'details-auctions' , component:DetailsAuctionsComponent},
   // { path: '', redirectTo: '/donation-history', pathMatch: 'full' },
   // { path: '**', redirectTo: '/donation-history' }
 
