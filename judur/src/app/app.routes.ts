@@ -44,6 +44,9 @@ import { AuctionsComponent } from './components/dashboard/auctions/auctions.comp
 import { ViewAuctionComponent } from './components/dashboard/view-auction/view-auction.component';
 import { EditAuctionComponent } from './components/dashboard/edit-auction/edit-auction.component';
 import { CreateAuctionComponent } from './components/dashboard/create-auction/create-auction.component';
+import { ListingAuctionsComponent } from './components/listing-auctions/listing-auctions.component';
+import { DetailsAuctionsComponent } from './components/details-auctions/details-auctions.component';
+
 export const routes: Routes = [
   {
     path: '',
@@ -87,10 +90,9 @@ export const routes: Routes = [
   { path: 'create-post', component: CreatePostComponent },
   { path: 'view-post/:id', component: ViewPostComponent },
   { path: 'edit-post/:id', component: EditPostComponent },
+  
   // { path: '', redirectTo: '/donation-history', pathMatch: 'full' },
-  // { path: '**', redirectTo: '/donation-history' }
-
-  // Dashboard routes >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  // { path: '**', redirectTo: '/donation-histor>>>>>
   { path: 'dashboard', component: MainComponent },
   { path: 'dashboard/users', component: UsersAdminComponent },
   { path: 'dashboard/requests', component: RequestsComponent },
@@ -115,7 +117,8 @@ export const routes: Routes = [
 
   // dashboard Routs End
   
-
+  { path: 'listing-auctions' , component: ListingAuctionsComponent},
+  { path: 'details-auctions' , component:DetailsAuctionsComponent},
 ];
 
 @NgModule({
