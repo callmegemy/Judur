@@ -36,6 +36,14 @@ import { ViewPostComponent } from './components/dashboard/view-post/view-post.co
 import { EditPostComponent } from './components/dashboard/edit-post/edit-post.component';
 import { CreatePostComponent } from './components/dashboard/create-post/create-post.component';
 import { RegisterChoiceComponent } from './components/register-choice/register-choice.component';
+import { EventsComponent } from './components/dashboard/events/events.component';
+import { EditEventComponent } from './components/dashboard/edit-event/edit-event.component';
+import { CreateEventComponent } from './components/dashboard/create-event/create-event.component';
+import { ViewEventComponent } from './components/dashboard/view-event/view-event.component';
+import { AuctionsComponent } from './components/dashboard/auctions/auctions.component';
+import { ViewAuctionComponent } from './components/dashboard/view-auction/view-auction.component';
+import { EditAuctionComponent } from './components/dashboard/edit-auction/edit-auction.component';
+import { CreateAuctionComponent } from './components/dashboard/create-auction/create-auction.component';
 export const routes: Routes = [
   {
     path: '',
@@ -90,6 +98,21 @@ export const routes: Routes = [
   { path: 'dashboard/request/view/ex', component: ExaminerRequestComponent },
   { path: 'dashboard/userProfile/volunteer', component: VolunteerProfileComponent },
   { path: 'dashboard/userProfile/doner', component: DonerProfileComponent },
+
+  { path: 'dashboard/events', component: EventsComponent },
+  { path: 'dashboard/events/edit', component: EditEventComponent },
+  { path: 'dashboard/events/view', component: ViewEventComponent },
+  { path: 'dashboard/events/create', component: CreateEventComponent },
+
+  { path: 'dashboard/auctions', component: AuctionsComponent },
+  { path: 'dashboard/auctions/view', component: ViewAuctionComponent },
+  { path: 'dashboard/auctions/edit', component: EditAuctionComponent },
+  { path: 'dashboard/auctions/create', component: CreateAuctionComponent },
+
+
+
+
+
   // dashboard Routs End
   
 
