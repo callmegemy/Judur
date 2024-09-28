@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-event-details',
   standalone: true,
-  imports: [CommonModule , RouterLink],
+  imports: [CommonModule , RouterLink, NavbarComponent],
   templateUrl: './event-details.component.html',
   styleUrl: './event-details.component.css'
 })

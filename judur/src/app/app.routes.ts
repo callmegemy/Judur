@@ -22,6 +22,17 @@ import { ParticipationDetailsComponent } from './components/participation-detail
 import { PerformanceReportsComponent } from './components/performance-reports/performance-reports.component';
 import { SuitabilityEvaluationsComponent } from './components/suitability-evaluations/suitability-evaluations.component';
 import { FinancialDonationFormComponent } from './components/financial-donation-form/financial-donation-form.component';
+import { EventDetailsComponent } from './components/event-details/event-details.component';
+import { EventListComponent } from './components/event-list/event-list.component';
+import { ExaminerReportsComponent } from './components/dashboard/examiner-reports/examiner-reports.component';
+import { ReportDetailsComponent } from './components/dashboard/report-details/report-details.component';
+import { PostsDashboardComponent } from './components/dashboard/posts-dashboard/posts-dashboard.component';
+import { CreatePostComponent } from './components/dashboard/create-post/create-post.component';
+import { ViewPostComponent } from './components/dashboard/view-post/view-post.component';
+import { EditPostComponent } from './components/dashboard/edit-post/edit-post.component';
+import { ListingAuctionsComponent } from './components/listing-auctions/listing-auctions.component';
+import { DetailsAuctionsComponent } from './components/details-auctions/details-auctions.component';
+import { RegisterChoiceComponent } from './components/register-choice/register-choice.component';
 export const routes: Routes = [
   {
     path: '',
@@ -50,6 +61,7 @@ export const routes: Routes = [
   { path: 'auction', component: AuctionComponent },
   { path: 'volunteer-to-examiner', component: VolunteerToExaminerComponent },
   { path: 'donation-history', component: DonationHistoryComponent },
+  { path: 'register-choice', component: RegisterChoiceComponent },
 
   // Donation details routes by category
   { path: 'donation-item-details/:id', component: DonationItemDetailsComponent },
@@ -59,8 +71,21 @@ export const routes: Routes = [
   // { path: 'view-profile', component: ViewProfileComponent},
   { path: 'view-profile', component: ViewProfileComponent },
   { path: 'edit-profile', component: EditProfileComponent },
+  { path: 'event-details', component: EventDetailsComponent },
+
+  { path: 'list-event', component: EventListComponent},
+  { path: 'examiner-reports', component: ExaminerReportsComponent },
+  { path: 'report-details/:id', component: ReportDetailsComponent },
+  { path: 'posts', component: PostsDashboardComponent},
+  { path: 'create-post', component: CreatePostComponent },
+  { path: 'view-post/:id', component: ViewPostComponent },
+  { path: 'edit-post/:id', component: EditPostComponent },
   // { path: '', redirectTo: '/donation-history', pathMatch: 'full' },
   // { path: '**', redirectTo: '/donation-history' }
+  {path:'auction-list',component:ListingAuctionsComponent},
+  {
+    path:'auction-details',component:DetailsAuctionsComponent
+  },
 
   // Dashboard routes >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   { path: 'dashboard', component: MainComponent },

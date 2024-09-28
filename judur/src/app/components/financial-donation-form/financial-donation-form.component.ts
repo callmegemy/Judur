@@ -4,11 +4,12 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-financial-donation-form',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterModule,RouterLinkActive,RouterLink],
+  imports: [ReactiveFormsModule, CommonModule, RouterModule,RouterLinkActive,RouterLink,NavbarComponent],
   templateUrl: './financial-donation-form.component.html',
   styleUrl: './financial-donation-form.component.css'
 })

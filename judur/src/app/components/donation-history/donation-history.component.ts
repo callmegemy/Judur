@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router'; // Import RouterModule for routerLink
 import { Chart } from 'chart.js/auto';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-donation-history',
   standalone: true,
-  imports: [CommonModule, RouterModule], // Add RouterModule to imports
+  imports: [CommonModule, RouterModule, NavbarComponent], // Add RouterModule to imports
   templateUrl: './donation-history.component.html',
   styleUrls: ['./donation-history.component.css']
 })

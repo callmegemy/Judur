@@ -1,4 +1,9 @@
+<app-navbar></app-navbar>
+
 <!-- Carousel Start -->
+
+<link href="/assets/css/style.css" rel="stylesheet">
+
 <div class="container-fluid p-0 mb-5">
     <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
@@ -103,7 +108,7 @@
                         <h4 class="mb-3">Upcoming Events</h4>
                         <p class="mb-4">Check out our upcoming events, including meal preparation and feeding events to
                             support those in need.</p>
-                        <a class="btn btn-outline-primary px-3" href="">
+                        <a class="btn btn-outline-primary px-3" routerLink="/list-event">
                             Learn More
                             <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
                                 <i class="fa fa-arrow-right"></i>
@@ -119,7 +124,7 @@
                         <h4 class="mb-3">Upcoming Auctions</h4>
                         <p class="mb-4">Discover upcoming auctions where valuable items are sold, with proceeds
                             supporting our charitable programs.</p>
-                        <a class="btn btn-outline-primary px-3" href="">
+                        <a class="btn btn-outline-primary px-3" routerLink="/auction-list">
                             Learn More
                             <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
                                 <i class="fa fa-arrow-right"></i>
@@ -211,49 +216,37 @@
     <!-- Team End -->
 
 
-    <!-- Testimonial Start -->
     <div class="container-xxl py-5">
         <div class="container">
-            <div class="text-center mx-auto mb-5" style="max-width: 500px;">
-                <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">Testimonial</div>
-                <h1 class="display-6 mb-5">Trusted By Communities, Donors, and Volunteers Alike</h1>
+          <div class="text-center mx-auto mb-5" style="max-width: 500px;">
+            <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">Testimonial</div>
+            <h1 class="display-6 mb-5">Trusted By Communities, Donors, and Volunteers Alike</h1>
+          </div>
+          <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div *ngFor="let testimonial of testimonials; let i = index" [ngClass]="{'carousel-item': true, 'active': i === 0}">
+                <div class="testimonial-item text-center">
+                  <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" [src]="testimonial.img" style="width: 100px; height: 100px;">
+                  <div class="testimonial-text rounded text-center p-4">
+                    <p>{{ testimonial.text }}</p>
+                    <h5 class="mb-1">{{ testimonial.name }}</h5>
+                    <span class="fst-italic">{{ testimonial.role }}</span>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="owl-carousel testimonial-carousel">
-                <div class="testimonial-item text-center">
-                    <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="/assets/img/testimonial-1.jpg"
-                        style="width: 100px; height: 100px;">
-                    <div class="testimonial-text rounded text-center p-4">
-                        <p>“Judur made it easy for us to contribute to our local community. Their platform connects
-                            us directly with those in need, ensuring our donations make the greatest impact.”</p>
-                        <h5 class="mb-1">Sarah Johnson</h5>
-                        <span class="fst-italic">Community Donor</span>
-                    </div>
-                </div>
-                <div class="testimonial-item text-center">
-                    <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="/assets/img/testimonial-2.jpg"
-                        style="width: 100px; height: 100px;">
-                    <div class="testimonial-text rounded text-center p-4">
-                        <p>“As a provider, Judur has helped us distribute surplus goods efficiently, turning what
-                            would be waste into valuable resources for feeding programs.”</p>
-                        <h5 class="mb-1">Michael Lee</h5>
-                        <span class="fst-italic">Food Provider</span>
-                    </div>
-                </div>
-                <div class="testimonial-item text-center">
-                    <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="/assets/img/testimonial-3.jpg"
-                        style="width: 100px; height: 100px;">
-                    <div class="testimonial-text rounded text-center p-4">
-                        <p>“Judur’s process of evaluating donation sites ensures that places are safe and suitable,
-                            allowing us to serve the community confidently and effectively.”</p>
-                        <h5 class="mb-1">Linda Garcia</h5>
-                        <span class="fst-italic">Site Examiner</span>
-                    </div>
-                </div>
-            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
         </div>
-    </div>
-    <!-- Testimonial End -->
-
+      </div>
+      
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-white-50 footer mt-5 pt-5">
