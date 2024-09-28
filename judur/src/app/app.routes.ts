@@ -22,6 +22,12 @@ import { ParticipationDetailsComponent } from './components/participation-detail
 import { PerformanceReportsComponent } from './components/performance-reports/performance-reports.component';
 import { SuitabilityEvaluationsComponent } from './components/suitability-evaluations/suitability-evaluations.component';
 import { FinancialDonationFormComponent } from './components/financial-donation-form/financial-donation-form.component';
+import { UsersAdminComponent } from './components/dashboard/users-admin/users-admin.component';
+import { RequestsComponent } from './components/dashboard/requests/requests.component';
+import { VolunteerRequestComponent } from './components/dashboard/volunteer-request/volunteer-request.component';
+import { ExaminerRequestComponent } from './components/dashboard/examiner-request/examiner-request.component';
+import { VolunteerProfileComponent } from './components/dashboard/volunteer-profile/volunteer-profile.component';
+import { DonerProfileComponent } from './components/dashboard/doner-profile/doner-profile.component';
 import { EventDetailsComponent } from './components/event-details/event-details.component';
 import { EventListComponent } from './components/event-list/event-list.component';
 import { ExaminerReportsComponent } from './components/dashboard/examiner-reports/examiner-reports.component';
@@ -33,6 +39,15 @@ import { EditPostComponent } from './components/dashboard/edit-post/edit-post.co
 import { ListingAuctionsComponent } from './components/listing-auctions/listing-auctions.component';
 import { DetailsAuctionsComponent } from './components/details-auctions/details-auctions.component';
 import { RegisterChoiceComponent } from './components/register-choice/register-choice.component';
+import { EventsComponent } from './components/dashboard/events/events.component';
+import { EditEventComponent } from './components/dashboard/edit-event/edit-event.component';
+import { CreateEventComponent } from './components/dashboard/create-event/create-event.component';
+import { ViewEventComponent } from './components/dashboard/view-event/view-event.component';
+import { AuctionsComponent } from './components/dashboard/auctions/auctions.component';
+import { ViewAuctionComponent } from './components/dashboard/view-auction/view-auction.component';
+import { EditAuctionComponent } from './components/dashboard/edit-auction/edit-auction.component';
+import { CreateAuctionComponent } from './components/dashboard/create-auction/create-auction.component';
+
 export const routes: Routes = [
   {
     path: '',
@@ -88,10 +103,35 @@ export const routes: Routes = [
   },
 
   // Dashboard routes >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  
+  // { path: '', redirectTo: '/donation-history', pathMatch: 'full' },
+  // { path: '**', redirectTo: '/donation-histor>>>>>
   { path: 'dashboard', component: MainComponent },
+  { path: 'dashboard/users', component: UsersAdminComponent },
+  { path: 'dashboard/requests', component: RequestsComponent },
+  { path: 'dashboard/request/view/v', component: VolunteerRequestComponent },
+  { path: 'dashboard/request/view/ex', component: ExaminerRequestComponent },
+  { path: 'dashboard/userProfile/volunteer', component: VolunteerProfileComponent },
+  { path: 'dashboard/userProfile/doner', component: DonerProfileComponent },
+
+  { path: 'dashboard/events', component: EventsComponent },
+  { path: 'dashboard/events/edit', component: EditEventComponent },
+  { path: 'dashboard/events/view', component: ViewEventComponent },
+  { path: 'dashboard/events/create', component: CreateEventComponent },
+
+  { path: 'dashboard/auctions', component: AuctionsComponent },
+  { path: 'dashboard/auctions/view', component: ViewAuctionComponent },
+  { path: 'dashboard/auctions/edit', component: EditAuctionComponent },
+  { path: 'dashboard/auctions/create', component: CreateAuctionComponent },
+
+
+
+
+
   // dashboard Routs End
   
-
+  { path: 'listing-auctions' , component: ListingAuctionsComponent},
+  { path: 'details-auctions' , component:DetailsAuctionsComponent},
 ];
 
 @NgModule({

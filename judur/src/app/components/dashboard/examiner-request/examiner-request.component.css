@@ -1,0 +1,36 @@
+.card {
+    border: none;
+    background-color: #E9EFEC;
+  }
+  
+  .card-header {
+    background-color: #16423C;
+    color: white;
+  }
+  
+  .input-group {
+    display: flex;
+    align-items: center;
+  }
+  
+  .input-group-text {
+    background-color: #6A9C89;
+    color: white;
+  }
+  
+  .btn-success {
+    background-color: #6A9C89;
+    border-color: #6A9C89;
+  }
+  
+  .custom-hover-shadow {
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .custom-hover-shadow:hover {
+    box-shadow: 0 4px 20px rgba(0, 51, 0, 0.7); /* Dark green shadow */
+  }
+  
+  .form-check-input {
+    accent-color: #6A9C89;
+  }
