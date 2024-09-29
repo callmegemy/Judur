@@ -1,4 +1,4 @@
-
+/* 
 .container {
     max-width: 900px;
     margin: auto;
@@ -32,18 +32,18 @@ h1, h2, h3 {
     background-color: var(--secondary);
     color: var(--light);
     text-transform: uppercase;
-}
+} */
 
 /* .table tr:nth-child(even) {
     background-color: var(--light);
 } */
 
-.table tr:hover {
+/* .table tr:hover {
     background-color: var(--secondary);
     color: var(--light);
-}
+} */
 
-.btn {
+/* .btn {
     display: inline-block;
     padding: 10px 20px;
     background-color: var(--primary);
@@ -53,35 +53,35 @@ h1, h2, h3 {
     transition: background-color 0.3s, transform 0.2s;
    
     border-width: 0px;
-}
+} */
 
-.btn:hover {
+/* .btn:hover {
     background-color: var(--dark);
     color: var(--light);
     transform: translateY(-2px);
-}
+} */
 
-.report-header, .report-summary, .report-details, .report-suggestions {
+/* .report-header, .report-summary, .report-details, .report-suggestions {
     margin: 20px 0;
     padding: 20px;
     border-radius: 8px;
     background-color: var(--light);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
+} */
+/* 
 .report-header {
     border-left: 5px solid var(--primary);
-}
+} */
 
-.report-details ul, .report-suggestions ul {
+/* .report-details ul, .report-suggestions ul {
     list-style-type: none;
     padding: 0;
-}
-
+} */
+/* 
 .report-details li, .report-suggestions li {
     margin: 10px 0;
     padding: 12px;
     background-color: var(--light);
     border-left: 4px solid var(--secondary);
     border-radius: 5px;
-}
+} */

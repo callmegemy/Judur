@@ -119,8 +119,8 @@ export const routes: Routes = [
   { path: 'dashboard/auctions/edit', component: EditAuctionComponent },
   { path: 'dashboard/auctions/create', component: CreateAuctionComponent },
 
-  { path: 'dashboard/report-details/:id/examiner-reports', component: ExaminerReportsComponent },
-  { path: 'dashboard/report-details/:id', component: ReportDetailsComponent },
+  { path: 'dashboard/examiner-reports', component: ExaminerReportsComponent },
+  { path: 'dashboard/examiner-reports/report-details/:id', component: ReportDetailsComponent },
   { path: 'dashboard/posts', component: PostsDashboardComponent},
   { path: 'dashboard/posts/create-post', component: CreatePostComponent },
   { path: 'dashboard/posts/view-post/:id', component: ViewPostComponent },
