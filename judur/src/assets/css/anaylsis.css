@@ -26,11 +26,12 @@ body {
 
 /* Header with Gradient */
 .header {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    
     color: #fff;
     padding: 20px;
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+   
+    margin-top: 115px;
 }
 
 /* Main Container */
@@ -144,15 +145,16 @@ th {
     transform: translateY(-2px);
 }
 
-/* Footer with Gradient */
 .footer {
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     color: #fff;
     text-align: center;
     padding: 15px;
     font-size: 14px;
-    position: relative;
+    position: fixed; 
     bottom: 0;
-    width: 100%;
+    width: 100%; 
     box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+    z-index: 100; 
 }
+

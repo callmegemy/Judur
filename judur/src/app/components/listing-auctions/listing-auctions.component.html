@@ -1,52 +1,18 @@
-<title>Our Auctions</title>
-<body>
-    <div class="container mt-5">
-        <h1 class="text-center mb-4">Our Auctions</h1>
-        <div class="row">
-            <!-- Item Card 1 -->
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="قلم دهب.jpeg" class="card-img-top" alt="Item 1">
-                    <div class="card-body">
-                        <h5 class="card-title">gold pen</h5>
-                        <p class="card-text">A luxurious gold pen for auction, featuring intricate craftsmanship and a classic design. Ideal for collectors or as a gift.</p>
-                       
-                        <p class="card-text"><strong>Current Price:</strong> $120</p>
-                       
-                        <input type="number" class="form-control mb-2" placeholder="Enter your bid" aria-label="Bid amount">
-                        <a href="#" class="btn btn-primary">More details</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Item Card 2 -->
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="اشخاص.jpeg" class="card-img-top" alt="Item 2">
-                    <div class="card-body">
-                        <h5 class="card-title">Love statue made of copper</h5>
-                        <p class="card-text">Bronze sculpture of two figures up for auction, featuring intricate details. A perfect addition for art lovers</p>
-                      
-                        <p class="card-text"><strong>Current Price:</strong> $160</p>
-                       
-                        <input type="number" class="form-control mb-2" placeholder="Enter your bid" aria-label="Bid amount">
-                        <a href="#" class="btn btn-primary">More details</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Item Card 3 -->
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="فاظات.jpeg" class="card-img-top" alt="Item 3">
-                    <div class="card-body">
-                        <h5 class="card-title">Antique vases</h5>
-                        <p class="card-text">Antique items up for auction, showcasing unique craftsmanship and historical charm. Perfect for collectors and enthusiasts.</p>
-                     
-                        <p class="card-text"><strong>Current Price:</strong> $320</p>
-                       
-                        <input type="number" class="form-control mb-2" placeholder="Enter your bid" aria-label="Bid amount">
-                        <a href="#" class="btn btn-primary">More details</a>
-                    </div>
+<app-navbar></app-navbar>
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4 mt-5">Our Auctions</h1>
+    <div class="row">
+        <div class="col-md-4 mb-4" *ngFor="let item of auctionItems">
+            <div class="card">
+                <img [src]="item.imageUrl" class="card-img-top" alt="{{ item.title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.title }}</h5>
+                    <p class="card-text">{{ item.description }}</p>
+                    <p class="card-text"><strong>Current Price:</strong> ${{ item.currentPrice }}</p>
+                    <a routerLink="/auction-details" class="btn btn-primary">More details</a>
                 </div>
             </div>
         </div>
     </div>
+</div>

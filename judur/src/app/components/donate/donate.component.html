@@ -1,4 +1,8 @@
+<app-navbar></app-navbar>
+
 <!-- Page Header Start -->
+<link href="/assets/css/style.css" rel="stylesheet">
+
 <div class="container-fluid page-header1 mb-5 wow fadeIn" data-wow-delay="0.1s">
     <div class="container text-center">
 
@@ -20,11 +24,12 @@
     <div class="container">
         <h1 class="display-4">Make a Difference Today</h1>
         <p class="lead text-dark">Your donations feed the hungry, provide shelter, and empower change.</p>
-
+       
     </div>
 </section>
 
 <!-- Donation Options -->
+
 <section class="donation-options py-5">
     <div class="container">
         <div class="row g-4">
@@ -33,11 +38,9 @@
                     <h3 class="card-title">Financial Donations</h3>
                     <p class="card-text">Contribute funds to support our feeding programs and community initiatives.
                     </p>
-                    <div class="d-grid gap-2">
-                        <button class="btn btn-outline-primary">Donate via PayPal</button>
-                        <button class="btn btn-outline-primary">Donate via Credit Card</button>
-                        <button class="btn btn-outline-primary">Bank Transfer</button>
-                        <button class="btn btn-secondary">Set up Recurring Donation</button>
+                    <div class="col-12 text-center mb-4">
+                        <button type="submit" routerLink="/money-donation" class="btn btn-primary btn-lg">Donate Now</button>
+                       
                     </div>
                 </div>
             </div>
@@ -46,32 +49,19 @@
                     <h3 class="card-title">Donate Items</h3>
                     <p class="card-text">Donate valuable items or personal belongings. Valuable items may be
                         auctioned to maximize their impact.</p>
-                    <input type="file" class="form-control mb-3" accept="image/*" multiple>
-                    <select class="form-select">
-                        <option selected>Choose Item Category</option>
-                        <option>Electronics</option>
-                        <option>Jewelry</option>
-                        <option>Clothes</option>
-                        <option>Food</option>
-                    </select>
+                    
+                    <div class="col-12 text-center mb-4">
+                        <button type="submit" routerLink="/auction" class="btn btn-primary btn-lg">Donate Now</button>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="card h-100 text-center p-4">
                     <h3 class="card-title">Donate a Place</h3>
                     <p class="card-text">Provide spaces for feeding programs or temporary shelters.</p>
-                    <form>
-                        <input type="text" class="form-control mb-2" placeholder="Location" required>
-                        <input type="text" class="form-control mb-2" placeholder="Size (e.g., 1000 sq ft)" required>
-                        <input type="number" class="form-control mb-2" placeholder="Capacity" required>
-                        <select class="form-select mb-2" required>
-                            <option selected>Type of Place</option>
-                            <option>Kitchen</option>
-                            <option>Hall</option>
-                            <option>Outdoor Space</option>
-                        </select>
-                        <p class="small">* All places will be inspected for suitability.</p>
-                    </form>
+                    <div class="col-12 text-center mb-4">
+                        <button type="submit"  routerLink="/landowner-registration" class="btn btn-primary btn-lg">Donate Now</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -105,7 +95,7 @@
     </section> -->
 
 <!-- Donation Form -->
-<section id="donation-form" class="donation-form-section py-1">
+<!-- <section id="donation-form" class="donation-form-section py-1">
     <div class="container">
         <h2 class="text-center mb-4">Complete Your Donation</h2>
         <form id="donationForm">
@@ -165,7 +155,7 @@
             </div>
         </form>
     </div>
-</section>
+</section> -->
 
 <!-- Footer Start -->
 <footer class="footer bg-dark text-white py-5">

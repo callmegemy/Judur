@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';  
 import { CommonModule } from '@angular/common';  // Import CommonModule for *ngIf, *ngFor, etc.
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-auction',
   standalone: true,  // Make sure the component is standalone
-  imports: [CommonModule , FormsModule],  // Add CommonModule here
+  imports: [CommonModule , FormsModule,NavbarComponent],  // Add CommonModule here
   templateUrl: './auction.component.html',
   styleUrls: ['./auction.component.css']
 })

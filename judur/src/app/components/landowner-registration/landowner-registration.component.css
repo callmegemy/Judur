@@ -1,35 +1,39 @@
 /* Custom styles for the landowner registration form */
+.container {
+  margin-top: 150px;
+}
+
 .form-control {
-    padding: .75rem 1rem; /* Increased padding for larger input appearance */
-    font-size: 1.1rem; /* Larger font size for better readability */
-    height: auto; /* Adjust height automatically based on padding and font size */
-    border: 2px solid #C4DAD2; /* Slightly thicker border for more prominence */
-    border-radius: .3rem; /* Slightly more rounded borders for aesthetic appeal */
-    background-color: #E9EFEC; /* Light background color */
-  }
-  
-  .form-control:focus {
-    border-color: #6A9C89; /* Focus color to maintain style consistency */
-    box-shadow: 0 0 0 0.2rem rgba(106, 156, 137, 0.25); /* Subtle focus glow for better focus indication */
-  }
-  
-  /* Adjusting the size and padding of the submit button to match the larger input style */
-  .btn {
-    padding: .75rem 1.5rem; /* Larger padding for a bigger button */
-    font-size: 1.1rem; /* Larger font size for readability */
-    border-radius: .3rem; /* Rounded corners to match input fields */
-    background-color: #16423C; /* Dark navy background */
-    color: #E9EFEC; /* Off white text */
-  }
-  
-  .btn:hover {
-    background-color: #6A9C89; /* Teal background on hover for visual feedback */
-    color: #E9EFEC;
-  }
-  
-  /* Styles to ensure labels are aligned with larger input fields */
-  .form-label {
-    font-size: 1.1rem; /* Larger label text to match input size */
-    margin-bottom: .5rem; /* Adequate spacing between label and input field */
-  }
-  
+  padding: .75rem 1rem;
+  font-size: 1.1rem;
+  height: auto;
+  border: 2px solid #C4DAD2;
+  border-radius: .3rem;
+  background-color: #E9EFEC;
+}
+
+.form-control:focus {
+  border-color: #6A9C89;
+  box-shadow: 0 0 0 0.2rem rgba(106, 156, 137, 0.25);
+ 
+}
+
+.btn {
+  padding: .75rem 1.5rem;
+
+  font-size: 1.1rem;
+ 
+  border-radius: .3rem;
+  background-color: #2a7066;
+  color: #E9EFEC;
+}
+
+.btn:hover {
+  background-color: #6A9C89;
+  color: #E9EFEC;
+}
+
+.form-label {
+  font-size: 1.1rem;
+  margin-bottom: .5rem;
+}
