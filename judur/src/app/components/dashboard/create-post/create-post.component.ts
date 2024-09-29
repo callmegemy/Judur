@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SidebarComponent } from '../sidebar/sidebar.component';
+import { TopbarComponent } from '../topbar/topbar.component';
 
 @Component({
   selector: 'app-create-post',
   standalone: true,
-  imports: [],
+  imports: [SidebarComponent,TopbarComponent],
   templateUrl: './create-post.component.html',
   styleUrl: './create-post.component.css'
 })
@@ -28,7 +30,7 @@ export class CreatePostComponent {
     }
   }
   goBack() {
-    this.router.navigate(['/posts']);
+    this.router.navigate(['dashboard/posts']);
   }
 
 }
