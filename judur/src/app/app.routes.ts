@@ -22,12 +22,14 @@ import { ParticipationDetailsComponent } from './components/participation-detail
 import { PerformanceReportsComponent } from './components/performance-reports/performance-reports.component';
 import { SuitabilityEvaluationsComponent } from './components/suitability-evaluations/suitability-evaluations.component';
 import { BlogComponent } from './components/blog/blog.component';
+import { BlogDetailsComponent } from './components/blog-details/blog-details.component';
+
 export const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
     title: 'Home Page',
-  }, {
+}, {
   path: 'about',
   component: AboutComponent
   }
@@ -63,7 +65,8 @@ export const routes: Routes = [
   // Dashboard routes >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   { path: 'dashboard', component: MainComponent },
   // dashboard Routs End
-{path: 'blog', component:BlogComponent}
+{path: 'blog', component:BlogComponent},
+{path: 'blog/:id', component: BlogDetailsComponent },
 
 ];
 

@@ -1,72 +1,169 @@
+body {
+  color: #777777;
+  font-weight: 500;
+  background: #ffffff;
+  font-family: 'Quicksand', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #4a4c70;
+}
+
+a {
+  color: #4a4c70;
+  transition: .3s;
+}
+
+a:hover,
+a:active,
+a:focus {
+  color: #FDBE33;
+  outline: none;
+  text-decoration: none;
+}
+
+.btn.btn-custom {
+  padding: 12px 20px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  color: #777777;
+  border-radius: 0;
+  border: 2px solid #FDBE33;
+  box-shadow: inset 0 0 0 0 #FDBE33;
+  transition: ease-out 0.3s;
+  -webkit-transition: ease-out 0.3s;
+  -moz-transition: ease-out 0.3s;
+}
+
+.btn.btn-custom:hover {
+  color: #20212B;
+  box-shadow: inset 0 0 0 30px #FDBE33;
+}
+
+.btn:focus,
+.form-control:focus {
+  box-shadow: none;
+}
+
+.container-fluid {
+  max-width: 1366px;
+}
+
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {
+  font-size: inherit;
+  margin-left: 0;
+}
+
 .blog {
-  margin-top: 100px; /* Adjust based on the navbar's height */
+  position: relative;
+  width: 100%;
+  padding: 45px 0 15px 0;
+  margin-top: 100px; /* Adjust for fixed navbar */
 }
 
-.container {
-  padding-top: 20px; /* Optional, add some space above */
+.blog .blog-item {
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  background: #f3f6ff;
 }
 
-.section-header {
-  margin-bottom: 40px; /* Space below the header */
+.blog .blog-img {
+  width: 100%;
 }
 
-.blog-item {
-  border: 1px solid #ddd; /* Optional border */
-  border-radius: 10px; /* Round edges */
-  overflow: hidden; /* Ensure child elements respect the border radius */
-  transition: box-shadow 0.3s;
-  margin-bottom: 20px; /* Add space between blog items */
+.blog .blog-img img {
+  width: 100%;
 }
 
-.blog-item:hover {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Shadow effect on hover */
+.blog .blog-text {
+  padding: 30px 30px 15px 30px;
 }
 
-.blog-img img {
-  width: 100%; /* Ensure the image covers the container */
-  height: auto; /* Maintain aspect ratio */
+.blog .blog-text h3 {
+  font-size: 22px;
+  font-weight: 700;
 }
 
-.blog-text {
-  padding: 15px; /* Space inside the blog item */
+.blog .blog-text h3 a {
+  color: #4a4c70;
 }
 
-.blog-meta {
-  padding: 10px 15px;
-  background-color: #f9f9f9; /* Light background for meta info */
+.blog .blog-text h3 a:hover {
+  color: #FDBE33;
 }
 
-.pagination {
+.blog .blog-text p {
+  margin: 0;
+}
+
+.blog .blog-meta {
+  margin: 0 30px;
+  padding-top: 15px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px 0;
+  border-top: 1px solid rgba(0, 0, 0, .15);
 }
 
-.pagination button {
-  background-color: #007bff; /* Bootstrap primary color */
-  color: white;
+.blog .blog-meta p {
+  margin: 0;
+  color: #777777;
+  padding: 0 30px;
+  border-right: 1px solid rgba(0, 0, 0, .15);
+}
+
+.blog .blog-meta p:first-child {
+  padding-left: 0;
+}
+
+.blog .blog-meta p:last-child {
+  padding-right: 0;
   border: none;
-  border-radius: 5px;
-  padding: 10px 15px;
-  margin: 0 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  font-size: 16px;
 }
 
-.pagination button:disabled {
-  background-color: #ccc; /* Grey color for disabled state */
-  cursor: not-allowed;
+.blog .blog-meta i {
+  color: #4a4c70;
+  margin-right: 8px;
 }
 
-.pagination button:hover:not(:disabled) {
-  background-color: #0056b3; /* Darker shade for hover effect */
+/* Pagination styles */
+.blog .pagination {
+  display: flex;
+  justify-content: center; /* Center the pagination */
+  margin-top: 20px;
+  margin-bottom: 15px;
 }
 
-.pagination span {
-  margin: 0 10px;
-  font-size: 16px;
-  font-weight: bold;
-  color: #333; /* Dark color for better visibility */
+.blog .pagination .page-link {
+  color: #4a4c70;
+  border-radius: 0;
+  border-color: #4a4c70;
+}
+
+.blog .pagination .page-link:hover,
+.blog .pagination .page-item.active .page-link {
+  color: #FDBE33;
+  background: #4a4c70;
+}
+
+.blog .pagination .disabled .page-link {
+  color: #999999;
+}
+
+/* Navbar styles */
+.navbar {
+  position: fixed; /* Ensure the navbar stays at the top */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: #003d33;
+  padding: 20px 0;
 }

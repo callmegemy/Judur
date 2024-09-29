@@ -5,40 +5,42 @@
       <h2>Latest news & articles directly from our blog</h2>
     </div>
     <div class="row">
-      <div class="col-lg-4" *ngFor="let post of paginatedPosts">
+      <div class="col-lg-4" *ngFor="let post of paginatedPosts; let i = index">
         <div class="blog-item">
           <div class="blog-img">
             <img [src]="post.imgSrc" alt="Blog Image" />
           </div>
           <div class="blog-text">
             <h3>
-              <a href="#">{{ post.title }}</a>
+              <a [routerLink]="['/blog', i]">{{ post.title }}</a>
             </h3>
             <p>{{ post.description }}</p>
           </div>
           <div class="blog-meta">
             <p>
-              <i class="fa fa-user"></i><a href="#">{{ post.author }}</a>
+              <i class="fa fa-user"></i>
+              <a href="#">{{ post.author }}</a>
             </p>
             <p>
-              <i class="fa fa-comments"></i
-              ><a href="#">{{ post.comments }} Comments</a>
+              <i class="fa fa-comments"></i>
+              <a href="#">{{ post.comments }} Comments</a>
             </p>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Pagination Controls -->
     <div class="pagination">
       <button
+        class="page-link"
         (click)="currentPage = currentPage - 1"
         [disabled]="currentPage === 1"
       >
         Previous
       </button>
-      <span>Page {{ currentPage }}</span>
+      <span class="page-link">Page {{ currentPage }}</span>
       <button
+        class="page-link"
         (click)="currentPage = currentPage + 1"
         [disabled]="currentPage * pageSize >= blogPosts.length"
       >
