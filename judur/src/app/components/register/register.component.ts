@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
+
 
 @Component({
   selector: 'app-register',
@@ -13,7 +15,7 @@ import { CommonModule } from '@angular/common';
 export class RegisterComponent {
   registerForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) { // Inject AuthService
     this.createForm();
   }
 
@@ -21,28 +23,41 @@ export class RegisterComponent {
     this.registerForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
-      mobile: ['', [Validators.required]], // Added mobile field
-      contactMethod: ['', [Validators.required]], // Added preferred method of contact
+      phone: ['', [Validators.required]], // Updated field for phone
+      role_id: ['', [Validators.required]], // Added role_id field
+      age: ['', [Validators.required, Validators.min(1)]], // Added age field, assuming a minimum age of 1
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required]]
-    }, { validators: this.passwordMatchValidator });
+   
+    });
   }
 
-  passwordMatchValidator(group: FormGroup): any {
-    return group.get('password')?.value === group.get('confirmPassword')?.value ? null : { mismatch: true };
-  }
+
+  // passwordMatchValidator(group: FormGroup): any {
+  //   return group.get('password')?.value === group.get('confirmPassword')?.value ? null : { mismatch: true };
+  // }
 
   onSubmit(): void {
     if (this.registerForm.valid) {
-      const { name, email, mobile, contactMethod, password } = this.registerForm.value;
-      console.log('Name:', name);
-      console.log('Email:', email);
-      console.log('Mobile:', mobile);
-      console.log('Preferred Contact Method:', contactMethod);
-      console.log('Password:', password);
+      const { name, email, phone, role_id, age, password } = this.registerForm.value;
+      const userData = {
+        name,
+        email,
+        password,
+        role_id, // Send role_id to the backend
+        age, // Send age to the backend
+        phone // Send phone to the backend
+      };
 
-      // Navigate to the login page after successful registration
-      this.router.navigate(['/login']);
+      this.authService.register(userData).subscribe({
+        next: (response) => {
+          console.log('Registration successful:', response);
+          this.router.navigate(['/login']);
+        },
+        error: (error) => {
+          console.error('Registration error:', error);
+        }
+      });
     }
   }
+
 }
