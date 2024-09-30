@@ -3,13 +3,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';  
 import { CommonModule } from '@angular/common';  
 import { NavbarComponent } from '../navbar/navbar.component';
-import {  HttpClientModule } from '@angular/common/http'; 
-
+import { AuthService } from '../../services/auth.service';// Import AuthService
 
 @Component({
   selector: 'app-auction',
   standalone: true,  
-  imports: [CommonModule, FormsModule, NavbarComponent , HttpClientModule],  
+  imports: [CommonModule, FormsModule, NavbarComponent],  
   templateUrl: './auction.component.html',
   styleUrls: ['./auction.component.css']
 })
@@ -22,32 +21,29 @@ export class AuctionComponent {
   isValuable: boolean = false;
   estimatedValue: string = '';
   itemCondition: string = '';
-  statusId: number = 1;  // Declare statusId here
+  statusId: number = 1;
+  extraNotes: string = '';  // New property for additional notes
   notifyApproval: boolean = false;
 
-  constructor(private http: HttpClient) {}  // Inject HttpClient
+  constructor(private http: HttpClient) {}
 
   // Method triggered on form submission
   onSubmit() {
-    // Prepare form data for submission
     const formData = {
       item_name: this.itemName,
       value: this.estimatedValue,
       is_valuable: this.isValuable,
       condition: this.itemCondition,
-      status_id: this.statusId  // Use statusId from the form
+      status_id: this.statusId,
+      extra_notes: this.extraNotes  // Include the extra notes field if valuable
     };
 
-    console.log('Form Data Submitted:', formData);
-
-    // Set up the headers including the Bearer token
-    const token = localStorage.getItem('auth_token');  // Replace with actual token storage logic
+    const token = localStorage.getItem('auth_token');  
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`,  // Ensure this contains the actual token
+      'Authorization': `Bearer ${token}`, 
       'Content-Type': 'application/json'
     });
 
-    // Make a POST request to the Laravel API
     this.http.post('http://localhost:8000/api/donate-item', formData, { headers })
       .subscribe(
         (response) => {

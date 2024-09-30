@@ -18,7 +18,9 @@ import { ReportDetailsComponent } from './components/dashboard/report-details/re
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterModule, RouterOutlet,NavbarComponent,DonationHistoryComponent , CommonModule ,ViewProfileComponent,
+  imports: [  AuctionComponent, // Ensure this is standalone
+    ReportDetailsComponent ,
+    RouterModule, RouterOutlet,NavbarComponent,DonationHistoryComponent , CommonModule ,ViewProfileComponent,
     EditProfileComponent, MainComponent, EventListComponent, EventDetailsComponent, ExaminerReportsComponent, AuctionComponent,ReportDetailsComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']

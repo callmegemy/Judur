@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SidebarComponent } from '../sidebar/sidebar.component';
+import { TopbarComponent } from '../topbar/topbar.component';
 
 @Component({
   selector: 'app-edit-post',
   standalone: true,
-  imports: [],
+  imports: [SidebarComponent,TopbarComponent],
   templateUrl: './edit-post.component.html',
   styleUrl: './edit-post.component.css'
 })
@@ -28,6 +30,6 @@ export class EditPostComponent {
     }
   }
   goBack() {
-    this.router.navigate(['/posts']);
+    this.router.navigate(['dashboard/posts']);
   }
 }
