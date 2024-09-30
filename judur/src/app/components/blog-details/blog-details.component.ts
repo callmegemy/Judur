@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 interface BlogPost {
   id: number;
@@ -16,7 +17,7 @@ interface BlogPost {
 @Component({
   selector: 'app-blog-details',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, NavbarComponent],
   templateUrl: './blog-details.component.html',
   styleUrls: ['./blog-details.component.css']
 })

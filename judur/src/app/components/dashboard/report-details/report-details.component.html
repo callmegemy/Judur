@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="report-header">
+        <h2>Report Details (ID: {{ reportId }})</h2>
+        <h2>Report for: Place 1</h2>
+        <p>Examiner: Examiner Name</p>
+        <p>Report Date: 2024-09-20</p>
+    </div>
+
+    <div class="report-details">
+        <h3>Details</h3>
+        <ul>
+            <li><strong>Location Description:</strong> A brief description of the site, including its size and amenities.</li>
+            <li><strong>Site Condition:</strong> Evaluation of the current condition of the land, including any necessary improvements.</li>
+            <li><strong>Capacity:</strong> Estimated number of individuals the site can accommodate for events (e.g., feeding events).</li>
+            <li><strong>Accessibility:</strong> Information on how accessible the site is for participants.</li>
+        </ul>
+    </div>
+
+    <div class="report-suggestions">
+        <h3>Suggestions</h3>
+        <ul>
+            <li>Consider adding more seating areas for participants.</li>
+            <li>Improving access to water facilities would enhance the experience.</li>
+            <li>Increase visibility and signage for easier navigation.</li>
+        </ul>
+    </div>
+
+    <div class="report-summary">
+        <h3>Summary</h3>
+        <p>This report provides an overview of the site visit conducted at Place 1. The location has been evaluated for its suitability for hosting feeding events and other community activities.</p>
+    </div>
+
+    <div class="actions">
+        <button class="btn" (click)="goBack()">Back to Reports</button>
+    </div>
+</div>

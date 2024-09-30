@@ -1,0 +1,28 @@
+<div class="container  text-center" style="margin-top: 150px;">
+    <h2 class="mb-4" style="color: #16423C;">Choose Your Registration Type</h2>
+    <div class="row justify-content-center">
+      <!-- Donor Card -->
+      <div class="col-lg-5 mb-4 me-lg-3">
+        <div class="card shadow bg-light rounded" (click)="navigateToDonorRegistration()">
+          <div class="card-body">
+            <fa-icon [icon]="faHandHoldingHeart" class="icon-donor mb-3"></fa-icon>
+            <h5 class="card-title mt-3" style="color: #16423C;">Register as Donor</h5>
+            <p class="card-text" style="color: #16423C;">Contribute by donating resources or funds to support our cause.</p>
+            <button class="btn btn-outline-primary">Register as Donor</button>
+          </div>
+        </div>
+      </div>
+      <!-- Volunteer Card -->
+      <div class="col-lg-5 mb-4 ms-lg-3">
+        <div class="card shadow bg-light rounded" (click)="registerAs('volunteer')">
+          <div class="card-body">
+            <fa-icon [icon]="faHandsHelping" class="icon-volunteer mb-3"></fa-icon>
+            <h5 class="card-title mt-3" style="color: #16423C;">Register as Volunteer</h5>
+            <p class="card-text" style="color: #16423C;">Help in organizing events and make a direct impact in the community.</p>
+            <button class="btn btn-outline-success">Register as Volunteer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

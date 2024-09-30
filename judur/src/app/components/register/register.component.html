@@ -17,6 +17,24 @@
             </div>
         </div>
         <div class="form-group">
+            <label for="mobile">Mobile Number</label>
+            <input formControlName="mobile" type="tel" class="form-control" id="mobile" placeholder="Enter your mobile number" required>
+            <div *ngIf="registerForm.controls['mobile'].invalid && registerForm.controls['mobile'].touched" class="text-danger">
+                Mobile Number is required.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="contactMethod">Preferred Method of Contact</label>
+            <select formControlName="contactMethod" class="form-control" id="contactMethod" required>
+                <option value="" disabled selected>Select contact method</option>
+                <option value="email">Email</option>
+                <option value="phone">Phone</option>
+            </select>
+            <div *ngIf="registerForm.controls['contactMethod'].invalid && registerForm.controls['contactMethod'].touched" class="text-danger">
+                Preferred Method of Contact is required.
+            </div>
+        </div>
+        <div class="form-group">
             <label for="password">Password</label>
             <input formControlName="password" type="password" class="form-control" id="password" placeholder="Enter your password" required>
             <div *ngIf="registerForm.controls['password'].invalid && registerForm.controls['password'].touched" class="text-danger">
@@ -29,7 +47,6 @@
             <div *ngIf="registerForm.errors?.['mismatch'] && registerForm.controls['confirmPassword'].touched" class="text-danger">
                 Passwords do not match.
             </div>
-            
         </div>
         <button type="submit" class="btn register-btn btn-block" [disabled]="registerForm.invalid">Register</button>
         <a routerLink="/login" class="d-block mt-3 login-link">Already have an account? Login</a>

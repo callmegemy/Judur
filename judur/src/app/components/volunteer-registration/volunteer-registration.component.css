@@ -1,24 +1,55 @@
-.form-control {
-    padding: .75rem 1rem; /* Comfortable padding */
-    font-size: 1rem; /* Readable font size */
-    border: 1px solid #C4DAD2; /* Stylish light teal border */
-    border-radius: .25rem; /* Soft rounded corners for a modern look */
-    background-color: #FFFFFF; /* Crisp white background */
-  }
-  
-  .form-control:focus {
-    border-color: #6A9C89; /* Focused state with a teal border */
-    box-shadow: 0 0 0 0.2rem rgba(106, 156, 137, 0.25); /* Subtle glow for focus */
-  }
-  
-  /* Icons in label styling */
-  .form-label i {
-    margin-right: 10px; /* Space between icon and text */
-  }
-  
+body {
+  background-color: #f4f4f9;
+  font-family: 'Roboto', sans-serif;
+  height: 100vh;
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.register-container .logo {
+  margin-bottom: 20px;
+  width: 150px;
+  height: 150px;
+  align-self: center;
+}
 
-  
-  .btn-success:hover {
-    background-color: #218838; /* Darker green on hover */
-  }
-  
+.register-container {
+  width: 600px;
+  margin-top: 130px;
+  margin-left: 32%;
+  padding: 30px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-control {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #6A9C89;
+  box-shadow: 0 0 5px rgba(106, 156, 137, 0.2);
+}
+
+.register-btn {
+  background-color: #16423C;
+  color: #fff;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  border-radius: 8px;
+}
+
+.register-btn:hover {
+  background-color: #6A9C89;
+  transform: translateY(-2px);
+}

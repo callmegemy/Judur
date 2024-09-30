@@ -1,0 +1,22 @@
+<div class="container">
+    <h1>Examiner Reports</h1>
+    <table class="table">
+        <thead>
+          <tr>
+            <th>Place</th>
+            <th>Examiner</th>
+            <th>Report Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let report of reports">
+            <td>{{ report.place }}</td>
+            <td>{{ report.examiner }}</td>
+            <td>{{ report.date }}</td>
+            <td><a [routerLink]="['/report-details', report.id]" class="btn">View Report</a></td>
+          </tr>
+        </tbody>
+      </table>
+      
+</div>

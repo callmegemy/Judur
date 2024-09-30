@@ -15,10 +15,6 @@
 }
 
 
-
-
-
-/*** Button ***/
 .btn {
     font-weight: 500;
     transition: .5s;
@@ -134,8 +130,8 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: rgba(0, 29, 35, .8);
-    z-index: 1;
+    background: rgba(0, 15, 15, .6);  
+      z-index: 1;
 }
 
 .carousel-control-prev,
@@ -169,7 +165,7 @@
 .page-header {
     padding-top: 12rem;
     padding-bottom: 6rem;
-    background: linear-gradient(rgba(0, 29, 35, .8), rgba(0, 29, 35, .8)),  url(../img/back.jpeg) ;
+    background: linear-gradient(rgba(0, 29, 35, .8), rgba(0, 29, 35, .8)),  url(/assets/img/money-jars.jpg) ;
 
     background-size: cover ;
     width: 100%;
@@ -182,7 +178,7 @@
 .page-header1 {
     padding-top: 12rem;
     padding-bottom: 6rem;
-    background: linear-gradient(rgba(0, 29, 35, .8), rgba(0, 29, 35, .8)),  url(../img/money-jars.jpg) ;
+    background: linear-gradient(rgba(0, 29, 35, .8), rgba(0, 29, 35, .8)),  url(/assets/img/money-jars.jpg) ;
 
     background-size: cover ;
     width: 100%;
@@ -585,4 +581,26 @@ body {
     background: var(--primary);
     color: var(--light);
 }
+
+.testimonial-item {
+    margin: 15px;
+  }
+  
+  .testimonial-text {
+    background-color: #f8f9fa;
+  }
+  
+  .img-fluid {
+    border: 1px solid #ddd;
+  }
+  
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    background-color: #000;
+  }
+  
+  .carousel-indicators button {
+    background-color: #000;
+  }
+  
 

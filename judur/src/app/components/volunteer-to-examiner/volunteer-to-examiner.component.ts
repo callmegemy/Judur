@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-volunteer-to-examiner',
   standalone: true,
-  imports: [],
+  imports: [NavbarComponent],
   templateUrl: './volunteer-to-examiner.component.html',
   styleUrl: './volunteer-to-examiner.component.css'
 })

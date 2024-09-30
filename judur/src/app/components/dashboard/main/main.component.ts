@@ -1,6 +1,8 @@
 import { Component, AfterViewInit, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import $ from 'jquery';
+import { SidebarComponent } from '../sidebar/sidebar.component';
+import { TopbarComponent } from '../topbar/topbar.component';
 
 
 Chart.register(...registerables);
@@ -8,6 +10,7 @@ Chart.register(...registerables);
 @Component({
   selector: 'app-main',
   standalone: true,
+  imports:[SidebarComponent, TopbarComponent],
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css'],
 })
@@ -17,7 +20,6 @@ export class MainComponent implements AfterViewInit, OnInit{
 
   constructor() {}
   ngOnInit(): void {
-    // Initialize jQuery functionalities after the component is initialized
     this.initializeJQuery();
   }
   ngAfterViewInit(): void {
@@ -102,52 +104,45 @@ export class MainComponent implements AfterViewInit, OnInit{
   }
 
   private initializeJQuery(): void {
-    // Make sure the jQuery code runs after the DOM is ready
     $(document).ready(() => {
-      // Toggle the sidebar when the toggle button is clicked
       $("#sidebarToggle, #sidebarToggleTop").on('click', () => {
         $("body").toggleClass("sidebar-toggled");
         $(".sidebar").toggleClass("toggled");
 
-        // Collapse any open menu items when toggled
         if ($(".sidebar").hasClass("toggled")) {
-          $('.sidebar .collapse').hide(); // Use hide instead of collapse
+          $('.sidebar .collapse').hide();
         }
       });
 
-      // Close any open menu accordions when window is resized below 768px
       $(window).resize(() => {
-        const windowWidth: number = $(window).width() ?? 0; // Provide a default value of 0
+        const windowWidth: number = $(window).width() ?? 0; 
 
         if (windowWidth < 768) {
-          $('.sidebar .collapse').hide(); // Use hide instead of collapse
+          $('.sidebar .collapse').hide(); 
         }
 
-        // Toggle the sidebar if the window is resized below 480px
         if (windowWidth < 480 && !$(".sidebar").hasClass("toggled")) {
           $("body").addClass("sidebar-toggled");
           $(".sidebar").addClass("toggled");
-          $('.sidebar .collapse').hide(); // Use hide instead of collapse
+          $('.sidebar .collapse').hide(); 
         }
       });
 
-      // Scroll to top button appear
       $(document).on('scroll', () => {
-        const scrollDistance: number = $(window).scrollTop() ?? 0; // Provide a default value of 0
+        const scrollDistance: number = $(window).scrollTop() ?? 0; 
         if (scrollDistance > 100) {
-          $('.scroll-to-top').fadeIn(); // Show the button
+          $('.scroll-to-top').fadeIn(); 
         } else {
-          $('.scroll-to-top').fadeOut(); // Hide the button
+          $('.scroll-to-top').fadeOut(); 
         }
       });
 
-      // Smooth scrolling when clicking the scroll-to-top button
       $(document).on('click', 'a.scroll-to-top', (e) => {
-        e.preventDefault(); // Prevent the default link behavior
-        const target = $(e.currentTarget).attr('href'); // Get the target from the anchor
+        e.preventDefault();
+        const target = $(e.currentTarget).attr('href'); 
         if (target) {
           $('html, body').stop().animate({
-            scrollTop: $(target).offset()?.top ?? 0 // Scroll to the target, provide a default value
+            scrollTop: $(target).offset()?.top ?? 0 
           }, 1000, 'easeInOutExpo');
         }
       });
