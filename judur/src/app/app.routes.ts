@@ -86,15 +86,10 @@ export const routes: Routes = [
   // { path: 'view-profile', component: ViewProfileComponent},
   { path: 'view-profile', component: ViewProfileComponent },
   { path: 'edit-profile', component: EditProfileComponent },
-  { path: 'event-details', component: EventDetailsComponent },
+  { path: 'list-event/event-details', component: EventDetailsComponent },
 
   { path: 'list-event', component: EventListComponent},
-  { path: 'examiner-reports', component: ExaminerReportsComponent },
-  { path: 'report-details/:id', component: ReportDetailsComponent },
-  { path: 'posts', component: PostsDashboardComponent},
-  { path: 'create-post', component: CreatePostComponent },
-  { path: 'view-post/:id', component: ViewPostComponent },
-  { path: 'edit-post/:id', component: EditPostComponent },
+
   // { path: '', redirectTo: '/donation-history', pathMatch: 'full' },
   // { path: '**', redirectTo: '/donation-history' }
   {path:'auction-list',component:ListingAuctionsComponent},
@@ -124,7 +119,12 @@ export const routes: Routes = [
   { path: 'dashboard/auctions/edit', component: EditAuctionComponent },
   { path: 'dashboard/auctions/create', component: CreateAuctionComponent },
 
-
+  { path: 'dashboard/examiner-reports', component: ExaminerReportsComponent },
+  { path: 'dashboard/examiner-reports/report-details/:id', component: ReportDetailsComponent },
+  { path: 'dashboard/posts', component: PostsDashboardComponent},
+  { path: 'dashboard/posts/create-post', component: CreatePostComponent },
+  { path: 'dashboard/posts/view-post/:id', component: ViewPostComponent },
+  { path: 'dashboard/posts/edit-post/:id', component: EditPostComponent },
 
 
 
