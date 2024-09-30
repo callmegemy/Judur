@@ -2,7 +2,7 @@
 
 <!-- Page Header Start -->
 <div class="page-header">
-    <div class="container">
+    <div class="container mt-5">
         <div class="row">
             <div class="col-12">
                 <h2>Upcoming Events</h2>
@@ -37,8 +37,7 @@
                             <h3>{{ event.title }}</h3>
                             <p>{{ event.description }}</p>
                             <a class="btn btn-custom" href="#">Join Now</a>
-                            <a class="btn btn-custom" href="eventdetails.html">View Details</a>
-                        </div>
+                            <a class="btn btn-custom" [routerLink]="['/list-event/event-details']">View Details</a>                        </div>
                     </div>
                 </div>
             </div>
