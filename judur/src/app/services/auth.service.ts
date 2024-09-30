@@ -6,18 +6,17 @@ import { Observable, BehaviorSubject, tap, catchError, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://127.0.0.1:8000/api'; // Your Laravel API endpoint
+  private apiUrl = 'http://127.0.0.1:8000/api'; 
   private loggedIn = new BehaviorSubject<boolean>(this.hasToken());
 
   constructor(private http: HttpClient) {}
 
   private hasToken(): boolean {
-    return !!localStorage.getItem('auth_token'); // Check for the correct token key
+    return !!localStorage.getItem('auth_token');
   }
 
  
-  // Login method
-// AuthService
+
 login(data: any): Observable<any> {
   return this.http.post(`${this.apiUrl}/login`, data).pipe(
     tap((response: any) => {
@@ -35,7 +34,7 @@ login(data: any): Observable<any> {
 
 
 
-  // Method to store token in localStorage
+  
   private storeToken(token: string): void {
     localStorage.setItem('auth_token', token);
   }
@@ -61,19 +60,58 @@ register(data: any): Observable<any> {
     tap((response: any) => {
       if (response.access_token) {
         this.storeToken(response.access_token);
-        // Optionally store user data
+       
         console.log('Registration successful, token stored.');
       }
     })
   );
 }
 
+// Register a donor
+registerDonor(data: any): Observable<any> {
+  return this.http.post(`${this.apiUrl}/register/donor`, data).pipe(
+    tap((response: any) => {
+      if (response.access_token) {
+        this.storeToken(response.access_token);
+        localStorage.setItem('user', JSON.stringify(response.user)); 
+        console.log('Donor registration successful, token and user data stored.');
+        this.loggedIn.next(true);
+      }
+    }),
+    catchError((error) => {
+      console.error('Error during donor registration:', error);
+      return throwError(error);
+    })
+  );
+}
+
+
+registerVolunteer(data: any): Observable<any> {
+  return this.http.post(`${this.apiUrl}/register/volunteer`, data).pipe(
+      tap((response: any) => {
+          if (response.access_token) {
+              this.storeToken(response.access_token);
+              localStorage.setItem('user', JSON.stringify(response.user)); 
+              console.log('Volunteer registration successful, token and user data stored.');
+              this.loggedIn.next(true);
+          }
+      }),
+      catchError((error) => {
+          console.error('Error during volunteer registration:', error);
+          return throwError(error);
+      })
+  );
+}
+
+
+
+
   
   
 
-  // Logout method
+ 
   logout(): Observable<any> {
-    const token = this.getToken(); // Get the token from local storage or wherever it's stored
+    const token = this.getToken();
     if (!token) {
       console.error('Token not found during logout.');
       this.loggedIn.next(false);
@@ -88,7 +126,7 @@ register(data: any): Observable<any> {
       }
     }).pipe(
       tap(() => {
-        this.removeToken(); // Remove token from local storage
+        this.removeToken(); 
         this.loggedIn.next(false);
       }),
       catchError((error) => {
@@ -100,17 +138,17 @@ register(data: any): Observable<any> {
   
 
 
-  // Method to retrieve token from localStorage
+  // Metho
   private getToken(): string | null {
-    return localStorage.getItem('auth_token'); // Return the token from localStorage
+    return localStorage.getItem('auth_token'); 
   }
 
-  // Method to remove the token from localStorage
+
   private removeToken(): void {
     localStorage.removeItem('auth_token');
   }
 
-  // Check if user is logged in
+ 
   isLoggedIn(): Observable<boolean> {
     return this.loggedIn.asObservable();
   }

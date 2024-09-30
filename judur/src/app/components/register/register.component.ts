@@ -4,7 +4,6 @@ import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 
-
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -13,51 +12,33 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  registerForm!: FormGroup;
+  donorForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) { // Inject AuthService
-    this.createForm();
-  }
-
-  createForm(): void {
-    this.registerForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(2)]],
+  constructor(private fb: FormBuilder, private authService: AuthService) {
+    this.donorForm = this.fb.group({
+      name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required]], // Updated field for phone
-      role_id: ['', [Validators.required]], // Added role_id field
-      age: ['', [Validators.required, Validators.min(1)]], // Added age field, assuming a minimum age of 1
-      password: ['', [Validators.required, Validators.minLength(6)]],
-   
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      role_id: [2], 
+      age: ['', Validators.required],
+      phone: ['', Validators.required],
     });
-  }
+}
 
 
-  // passwordMatchValidator(group: FormGroup): any {
-  //   return group.get('password')?.value === group.get('confirmPassword')?.value ? null : { mismatch: true };
-  // }
-
-  onSubmit(): void {
-    if (this.registerForm.valid) {
-      const { name, email, phone, role_id, age, password } = this.registerForm.value;
-      const userData = {
-        name,
-        email,
-        password,
-        role_id, // Send role_id to the backend
-        age, // Send age to the backend
-        phone // Send phone to the backend
-      };
-
-      this.authService.register(userData).subscribe({
+  registerDonor() {
+    if (this.donorForm.valid) {
+      this.authService.registerDonor(this.donorForm.value).subscribe({
         next: (response) => {
-          console.log('Registration successful:', response);
-          this.router.navigate(['/login']);
+          console.log('Donor registration successful:', response);
+          
         },
-        error: (error) => {
-          console.error('Registration error:', error);
+        error: (err) => {
+          console.error('Error during donor registration:', err);
         }
       });
+    } else {
+      console.warn('Donor form is invalid');
     }
   }
-
 }

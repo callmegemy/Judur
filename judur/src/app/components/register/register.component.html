@@ -1,58 +1,62 @@
 <div class="register-container">
     <img src="assets/img/ju.png" alt="Judur Logo" class="logo">
 
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="donorForm" (ngSubmit)="registerDonor()">
         <div class="form-group">
             <label for="name">Full Name</label>
-            <input formControlName="name" type="text" class="form-control" id="name" placeholder="Enter your full name" required>
-            <div *ngIf="registerForm.controls['name'].invalid && registerForm.controls['name'].touched" class="text-danger">
+            <input formControlName="name" type="text" class="form-control" id="name" placeholder="Enter your full name"
+                required>
+            <div *ngIf="donorForm.controls['name'].invalid && donorForm.controls['name'].touched" class="text-danger">
                 Full Name is required (min 2 characters).
             </div>
         </div>
 
         <div class="form-group">
             <label for="email">Email Address</label>
-            <input formControlName="email" type="email" class="form-control" id="email" placeholder="Enter your email" required>
-            <div *ngIf="registerForm.controls['email'].invalid && registerForm.controls['email'].touched" class="text-danger">
+            <input formControlName="email" type="email" class="form-control" id="email" placeholder="Enter your email"
+                required>
+            <div *ngIf="donorForm.controls['email'].invalid && donorForm.controls['email'].touched" class="text-danger">
                 Valid Email is required.
             </div>
         </div>
 
         <div class="form-group">
             <label for="phone">Phone Number</label>
-            <input formControlName="phone" type="tel" class="form-control" id="phone" placeholder="Enter your phone number" required>
-            <div *ngIf="registerForm.controls['phone'].invalid && registerForm.controls['phone'].touched" class="text-danger">
+            <input formControlName="phone" type="tel" class="form-control" id="phone"
+                placeholder="Enter your phone number" required>
+            <div *ngIf="donorForm.controls['phone'].invalid && donorForm.controls['phone'].touched" class="text-danger">
                 Phone Number is required.
             </div>
         </div>
 
-        <div class="form-group">
-            <label for="role_id">Role ID</label>
-            <input formControlName="role_id" type="text" class="form-control" id="role_id" placeholder="Enter your role ID" required>
-            <div *ngIf="registerForm.controls['role_id'].invalid && registerForm.controls['role_id'].touched" class="text-danger">
-                Role ID is required.
-            </div>
-        </div>
+
 
         <div class="form-group">
             <label for="age">Age</label>
-            <input formControlName="age" type="number" class="form-control" id="age" placeholder="Enter your age" required>
-            <div *ngIf="registerForm.controls['age'].invalid && registerForm.controls['age'].touched" class="text-danger">
+            <input formControlName="age" type="number" class="form-control" id="age" placeholder="Enter your age"
+                required>
+            <div *ngIf="donorForm.controls['age'].invalid && donorForm.controls['age'].touched" class="text-danger">
                 Age is required.
             </div>
         </div>
 
         <div class="form-group">
             <label for="password">Password</label>
-            <input formControlName="password" type="password" class="form-control" id="password" placeholder="Enter your password" required>
-            <div *ngIf="registerForm.controls['password'].invalid && registerForm.controls['password'].touched" class="text-danger">
+            <input formControlName="password" type="password" class="form-control" id="password"
+                placeholder="Enter your password" required>
+            <div *ngIf="donorForm.controls['password'].invalid && donorForm.controls['password'].touched"
+                class="text-danger">
                 Password is required (min 6 characters).
             </div>
         </div>
 
-     
 
-        <button type="submit" class="btn register-btn btn-block" [disabled]="registerForm.invalid">Register</button>
+
+       
+
+
+
+        <button type="submit" class="btn register-btn btn-block" [disabled]="donorForm.invalid">Register</button>
         <a routerLink="/login" class="d-block mt-3 login-link">Already have an account? Login</a>
     </form>
 </div>
