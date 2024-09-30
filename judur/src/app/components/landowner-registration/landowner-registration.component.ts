@@ -7,23 +7,23 @@ import { NavbarComponent } from '../navbar/navbar.component';
 @Component({
   selector: 'app-landowner-registration',
   standalone: true,
-  imports: [NavbarComponent, CommonModule, ReactiveFormsModule], // Ensure ReactiveFormsModule is imported
+  imports: [NavbarComponent, CommonModule, ReactiveFormsModule], 
   templateUrl: './landowner-registration.component.html',
   styleUrls: ['./landowner-registration.component.css']
 })
 export class LandownerRegistrationComponent {
   landDonationForm: FormGroup;
-  user: any; // Current logged-in user
+  user: any; 
   selectedFile: File | null = null;
 
   constructor(private authService: AuthService, private fb: FormBuilder) {
-    // Initialize the form with validation
+   
     this.landDonationForm = this.fb.group({
       description: ['', Validators.required],
       land_size: ['', [Validators.required, Validators.min(0)]],
       address: ['', Validators.required],
       proof_of_ownership: [null, Validators.required],
-      status_id: [1, Validators.required] // Default status
+      status_id: [1, Validators.required]
     });
 
     // Get the current logged-in user
@@ -34,16 +34,16 @@ export class LandownerRegistrationComponent {
     const target = event.target as HTMLInputElement;
     if (target.files && target.files.length > 0) {
       this.selectedFile = target.files[0];
-      // Update the form control value to the selected file
+     
       this.landDonationForm.patchValue({ proof_of_ownership: this.selectedFile });
     }
   }
 
   onSubmit(): void {
-    console.log(this.landDonationForm.value); // Log the current form values
+    console.log(this.landDonationForm.value); 
     if (this.landDonationForm.invalid) {
       console.error('Form is invalid.', this.landDonationForm.errors);
-      return; // Handle invalid form
+      return; 
     }
   
     const formData = new FormData();
@@ -57,18 +57,18 @@ export class LandownerRegistrationComponent {
       formData.append('proof_of_ownership', this.selectedFile, this.selectedFile.name);
     }
     
-    // Make API call to donate land
+   
     this.authService.donateLand(formData).subscribe(
       (response: any) => {
         console.log('Land donated successfully!', response);
-        // Show alert on successful donation
+        
         window.alert('Land donated successfully!');
-        // Optionally, reset the form or navigate to another page
-        this.landDonationForm.reset(); // Reset the form after successful submission
+        
+        this.landDonationForm.reset(); 
       },
       (error: any) => {
         console.error('Error donating land:', error);
-        window.alert('An error occurred while donating land. Please try again.'); // Show alert for errors
+        window.alert('An error occurred while donating land. Please try again.'); 
       }
     );
   }

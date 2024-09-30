@@ -160,5 +160,22 @@ registerVolunteer(data: any): Observable<any> {
 
     return this.http.post(`${this.apiUrl}/donate-land`, formData, { headers });
   }
-  
+  donateMoney(data: any): Observable<any> {
+    const token = this.getToken();
+    const headers = {
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/json'
+    };
+
+    return this.http.post(`${this.apiUrl}/donate-money`, data, { headers }).pipe(
+      tap((response) => {
+        console.log('Money donation response:', response);
+      }),
+      catchError((error) => {
+        console.error('Error donating money:', error);
+        return throwError(error);
+      })
+    );
+  }
+
 }
