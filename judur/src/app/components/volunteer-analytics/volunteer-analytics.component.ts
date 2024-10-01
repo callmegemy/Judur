@@ -1,3 +1,5 @@
+import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Chart } from 'chart.js/auto';
@@ -5,12 +7,26 @@ import { Chart } from 'chart.js/auto';
 @Component({
   selector: 'app-volunteer-analytics',
   standalone: true,
-  imports: [RouterLink],
+  imports: [CommonModule, RouterLink],
   templateUrl: './volunteer-analytics.component.html',
   styleUrl: './volunteer-analytics.component.css'
 })
 export class VolunteerAnalyticsComponent implements OnInit {
+
+  summaryData: any;
+
+  constructor(private http: HttpClient) { }
   ngOnInit(): void {
+    this.http.get('http://localhost/api/volunteer-summary').subscribe({
+      next: (data) => {
+        console.log(data);
+        this.summaryData = data; // Store the fetched data in summaryData
+      },
+      error: (error) => {
+        console.error('Error:', error);
+        console.error('Error details:', error.error?.text || error.message);
+      }
+    });
     const ctx = document.getElementById('participationChart') as HTMLCanvasElement;
     new Chart(ctx, {
       type: 'bar', // or 'line', etc.
@@ -24,5 +40,6 @@ export class VolunteerAnalyticsComponent implements OnInit {
       }
     });
   }
+
 
 }
