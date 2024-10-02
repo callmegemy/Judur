@@ -1,40 +1,45 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-volunteer-registration',
-  standalone: true, // Mark as standalone
+  standalone: true, 
   templateUrl: './volunteer-registration.component.html',
   styleUrls: ['./volunteer-registration.component.css'],
-  imports: [ReactiveFormsModule,CommonModule], // Import ReactiveFormsModule directly here
+  imports: [ReactiveFormsModule,CommonModule], 
 })
 export class VolunteerRegistrationComponent {
-  volunteerForm!: FormGroup;
+  volunteerForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
-    this.createForm();
-  }
-
-  createForm(): void {
+  constructor(private fb: FormBuilder, private authService: AuthService) {
     this.volunteerForm = this.fb.group({
-      fullName: ['', [Validators.required, Validators.minLength(2)]],
+      name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      role_id: [3],
+      age: ['', Validators.required],
+      phone: ['', Validators.required],
       skills: ['', Validators.required],
-      age: ['', [Validators.required, Validators.min(18)]],
       availability: ['', Validators.required],
-      preferredRoles: ['', Validators.required],
-      experience: [''],
-      motivation: ['', Validators.required]
+      aim: ['', Validators.required],
     });
   }
 
-  onSubmit(): void {
+  registerVolunteer() {
+    console.log(this.volunteerForm.value);
     if (this.volunteerForm.valid) {
-      const formData = this.volunteerForm.value;
-      console.log('Volunteer Registration Data:', formData);
-
-      // Handle form submission logic here
+        this.authService.registerVolunteer(this.volunteerForm.value).subscribe({
+            next: (response) => {
+                console.log('Volunteer registration successful:', response);
+            },
+            error: (err) => {
+                console.error('Error during volunteer registration:', err);
+            }
+        });
+    } else {
+        console.warn('Volunteer form is invalid');
     }
-  }
+}
 }

@@ -1,21 +1,36 @@
-<div class="login-container" style="display: flex; justify-content: center;">
-    <img src="assets/img/ju.png" alt="Judur Logo" class="logo">
+<div class="login-container">
 
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-            <label for="email">Email Address</label>
-            <input formControlName="email" type="email" class="form-control" id="email" placeholder="Enter your email" required>
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input formControlName="password" type="password" class="form-control" id="password" placeholder="Enter your password" required>
-        </div>
-        <div class="form-check mb-3">
-            <input formControlName="remember" type="checkbox" class="form-check-input" id="remember">
-            <label class="form-check-label" for="remember">Remember Me</label>
-        </div>
-        <button type="submit" class="btn login-btn btn-block" [disabled]="loginForm.invalid">Login</button>
-        <a routerLink="/forgot-password" class="d-block text-center mt-3 forgot-password">Forgot Password?</a>
-        <a routerLink="/register-choice" class="d-block mt-3 register-link">Don't have an account? Register</a>
-    </form>
+  <img src="assets/img/ju.png" alt="Judur Logo" class="logo">
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <div class="form-group">
+          <label for="email">Email:</label>
+          <input id="email" formControlName="email" type="email" placeholder="Enter your email" class="form-control" />
+          <div *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty)">
+              <small class="error" *ngIf="loginForm.get('email')?.errors?.['required']">Email is required.</small>
+              <small class="error" *ngIf="loginForm.get('email')?.errors?.['email']">Please enter a valid email.</small>
+          </div>
+      </div>
+
+      <div class="form-group">
+          <label for="password">Password:</label>
+          <input id="password" formControlName="password" type="password" placeholder="Enter your password" class="form-control" />
+          <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty)">
+              <small class="error" *ngIf="loginForm.get('password')?.errors?.['required']">Password is required.</small>
+          </div>
+      </div>
+
+      <button type="submit" [disabled]="loginForm.invalid" class="login-btn mt-4  mb-4" style="align-items: center;">Login</button>
+
+      <div *ngIf="loginForm.invalid && (loginForm.touched || loginForm.dirty)">
+          <small class="error">Please fix the errors above.</small>
+      </div>
+
+      <div class="forgot-password" style="text-align: center;">
+          <a href="#">Forgot your password?</a>
+      </div>
+
+      <div class="register-link">
+          <a routerLink="/register-choice">Don't have an account? Register here</a>
+      </div>
+  </form>
 </div>

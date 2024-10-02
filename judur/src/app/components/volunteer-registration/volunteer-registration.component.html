@@ -1,6 +1,6 @@
 <div class="register-container">
   <img src="assets/img/ju.png" alt="Judur Logo" class="logo">
-  <form [formGroup]="volunteerForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="volunteerForm" (ngSubmit)="registerVolunteer()">
     <div class="form-group">
       <label for="fullName"><i class="fas fa-user me-2"></i>Full Name</label>
       <input formControlName="fullName" type="text" class="form-control" id="fullName" placeholder="Enter full name">

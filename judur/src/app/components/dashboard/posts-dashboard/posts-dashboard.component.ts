@@ -1,11 +1,13 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { SidebarComponent } from '../sidebar/sidebar.component';
+import { TopbarComponent } from '../topbar/topbar.component';
 
 @Component({
   selector: 'app-posts-dashboard',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,DatePipe,SidebarComponent,TopbarComponent],
   templateUrl: './posts-dashboard.component.html',
   styleUrl: './posts-dashboard.component.css'
 })
@@ -32,14 +34,20 @@ export class PostsDashboardComponent {
   ];
   constructor(private router: Router  ) {} // Inject Router
   createPost() {
-    this.router.navigate(['/create-post']);
+    this.router.navigate(['/dashboard/posts/create-post']);
   }
-
+  
   viewPost(postId: number) {
-    this.router.navigate(['/view-post', postId]);
+    this.router.navigate(['/dashboard/posts/view-post', postId]);
+  }
+  
+  editPost(postId: number) {
+    this.router.navigate(['/dashboard/posts/edit-post', postId]);
   }
 
-  editPost(postId: number) {
-    this.router.navigate(['/edit-post', postId]);
+   deletePost(postId: number): void {
+    // Filter out the post with the matching ID (for demo purposes)
+    this.posts = this.posts.filter(post => post.id !== postId);
+    console.log(`Post with id ${postId} deleted`);
   }
 }
