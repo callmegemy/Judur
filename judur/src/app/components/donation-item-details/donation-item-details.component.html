@@ -1,26 +1,11 @@
-<app-navbar></app-navbar>
+<!-- <app-navbar></app-navbar> -->
 
-<div *ngIf="donationDetails" class="card shadow-sm mt-3" style="max-width: 400px; border-color: #6A9C89;">
-    <!-- Card Header with Custom Color -->
-    <div class="card-header" style="background-color: #6A9C89; color: white;">
-      <h4 class="card-title text-center">Item Donation Details</h4>
-    </div>
-    
-    <!-- Card Body with Custom Light Background -->
-    <div class="card-body" style="background-color: #E9EFEC;">
-      <p><strong>Date:</strong> {{ donationDetails.date }}</p>
-      <p><strong>Item:</strong> {{ donationDetails.details }}</p>
-      <p><strong>Quantity:</strong> {{ donationDetails.quantity }}</p>
-      <p><strong>Description:</strong> {{ donationDetails.description }}</p>
-      <p><strong>Condition:</strong> {{ donationDetails.condition }}</p>
-      <p><strong>Expiry Date:</strong> {{ donationDetails.expiryDate }}</p>
-    </div>
-    
-    <!-- Card Footer with Custom Button Color -->
-    <div class="card-footer text-center" style="background-color: #E9EFEC;">
-      <button (click)="goBack()" class="btn btn-sm" style="background-color: #6A9C89; color: white;">
-        <i class="fas fa-arrow-left"></i> Back to Donation History
-      </button>
-    </div>
+<h2>Item Donation Details</h2>
+<div *ngFor="let item of itemDonations" class="card my-3">
+  <div class="card-body">
+    <h5 class="card-title">Item Name: {{ item.item_name }}</h5>
+    <p><strong>Value:</strong> ${{ item.value }}</p>
+    <p><strong>Condition:</strong> {{ item.condition }}</p>
+    <p><strong>Date Donated:</strong> {{ item.created_at }}</p>
   </div>
-  
+</div>

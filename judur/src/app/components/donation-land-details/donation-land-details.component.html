@@ -1,24 +1,9 @@
-<app-navbar></app-navbar>
-
-<div *ngIf="donationDetails" class="card shadow-sm mt-3" style="max-width: 400px; border-color: #6A9C89;">
-   
-    <div class="card-header" style="background-color: #6A9C89; color: white;">
-      <h4 class="card-title text-center">Land Donation Details</h4>
-    </div>
-    
-
-    <div class="card-body" style="background-color: #E9EFEC;">
-      <p><strong>Date:</strong> {{ donationDetails.date }}</p>
-      <p><strong>Location:</strong> {{ donationDetails.location }}</p>
-      <p><strong>Capacity:</strong> {{ donationDetails.capacity }} people</p>
-      <p><strong>Owner Name:</strong> {{ donationDetails.ownerName }}</p>
-      <p><strong>Land Area:</strong> {{ donationDetails.landArea }}</p>
-    </div>
-  
-    <div class="card-footer text-center" style="background-color: #E9EFEC;">
-      <button (click)="goBack()" class="btn btn-sm" style="background-color: #6A9C89; color: white;">
-        <i class="fas fa-arrow-left"></i> Back to Donation History
-      </button>
-    </div>
+<h2>Land Donation Details</h2>
+<div *ngFor="let land of landDonations" class="card my-3">
+  <div class="card-body">
+    <h5 class="card-title">Land Address: {{ land.address }}</h5>
+    <p><strong>Size:</strong> {{ land.land_size }} sq ft</p>
+    <p><strong>Description:</strong> {{ land.description }}</p>
+    <p><strong>Date Donated:</strong> {{ land.created_at }}</p>
   </div>
-  
+</div>

@@ -1,24 +1,8 @@
-<app-navbar></app-navbar>
-
-<div *ngIf="donationDetails" class="card shadow-sm mt-3" style="max-width: 400px; border-color: #6A9C89;">
-    <!-- Card Header with Custom Dark Teal Color -->
-    <div class="card-header" style="background-color: #6A9C89; color: white;">
-      <h4 class="card-title text-center">Monetary Donation Details</h4>
-    </div>
-    
-    <!-- Card Body with Custom Light Background -->
-    <div class="card-body" style="background-color: #E9EFEC;">
-      <p><strong>Date:</strong> {{ donationDetails.date }}</p>
-      <p><strong>Donor Name:</strong> {{ donationDetails.donorName }}</p>
-      <p><strong>Amount:</strong> {{ donationDetails.amount | currency:donationDetails.currency }}</p>
-      <p><strong>Payment Method:</strong> {{ donationDetails.paymentMethod }}</p>
-    </div>
-    
-    <!-- Card Footer with Custom Button Color -->
-    <div class="card-footer text-center" style="background-color: #E9EFEC;">
-      <button (click)="goBack()" class="btn btn-sm" style="background-color: #6A9C89; color: white;">
-        <i class="fas fa-arrow-left"></i> Back to Donation History
-      </button>
-    </div>
+<h2>Financial Donation Details</h2>
+<div *ngFor="let financial of financialDonations" class="card my-3">
+  <div class="card-body">
+    <h5 class="card-title">Amount Donated: ${{ financial.amount }}</h5>
+    <p><strong>Currency:</strong> {{ financial.currency }}</p>
+    <p><strong>Date Donated:</strong> {{ financial.created_at }}</p>
   </div>
-  
+</div>
