@@ -47,6 +47,7 @@ import { AuctionsComponent } from './components/dashboard/auctions/auctions.comp
 import { ViewAuctionComponent } from './components/dashboard/view-auction/view-auction.component';
 import { EditAuctionComponent } from './components/dashboard/edit-auction/edit-auction.component';
 import { CreateAuctionComponent } from './components/dashboard/create-auction/create-auction.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
 
 export const routes: Routes = [
   {
@@ -79,14 +80,14 @@ export const routes: Routes = [
   { path: 'register-choice', component: RegisterChoiceComponent },
 
   // Donation details routes by category
-  { path: 'donation-item-details/:id', component: DonationItemDetailsComponent },
-  { path: 'donation-money-details/:id', component: DonationMoneyDetailsComponent },
-  { path: 'donation-land-details/:id', component: DonationLandDetailsComponent },
+  { path: 'donation-item-details', component: DonationItemDetailsComponent },
+  { path: 'donation-money-details', component: DonationMoneyDetailsComponent },
+  { path: 'donation-land-details', component: DonationLandDetailsComponent },
 
   // { path: 'view-profile', component: ViewProfileComponent},
   { path: 'view-profile', component: ViewProfileComponent },
-  { path: 'edit-profile', component: EditProfileComponent },
-  { path: 'event-details', component: EventDetailsComponent },
+  { path: 'edit-profile/:id', component: EditProfileComponent },
+  { path: 'list-event/event-details/:id', component: EventDetailsComponent },
 
   { path: 'list-event', component: EventListComponent},
 
@@ -132,6 +133,7 @@ export const routes: Routes = [
   
   { path: 'listing-auctions' , component: ListingAuctionsComponent},
   { path: 'details-auctions' , component:DetailsAuctionsComponent},
+  {path:'contact-us',component:ContactUsComponent}
 ];
 
 @NgModule({

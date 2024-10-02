@@ -1,16 +1,14 @@
 /* General styles for the auction form */
 .container {
-    max-width: 800px; /* Adjust width as necessary */
+    max-width: 800px;
+    margin-top: 70px; /* Adjust width as necessary */
   }
   
-  .card-header {
-    background-color: #16423C; /* Dark navy background for the header */
-    color: #E9EFEC; /* Off white text for contrast */
-  }
   
   .card-body {
     background-color: #E9EFEC; /* Light background for the body */
     padding: 20px;
+  
   }
   
   .form-label {
@@ -21,7 +19,8 @@
   
   .form-label i {
     color: #6A9C89; /* Teal icon color */
-    margin-right: 10px; /* Space between icon and text */
+    margin-right: 10px;
+     /* Space between icon and text */
   }
   
   .form-control, .form-check-input {
@@ -29,7 +28,8 @@
     padding: .375rem .75rem; /* Standard padding */
     border: 1px solid #C4DAD2; /* Light teal border */
     border-radius: .25rem; /* Rounded borders for inputs */
-    background-color: #E9EFEC; /* Light background for inputs */
+    background-color: #E9EFEC; 
+    /* Light background for inputs */
   }
   
   .form-control:hover {

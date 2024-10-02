@@ -1,4 +1,3 @@
-
 <link href="/assets/css/anaylsis.css" rel="stylesheet">
 <div class="header">
     <h1>Participation Details</h1>
@@ -18,26 +17,24 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Feeding Event</td>
-                <td>09-10-2024</td>
-                <td>Community Hall</td>
-                <td>Coordinator</td>
-                <td>5</td>
-                <td>200</td>
-                <td>Excellent</td>
+            <tr *ngFor="let event of events">
+                <td>{{ event.title }}</td>
+                <td>{{ event.date }}</td>
+                <td>{{ event.location }}</td>
+                <td>{{ event.role }}</td>
+                <td>{{ event.duration }}</td>
+                <td>{{ event.people_helped }}</td>
+                <td>{{ event.feedback }}</td>
             </tr>
-            <tr>
-                <td>Donation Drive</td>
-                <td>09-15-2024</td>
-                <td>Local School</td>
-                <td>Volunteer</td>
-                <td>3</td>
-                <td>100</td>
-                <td>Good teamwork!</td>
+            <tr *ngIf="events.length === 0">
+                <td colspan="7">No participation details found.</td>
             </tr>
         </tbody>
     </table>
+</div>
+
+<div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
 </div>
 
 <div class="navigation">
