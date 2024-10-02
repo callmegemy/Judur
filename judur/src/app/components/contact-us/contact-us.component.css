@@ -1,0 +1,79 @@
+:root {
+  --primary: #16423C; /* Dark Green */
+  --secondary: #6A9C89; /* Light Green */
+  --light: #E9EFEC; /* Light Grey */
+  --dark: #001D23; /* Darkest Green */
+}
+
+.contact-us {
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 115px;
+  padding: 20px;
+  border: 1px solid var(--secondary);
+  border-radius: 8px;
+  background-color: var(--light);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--primary);
+}
+
+div {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--dark);
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--secondary);
+  border-radius: 4px;
+  transition: border-color 0.3s;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--primary);
+  outline: none;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: var(--secondary);
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9em;
+}
+
+.success-message {
+  color: green;
+  font-size: 1.1em;
+  margin-top: 15px;
+}
