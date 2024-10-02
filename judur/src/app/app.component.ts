@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';  
-import {  RouterOutlet } from '@angular/router'; 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';  
+import { RouterModule, RouterOutlet } from '@angular/router'; 
 import { DonationHistoryComponent } from './components/donation-history/donation-history.component';
 import { compileNgModule } from '@angular/compiler';
 import { HttpClient, HttpClientModule } from '@angular/common/http'; 
-import { RouterModule } from '@angular/router';
+
 import { CommonModule } from '@angular/common';
 import { AuctionComponent } from './components/auction/auction.component';
 import { ExaminerReportsComponent } from './components/dashboard/examiner-reports/examiner-reports.component';
@@ -15,13 +15,14 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { EventListComponent } from './components/event-list/event-list.component';
 import { EventDetailsComponent } from './components/event-details/event-details.component';
 import { ReportDetailsComponent } from './components/dashboard/report-details/report-details.component';
+
 @Component({
   selector: 'app-root',
   standalone: true,
+ 
   imports: [  AuctionComponent, // Ensure this is standalone
-    ReportDetailsComponent ,
-    RouterModule, RouterOutlet,NavbarComponent,DonationHistoryComponent , CommonModule ,ViewProfileComponent,
-    EditProfileComponent, MainComponent, EventListComponent, EventDetailsComponent, ExaminerReportsComponent, AuctionComponent,ReportDetailsComponent],
+  ReportDetailsComponent ,RouterModule, RouterOutlet,NavbarComponent,DonationHistoryComponent , CommonModule ,ViewProfileComponent,
+    EditProfileComponent, MainComponent, EventListComponent, EventDetailsComponent, ExaminerReportsComponent, ReportDetailsComponent, HttpClientModule,ReactiveFormsModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
