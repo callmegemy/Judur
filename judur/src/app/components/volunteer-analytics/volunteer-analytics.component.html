@@ -7,27 +7,27 @@
 <div class="container">
     <div class="summary">
         <div class="summary-card">
-            <h4>Total Events</h4>
-            <p>{{ summaryData?.totalEvents }}</p>
+          <h4>Total Events</h4>
+          <p>{{ summaryData?.totalEvents }}</p>
         </div>
         <div class="summary-card">
-            <h4>Total Hours</h4>
-            <p>{{ summaryData?.totalHours }}</p>
+          <h4>Total Hours</h4>
+          <p>{{ summaryData?.totalHours }}</p>
         </div>
         <div class="summary-card">
-            <h4>People Helped</h4>
-            <p>{{ summaryData?.peopleHelped }}</p>
+          <h4>People Helped</h4>
+          <p>{{ summaryData?.peopleHelped }}</p>
         </div>
         <div class="summary-card">
-            <h4>Goods Distributed</h4>
-            <p>{{ summaryData?.goodsDistributed | currency }}</p>
+          <h4>Goods Distributed</h4>
+          <p>{{ summaryData?.goodsDistributed | currency }}</p>
         </div>
-    </div>
-    
+      </div>
 
-    <div class="graph-section">
-        <canvas id="participationChart"></canvas>
-    </div>
+      <div class="graph-section">
+        <canvas id="activityChart"></canvas>
+      </div>
+      
 
     <div class="navigation">
         <a routerLink="/participation-details">View Participation Details</a>

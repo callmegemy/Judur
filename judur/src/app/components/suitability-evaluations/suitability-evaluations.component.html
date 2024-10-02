@@ -1,5 +1,5 @@
-
 <link href="/assets/css/anaylsis.css" rel="stylesheet">
+
 <div class="header">
     <h1>Suitability Evaluations</h1>
 </div>
@@ -15,20 +15,20 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Community Park</td>
-                <td>09-15-2024</td>
-                <td class="approved">Approved</td>
-                <td>Prepare for feeding event.</td>
+            <tr *ngFor="let inspection of landData">
+                <td>{{ inspection.land.address }}</td>
+                <td>{{ inspection.date | date }}</td>
+                <td>{{ inspection.general_condition }}</td>
             </tr>
-            <tr>
-                <td>City Hall</td>
-                <td>09-16-2024</td>
-                <td class="denied">Denied</td>
-                <td>Further inspection needed.</td>
+            <tr *ngIf="landData.length === 0">
+                <td colspan="4">No suitability evaluations found.</td>
             </tr>
         </tbody>
     </table>
+</div>
+
+<div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
 </div>
 
 <div class="navigation">

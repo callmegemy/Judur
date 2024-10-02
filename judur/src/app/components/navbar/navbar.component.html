@@ -12,16 +12,23 @@
                 <a href="index.html" class="nav-item nav-link active">Home</a>
                 <a href="#aboutus" class="nav-item nav-link">About</a>
                 <a href="/donate" class="nav-item nav-link">Donate</a>
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
+                <a routerLink="/contact-us" class="nav-item nav-link">Contact</a>
                 <a routerLink="/view-profile" class="nav-item nav-link">My profile</a>
 
                 <!-- Show Logout button if user is logged in -->
-                <div *ngIf="loggedIn">
-                    <button class="btn btn-outline-light" (click)="onLogout()">Logout</button>
+                <div class="d-none d-lg-flex ms-2 mt-3 mb-3" *ngIf="loggedIn">
+
+                    <a class="btn btn-outline-primary py-2 px-3"  (click)="onLogout()">
+                       Logout
+                        <div class="d-inline-flex btn-sm-square bg-white text-primary rounded-circle ms-2">
+                            <i class="fa fa-arrow-right"></i>
+                        </div>
+                    </a>
+
                 </div>
 
                 <!-- Show Login button if user is not logged in -->
-                <div *ngIf="!loggedIn">
+                <div class="d-none d-lg-flex ms-2 mt-3 mb-3" *ngIf="!loggedIn">
                     <a class="btn btn-outline-primary py-2 px-3" routerLink="/login">
                         Login
                         <div class="d-inline-flex btn-sm-square bg-white text-primary rounded-circle ms-2">
@@ -29,6 +36,7 @@
                         </div>
                     </a>
                 </div>
+
             </div>
         </div>
     </nav>
