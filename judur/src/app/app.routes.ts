@@ -80,9 +80,9 @@ export const routes: Routes = [
   { path: 'register-choice', component: RegisterChoiceComponent },
 
   // Donation details routes by category
-  { path: 'donation-item-details/:id', component: DonationItemDetailsComponent },
-  { path: 'donation-money-details/:id', component: DonationMoneyDetailsComponent },
-  { path: 'donation-land-details/:id', component: DonationLandDetailsComponent },
+  { path: 'donation-item-details', component: DonationItemDetailsComponent },
+  { path: 'donation-money-details', component: DonationMoneyDetailsComponent },
+  { path: 'donation-land-details', component: DonationLandDetailsComponent },
 
   // { path: 'view-profile', component: ViewProfileComponent},
   { path: 'view-profile', component: ViewProfileComponent },

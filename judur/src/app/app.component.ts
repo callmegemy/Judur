@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';  
-import { RouterModule, RouterOutlet } from '@angular/router'; 
+import {  RouterOutlet } from '@angular/router'; 
 import { DonationHistoryComponent } from './components/donation-history/donation-history.component';
 import { compileNgModule } from '@angular/compiler';
+import { HttpClient, HttpClientModule } from '@angular/common/http'; 
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuctionComponent } from './components/auction/auction.component';
 import { ExaminerReportsComponent } from './components/dashboard/examiner-reports/examiner-reports.component';
 import { ViewProfileComponent } from './components/view-profile/view-profile.component'; 
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component'; 
@@ -15,8 +18,10 @@ import { ReportDetailsComponent } from './components/dashboard/report-details/re
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterModule, RouterOutlet,NavbarComponent,DonationHistoryComponent , CommonModule ,ViewProfileComponent,
-    EditProfileComponent, MainComponent, EventListComponent, EventDetailsComponent, ExaminerReportsComponent, ReportDetailsComponent],
+  imports: [  AuctionComponent, // Ensure this is standalone
+    ReportDetailsComponent ,
+    RouterModule, RouterOutlet,NavbarComponent,DonationHistoryComponent , CommonModule ,ViewProfileComponent,
+    EditProfileComponent, MainComponent, EventListComponent, EventDetailsComponent, ExaminerReportsComponent, AuctionComponent,ReportDetailsComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

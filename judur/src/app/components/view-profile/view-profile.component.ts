@@ -11,6 +11,6 @@ import { NavbarComponent } from '../navbar/navbar.component';
   styleUrl: './view-profile.component.css'
 })
 export class ViewProfileComponent {
-  userType: string = 'volunteer';
+  userType: string = 'doner';
 
 }

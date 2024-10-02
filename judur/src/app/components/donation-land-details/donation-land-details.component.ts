@@ -1,33 +1,35 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
-import { NavbarComponent } from '../navbar/navbar.component';
+import { CommonModule } from '@angular/common';
+import { DonationService } from '../../services/donation.service';
+import { Router, RouterModule } from '@angular/router';
+import { DatePipe } from '@angular/common'; // Import DatePipe for formatting dates
 
 @Component({
   selector: 'app-donation-land-details',
   standalone: true,
-  imports: [CommonModule, NavbarComponent],
+  imports: [CommonModule, RouterModule, DatePipe], // Include necessary modules and pipes
   templateUrl: './donation-land-details.component.html',
   styleUrls: ['./donation-land-details.component.css']
 })
 export class DonationLandDetailsComponent implements OnInit {
 
-  donationDetails: any;
-  donationDate: string | null = null;
+  landDonations: any[] = [];
+  errorMessage: string = '';
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(private donationService: DonationService, private router: Router) {}
 
   ngOnInit(): void {
-    this.donationDate = this.route.snapshot.paramMap.get('id');
-    this.donationDetails = this.getDonationDetails(this.donationDate);
-  }
-
-  getDonationDetails(date: string | null): any {
-    const allDonations = [
-      { type: 'land', details: 'Community Hall', capacity: 200, location: 'Downtown', date: '2024-06-15', ownerName: 'Jane Smith', landArea: '5000 sq ft' }
-    ];
-    return allDonations.find(donation => donation.date === date);
+    // Fetch the logged-in donor's land donations
+    this.donationService.getLandDonations().subscribe((data) => {
+      if (data && data.length > 0) {
+        this.landDonations = data;
+      } else {
+        this.errorMessage = 'No land donations found for the current donor.';
+      }
+    }, (error) => {
+      this.errorMessage = 'Error fetching land donations';
+      console.error('Error fetching land donations', error);
+    });
   }
 
   goBack(): void {
