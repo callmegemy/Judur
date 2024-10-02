@@ -27,7 +27,7 @@ import { RequestsComponent } from './components/dashboard/requests/requests.comp
 import { VolunteerRequestComponent } from './components/dashboard/volunteer-request/volunteer-request.component';
 import { ExaminerRequestComponent } from './components/dashboard/examiner-request/examiner-request.component';
 import { VolunteerProfileComponent } from './components/dashboard/volunteer-profile/volunteer-profile.component';
-import { DonerProfileComponent } from './components/dashboard/doner-profile/doner-profile.component';
+import { DonorProfileComponent } from './components/dashboard/doner-profile/doner-profile.component';
 import { EventDetailsComponent } from './components/event-details/event-details.component';
 import { EventListComponent } from './components/event-list/event-list.component';
 import { ExaminerReportsComponent } from './components/dashboard/examiner-reports/examiner-reports.component';
@@ -104,10 +104,10 @@ export const routes: Routes = [
   { path: 'dashboard', component: MainComponent },
   { path: 'dashboard/users', component: UsersAdminComponent },
   { path: 'dashboard/requests', component: RequestsComponent },
-  { path: 'dashboard/request/view/v', component: VolunteerRequestComponent },
-  { path: 'dashboard/request/view/ex', component: ExaminerRequestComponent },
-  { path: 'dashboard/userProfile/volunteer', component: VolunteerProfileComponent },
-  { path: 'dashboard/userProfile/doner', component: DonerProfileComponent },
+  { path: 'dashboard/request/view/v/:id', component: VolunteerRequestComponent },
+  { path: 'dashboard/request/view/ex/:id', component: ExaminerRequestComponent },
+  { path: 'dashboard/userProfile/volunteer/:id', component: VolunteerProfileComponent },
+  { path: 'dashboard/userProfile/doner/:id', component: DonorProfileComponent },
 
   { path: 'dashboard/events', component: EventsComponent },
   { path: 'dashboard/events/edit', component: EditEventComponent },
