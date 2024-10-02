@@ -9,28 +9,26 @@
         </div>
 
         <div class="profile-info">
-            <p><strong>Name:</strong> Admin Name</p>
-            <p><strong>Email:</strong> admin&#64;example.com</p>
+            <p><strong>Name:</strong> {{ user.name }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
 
 
             <!-- Link to Edit Profile Page -->
-            <a routerLink="/edit-profile" class="btn">Edit Profile</a>
+            <a [routerLink]="['/edit-profile', user.id]" class="btn">Edit Profile</a>
         </div>
     </div>
 
     <!-- Conditional sections based on user type -->
     <div class="user-type-section doner" *ngIf="userType === 'doner'">
         <h2>Donor Information</h2>
-        <p>Donation Amount: $100</p>
-        <p>Last Donation Date: 2024-09-01</p>
-        <p>Favorite Causes: Education, Health</p>
+        <p>Donor ID: {{ additionalInfo.donor_id_number }}</p>
         <a routerLink="/donation-history" class="btn">My Donations</a>
     </div>
 
     <div class="user-type-section volunteer" *ngIf="userType === 'volunteer'">
         <h2>Volunteer Information</h2>
-        <p>Hours Volunteered: 50</p>
-        <p>Current Projects: Community Cleanup, Food Drive</p>
+        <p>Skills: {{ additionalInfo.skills }}</p>
+        <p>Availability: {{ additionalInfo.availability }}</p>
         <a routerLink="/volunteer-analytics" class="btn"> History</a>
     </div>
 

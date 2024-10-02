@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';  
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';  
 import { RouterModule, RouterOutlet } from '@angular/router'; 
 import { DonationHistoryComponent } from './components/donation-history/donation-history.component';
 import { compileNgModule } from '@angular/compiler';
@@ -17,7 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
   selector: 'app-root',
   standalone: true,
   imports: [RouterModule, RouterOutlet,NavbarComponent,DonationHistoryComponent , CommonModule ,ViewProfileComponent,
-    EditProfileComponent, MainComponent, EventListComponent, EventDetailsComponent, ExaminerReportsComponent, ReportDetailsComponent, HttpClientModule],
+    EditProfileComponent, MainComponent, EventListComponent, EventDetailsComponent, ExaminerReportsComponent, ReportDetailsComponent, HttpClientModule,ReactiveFormsModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

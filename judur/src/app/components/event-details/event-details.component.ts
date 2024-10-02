@@ -4,6 +4,22 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 
+interface Event {
+  title: string;
+  image: string;
+  location: string;
+  date: string;
+  duration: string;
+  status: string;
+  description: string;
+  feedbacks: Feedback[];
+}
+
+interface Feedback {
+  text: string;
+  user: string;
+  date: string;
+}
 @Component({
   selector: 'app-event-details',
   standalone: true,
@@ -25,7 +41,7 @@ export class EventDetailsComponent {
   //     { text: 'Looking forward to it.', user: 'User2', date: '2023-09-20' }
   //   ]
   // };
-  event: any; // This will hold the event details
+  event : Event | undefined; // This will hold the event details
 
   constructor(private http: HttpClient, private route: ActivatedRoute) {}
 

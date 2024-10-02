@@ -85,7 +85,7 @@ export const routes: Routes = [
 
   // { path: 'view-profile', component: ViewProfileComponent},
   { path: 'view-profile', component: ViewProfileComponent },
-  { path: 'edit-profile', component: EditProfileComponent },
+  { path: 'edit-profile/:id', component: EditProfileComponent },
   { path: 'list-event/event-details/:id', component: EventDetailsComponent },
 
   { path: 'list-event', component: EventListComponent},

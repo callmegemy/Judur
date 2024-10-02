@@ -114,4 +114,5 @@ register(data: any): Observable<any> {
   isLoggedIn(): Observable<boolean> {
     return this.loggedIn.asObservable();
   }
+  
 }
