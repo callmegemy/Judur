@@ -221,50 +221,6 @@ registerVolunteer(data: any): Observable<any> {
     );
   }
 
-  // getDonationHistory(): Observable<DonationHistory> {
-  //   return this.http.get<DonationHistory>(`${this.apiUrl}/donors/donations`, {
-  //     headers: {
-  //       Authorization: `Bearer ${localStorage.getItem('auth_token')}`
-  //     }
-  //   });
-  // }
-
-  // getAllMoneyDonations(): Observable<FinancialDonation[]> {
-  //   return this.http.get<FinancialDonation[]>(`${this.apiUrl}/donor/money-donations`, {
-  //     headers: {
-  //       Authorization: `Bearer ${localStorage.getItem('auth_token')}`
-  //     }
-  //   });
-  // }
-
-  // getAllItemDonations(): Observable<ItemDonation[]> {
-  //   return this.http.get<ItemDonation[]>(`${this.apiUrl}/donor/item-donations`, {
-  //     headers: {
-  //       Authorization: `Bearer ${localStorage.getItem('auth_token')}`
-  //     }
-  //   });
-  // }
-
-  // getAllLandDonations(): Observable<LandDonation[]> {
-  //   return this.http.get<LandDonation[]>(`${this.apiUrl}/donor/land-donations`, {
-  //     headers: {
-  //       Authorization: `Bearer ${localStorage.getItem('auth_token')}`
-  //     }
-  //   });
-  // }
-
-  // getDonationItemDetails(id: string): Observable<ItemDonation> {
-  //   return this.http.get<ItemDonation>(`${this.apiUrl}/donor/item-donations/${id}`, {
-  //     headers: {
-  //       Authorization: `Bearer ${localStorage.getItem('auth_token')}`
-  //     }
-  //   }).pipe(
-  //     catchError((error) => {
-  //       console.error('Error fetching item donation details:', error);
-  //       return throwError(error);
-  //     })
-  //   );
-  // }
   
 
 }

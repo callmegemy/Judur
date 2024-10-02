@@ -1,60 +1,53 @@
 <app-navbar></app-navbar>
 
-<div class="donation-history-container">
-  <div class="donation-details">
-    <h1><i class="fas fa-heart"></i> Donation History for {{ donationHistory?.name }}</h1>
-
-    <!-- Summary Section -->
-    <div class="summary">
-      <p><i class="fas fa-gift"></i> <strong>Total Donations:</strong> {{ totalDonations || 0 }}</p>
-      <ul class="donation-breakdown">
-        <li><i class="fas fa-boxes"></i> Total Items Donated: {{ totalItemsDonated || 0 }}</li>
-        <li><i class="fas fa-dollar-sign"></i> Total Money Donated: {{ totalMonetaryDonations | number:'1.2-2' }} USD</li>
-        <li><i class="fas fa-map-marked-alt"></i> Total Land Donated: {{ totalLandDonated || 0 }} sq ft</li>
-      </ul>
-      <p><i class="fas fa-calendar-alt"></i> <strong>Last Donation Date:</strong> {{ lastDonationDate || 'N/A' }}</p>
-    </div>
-
-    <!-- Donation Details Section -->
-    <h2><i class="fas fa-list-alt"></i> Donation Details</h2>
-    <div *ngFor="let donation of donationHistory?.donations" class="card my-3">
-      <div class="card-body">
-        <h5 class="card-title">
-          <i [class]="getIcon(donation.type)"></i> Donation Type: {{ donation.type | titlecase }}
-        </h5>
-
-        <!-- Dynamic fields based on donation type -->
-        <p *ngIf="donation.type === 'item'"><i class="fas fa-boxes"></i> Quantity: {{ donation.quantity || 'N/A' }}</p>
-        <p *ngIf="donation.type === 'money'"><i class="fas fa-dollar-sign"></i> Amount: {{ donation.amount || 'N/A' }} {{ donation.currency || 'N/A' }}</p>
-        <p *ngIf="donation.type === 'land'"><i class="fas fa-map-marked-alt"></i> Location: {{ donation.address || 'N/A' }}, Capacity: {{ donation.capacity || 'N/A' }}</p>
-        <p><i class="fas fa-calendar-day"></i> Date Donated: {{ donation.created_at || 'Unknown' }}</p>
-
-        <!-- Buttons for viewing details -->
-        <button *ngIf="donation.type === 'item'" class="btn btn-info" (click)="goToDetails('item', donation.created_at)">
-          <i class="fas fa-info-circle"></i> View Item Details
-        </button>
-
-        <button *ngIf="donation.type === 'money'" class="btn btn-info" (click)="goToDetails('money', donation.created_at)">
-          <i class="fas fa-info-circle"></i> View Money Details
-        </button>
-
-        <button *ngIf="donation.type === 'land'" class="btn btn-info" (click)="goToDetails('land', donation.created_at)">
-          <i class="fas fa-info-circle"></i> View Land Details
-        </button>
+<div class="container my-5 donation-history-container" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh;">
+  <!-- First Row for Donation Summary -->
+  <div class="row w-100">
+    <div class="col-lg-6 col-md-12 mb-3" style="margin-top: 70px;">
+      <div class="summary card p-3">
+        <h1><i class="fas fa-heart"></i> Your Donation History</h1>
+        <p><i class="fas fa-gift"></i> <strong>Total Donations:</strong> {{ totalDonations || 0 }}</p>
+        <ul class="list-unstyled donation-breakdown">
+          <li><i class="fas fa-boxes"></i> Total Items Donated: {{ totalItemsDonated || 0 }}</li>
+          <li><i class="fas fa-dollar-sign"></i> Total Money Donated: {{ totalMonetaryDonations | number:'1.2-2' }} USD</li>
+          <li><i class="fas fa-map-marked-alt"></i> Total Land Donated: {{ totalLandDonated || 0 }} sq ft</li>
+        </ul>
+        <p><i class="fas fa-calendar-alt"></i> <strong>Last Donation Date:</strong> {{ lastDonationDate || 'N/A' }}</p>
+        <p class="mt-3">Thank you for your continuous support! Your contributions are making a real impact.</p>
       </div>
     </div>
   </div>
 
-  <!-- Donation Chart Section -->
-  <div class="donation-chart mt-5">
-    <h2 class="text-center"><i class="fas fa-chart-line"></i> Donation Activity Chart</h2>
-    <canvas #donationChartCanvas></canvas>
-  </div>
+  <!-- Second Row for Donation Cards Section in a Row -->
+  <div class="row w-100" style="margin-top: 20px;">
+    <div class="col-lg-4 col-md-6 mb-3 d-flex">
+      <div class="card text-center p-3 h-100">
+        <h5 class="card-title"><i class="fas fa-boxes"></i> Item Donation</h5>
+        <p>You’ve donated {{ totalItemsDonated || 0 }} items. Click below for details.</p>
+        <button class="btn btn-info btn-sm w-100 mt-auto" (click)="goToDetails('item')">
+          <i class="fas fa-info-circle"></i> View Item Details
+        </button>
+      </div>
+    </div>
 
-  <!-- No Donations Alert -->
-  <div *ngIf="!donationHistory?.donations?.length">
-    <div class="alert alert-info mt-4 text-center">
-      <i class="fas fa-info-circle"></i> You have not made any donations yet. Consider contributing to help those in need!
+    <div class="col-lg-4 col-md-6 mb-3 d-flex">
+      <div class="card text-center p-3 h-100">
+        <h5 class="card-title"><i class="fas fa-dollar-sign"></i> Money Donation</h5>
+        <p>Your financial donations help fund essential programs. Click below for details.</p>
+        <button class="btn btn-info btn-sm w-100 mt-auto" (click)="goToDetails('money')">
+          <i class="fas fa-info-circle"></i> View Money Details
+        </button>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6 mb-3 d-flex">
+      <div class="card text-center p-3 h-100">
+        <h5 class="card-title"><i class="fas fa-map-marked-alt"></i> Land Donation</h5>
+        <p>You’ve donated {{ totalLandDonated || 0 }} sq ft of land. Click below for details.</p>
+        <button class="btn btn-info btn-sm w-100 mt-auto" (click)="goToDetails('land')">
+          <i class="fas fa-info-circle"></i> View Land Details
+        </button>
+      </div>
     </div>
   </div>
 </div>

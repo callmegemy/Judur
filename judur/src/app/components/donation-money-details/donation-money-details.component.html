@@ -1,8 +1,31 @@
-<h2>Financial Donation Details</h2>
-<div *ngFor="let financial of financialDonations" class="card my-3">
-  <div class="card-body">
-    <h5 class="card-title">Amount Donated: ${{ financial.amount }}</h5>
-    <p><strong>Currency:</strong> {{ financial.currency }}</p>
-    <p><strong>Date Donated:</strong> {{ financial.created_at }}</p>
+<div class="container my-5">
+  <div class="row">
+    <h2 class="mb-4 text-center">Money Donation History</h2>
+
+    <!-- Loop through financial donations and display cards -->
+    <div class="col-md-4 mb-3" *ngFor="let donation of financialDonations">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title"><i class="fas fa-dollar-sign"></i> Donation Amount</h5>
+          <p><strong>Amount:</strong> {{ donation.amount | currency:donation.currency }}</p>
+          <p><strong>Date Donated:</strong> {{ donation.created_at | date:'medium' }}</p>
+          <p><strong>Payment Method:</strong> {{ donation.payment_method }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- If no donations are found, show an error message -->
+    <div *ngIf="errorMessage" class="col-12">
+      <div class="alert alert-warning text-center">
+        {{ errorMessage }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Button to go back to donation history -->
+  <div class="row mt-4">
+    <div class="col text-center">
+      <button class="btn btn-primary" (click)="goBack()">Back to Donation History</button>
+    </div>
   </div>
 </div>

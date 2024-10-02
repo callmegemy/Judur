@@ -5,6 +5,12 @@ import { DonationService } from '../../services/donation.service';
 import { Chart } from 'chart.js/auto';
 import { NavbarComponent } from '../navbar/navbar.component';
 
+interface Donation {
+  date: string;
+  type: 'item' | 'financial' | 'land';
+  count: number;
+}
+
 @Component({
   selector: 'app-donation-history',
   standalone: true,
@@ -20,6 +26,7 @@ export class DonationHistoryComponent implements OnInit {
   totalDonations: number = 0;
   lastDonationDate: string = 'N/A';
   errorMessage: string = '';
+  donationHistoryByDate: { [key: string]: { items: number, financial: number, land: number } } = {}; // Add this line to store donations by date
 
   @ViewChild('donationChartCanvas') donationChartCanvas!: ElementRef;
 
@@ -33,60 +40,54 @@ export class DonationHistoryComponent implements OnInit {
   fetchDonationHistory(): void {
     this.donationService.getDonationHistory().subscribe(
       (data) => {
-        console.log('Donation History API Response:', data); // Log API response
+        console.log('Fetched donation data:', data);
   
         if (data) {
           this.donationHistory = data;
+  
+          // Initialize totals
           this.totalItemsDonated = data.total_item_donations || 0;
           this.totalMonetaryDonations = data.total_financial_donations?.amount || 0;
           this.totalLandDonated = data.total_land_donations || 0;
+  
+          // Sum the totals
           this.totalDonations = this.totalItemsDonated + this.totalLandDonated + (this.totalMonetaryDonations > 0 ? 1 : 0);
           this.lastDonationDate = data.last_donation_date || 'N/A';
   
-          // Combine all donations (items, financial, and land) into one array
-          this.donationHistory.donations = [
-            ...data.financial_donations.map((donation: any) => ({ ...donation, type: 'money' })),
-            ...data.item_donations.map((donation: any) => ({ ...donation, type: 'item' })),
-            ...data.land_donations.map((donation: any) => ({ ...donation, type: 'land' }))
+          // Process the donations based on date
+          const donationsByDate: { [date: string]: { items: number, financial: number, land: number } } = {};
+  
+          const allDonations: Donation[] = [
+            ...data.financial_donations?.map((donation: any) => ({ ...donation, type: 'financial', count: 1 })) || [],
+            ...data.item_donations?.map((donation: any) => ({ ...donation, type: 'item', count: 1 })) || [],
+            ...data.land_donations?.map((donation: any) => ({ ...donation, type: 'land', count: 1 })) || []
           ];
   
-          this.renderChart();
+          allDonations.forEach((donation: Donation) => {
+            const donationDate = donation.date;
+            if (!donationsByDate[donationDate]) {
+              donationsByDate[donationDate] = { items: 0, financial: 0, land: 0 };
+            }
+  
+            if (donation.type === 'item') {
+              donationsByDate[donationDate].items += donation.count;
+            } else if (donation.type === 'financial') {
+              donationsByDate[donationDate].financial += donation.count;
+            } else if (donation.type === 'land') {
+              donationsByDate[donationDate].land += donation.count;
+            }
+          });
+  
+          this.donationHistoryByDate = donationsByDate;
         } else {
           this.errorMessage = 'No donation history found';
         }
       },
-      (error) => {
+      (error: any) => {  // Explicitly set error type to `any`
         this.errorMessage = 'Error fetching donation history';
-        console.error('Error fetching donation history', error); // Log the error
+        console.error('Error fetching donation history:', error);
       }
     );
-  }
-  
-
-  // Render the chart using Chart.js
-  renderChart(): void {
-    const ctx = this.donationChartCanvas.nativeElement.getContext('2d');
-    new Chart(ctx, {
-      type: 'pie',
-      data: {
-        labels: ['Items Donated', 'Money Donated', 'Land Donated'],
-        datasets: [
-          {
-            data: [
-              this.totalItemsDonated,
-              this.totalMonetaryDonations,
-              this.totalLandDonated
-            ],
-            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-            hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
-          }
-        ]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-      }
-    });
   }
 
   // Navigation methods for viewing details
@@ -101,17 +102,23 @@ export class DonationHistoryComponent implements OnInit {
   viewLandDetails(): void {
     this.router.navigate(['/donation-land-details']);
   }
-  goToDetails(type: string, createdAt: string): void {
-    if (type === 'item') {
-      this.router.navigate(['/donation-item-details', createdAt]);
-    } else if (type === 'financial') {
-      this.router.navigate(['/donation-money-details', createdAt]);
-    } else if (type === 'land') {
-      this.router.navigate(['/donation-land-details', createdAt]);
+
+  goToDetails(type: string): void {
+    switch (type) {
+      case 'item':
+        this.router.navigate(['/donation-item-details']);
+        break;
+      case 'money':
+        this.router.navigate(['/donation-money-details']);
+        break;
+      case 'land':
+        this.router.navigate(['/donation-land-details']);
+        break;
+      default:
+        console.error('Unknown donation type:', type);
     }
   }
-
-
+  
   getIcon(donationType: string): string {
     switch (donationType) {
       case 'item':
@@ -124,5 +131,4 @@ export class DonationHistoryComponent implements OnInit {
         return 'fas fa-gift';
     }
   }
-  
 }

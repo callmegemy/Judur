@@ -28,7 +28,12 @@ export class AuctionComponent {
   constructor(private http: HttpClient) {}
 
   // Method triggered on form submission
-  onSubmit() {
+  onSubmit(form: any) {
+    if (!form.valid) {
+      alert('Please fill in all required fields');
+      return;
+    }
+
     const formData = {
       item_name: this.itemName,
       value: this.estimatedValue,

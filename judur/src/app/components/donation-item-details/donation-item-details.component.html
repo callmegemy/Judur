@@ -1,11 +1,27 @@
-<!-- <app-navbar></app-navbar> -->
+<div class="container my-5">
+  <div class="row">
+    <h2 class="mb-4 text-center">Item Donation History</h2>
 
-<h2>Item Donation Details</h2>
-<div *ngFor="let item of itemDonations" class="card my-3">
-  <div class="card-body">
-    <h5 class="card-title">Item Name: {{ item.item_name }}</h5>
-    <p><strong>Value:</strong> ${{ item.value }}</p>
-    <p><strong>Condition:</strong> {{ item.condition }}</p>
-    <p><strong>Date Donated:</strong> {{ item.created_at }}</p>
+    <!-- Loop through item donations and display cards -->
+    <div class="col-md-4 mb-3" *ngFor="let donation of itemDonations">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title"><i class="fas fa-box"></i> {{ donation.item_name }}</h5>
+          <p><strong>Quantity:</strong> {{ donation.quantity }}</p>
+          <p><strong>Condition:</strong> {{ donation.condition }}</p>
+          <p><strong>Date Donated:</strong> {{ donation.created_at | date:'medium' }}</p>
+          <p><strong>Value:</strong> {{ donation.value | currency:'USD' }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Button to go back to donation history -->
+  <div class="row mt-4">
+    <div class="col text-center">
+      <button class="btn btn-primary" (click)="goBack()">
+        <i class="fas fa-arrow-left"></i> Back to Donation History
+      </button>
+    </div>
   </div>
 </div>
