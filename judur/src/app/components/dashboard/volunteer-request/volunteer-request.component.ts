@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { TopbarComponent } from '../topbar/topbar.component';
 import { UserService } from '../../../services/dashboard/users.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RequestService } from '../../../services/dashboard/request.service';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
@@ -22,7 +22,8 @@ export class VolunteerRequestComponent implements OnInit{
   constructor(
     private volunteerService: RequestService,
     private route: ActivatedRoute,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) {}
   
   ngOnInit(): void {
@@ -78,7 +79,9 @@ console.log(id)
               'Updated!',
               'The volunteer status has been updated.',
               'success'
-            );
+            ).then(() => {
+              this.router.navigate(['dashboard/requests']); 
+            });
           },
           error: () => {
             Swal.fire(

@@ -16,11 +16,14 @@ import { RequestService } from '../../../services/dashboard/request.service';
 export class RequestsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   volunteers: any[] = [];
+  examiners: any[] = [];
   private volunteersTable: any;
+  private  examinersTable: any;
   constructor(private requestService: RequestService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.fetchVolunteers();
+    this.fetchExaminers();
   }
 
   ngAfterViewInit(): void {
@@ -30,6 +33,9 @@ export class RequestsComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.volunteersTable) {
       this.volunteersTable.destroy(true);
+    }
+    if (this.examinersTable) {
+      this.examinersTable.destroy(true);
     }
   }
   fetchVolunteers() {
@@ -54,5 +60,28 @@ export class RequestsComponent implements OnInit, AfterViewInit, OnDestroy {
         this.volunteersTable = $('#dataTable').DataTable(); 
       }
     }, 0);
+
+    setTimeout(() => {
+      if (this.examiners.length > 0) {
+        if (this.examinersTable) {
+          this.examinersTable.destroy(); 
+        }
+        this.examinersTable = $('#dataTable2').DataTable(); 
+      }
+    }, 0);
+  }
+
+  fetchExaminers() {
+    this.requestService.getExaminerRequests().subscribe(
+      data => {
+        console.log('examiners fetched:', data);
+        this.examiners = data;
+        this.cdr.detectChanges(); 
+        this.initializeDataTables(); 
+      },
+      error => {
+        console.error('Error fetching examiners:', error);
+      }
+    );
   }
 }

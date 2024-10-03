@@ -20,4 +20,16 @@ export class RequestService {
     updateVolunteerStatus(id: number, status: number): Observable<any> {
       return this.http.put(`${this.apiUrl}/volunteer/${id}/status`, { status });
     }
+
+    getExaminerRequests(): Observable<any> {
+      return this.http.get(`${this.apiUrl}/pending-examiners`);
+    }
+
+    getExaminerDetails(id: number): Observable<any> {
+      return this.http.get(`${this.apiUrl}/examiner/${id}`);
+    }
+
+    updateExaminerStatus(id: number, status: number): Observable<any> {
+      return this.http.put(`${this.apiUrl}/examiner/${id}/status`, { status });
+    }
 }
