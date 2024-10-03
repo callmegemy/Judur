@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="Land-Report-card">
+    <h3>Land Report</h3>
+    <form [formGroup]="landReportForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <i class="fas fa-landmark"></i>
+        <select class="form-control" formControlName="land">
+          <option value="">Select land</option>
+          <option value="land1">Land 1</option>
+          <option value="land2">Land 2</option>
+          <option value="land3">Land 3</option>
+          <!-- Add more options as needed -->
+        </select>
+      </div>
+
+      <div class="form-group">
+        <i class="fas fa-broom"></i>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter hygiene rating"
+          formControlName="hygiene"
+        />
+      </div>
+
+      <div class="form-group">
+        <i class="fas fa-calendar-alt"></i>
+        <input type="date" class="form-control" formControlName="date" />
+      </div>
+
+      <div class="form-group">
+        <i class="fas fa-warehouse"></i>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter capacity"
+          formControlName="capacity"
+        />
+      </div>
+
+      <div class="form-group">
+        <i class="fas fa-bolt"></i>
+        <select class="form-control" formControlName="electricity_supply">
+          <option value="">Select electricity supply</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <i class="fas fa-camera"></i>
+        <input
+          type="file"
+          class="form-control"
+          placeholder="Upload photos"
+          formControlName="photos"
+        />
+      </div>
+
+      <button type="submit" class="btn">Submit</button>
+    </form>
+  </div>
+</div>
