@@ -26,8 +26,8 @@ export class NavbarComponent implements OnInit {
       next: () => {
         
         const userData = this.authService.getUserData();
-        console.log('User data before logout:', userData); // This should not be null if login was successful
-        this.router.navigate(['/login']);
+        console.log('User data before logout:', userData); 
+        this.router.navigate(['/']);
         console.log('Logged out successfully');
       },
       error: (err) => {

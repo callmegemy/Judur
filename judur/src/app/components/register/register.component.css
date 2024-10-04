@@ -11,8 +11,8 @@ body {
 
 .register-container {
     width: 600px;
-  margin-top: 130px;
-  margin-left: 31%;
+    margin: 130px auto;
+
     padding: 30px;
     background: #fff;
     border-radius: 8px;

@@ -1,4 +1,4 @@
-<div class="register-container">
+<div class="register-container ">
   <img src="assets/img/ju.png" alt="Judur Logo" class="logo">
   <form [formGroup]="volunteerForm" (ngSubmit)="registerVolunteer()">
     <div class="form-group">
@@ -75,5 +75,8 @@
     <button type="submit" class="btn register-btn btn-block" [disabled]="volunteerForm.invalid">
       <i class="fas fa-paper-plane me-2"></i>Register
     </button>
+
+    <a routerLink="/login" class="d-block mt-3 login-link">Already have an account? Login</a>
+
   </form>
 </div>

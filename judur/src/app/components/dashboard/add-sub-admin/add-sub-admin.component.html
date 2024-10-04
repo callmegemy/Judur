@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Judur - Dashboard</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="../../../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="../../../../assets/css/sb-admin-2.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-judur-reverse sidebar sidebar-dark accordion" id="accordionSidebar">
+            <app-sidebar></app-sidebar>
+        </ul>
+
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <app-topbar></app-topbar>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-judur font-weight-bold"> Add A SubAdmin</h1>
+                    </div>
+
+
+                    <!-- volunteer-to-examiner.component.html -->
+                    <div class="container mt-5 text-judur">
+                        <div class="card shadow custom-hover-shadow">
+                            <div class="card-header">
+                                <h2><i class="fa-regular fa-calendar-days"></i> SubAdmin Details</h2>
+                            </div>
+                            <div class="card-body">
+                                <form (ngSubmit)="onSubmit()">
+                                    <!-- Sub Admin Name -->
+                                    <div class="form-group mb-3">
+                                        <label for="subAdminName" class="font-weight-bold">Sub Admin Name</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                            </div>
+                                            <input type="text" id="subAdminName" class="form-control"
+                                                [(ngModel)]="subAdminData.name" name="name"
+                                                placeholder="Enter sub admin name" required>
+                                        </div>
+                                    </div>
+
+                                    <!-- Sub Admin Email -->
+                                    <div class="form-group mb-3">
+                                        <label for="subAdminEmail" class="font-weight-bold">Sub Admin Email</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                            </div>
+                                            <input type="email" id="subAdminEmail" class="form-control"
+                                                [(ngModel)]="subAdminData.email" name="email"
+                                                placeholder="Enter sub admin email" required>
+                                        </div>
+                                    </div>
+
+                                    <!-- Sub Admin Password -->
+                                    <div class="form-group mb-3">
+                                        <label for="subAdminPassword" class="font-weight-bold">Password</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                            </div>
+                                            <input type="password" id="subAdminPassword" class="form-control"
+                                                [(ngModel)]="subAdminData.password" name="password"
+                                                placeholder="Enter password" required minlength="6">
+                                        </div>
+                                    </div>
+
+                                    <!-- Sub Admin Age -->
+                                    <div class="form-group mb-3">
+                                        <label for="subAdminAge" class="font-weight-bold">Age</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i
+                                                        class="fas fa-calendar-alt"></i></span>
+                                            </div>
+                                            <input type="number" id="subAdminAge" class="form-control"
+                                                [(ngModel)]="subAdminData.age" name="age" placeholder="Enter age"
+                                                required min="0">
+                                        </div>
+                                    </div>
+
+                                    <!-- Role Selection -->
+                                    <div class="form-group mb-3">
+                                        <label for="role" class="font-weight-bold">Role</label>
+                                        <select id="role" class="form-control" [(ngModel)]="subAdminData.role_id"
+                                            name="role" required>
+                                            <option [ngValue]="null" disabled>Select a role</option>
+                                            <option [ngValue]="6">Organizer</option>
+                                            <option [ngValue]="7">Mentor</option>
+                                        </select>
+                                    </div>
+
+
+                                    <!-- Submit Button -->
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-success mx-3"><i
+                                                class="fa-solid fa-check"></i> Add Sub Admin</button>
+                                        <button type="reset" class="btn btn-danger mx-3"><i
+                                                class="fa-solid fa-xmark"></i> Cancel</button>
+                                    </div>
+                                </form>
+
+
+                            </div>
+                            <button type="submit" class="btn btn-judur mx-3"><i class="fa-solid fa-arrow-left"></i>
+                                back</button>
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Judur 2024</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>

@@ -11,8 +11,8 @@ body {
 .login-container {
     width: 600px;
     padding: 30px;
-    margin-top: 140px;
-    margin-left: 32%;
+    margin: 140px auto;
+
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
