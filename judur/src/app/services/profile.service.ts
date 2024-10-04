@@ -1,35 +1,21 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-;
-;
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileService {
-
-
-  private apiUrl = 'http://localhost:8000/api/profile'; 
+  private baseUrl = 'http://127.0.0.1:8000/api'; // Replace with your actual API URL
 
   constructor(private http: HttpClient) {}
 
-  updateProfile(userId: number, formData: FormData): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${userId}`, formData).pipe(
-      catchError(this.handleError)
-    );
+  getProfile(userId: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/profile/${userId}`);
   }
 
-  getProfile(id: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/${id}`).pipe(
-      catchError(this.handleError)
-    );
+  updateProfile(userId: string, profileData: any): Observable<any> {
+    return this.http.put(`http://127.0.0.1:8000/api/profile/${userId}`, profileData);
   }
-
-  private handleError(error: HttpErrorResponse) {
-    // Handle the error based on your application's needs
-    console.error('An error occurred:', error);
-    return throwError(() => new Error(error.message || 'Something went wrong'));
-  }
- 
+  
 }

@@ -1,85 +1,88 @@
-import { CommonModule } from '@angular/common';
-import { HttpErrorResponse } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
 import { ProfileService } from '../../services/profile.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { TopbarComponent } from '../dashboard/topbar/topbar.component';
 
 @Component({
   selector: 'app-edit-profile',
   standalone: true,
-  imports: [NavbarComponent,ReactiveFormsModule,CommonModule],
+  imports: [CommonModule, ReactiveFormsModule, NavbarComponent, TopbarComponent],
   templateUrl: './edit-profile.component.html',
-  styleUrl: './edit-profile.component.css'
+  styleUrls: ['./edit-profile.component.css']
 })
-export class EditProfileComponent {
+export class EditProfileComponent implements OnInit {
   profileForm: FormGroup;
-  selectedFile: File | null = null;
-  userId: number=0; // Default ID
   errorMessage: string = '';
 
-  constructor(private router: Router,private fb: FormBuilder, private profileService: ProfileService, private route: ActivatedRoute) {
-    this.profileForm = this.fb.group({
+  constructor(
+    private formBuilder: FormBuilder,
+    private profileService: ProfileService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+    this.profileForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.maxLength(255)]],
       email: ['', [Validators.required, Validators.email]],
-      profilePicture: ['']
+       age: ['', [Validators.required, Validators.min(1)]], // Ensure age is a positive number
+      phone: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]], // Assuming a 10-digit phone number
+      // password: ['', [Validators.required, Validators.minLength(6)]], // Minimum 6 characters
+  
+
     });
   }
 
-  ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      this.userId = +params.get('id')!;
-      console.log (this.userId ); // Get the user ID from the route parameter
-      this.loadUserProfile(); // Load user profile with the retrieved user ID
-    });
+  ngOnInit() {
+    const userId = this.route.snapshot.paramMap.get('id');
+  
+    if (userId) {
+      this.profileService.getProfile(userId).subscribe(
+        (data) => {
+          // Populate the form with user data
+          this.profileForm.patchValue(data.user);
+        },
+        (error) => {
+          this.errorMessage = 'Error fetching profile data.';
+          console.error('Error fetching profile data', error);
+        }
+      );
+    } else {
+      this.errorMessage = 'User ID is not available.';
+    }
   }
-  navigateToEdit() {
-   
-    this.router.navigate(['/edit-profile', this.userId]);
-  }
-  loadUserProfile(): void {
-    this.profileService.getProfile(this.userId).subscribe(
-      (response: any) => {
-        this.profileForm.patchValue({
-          name: response.user.name,
-          email: response.user.email,
-          profilePicture: null 
-        });
-      },
-      (error: HttpErrorResponse) => {
-        this.errorMessage = error.error.message || 'An error occurred while fetching profile data.';
-      }
-    );
-  }
+  
 
-  onFileSelected(event: any): void {
-    this.selectedFile = event.target.files[0];
+  
+
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    this.profileForm.patchValue({ profilePicture: file });
   }
 
-
-
-  onSubmit(): void {
+  onSubmit() {
     if (this.profileForm.invalid) {
-     
-      return ;
+      return;
     }
   
-    const formData = new FormData();
-    formData.append('name', this.profileForm.get('name')?.value);
-    formData.append('email', this.profileForm.get('email')?.value);
+    // Retrieve the user ID from the route
+    const userId = this.route.snapshot.paramMap.get('id');
   
-    // if (this.selectedFile) {
-    //   formData.append('profile_picture', this.selectedFile);
-    // }
+    if (!userId) {
+      this.errorMessage = 'User ID is not available.';
+      return;
+    }
   
-    this.profileService.updateProfile(this.userId, formData).subscribe(
-      (response) => {
-        console.log('Profile updated successfully', response);
+    // Prepare the data to update
+    const profileData = this.profileForm.value;
+  
+    this.profileService.updateProfile(userId, profileData).subscribe(
+      () => {
+        this.router.navigate(['/view-profile']);
       },
-      (error: HttpErrorResponse) => {
-        this.errorMessage = error?.error?.message || 'An error occurred while updating the profile.';
-        console.error('Error updating profile', error);
+      (error) => {
+        this.errorMessage = 'Error updating profile.';
       }
     );
   }

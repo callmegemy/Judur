@@ -191,8 +191,7 @@ registerVolunteer(data: any): Observable<any> {
     return this.loggedIn.asObservable();
   }
 
-
-
+  
   donateLand(formData: FormData): Observable<any> {
     const headers = {
       'Authorization': `Bearer ${localStorage.getItem('auth_token')}`, // Use the correct token key
@@ -210,6 +209,8 @@ registerVolunteer(data: any): Observable<any> {
       'Accept': 'application/json'
     };
 
+
+    
     return this.http.post(`${this.apiUrl}/donate-money`, data, { headers }).pipe(
       tap((response) => {
         console.log('Money donation response:', response);
@@ -221,7 +222,4 @@ registerVolunteer(data: any): Observable<any> {
     );
   }
 
-  
-
-  
 }

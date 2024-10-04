@@ -47,37 +47,37 @@
                     </div>
 
                     <!-- Post Details -->
-                    <div class="post-list-container">
+                    <div class="post-list-container" *ngIf="post">
                         <div class="post-header">
                             <i class="fa-solid fa-newspaper post-icon text-judur"></i>
-                            <h2>Post Title: Post Title 1</h2>
+                            <h2>Post Title: {{ post.title }}</h2>
                         </div>
-
+                    
                         <div class="post-body">
                             <div class="post-detail">
                                 <span class="post-label">Posted on:</span>
-                                <span class="post-value">2024-09-20</span>
+                                <span class="post-value">{{ post.createdAt }}</span>
                             </div>
-
+                    
                             <div class="post-detail">
-                               
                                 <span class="post-value">
-                                    <img src="assets/img/feeding.png" alt="Event Image" >
+                                    <img [src]="post.image" alt="Post Image" >
                                 </span>
                             </div>
-
+                    
                             <div class="post-detail">
                                 <span class="post-label">Description:</span>
                                 <span class="post-value post-description">
-                                    This is the detailed content of the post. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Necessitatibus nostrum et iure perspiciatis officiis voluptate voluptatum ex eius id est non, unde consequatur placeat officia. Facilis a quaerat rem ab?...
+                                    {{ post.content }}
                                 </span>
                             </div>
                         </div>
-
+                    
                         <div class="text-center">
                             <button class="btn btn-judur btn-back" (click)="goBack()">Back to Posts</button>
                         </div>
                     </div>
+                    
                 </div>
                 <!-- /.container-fluid -->
             </div>

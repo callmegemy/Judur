@@ -4,9 +4,10 @@
     <h1>Profile</h1>
 
     <div class="profile-container">
-        <div class="profile-pic">
-            <img src="assets/img/profile-picture.jpg" alt="Profile Picture">
-        </div>
+      <div class="profile-pic">
+        <img [src]="getProfilePictureUrl(user.profile_picture)" alt="Profile Picture">
+      </div>
+    
 
         <div class="profile-info">
             <p><strong>Name:</strong> {{ user.name }}</p>
@@ -14,23 +15,34 @@
 
 
             <!-- Link to Edit Profile Page -->
-            <a [routerLink]="['/edit-profile', user.id]" class="btn">Edit Profile</a>
+            <a [routerLink]="['/profile/edit', user.id]" class="btn">Edit Profile</a>
         </div>
     </div>
 
     <!-- Conditional sections based on user type -->
-    <div class="user-type-section doner" *ngIf="userType === 'doner'">
-        <h2>Donor Information</h2>
-        <p>Donor ID: {{ additionalInfo.donor_id_number }}</p>
-        <a routerLink="/donation-history" class="btn">My Donations</a>
-    </div>
+<div class="user-type-section donor" *ngIf="userType === 'donor'">
+    <h2>Donor Information</h2>
+    <p>Donor ID: {{ additionalInfo.donor_id_number }}</p>
+      <!-- Display Latest Item Donation -->
+  <div class="latest-donation" *ngIf="latestItemDonation">
+    <h3>Latest Item Donation</h3>
+    <p>Item Name: {{ latestItemDonation.item_name }}</p>
+    <p>Value: ${{ latestItemDonation.value }}</p>
+    <p>Condition: {{ latestItemDonation.condition }}</p>
+    <p *ngIf="latestItemDonation.is_valuable">This item is valuable.</p>
+  </div>
+    <a routerLink="/donation-history" class="btn">My Donations</a>
+  </div>
+  
 
     <div class="user-type-section volunteer" *ngIf="userType === 'volunteer'">
-        <h2>Volunteer Information</h2>
+        <h3>Volunteer Information</h3>
         <p>Skills: {{ additionalInfo.skills }}</p>
         <p>Availability: {{ additionalInfo.availability }}</p>
+        <p>Aim: {{ additionalInfo.aim }}</p>
+        <p>Status: {{ additionalInfo.volunteer_status }}</p>
         <a routerLink="/volunteer-analytics" class="btn"> History</a>
-    </div>
-
+      </div>
+   
   
 </div>

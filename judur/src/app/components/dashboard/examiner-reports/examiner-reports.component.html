@@ -63,13 +63,13 @@
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let report of reports">
-                                        <td>{{ report.place }}</td>
-                                        <td>{{ report.examiner }}</td>
-                                        <td>{{ report.date | date:'shortDate' }}</td> <!-- Added date pipe for formatting -->
+                                        <!-- <td>{{ report.description }}</td> -->
+                                        <!-- <td>{{ report.inspections[0]?.examiner_id }}</td>
+                                        <td>{{ report.inspections[0]?.date | date: 'shortDate' }}</td > -->
                                         <td>
-                                            <a class="btn-circle bg-judur rounded-circle"  [routerLink]="['/dashboard/examiner-reports/report-details', report.id]">
-                                              <i class="fa-solid fa-eye"></i>
-                                          </a>
+                                            <!-- <a class="btn-circle bg-judur rounded-circle"  [routerLink]="['/dashboard/examiner-reports/report-details', report.id]"> -->
+                                              <!-- <i class="fa-solid fa-eye"></i>
+                                          </a> -->
                                         </td>
                                     </tr>
                                 </tbody>
