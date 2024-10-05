@@ -1,10 +1,25 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute, RouterLink, RouterModule } from '@angular/router';
+import { ExaminerReportsService } from '../../../services/examiner-reports.service';
 import { LandService } from '../../../services/land.service';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { TopbarComponent } from '../topbar/topbar.component';
+export interface Inspection {
+  examiner_id: string; // Adjust the type as necessary
+  date: string; // Adjust the type if needed (Date, string, etc.)
+}
 
+export interface Report {
+  id: number; // Assuming ID is a number
+  description: string; // Add other fields as needed
+  inspections: Inspection[];
+  land?: Land; }
+  export interface Land {
+    id: number;
+    description: string;
+ 
+}
 @Component({
   selector: 'app-examiner-reports',
   standalone: true,
@@ -13,12 +28,12 @@ import { TopbarComponent } from '../topbar/topbar.component';
   styleUrl: './examiner-reports.component.css'
 })
 export class ExaminerReportsComponent {
-  reports = [];
+  reports: any[] = [];
 
-  constructor(private landService: LandService) {}
+  constructor(private examinerReportsService: ExaminerReportsService) {}
 
   ngOnInit(): void {
-    this.landService.getLands().subscribe((data) => {
+    this.examinerReportsService.getReports().subscribe((data) => {
       this.reports = data;
     });
   }

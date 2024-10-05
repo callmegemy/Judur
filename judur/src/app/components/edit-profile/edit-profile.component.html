@@ -9,7 +9,7 @@
   </div>
 
   <!-- Profile Edit Form -->
-  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
     
     <!-- Name -->
     <div class="form-group mb-3">
@@ -82,6 +82,7 @@
         type="file" 
         id="profilePicture" 
         class="form-control" 
+        name="profile_picture"
         (change)="onFileSelected($event)"
       />
     </div>

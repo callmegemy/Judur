@@ -31,7 +31,7 @@ import { DonerProfileComponent } from './components/dashboard/doner-profile/done
 import { EventDetailsComponent } from './components/event-details/event-details.component';
 import { EventListComponent } from './components/event-list/event-list.component';
 import { ExaminerReportsComponent } from './components/dashboard/examiner-reports/examiner-reports.component';
-import { ReportDetailsComponent } from './components/dashboard/report-details/report-details.component';
+import { ReportDetailsComponent } from './components/dashboard/examiner-reports/report-details/report-details.component';
 import { PostsDashboardComponent } from './components/dashboard/posts-dashboard/posts-dashboard.component';
 import { CreatePostComponent } from './components/dashboard/create-post/create-post.component';
 import { ViewPostComponent } from './components/dashboard/view-post/view-post.component';
@@ -122,6 +122,7 @@ export const routes: Routes = [
 
   { path: 'dashboard/examiner-reports', component: ExaminerReportsComponent },
   { path: 'dashboard/examiner-reports/report-details/:id', component: ReportDetailsComponent },
+  
   { path: 'dashboard/posts', component: PostsDashboardComponent},
   { path: 'dashboard/posts/create-post', component: CreatePostComponent },
   { path: 'dashboard/posts/view-post/:id', component: ViewPostComponent },

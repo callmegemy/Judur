@@ -14,8 +14,8 @@ export class ProfileService {
     return this.http.get(`${this.baseUrl}/profile/${userId}`);
   }
 
-  updateProfile(userId: string, profileData: any): Observable<any> {
-    return this.http.put(`http://127.0.0.1:8000/api/profile/${userId}`, profileData);
+
+  updateProfile(id: string, profileData: FormData | any): Observable<any> {
+    return this.http.put(`${this.baseUrl}/profile/${id}`, profileData);
   }
-  
 }

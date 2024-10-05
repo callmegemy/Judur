@@ -14,7 +14,7 @@ import { MainComponent } from './components/dashboard/main/main.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { EventListComponent } from './components/event-list/event-list.component';
 import { EventDetailsComponent } from './components/event-details/event-details.component';
-import { ReportDetailsComponent } from './components/dashboard/report-details/report-details.component';
+import { ReportDetailsComponent } from './components/dashboard/examiner-reports/report-details/report-details.component';
 import { ViewPostComponent } from './components/dashboard/view-post/view-post.component';
 import { CreatePostComponent } from './components/dashboard/create-post/create-post.component';
 import { PostsDashboardComponent } from './components/dashboard/posts-dashboard/posts-dashboard.component';
