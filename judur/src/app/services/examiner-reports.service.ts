@@ -18,4 +18,8 @@ export class ExaminerReportsService {
   getReportById(id: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/report-details/${id}`);
   }
+  deleteReport(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
+}
+
 }

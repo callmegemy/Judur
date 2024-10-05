@@ -52,6 +52,7 @@
                             <h6 class="m-0 font-weight-bold text-judur">List of Reports</h6>
                         </div>
                         <div class="card-body">
+                         
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
@@ -67,9 +68,13 @@
                                         <td>{{ report.examiner.name }}</td>
                                         <td>{{ report.date | date: 'shortDate' }}</td>
                                         <td>
-                                            <a class="btn-circle bg-judur rounded-circle" [routerLink]="['/dashboard/examiner-reports/report-details', report.id]"> 
-                                                <i class="fa-solid fa-eye"></i>
-                                            </a>
+                                            <a class="btn-circle bg-judur rounded-circle" 
+                                            [routerLink]="['/dashboard/examiner-reports/report-details', report.id]">
+                                             <i class="fa-solid fa-eye"></i>
+                                         </a>
+                                         <button class="btn-circle bg-danger rounded-circle" (click)="onDelete(report.id)">
+                                            <i class="fa-solid fa-trash"></i>
+                                          </button>
                                             
                                         </td>
                                     </tr>
