@@ -1,89 +1,97 @@
+import { Component, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
-import { Component } from '@angular/core';
+import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { PostService , Post} from '../../../services/post.service';
-import { FormBuilder, FormGroup, Validators ,ReactiveFormsModule} from '@angular/forms';
-import { SidebarComponent } from '../sidebar/sidebar.component';
-import { TopbarComponent } from '../topbar/topbar.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { FormsModule } from '@angular/forms';
+import { PostService } from '../../../services/post.service';
+import { SidebarComponent } from '../sidebar/sidebar.component'; // Ensure this is standalone
+import { TopbarComponent } from '../topbar/topbar.component'; // Ensure this is standalone
+import $ from 'jquery';
+import 'datatables.net';
 
 @Component({
   selector: 'app-posts-dashboard',
   standalone: true,
-  imports: [CommonModule,DatePipe,SidebarComponent,TopbarComponent],
+  imports: [CommonModule, DatePipe, SidebarComponent, TopbarComponent, FormsModule, NgxPaginationModule],
   templateUrl: './posts-dashboard.component.html',
-  styleUrl: './posts-dashboard.component.css'
+  styleUrls: ['./posts-dashboard.component.css'] // Corrected 'styleUrl' to 'styleUrls'
 })
-export class PostsDashboardComponent {
-  posts: Post[] = [];
-  postForm: FormGroup;
-  constructor(private fb: FormBuilder, private postService: PostService,private router: Router ) {
-    this.postForm = this.fb.group({
-      title: ['', Validators.required],
-      profilePicture: [''],
-      content: ['', Validators.required],
-      category: ['news'] 
-    });
-  }
+export class PostsDashboardComponent implements AfterViewInit {
+  posts: any[] = [];
+  private postsTable: any;
+
+  constructor(
+    private postsService: PostService,
+    private cdr: ChangeDetectorRef,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.loadPosts();
+    this.fetchPosts();
   }
 
-  loadPosts(): void {
-    this.postService.getPosts().subscribe(posts => {
-      this.posts = posts;
+  ngAfterViewInit(): void {
+    this.initializeDataTables();
+  }
+
+  ngOnDestroy(): void {
+    if (this.postsTable) {
+      this.postsTable.destroy(true);
+    }
+  }
+
+  fetchPosts() {
+    this.postsService.getPosts().subscribe(
+      data => {
+        console.log('Posts fetched:', data);
+        this.posts = data;
+        this.cdr.detectChanges();
+        this.initializeDataTables();
+      },
+      error => {
+        console.error('Error fetching posts:', error);
+      }
+    );
+  }
+
+  initializeDataTables() {
+    setTimeout(() => {
+      if (this.posts.length > 0) {
+        if (this.postsTable) {
+          this.postsTable.destroy();
+        }
+        this.postsTable = $('#dataTable').DataTable();
+      }
+    }, 0);
+  }
+
+  onDelete(postId: number) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'This action will permanently delete the post!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.postsService.deletePost(postId).subscribe(
+          response => {
+            console.log('Post deleted successfully', response);
+            Swal.fire('Deleted!', 'The post has been deleted.', 'success').then(() => {
+              location.reload();
+            });
+          },
+          error => {
+            console.error('Error occurred while deleting post', error);
+            Swal.fire('Error!', 'Failed to delete the post.', 'error');
+          }
+        );
+      }
     });
   }
-  
-
-  createPost(): void {
-    this.router.navigate(['/dashboard/posts/create-post']);
-   
-  }
-
-
-  viewPost(postId: number) {
-    this.router.navigate(['/dashboard/posts/view-post', postId]);
-  }
-  editPost(id: number | undefined): void {
-    if (id !== undefined) {
-        this.router.navigate(['/dashboard/posts/edit-post', id]);
-        this.postService.getPost(id).subscribe(post => {
-            const updatedTitle = prompt('Edit Title:', post.title);
-            const updatedContent = prompt('Edit Content:', post.content);
-
-            if (updatedTitle !== null && updatedContent !== null) {
-                const formData = new FormData();
-                formData.append('title', updatedTitle);
-                formData.append('content', updatedContent);
-                
-                // If there's an image to upload, append it as well
-                // formData.append('image', selectedImageFile);
-
-                this.postService.updatePost(id, formData).subscribe(updatedPost => {
-                    // Update the posts array with the updated post
-                    const index = this.posts.findIndex(p => p.id === id);
-                    if (index !== -1) {
-                        this.posts[index] = updatedPost;
-                    }
-                });
-            }
-        });
-    } else {
-        console.error("Post ID is undefined");
-    }
-}
-
-deletePost(id: number | undefined): void {
-    if (id !== undefined) {
-        this.postService.deletePost(id).subscribe(() => {
-            this.posts = this.posts.filter(post => post.id !== id);
-        });
-    } else {
-        console.error("Post ID is undefined");
-    }
-}
-
-
-
+ 
 }

@@ -4,7 +4,7 @@
   <div class="event-details" *ngIf="event">
     <div class="event-header">
       <h1>{{ event.title }}</h1>
-      <img [src]="event.image" alt="{{ event.title }} Image" loading="lazy">
+      <img [src]="event.image_url" alt="{{ event.title }} Image" loading="lazy">
     </div>
 
     <div class="event-info">
@@ -14,14 +14,16 @@
       </div>
       <div class="event-section">
         <h3>Date & Time</h3>
-        <p>{{ event.date }} - {{ event.duration }}</p>
+        <p>{{ event.date }} - {{ event.time }}</p>
       </div>
       <div class="event-section">
-        <h3>Status</h3>
-        <p>{{ event.status }}</p>
+        <h3> Duration</h3>
+        <p>{{ event.duration }}</p>
       </div>
+      <div class="event-section">
+        <h3> Expected Organizers</h3>
+      <p> {{ event.expected_organizer_number }}</p>
     </div>
-
     <div class="event-description">
       <h3>Description</h3>
       <p>{{ event.description }}</p>

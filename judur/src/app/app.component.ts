@@ -20,6 +20,7 @@ import { EditPostComponent } from './components/dashboard/edit-post/edit-post.co
 import { BlogComponent } from './components/blog/blog.component';
 import { BlogDetailsComponent } from './components/blog-details/blog-details.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxPaginationModule } from 'ngx-pagination';
 @Component({
   selector: 'app-root',
   standalone: true,

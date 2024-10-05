@@ -25,8 +25,10 @@
         </div>
         <div class="row">
             <div class="col-lg-6" *ngFor="let event of events">
+
+                
                 <div class="event-item">
-                    <img [src]="event.image" alt="Event Image">
+                    <img [src]="event.image_url" alt="Event Image">
                     <div class="event-content">
                         <div class="event-meta">
                             <p><i class="fa fa-calendar-alt"></i> {{ event.date }}</p>
