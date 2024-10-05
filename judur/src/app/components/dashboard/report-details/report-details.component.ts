@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SidebarComponent } from '../sidebar/sidebar.component';
+import { TopbarComponent } from '../topbar/topbar.component';
 
 @Component({
   selector: 'app-report-details',
   standalone: true,
-  imports: [ ],
+  imports: [ SidebarComponent,TopbarComponent],
   templateUrl: './report-details.component.html',
   styleUrl: './report-details.component.css'
 })
@@ -14,7 +16,7 @@ export class ReportDetailsComponent {
   constructor(private router: Router, private route: ActivatedRoute) {}
 
   goBack() {
-    this.router.navigate(['/examiner-reports']);
+    this.router.navigate(['/dashboard/examiner-reports']);
   }
 
   ngOnInit(): void {

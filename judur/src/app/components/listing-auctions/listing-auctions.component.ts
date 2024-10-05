@@ -23,7 +23,9 @@ export class ListingAuctionsComponent implements OnInit {
 
   loadAuctions(): void {
     this.auctionService.getAuctions().subscribe(data => {
-      this.auctionItems = data;
+        console.log(data); 
+        this.auctionItems = data;
     });
-  }
+}
+
 }

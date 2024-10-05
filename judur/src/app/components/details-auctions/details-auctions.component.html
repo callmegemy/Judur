@@ -1,4 +1,4 @@
-<app-navbar></app-navbar>
+<!-- <app-navbar></app-navbar>
 
 <div class="container mt-5">
     <div class="card mb-3 custom-card">
@@ -21,4 +21,55 @@
             </div>
         </div>
     </div>
+</div> -->
+<!-- <app-navbar></app-navbar>
+
+<div class="container mt-5">
+    <div class="card mb-3 custom-card">
+        <div class="row g-0">
+            <div class="col-md-6">
+                <img *ngIf="auctionDetails?.imageUrl" [src]="auctionDetails.imageUrl" class="img-fluid rounded-start custom-img" alt="{{ auctionDetails.title }}">
+            </div>
+            <div class="col-md-6">
+                <div class="card-body">
+                    <h3 class="card-title">{{ auctionDetails?.title }}</h3>
+                    <p class="card-text"><strong>Description:</strong> {{ auctionDetails?.description }}</p>
+                    <p class="card-text"><strong>Current Price:</strong> ${{ auctionDetails?.currentPrice }}</p>
+                    <p class="card-text"><strong>Number of Bidders:</strong> {{ auctionDetails?.numberOfBidders }}</p>
+                    <p class="card-text"><strong>Ends On:</strong> {{ auctionDetails?.endsOn }}</p>
+                    <div class="input-group">
+                        <input type="number" class="form-control mb-2" placeholder="Enter your bid" aria-label="Bid amount">
+                        <a href="#" class="btn btn-primary">Add Your Bid</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div *ngIf="auctionDetails">
+    <div class="container mt-5">
+        <div class="card mb-3 custom-card">
+    <div class="row g-0">
+      <div class="col-md-6">
+        <!-- عرض الصورة إذا كانت موجودة -->
+        <img *ngIf="auctionDetails.imageUrl" [src]="auctionDetails.imageUrl" class="img-fluid" alt="{{ auctionDetails.title }}">
+      </div>
+      <div class="col-md-6">
+        <h3>{{ auctionDetails.title }}</h3>
+        <p><strong>Description:</strong> {{ auctionDetails.description }}</p>
+        <p><strong>Current Price:</strong> ${{ auctionDetails.currentPrice }}</p>
+        <p><strong>Start Date:</strong> {{ auctionDetails.start_date }}</p>
+        <p><strong>End Date:</strong> {{ auctionDetails.end_date }}</p>
+        <div class="input-group">
+            <input type="number" class="form-control mb-2" placeholder="Enter your bid" aria-label="Bid amount">
+            <a href="#" class="btn btn-primary">Add Your Bid</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+</div>
+
+
+

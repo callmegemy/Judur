@@ -51,10 +51,10 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-judur font-weight-bold">(Vounteers'name)`s Profile</h1>
+                        <h1 class="h3 mb-0 text-judur font-weight-bold">{{ volunteer.user.name }}`s Profile</h1>
                     </div>
 
-                    <div class="container my-5">
+                    <div class="container my-5" *ngIf="volunteer">
                     
                         <div class="profile-container">
                             <div class="profile-pic">
@@ -62,8 +62,8 @@
                             </div>
                     
                             <div class="profile-info">
-                                <p><strong>Name:</strong> Admin Name</p>
-                                <p><strong>Email:</strong> admin&#64;example.com</p>
+                                <p><strong>Name:</strong> {{ volunteer.user.name }}</p>
+                                <p><strong>Email:</strong> {{ volunteer.user.email }}</p>
                     
                     
                     
@@ -74,8 +74,10 @@
                     
                         <div class="user-type-section volunteer" >
                             <h2>Volunteer Information</h2>
-                            <p>Hours Volunteered: 50</p>
-                            <p>Current Projects: Community Cleanup, Food Drive</p>
+                            <p><strong>Skills:</strong> {{ volunteer.skills }}</p>
+                            <p><strong>Availability:</strong> {{ volunteer.availability }}</p>
+                            <p><strong>Aim:</strong> {{ volunteer.aim }}</p>
+                            <p><strong>Status:</strong> {{ volunteer.volunteer_status.name }}</p>
                             <a routerLink="/volunteer-analytics" class="btn"> History</a>
                         </div>
                     

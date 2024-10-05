@@ -27,7 +27,7 @@ import { RequestsComponent } from './components/dashboard/requests/requests.comp
 import { VolunteerRequestComponent } from './components/dashboard/volunteer-request/volunteer-request.component';
 import { ExaminerRequestComponent } from './components/dashboard/examiner-request/examiner-request.component';
 import { VolunteerProfileComponent } from './components/dashboard/volunteer-profile/volunteer-profile.component';
-import { DonerProfileComponent } from './components/dashboard/doner-profile/doner-profile.component';
+import { DonorProfileComponent } from './components/dashboard/doner-profile/doner-profile.component';
 import { EventDetailsComponent } from './components/event-details/event-details.component';
 import { EventListComponent } from './components/event-list/event-list.component';
 import { ExaminerReportsComponent } from './components/dashboard/examiner-reports/examiner-reports.component';
@@ -47,6 +47,7 @@ import { AuctionsComponent } from './components/dashboard/auctions/auctions.comp
 import { ViewAuctionComponent } from './components/dashboard/view-auction/view-auction.component';
 import { EditAuctionComponent } from './components/dashboard/edit-auction/edit-auction.component';
 import { CreateAuctionComponent } from './components/dashboard/create-auction/create-auction.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
 
 export const routes: Routes = [
   {
@@ -79,27 +80,22 @@ export const routes: Routes = [
   { path: 'register-choice', component: RegisterChoiceComponent },
 
   // Donation details routes by category
-  { path: 'donation-item-details/:id', component: DonationItemDetailsComponent },
-  { path: 'donation-money-details/:id', component: DonationMoneyDetailsComponent },
-  { path: 'donation-land-details/:id', component: DonationLandDetailsComponent },
+  { path: 'donation-item-details', component: DonationItemDetailsComponent },
+  { path: 'donation-money-details', component: DonationMoneyDetailsComponent },
+  { path: 'donation-land-details', component: DonationLandDetailsComponent },
 
   // { path: 'view-profile', component: ViewProfileComponent},
   { path: 'view-profile', component: ViewProfileComponent },
-  { path: 'edit-profile', component: EditProfileComponent },
-  { path: 'event-details', component: EventDetailsComponent },
+  { path: 'edit-profile/:id', component: EditProfileComponent },
+  { path: 'list-event/event-details/:id', component: EventDetailsComponent },
 
   { path: 'list-event', component: EventListComponent},
-  { path: 'examiner-reports', component: ExaminerReportsComponent },
-  { path: 'report-details/:id', component: ReportDetailsComponent },
-  { path: 'posts', component: PostsDashboardComponent},
-  { path: 'create-post', component: CreatePostComponent },
-  { path: 'view-post/:id', component: ViewPostComponent },
-  { path: 'edit-post/:id', component: EditPostComponent },
+
   // { path: '', redirectTo: '/donation-history', pathMatch: 'full' },
   // { path: '**', redirectTo: '/donation-history' }
   {path:'auction-list',component:ListingAuctionsComponent},
   {
-    path:'auction-details',component:DetailsAuctionsComponent
+    path:'auction-details/:id',component:DetailsAuctionsComponent
   },
 
   // Dashboard routes >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -109,10 +105,10 @@ export const routes: Routes = [
   { path: 'dashboard', component: MainComponent },
   { path: 'dashboard/users', component: UsersAdminComponent },
   { path: 'dashboard/requests', component: RequestsComponent },
-  { path: 'dashboard/request/view/v', component: VolunteerRequestComponent },
-  { path: 'dashboard/request/view/ex', component: ExaminerRequestComponent },
-  { path: 'dashboard/userProfile/volunteer', component: VolunteerProfileComponent },
-  { path: 'dashboard/userProfile/doner', component: DonerProfileComponent },
+  { path: 'dashboard/request/view/v/:id', component: VolunteerRequestComponent },
+  { path: 'dashboard/request/view/ex/:id', component: ExaminerRequestComponent },
+  { path: 'dashboard/userProfile/volunteer/:id', component: VolunteerProfileComponent },
+  { path: 'dashboard/userProfile/doner/:id', component: DonorProfileComponent },
 
   { path: 'dashboard/events', component: EventsComponent },
   { path: 'dashboard/events/edit', component: EditEventComponent },
@@ -124,7 +120,12 @@ export const routes: Routes = [
   { path: 'dashboard/auctions/edit', component: EditAuctionComponent },
   { path: 'dashboard/auctions/create', component: CreateAuctionComponent },
 
-
+  { path: 'dashboard/examiner-reports', component: ExaminerReportsComponent },
+  { path: 'dashboard/examiner-reports/report-details/:id', component: ReportDetailsComponent },
+  { path: 'dashboard/posts', component: PostsDashboardComponent},
+  { path: 'dashboard/posts/create-post', component: CreatePostComponent },
+  { path: 'dashboard/posts/view-post/:id', component: ViewPostComponent },
+  { path: 'dashboard/posts/edit-post/:id', component: EditPostComponent },
 
 
 
@@ -132,6 +133,7 @@ export const routes: Routes = [
   
   { path: 'listing-auctions' , component: ListingAuctionsComponent},
   { path: 'details-auctions' , component:DetailsAuctionsComponent},
+  {path:'contact-us',component:ContactUsComponent}
 ];
 
 @NgModule({

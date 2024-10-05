@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -11,38 +12,33 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  registerForm!: FormGroup;
+  donorForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router) {
-    this.createForm();
-  }
-
-  createForm(): void {
-    this.registerForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(2)]],
+  constructor(private fb: FormBuilder, private authService: AuthService) {
+    this.donorForm = this.fb.group({
+      name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      mobile: ['', [Validators.required]], // Added mobile field
-      contactMethod: ['', [Validators.required]], // Added preferred method of contact
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required]]
-    }, { validators: this.passwordMatchValidator });
-  }
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      role_id: [2], 
+      age: ['', Validators.required],
+      phone: ['', Validators.required],
+    });
+}
 
-  passwordMatchValidator(group: FormGroup): any {
-    return group.get('password')?.value === group.get('confirmPassword')?.value ? null : { mismatch: true };
-  }
 
-  onSubmit(): void {
-    if (this.registerForm.valid) {
-      const { name, email, mobile, contactMethod, password } = this.registerForm.value;
-      console.log('Name:', name);
-      console.log('Email:', email);
-      console.log('Mobile:', mobile);
-      console.log('Preferred Contact Method:', contactMethod);
-      console.log('Password:', password);
-
-      // Navigate to the login page after successful registration
-      this.router.navigate(['/login']);
+  registerDonor() {
+    if (this.donorForm.valid) {
+      this.authService.registerDonor(this.donorForm.value).subscribe({
+        next: (response) => {
+          console.log('Donor registration successful:', response);
+          
+        },
+        error: (err) => {
+          console.error('Error during donor registration:', err);
+        }
+      });
+    } else {
+      console.warn('Donor form is invalid');
     }
   }
 }
