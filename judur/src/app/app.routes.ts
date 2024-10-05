@@ -48,6 +48,9 @@ import { ViewAuctionComponent } from './components/dashboard/view-auction/view-a
 import { EditAuctionComponent } from './components/dashboard/edit-auction/edit-auction.component';
 import { CreateAuctionComponent } from './components/dashboard/create-auction/create-auction.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { LandInspectionComponent } from './land-inspection/land-inspection.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 export const routes: Routes = [
   {
@@ -133,7 +136,15 @@ export const routes: Routes = [
   
   { path: 'listing-auctions' , component: ListingAuctionsComponent},
   { path: 'details-auctions' , component:DetailsAuctionsComponent},
-  {path:'contact-us',component:ContactUsComponent}
+  {path:'contact-us',component:ContactUsComponent},
+
+
+
+
+  { path: 'land-inspection', component: LandInspectionComponent },
+  { path: 'reset-password', component: ResetPasswordComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent }, 
+  
 ];
 
 @NgModule({

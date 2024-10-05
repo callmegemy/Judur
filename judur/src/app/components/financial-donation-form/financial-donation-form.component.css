@@ -86,3 +86,16 @@ form {
 .login-link:hover {
     color: #6A9C89;
 }
+
+.form-control {
+    width: 100%;   /* Make inputs take the full width */
+    padding: 10px; /* Adjust padding for a better look */
+    font-size: 1rem;  /* Increase font size */
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+  }
+  

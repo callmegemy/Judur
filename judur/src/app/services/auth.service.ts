@@ -1,31 +1,28 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, tap, catchError, throwError } from 'rxjs';
-// Inside auth.service.ts
-
-// In donation.service.ts
 
 export interface FinancialDonation {
   amount: number;
   currency: string;
   created_at: string;
-  payment_method: string; // Property for payment method
-  donor_name: string;     // Property for donor's name
+  payment_method: string; 
+  donor_name: string;     
 }
 
 export interface ItemDonation {
   item_name: string;
   value: number;
   created_at: string;
-  condition: string;      // Property for condition of the item
+  condition: string;     
 }
 
 export interface LandDonation {
   description: string;
   land_size: number;
   created_at: string;
-  address: string;        // Property for the address of the land
-  proof_of_ownership: string; // Property for proof of ownership
+  address: string;      
+  proof_of_ownership: string; 
 }
 
 export interface DonationHistory {
@@ -55,20 +52,24 @@ export class AuthService {
 
  
 
-login(data: any): Observable<any> {
-  return this.http.post(`${this.apiUrl}/login`, data).pipe(
-    tap((response: any) => {
-      if (response.access_token) {
-        this.storeToken(response.access_token);
-        localStorage.setItem('user', JSON.stringify(response.user)); 
-        console.log('Token and user data stored.');
-        this.loggedIn.next(true);
-      } else {
-        console.error('No token received from login response.');
-      }
-    })
-  );
-}
+  login(data: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/login`, data).pipe(
+      tap((response: any) => {
+        if (response.access_token) {
+          this.storeToken(response.access_token);
+          
+          
+          console.log('Response from login:', response.user); 
+          localStorage.setItem('user', JSON.stringify(response.user)); 
+          console.log('Token and user data stored.');
+          this.loggedIn.next(true);
+        } else {
+          console.error('No token received from login response.');
+        }
+      })
+    );
+  }
+  
 
 
 
@@ -126,23 +127,36 @@ registerDonor(data: any): Observable<any> {
 
 registerVolunteer(data: any): Observable<any> {
   return this.http.post(`${this.apiUrl}/register/volunteer`, data).pipe(
-      tap((response: any) => {
-          if (response.access_token) {
-              this.storeToken(response.access_token);
-              localStorage.setItem('user', JSON.stringify(response.user)); 
-              console.log('Volunteer registration successful, token and user data stored.');
-              this.loggedIn.next(true);
-          }
-      }),
-      catchError((error) => {
-          console.error('Error during volunteer registration:', error);
-          return throwError(error);
-      })
+    tap((response: any) => {
+      if (response.access_token) {
+        this.storeToken(response.access_token);
+        
+        // Ensure examiner field is part of the user object being stored
+        console.log('Response from registration:', response.user); // Debugging
+        localStorage.setItem('user', JSON.stringify(response.user)); 
+        console.log('Volunteer registration successful, token and user data stored.');
+        this.loggedIn.next(true);
+      }
+    }),
+    catchError((error) => {
+      console.error('Error during volunteer registration:', error);
+      return throwError(error);
+    })
   );
 }
 
 
+public isExaminer(): boolean {
+  const user = this.getUserData();
+  console.log('User data in isExaminer:', user); 
 
+  if (user && user.role_id === 3 && user.examiner === 1) {
+    console.log('User is an examiner');
+    return true;
+  }
+  console.log('User is NOT an examiner');
+  return false;
+}
 
   
   
@@ -220,8 +234,59 @@ registerVolunteer(data: any): Observable<any> {
       })
     );
   }
+    
+  // auth.service.ts
+startPaypalPayment(data: any): Observable<any> {
+  const token = this.getToken(); // Get the token from local storage
+  const headers = {
+    'Authorization': `Bearer ${token}`,
+    'Accept': 'application/json',
+  };
+
+  return this.http.post(`${this.apiUrl}/payment/create`, data, { headers }).pipe(
+    tap((response: any) => {
+      console.log('PayPal payment initiated:', response);
+      window.location.href = response.approvalUrl; // Redirect to PayPal approval URL
+    }),
+    catchError((error) => {
+      console.error('Error initiating PayPal payment:', error);
+      return throwError(error);
+    })
+  );
+}
 
   
+initiatePaypalPayment(donationData: any): Observable<any> {
+  const token = this.getToken(); // Get the token from local storage
+  const headers = {
+    'Authorization': `Bearer ${token}`,
+    'Accept': 'application/json',
+  };
 
-  
+  return this.http.post(`${this.apiUrl}/payment/create`, donationData, { headers }).pipe(
+    tap((response: any) => {
+      console.log('PayPal payment initiated:', response);
+    }),
+    catchError((error) => {
+      console.error('Error initiating PayPal payment:', error);
+      return throwError(error);
+    })
+  );
+}
+checkExaminerRequest(): Observable<any> {
+  return this.http.get('http://localhost:8000/api/volunteer/check-examiner-request', {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+    }
+  });
+}
+requestExaminer(formData: any): Observable<any> {
+  return this.http.post('http://localhost:8000/api/volunteer/request-examiner', formData, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+      Accept: 'application/json'
+    }
+  });
+}
+
 }

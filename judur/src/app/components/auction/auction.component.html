@@ -1,58 +1,76 @@
 <app-navbar></app-navbar>
 
-<div class="container mt-5" style="margin-top: 70px;">
-  <div class="card">
-    <div class="card-header bg-dark text-white">
-      <h2 class="mb-0">Donate an Item</h2>
+<div class="container" style="max-width: 1200px; margin: 150px auto 0;">
+  <div class="row">
+    
+    <!-- Form on the left side -->
+    <div class="col-md-6 d-flex align-items-center">
+      <div class="card shadow-sm border-0 rounded-lg" style="width: 100%;">
+        <div class="card-header bg-dark text-white text-center rounded-top">
+        
+        </div>
+        <div class="card-body bg-light">
+          <!-- Form -->
+          <form #form="ngForm" (ngSubmit)="onSubmit(form)" enctype="multipart/form-data">
+          
+            <!-- Item Name Field -->
+            <div class="mb-3">
+              <label for="itemName" class="form-label"><i class="fas fa-tag"></i> Item Name</label>
+              <input type="text" class="form-control form-control-lg" id="itemName" placeholder="Enter item name" [(ngModel)]="itemName" name="itemName" required>
+            </div>
+
+            <!-- Estimated Value Field -->
+            <div class="mb-3">
+              <label for="value" class="form-label"><i class="fas fa-dollar-sign"></i> Estimated Value</label>
+              <input type="number" class="form-control form-control-lg" id="value" placeholder="Enter estimated value" [(ngModel)]="estimatedValue" name="value" required>
+            </div>
+
+            <!-- Item Condition Field -->
+            <div class="mb-3">
+              <label for="itemCondition" class="form-label"><i class="fas fa-align-left"></i> Condition</label>
+              <input type="text" class="form-control form-control-lg" id="itemCondition" placeholder="Enter item condition" [(ngModel)]="itemCondition" name="itemCondition" required>
+            </div>
+
+            <!-- Valuable Item Checkbox -->
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="isValuable" [(ngModel)]="isValuable" name="isValuable">
+              <label class="form-check-label" for="isValuable">
+                <i class="fas fa-star"></i> Is this a valuable item?
+              </label>
+            </div>
+
+            <!-- Conditional Fields for Valuable Item -->
+            <div *ngIf="isValuable">
+              <!-- Authentication Document -->
+              <div class="mb-3">
+                <label for="authDoc" class="form-label"><i class="fas fa-file-alt"></i> Authentication Document</label>
+                <input type="file" class="form-control form-control-lg" id="authDoc" placeholder="Upload authentication document">
+              </div>
+
+              <!-- Additional Information Field -->
+              <div class="mb-3">
+                <label for="extraNotes" class="form-label"><i class="fas fa-info-circle"></i> Additional Information</label>
+                <textarea class="form-control form-control-lg" id="extraNotes" placeholder="Provide additional details" [(ngModel)]="extraNotes" name="extraNotes"></textarea>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-lg btn-dark btn-block mt-3" [disabled]="form.invalid">
+              <i class="fas fa-gift"></i> Donate Item
+            </button>
+          </form>
+        </div> 
+      </div> 
     </div>
-    <div class="card-body bg-light">
-      <!-- Pass the form reference to onSubmit -->
-      <form #form="ngForm" (ngSubmit)="onSubmit(form)" enctype="multipart/form-data">
-      
-        <!-- Item Name Field -->
-        <div class="mb-3">
-          <label for="itemName" class="form-label"><i class="fas fa-tag"></i> Item Name</label>
-          <input type="text" class="form-control" id="itemName" placeholder="Enter item name" [(ngModel)]="itemName" name="itemName" required>
-        </div>
 
-        <!-- Estimated Value Field -->
-        <div class="mb-3">
-          <label for="value" class="form-label"><i class="fas fa-dollar-sign"></i> Estimated Value</label>
-          <input type="number" class="form-control" id="value" placeholder="Enter estimated value" [(ngModel)]="estimatedValue" name="value" required>
-        </div>
+    <!-- Paragraph on the right side -->
+    <div class="col-md-6 d-flex align-items-center">
+      <div style="max-width: 100%; padding: 20px;">
+        <p class="mb-4" style="font-size: 1.25rem; line-height: 1.4;">
+          Thank you for choosing to donate to <strong>Judur</strong>, a non-profit charity dedicated to making a difference. When you donate an item, it goes directly to those in need, helping individuals and communities thrive. If you choose to donate a valuable item, we will organize an auction to raise funds. The money raised from auctions will be used to support various charitable projects, such as food drives, community programs, and other initiatives aimed at providing essential support to those less fortunate. Rest assured, your donation, whether an item or a valuable piece for auction, will have a meaningful impact.
+        </p>
+      </div>
+    </div>
 
-        <!-- Item Condition Field -->
-        <div class="mb-3">
-          <label for="itemCondition" class="form-label"><i class="fas fa-align-left"></i> Condition</label>
-          <input type="text" class="form-control" id="itemCondition" placeholder="Enter item condition" [(ngModel)]="itemCondition" name="itemCondition" required>
-        </div>
-
-        <!-- Valuable Item Checkbox -->
-        <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="isValuable" [(ngModel)]="isValuable" name="isValuable">
-          <label class="form-check-label" for="isValuable">
-            <i class="fas fa-star"></i> Is this a valuable item?
-          </label>
-        </div>
-
-        <!-- Conditional Fields for Valuable Item -->
-        <div *ngIf="isValuable">
-          <!-- Authentication Document -->
-          <div class="mb-3">
-            <label for="authDoc" class="form-label"><i class="fas fa-file-alt"></i> Authentication Document</label>
-            <input type="file" class="form-control" id="authDoc" placeholder="Upload authentication document">
-          </div>
-
-          <!-- Additional Information Field -->
-          <div class="mb-3">
-            <label for="extraNotes" class="form-label"><i class="fas fa-info-circle"></i> Additional Information</label>
-            <textarea class="form-control" id="extraNotes" placeholder="Provide additional details" [(ngModel)]="extraNotes" name="extraNotes"></textarea>
-          </div>
-        </div>
-
-       
-        <button type="submit" class="btn btn-dark" [disabled]="form.invalid"><i class="fas fa-gift"></i> Donate Item</button>
-      </form>
-    </div> 
-  </div> 
+  </div>
 </div>

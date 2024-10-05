@@ -1,0 +1,73 @@
+<app-navbar></app-navbar>
+
+<div class="container" style="max-width: 900px; margin: 150px auto 0;">
+  <div class="row">
+    
+    <!-- Land Inspection Form -->
+    <div class="col-md-12">
+      <div class="card shadow-sm border-0 rounded-lg">
+        <div class="card-header text-center rounded-top">
+          <h2 class="mb-0">Land Inspection</h2>
+        </div>
+        <div class="card-body bg-light">
+          <!-- Inspection Form -->
+          <form [formGroup]="inspectionForm" (ngSubmit)="submitForm()" enctype="multipart/form-data">
+            
+            <!-- Land Field -->
+            <div class="mb-3">
+              <label for="land_id" class="form-label"><i class="fas fa-map-marker-alt"></i> Land</label>
+              <select class="form-control form-control-lg" formControlName="land_id" required>
+                <option *ngFor="let land of lands" [value]="land.id">{{ land.description }}</option>
+              </select>
+            </div>
+            
+            <!-- Inspection Date -->
+            <div class="mb-3">
+              <label for="date" class="form-label"><i class="fas fa-calendar-alt"></i> Inspection Date</label>
+              <input type="date" class="form-control form-control-lg" formControlName="date" required />
+            </div>
+
+            <!-- Hygiene -->
+            <div class="mb-3">
+              <label for="hygiene" class="form-label"><i class="fas fa-broom"></i> Hygiene</label>
+              <input type="text" class="form-control form-control-lg" formControlName="hygiene" required />
+            </div>
+            
+            <!-- Capacity -->
+            <div class="mb-3">
+              <label for="capacity" class="form-label"><i class="fas fa-users"></i> Capacity</label>
+              <input type="number" class="form-control form-control-lg" formControlName="capacity" required />
+            </div>
+            
+            <!-- Electricity Supply -->
+            <div class="mb-3">
+              <label for="electricity_supply" class="form-label"><i class="fas fa-lightbulb"></i> Electricity Supply</label>
+              <select class="form-control form-control-lg" id="electricity_supply" formControlName="electricity_supply">
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+            </div>
+            
+            <!-- General Condition -->
+            <div class="mb-3">
+              <label for="general_condition" class="form-label"><i class="fas fa-clipboard-check"></i> General Condition</label>
+              <input type="text" class="form-control form-control-lg" formControlName="general_condition" required />
+            </div>
+            
+            <!-- Upload Photo -->
+            <div class="mb-3">
+              <label for="photo" class="form-label"><i class="fas fa-camera"></i> Upload Photo</label>
+              <input type="file" class="form-control form-control-lg" (change)="onFileSelect($event)" />
+            </div>
+            
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-lg btn-dark btn-block mt-3" [disabled]="!inspectionForm.valid">
+              <i class="fas fa-check-circle"></i> Submit Inspection
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
