@@ -111,8 +111,8 @@ export const routes: Routes = [
   { path: 'dashboard/userProfile/doner/:id', component: DonorProfileComponent },
 
   { path: 'dashboard/events', component: EventsComponent },
-  { path: 'dashboard/events/edit', component: EditEventComponent },
-  { path: 'dashboard/events/view', component: ViewEventComponent },
+  { path: 'dashboard/events/edit/:id', component: EditEventComponent },
+  { path: 'dashboard/events/view/:id', component: ViewEventComponent },
   { path: 'dashboard/events/create', component: CreateEventComponent },
 
   { path: 'dashboard/auctions', component: AuctionsComponent },

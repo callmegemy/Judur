@@ -20,7 +20,7 @@ import { ReportDetailsComponent } from './components/dashboard/report-details/re
   selector: 'app-root',
   standalone: true,
  
-  imports: [  AuctionComponent, // Ensure this is standalone
+  imports: [  AuctionComponent, 
   ReportDetailsComponent ,RouterModule, RouterOutlet,NavbarComponent,DonationHistoryComponent , CommonModule ,ViewProfileComponent,
     EditProfileComponent, MainComponent, EventListComponent, EventDetailsComponent, ExaminerReportsComponent, ReportDetailsComponent, HttpClientModule,ReactiveFormsModule],
   templateUrl: './app.component.html',
