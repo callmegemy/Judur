@@ -50,20 +50,16 @@ import { ViewAuctionComponent } from './components/dashboard/view-auction/view-a
 import { EditAuctionComponent } from './components/dashboard/edit-auction/edit-auction.component';
 import { CreateAuctionComponent } from './components/dashboard/create-auction/create-auction.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
-<<<<<<< HEAD
 import { LandInspectionComponent } from './land-inspection/land-inspection.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-=======
 import { authGuard } from '../app/auth.guard';
 import { UserManagementComponent } from './components/dashboard/user-management/user-management.component';
 import { AddSubAdminComponent } from './components/dashboard/add-sub-admin/add-sub-admin.component';
 import { ViewSubAdminComponent } from './components/dashboard/view-sub-admin/view-sub-admin.component';
 import { EditSubAdminComponent } from './components/dashboard/edit-sub-admin/edit-sub-admin.component';
 import { AvailableLandsComponent } from './components/available-lands/available-lands.component';
->>>>>>> 9e4d20ff0cc2a095777d0163ac200d6a2157ba7c
 
-import { LandInspectionComponent } from './land-inspection/land-inspection.component';
 export const routes: Routes = [
   {
     path: '',
@@ -204,7 +200,6 @@ export const routes: Routes = [
 
   { path: 'listing-auctions' , component: ListingAuctionsComponent},
   { path: 'details-auctions' , component:DetailsAuctionsComponent},
-<<<<<<< HEAD
   {path:'contact-us',component:ContactUsComponent},
 
 
@@ -214,9 +209,6 @@ export const routes: Routes = [
   { path: 'reset-password', component: ResetPasswordComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent }, 
   
-=======
-  { path: 'land-inspection', component: LandInspectionComponent},
->>>>>>> 9e4d20ff0cc2a095777d0163ac200d6a2157ba7c
 ];
 
 @NgModule({
