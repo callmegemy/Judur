@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';  
+import { FormsModule } from '@angular/forms';
 import { LandownerRegistrationComponent } from './components/landowner-registration/landowner-registration.component';
 import { VolunteerRegistrationComponent } from './components/volunteer-registration/volunteer-registration.component';
 import { AuctionComponent } from './components/auction/auction.component';
@@ -9,7 +9,7 @@ import { DonationHistoryComponent } from './components/donation-history/donation
 import { DonationItemDetailsComponent } from './components/donation-item-details/donation-item-details.component';
 import { DonationLandDetailsComponent } from './components/donation-land-details/donation-land-details.component';
 import { DonationMoneyDetailsComponent } from './components/donation-money-details/donation-money-details.component';
-import { EditProfileComponent } from './components/edit-profile/edit-profile.component';  
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { ViewProfileComponent } from './components/view-profile/view-profile.component';
 import { MainComponent } from './components/dashboard/main/main.component';
 import { HomeComponent } from './components/home/home.component';
@@ -21,13 +21,15 @@ import { VolunteerAnalyticsComponent } from './components/volunteer-analytics/vo
 import { ParticipationDetailsComponent } from './components/participation-details/participation-details.component';
 import { PerformanceReportsComponent } from './components/performance-reports/performance-reports.component';
 import { SuitabilityEvaluationsComponent } from './components/suitability-evaluations/suitability-evaluations.component';
+import { BlogComponent } from './components/blog/blog.component';
+import { BlogDetailsComponent } from './components/blog-details/blog-details.component';
 import { FinancialDonationFormComponent } from './components/financial-donation-form/financial-donation-form.component';
 import { UsersAdminComponent } from './components/dashboard/users-admin/users-admin.component';
 import { RequestsComponent } from './components/dashboard/requests/requests.component';
 import { VolunteerRequestComponent } from './components/dashboard/volunteer-request/volunteer-request.component';
 import { ExaminerRequestComponent } from './components/dashboard/examiner-request/examiner-request.component';
 import { VolunteerProfileComponent } from './components/dashboard/volunteer-profile/volunteer-profile.component';
-import { DonerProfileComponent } from './components/dashboard/doner-profile/doner-profile.component';
+import { DonorProfileComponent } from './components/dashboard/doner-profile/doner-profile.component';
 import { EventDetailsComponent } from './components/event-details/event-details.component';
 import { EventListComponent } from './components/event-list/event-list.component';
 import { ExaminerReportsComponent } from './components/dashboard/examiner-reports/examiner-reports.component';
@@ -49,18 +51,19 @@ import { CreateAuctionComponent } from './components/dashboard/create-auction/cr
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { ReportDetailsComponent } from './components/dashboard/examiner-reports/report-details/report-details.component';
 
+import { LandInspectionComponent } from './land-inspection/land-inspection.component';
 export const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
     title: 'Home Page',
-  }, {
-  path: 'about', 
+}, {
+  path: 'about',
   component: AboutComponent
   }
   ,
   {
-  path: 'donate', 
+  path: 'donate',
   component: DonateComponent
   },
    { path: 'login', component: LoginComponent},
@@ -99,20 +102,20 @@ export const routes: Routes = [
   },
 
   // Dashboard routes >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  
+
   // { path: '', redirectTo: '/donation-history', pathMatch: 'full' },
   // { path: '**', redirectTo: '/donation-histor>>>>>
   { path: 'dashboard', component: MainComponent },
   { path: 'dashboard/users', component: UsersAdminComponent },
   { path: 'dashboard/requests', component: RequestsComponent },
-  { path: 'dashboard/request/view/v', component: VolunteerRequestComponent },
-  { path: 'dashboard/request/view/ex', component: ExaminerRequestComponent },
-  { path: 'dashboard/userProfile/volunteer', component: VolunteerProfileComponent },
-  { path: 'dashboard/userProfile/doner', component: DonerProfileComponent },
+  { path: 'dashboard/request/view/v/:id', component: VolunteerRequestComponent },
+  { path: 'dashboard/request/view/ex/:id', component: ExaminerRequestComponent },
+  { path: 'dashboard/userProfile/volunteer/:id', component: VolunteerProfileComponent },
+  { path: 'dashboard/userProfile/doner/:id', component: DonorProfileComponent },
 
   { path: 'dashboard/events', component: EventsComponent },
-  { path: 'dashboard/events/edit', component: EditEventComponent },
-  { path: 'dashboard/events/view', component: ViewEventComponent },
+  { path: 'dashboard/events/edit/:id', component: EditEventComponent },
+  { path: 'dashboard/events/view/:id', component: ViewEventComponent },
   { path: 'dashboard/events/create', component: CreateEventComponent },
 
   { path: 'dashboard/auctions', component: AuctionsComponent },
@@ -131,10 +134,13 @@ export const routes: Routes = [
 
 
   // dashboard Routs End
-  
+{path: 'blog', component:BlogComponent},
+{path: 'blog/:id', component: BlogDetailsComponent },
+
+
   { path: 'listing-auctions' , component: ListingAuctionsComponent},
   { path: 'details-auctions' , component:DetailsAuctionsComponent},
-  {path:'contact-us',component:ContactUsComponent}
+  { path: 'land-inspection', component: LandInspectionComponent},
 ];
 
 @NgModule({
