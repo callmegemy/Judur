@@ -15,6 +15,7 @@ import { TopbarComponent } from '../dashboard/topbar/topbar.component';
 })
 export class EditProfileComponent implements OnInit {
   profileForm: FormGroup;
+  selectedFile: File | null = null;
   errorMessage: string = '';
 
   constructor(
@@ -26,17 +27,15 @@ export class EditProfileComponent implements OnInit {
     this.profileForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.maxLength(255)]],
       email: ['', [Validators.required, Validators.email]],
-       age: ['', [Validators.required, Validators.min(1)]], // Ensure age is a positive number
-      phone: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]], // Assuming a 10-digit phone number
-      // password: ['', [Validators.required, Validators.minLength(6)]], // Minimum 6 characters
-  
-
+      age: ['', [Validators.required, Validators.min(1)]],
+      phone: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
+      profilePicture: ['']
     });
   }
 
   ngOnInit() {
     const userId = this.route.snapshot.paramMap.get('id');
-  
+
     if (userId) {
       this.profileService.getProfile(userId).subscribe(
         (data) => {
@@ -52,79 +51,50 @@ export class EditProfileComponent implements OnInit {
       this.errorMessage = 'User ID is not available.';
     }
   }
-  
-
-  
-
-  selectedFile: File | null = null;
-
 
   onFileSelected(event: any) {
     const file = event.target.files[0];
     const reader = new FileReader();
 
     reader.onload = (e: any) => {
+      // Save Base64 string in the profile form control
       this.profileForm.patchValue({ profilePicture: e.target.result });
     };
+
     reader.readAsDataURL(file);
   }
+
   onSubmit() {
     if (this.profileForm.invalid) {
       return;
     }
-  
-    // Retrieve the user ID from the route
+
     const userId = this.route.snapshot.paramMap.get('id');
-  
+
     if (!userId) {
       this.errorMessage = 'User ID is not available.';
       return;
     }
-  
+
     // Prepare the profile data object
-    const profileData: any = {
+    const profileData = {
       name: this.profileForm.value.name,
       email: this.profileForm.value.email,
       age: this.profileForm.value.age,
       phone: this.profileForm.value.phone,
       password: this.profileForm.value.password, // Only send if provided
+      profile_picture: this.profileForm.value.profilePicture // Base64 encoded image
     };
-  
-    // Handle the profile picture separately
-    const file = this.profileForm.value.profilePicture;
-    if (file instanceof File) {
-      const reader = new FileReader();
-  
-      reader.onloadend = () => {
-        // Convert file to Base64 and attach it to profileData
-        profileData.profile_picture = reader.result as string;
-  
-        // Call the service to update the profile after image is processed
-        this.profileService.updateProfile(userId, profileData).subscribe(
-          () => {
-            this.router.navigate(['/view-profile']);
-          },
-          (error) => {
-            this.errorMessage = 'Error updating profile.';
-            console.error('Error updating profile', error);
-          }
-        );
-      };
-  
-      reader.readAsDataURL(file); // Convert file to Base64
-    } else {
-      // If no image file, directly update the profile
-      this.profileService.updateProfile(userId, profileData).subscribe(
-        () => {
-          this.router.navigate(['/view-profile']);
-        },
-        (error) => {
-          this.errorMessage = 'Error updating profile.';
-          console.error('Error updating profile', error);
-        }
-      );
-    }
+
+    this.profileService.updateProfile(userId, profileData).subscribe(
+      () => {
+        this.router.navigate(['/view-profile']);
+      },
+      (error) => {
+        this.errorMessage = 'Error updating profile.';
+        console.error('Error updating profile', error);
+      }
+    );
   }
-  
   
 }

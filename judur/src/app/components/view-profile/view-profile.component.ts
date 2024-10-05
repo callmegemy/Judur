@@ -31,36 +31,42 @@ export class ViewProfileComponent {
     private router: Router, 
     private authService: AuthService
   ) {}
-
   ngOnInit() {
     try {
-      const currentUser = this.authService.getUserData();
-      if (!currentUser) {
-        throw new Error('No user is currently logged in.');
-      }
-      const userId = currentUser.id;
-      this.profileService.getProfile(userId).subscribe(
-        data => {
-          this.user = data.user;
-          this.userType = data.type;
-          this.additionalInfo = data.donor_info || data.volunteer_info;
-          this.latestItemDonation = data.latest_item_donation;
-        },
-        error => {
-          this.errorMessage = 'Error fetching profile data.';
+        const currentUser = this.authService.getUserData();
+        console.log('Current User Data:', currentUser); // Log user data for debugging
+        if (!currentUser || !currentUser.id) {
+            this.errorMessage = 'User ID is not available.';
+            return; // Exit if no valid user ID
         }
-      );
+        const userId = currentUser.id;
+        this.profileService.getProfile(userId).subscribe(
+            data => {
+                this.user = data.user;
+                this.userType = data.type;
+                this.additionalInfo = data.donor_info || data.volunteer_info;
+                this.latestItemDonation = data.latest_item_donation;
+            },
+            error => {
+                this.errorMessage = 'Error fetching profile data.';
+            }
+        );
     } catch (error) {
-      this.errorMessage = 'An unexpected error occurred while getting user data.';
+        this.errorMessage = 'An unexpected error occurred while getting user data.';
     }
-  }
+}
+
   getProfilePictureUrl(picture: string): string {
   return picture ? `http://127.0.0.1:8000/storage/${picture}` : 'assets/img/profile-picture.jpg';
 }
 
-
-  navigateToEditProfile() {
-    const userId = this.user.id;
-    this.router.navigate(['/profile/edit', userId]);
+navigateToEditProfile() {
+  const userId = this.user.id;
+  if (!userId) {
+      this.errorMessage = 'User ID is not available.';
+      return;
   }
+  this.router.navigate(['/profile/edit', userId]);
+}
+
 }
