@@ -47,7 +47,6 @@ import { CreateEventComponent } from './components/dashboard/create-event/create
 import { ViewEventComponent } from './components/dashboard/view-event/view-event.component';
 import { AuctionsComponent } from './components/dashboard/auctions/auctions.component';
 import { ViewAuctionComponent } from './components/dashboard/view-auction/view-auction.component';
-import { EditAuctionComponent } from './components/dashboard/edit-auction/edit-auction.component';
 import { CreateAuctionComponent } from './components/dashboard/create-auction/create-auction.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { LandInspectionComponent } from './land-inspection/land-inspection.component';
@@ -60,6 +59,7 @@ import { ViewSubAdminComponent } from './components/dashboard/view-sub-admin/vie
 import { EditSubAdminComponent } from './components/dashboard/edit-sub-admin/edit-sub-admin.component';
 import { AvailableLandsComponent } from './components/available-lands/available-lands.component';
 
+import { EditAuctionComponent } from './components/dashboard/edit-auction/edit-auction.component';
 export const routes: Routes = [
   {
     path: '',
@@ -166,6 +166,10 @@ export const routes: Routes = [
     canActivate: [authGuard] },
   { path: 'dashboard/auctions/create', component: CreateAuctionComponent  ,
     canActivate: [authGuard]},
+  { path: 'dashboard/auctions', component: AuctionsComponent },
+  { path: 'dashboard/auctions/view/:id', component: ViewAuctionComponent },
+  { path: 'dashboard/auctions/edit/:id', component: EditAuctionComponent },
+  { path: 'dashboard/auctions/create', component: CreateAuctionComponent },
 
   { path: 'dashboard/examiner-reports', component: ExaminerReportsComponent ,
     canActivate: [authGuard]},
