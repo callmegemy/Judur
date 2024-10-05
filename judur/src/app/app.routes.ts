@@ -53,6 +53,7 @@ import { UserManagementComponent } from './components/dashboard/user-management/
 import { AddSubAdminComponent } from './components/dashboard/add-sub-admin/add-sub-admin.component';
 import { ViewSubAdminComponent } from './components/dashboard/view-sub-admin/view-sub-admin.component';
 import { EditSubAdminComponent } from './components/dashboard/edit-sub-admin/edit-sub-admin.component';
+import { AvailableLandsComponent } from './components/available-lands/available-lands.component';
 
 export const routes: Routes = [
   {
@@ -181,7 +182,8 @@ export const routes: Routes = [
   { path: 'management', component: UserManagementComponent },
   { path: 'add-sub-admin', component: AddSubAdminComponent },
   {path:'view-sub-admin/:id',component:ViewSubAdminComponent},
-  {path:'edit-sub-admin/:id',component:EditSubAdminComponent}
+  {path:'edit-sub-admin/:id',component:EditSubAdminComponent},
+  {path:'pendingLands',component:AvailableLandsComponent} 
 ];
 
 @NgModule({

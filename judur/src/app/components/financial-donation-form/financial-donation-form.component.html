@@ -34,37 +34,9 @@
       </div>
     </div>
 
-    <!-- Credit Card Fields (conditionally displayed if Credit Card is selected) -->
-    <div *ngIf="registerForm.controls['paymentMethod'].value === 'creditCard'">
-      <div class="form-group">
-        <label for="cardNumber">Card Number</label>
-        <input formControlName="cardNumber" type="text" class="form-control" id="cardNumber" placeholder="Enter your card number">
-        <div *ngIf="registerForm.controls['cardNumber'].invalid && registerForm.controls['cardNumber'].touched" class="text-danger">
-          Valid Card Number is required.
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group col">
-          <label for="expiryDate">Expiry Date</label>
-          <input formControlName="expiryDate" type="text" class="form-control" id="expiryDate" placeholder="MM/YY">
-          <div *ngIf="registerForm.controls['expiryDate'].invalid && registerForm.controls['expiryDate'].touched" class="text-danger">
-            Expiry Date is required.
-          </div>
-        </div>
-        <div class="form-group col">
-          <label for="cvv">CVV</label>
-          <input formControlName="cvv" type="text" class="form-control" id="cvv" placeholder="CVV">
-          <div *ngIf="registerForm.controls['cvv'].invalid && registerForm.controls['cvv'].touched" class="text-danger">
-            CVV is required.
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- PayPal Section (conditionally displayed if PayPal is selected) -->
-    <div *ngIf="registerForm.controls['paymentMethod'].value === 'paypal'">
-      <p>You will be redirected to PayPal to complete the payment.</p>
-    </div>
+    
+    <div id="card-element"></div>
 
     <button type="submit" class="btn btn-dark" [disabled]="registerForm.invalid">Donate</button>
   </form>

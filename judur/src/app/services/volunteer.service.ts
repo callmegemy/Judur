@@ -3,6 +3,17 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, tap, catchError, throwError } from 'rxjs';
 
 
+export interface Land {
+  id?: number;
+  donor_id: number;
+  description?: string;
+  land_size: number;
+  address: string;
+  proof_of_ownership: string;
+  status_id: number;
+}
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -33,11 +44,18 @@ getExaminerLandData(volunteerId: number): Observable<any> {
           return throwError(error);
       })
   );
+
 }
 getLandInspections(volunteerId: number): Observable<any> {
   return this.http.get(`${this.apiUrl}/land-inspections/${volunteerId}`);
 }
+getPendingLands(): Observable<any> {
+  return this.http.get<any>(`${this.apiUrl}/pending-lands`);
+}
 
+notifyLandOwner(request: { landId: any; inspectionDate: string }): Observable<any> {
+  return this.http.post(`${this.apiUrl}/lands/notify-land-owners`, request);
+}
 
 
   
