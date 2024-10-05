@@ -14,7 +14,7 @@ import { AuthService } from '../../services/auth.service';
 export class RegisterComponent {
   donorForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.donorForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -31,7 +31,7 @@ export class RegisterComponent {
       this.authService.registerDonor(this.donorForm.value).subscribe({
         next: (response) => {
           console.log('Donor registration successful:', response);
-          
+          this.router.navigate(['/login']); 
         },
         error: (err) => {
           console.error('Error during donor registration:', err);

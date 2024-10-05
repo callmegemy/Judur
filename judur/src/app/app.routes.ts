@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';  
+import { FormsModule } from '@angular/forms';
 import { LandownerRegistrationComponent } from './components/landowner-registration/landowner-registration.component';
 import { VolunteerRegistrationComponent } from './components/volunteer-registration/volunteer-registration.component';
 import { AuctionComponent } from './components/auction/auction.component';
@@ -9,7 +9,7 @@ import { DonationHistoryComponent } from './components/donation-history/donation
 import { DonationItemDetailsComponent } from './components/donation-item-details/donation-item-details.component';
 import { DonationLandDetailsComponent } from './components/donation-land-details/donation-land-details.component';
 import { DonationMoneyDetailsComponent } from './components/donation-money-details/donation-money-details.component';
-import { EditProfileComponent } from './components/edit-profile/edit-profile.component';  
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { ViewProfileComponent } from './components/view-profile/view-profile.component';
 import { MainComponent } from './components/dashboard/main/main.component';
 import { HomeComponent } from './components/home/home.component';
@@ -21,6 +21,8 @@ import { VolunteerAnalyticsComponent } from './components/volunteer-analytics/vo
 import { ParticipationDetailsComponent } from './components/participation-details/participation-details.component';
 import { PerformanceReportsComponent } from './components/performance-reports/performance-reports.component';
 import { SuitabilityEvaluationsComponent } from './components/suitability-evaluations/suitability-evaluations.component';
+import { BlogComponent } from './components/blog/blog.component';
+import { BlogDetailsComponent } from './components/blog-details/blog-details.component';
 import { FinancialDonationFormComponent } from './components/financial-donation-form/financial-donation-form.component';
 import { UsersAdminComponent } from './components/dashboard/users-admin/users-admin.component';
 import { RequestsComponent } from './components/dashboard/requests/requests.component';
@@ -48,23 +50,35 @@ import { ViewAuctionComponent } from './components/dashboard/view-auction/view-a
 import { EditAuctionComponent } from './components/dashboard/edit-auction/edit-auction.component';
 import { CreateAuctionComponent } from './components/dashboard/create-auction/create-auction.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
+<<<<<<< HEAD
 import { LandInspectionComponent } from './land-inspection/land-inspection.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+=======
+import { authGuard } from '../app/auth.guard';
+import { UserManagementComponent } from './components/dashboard/user-management/user-management.component';
+import { AddSubAdminComponent } from './components/dashboard/add-sub-admin/add-sub-admin.component';
+import { ViewSubAdminComponent } from './components/dashboard/view-sub-admin/view-sub-admin.component';
+import { EditSubAdminComponent } from './components/dashboard/edit-sub-admin/edit-sub-admin.component';
+import { AvailableLandsComponent } from './components/available-lands/available-lands.component';
+>>>>>>> 9e4d20ff0cc2a095777d0163ac200d6a2157ba7c
 
+import { LandInspectionComponent } from './land-inspection/land-inspection.component';
 export const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
     title: 'Home Page',
-  }, {
-  path: 'about', 
+}, {
+  path: 'about',
   component: AboutComponent
   }
   ,
   {
   path: 'donate', 
-  component: DonateComponent
+  component: DonateComponent,
+  canActivate: [authGuard]
+
   },
    { path: 'login', component: LoginComponent},
    { path: 'register', component: RegisterComponent},
@@ -88,23 +102,45 @@ export const routes: Routes = [
   { path: 'donation-land-details', component: DonationLandDetailsComponent },
 
   // { path: 'view-profile', component: ViewProfileComponent},
+  { path: 'view-profile', component: ViewProfileComponent  ,
+    canActivate: [authGuard]},
+  { path: 'edit-profile', component: EditProfileComponent  },
+  { path: 'list-event/event-details', component: EventDetailsComponent ,
+    canActivate: [authGuard] },
   { path: 'view-profile', component: ViewProfileComponent },
   { path: 'edit-profile/:id', component: EditProfileComponent },
   { path: 'list-event/event-details/:id', component: EventDetailsComponent },
 
-  { path: 'list-event', component: EventListComponent},
+  { path: 'list-event', component: EventListComponent ,
+    canActivate: [authGuard]},
 
   // { path: '', redirectTo: '/donation-history', pathMatch: 'full' },
   // { path: '**', redirectTo: '/donation-history' }
-  {path:'auction-list',component:ListingAuctionsComponent},
+  {path:'auction-list',component:ListingAuctionsComponent ,
+    canActivate: [authGuard]},
   {
-    path:'auction-details',component:DetailsAuctionsComponent
+    path:'auction-details',component:DetailsAuctionsComponent ,
+    canActivate: [authGuard]
   },
 
   // Dashboard routes >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  
+
   // { path: '', redirectTo: '/donation-history', pathMatch: 'full' },
   // { path: '**', redirectTo: '/donation-histor>>>>>
+  { path: 'dashboard', component: MainComponent  ,
+    canActivate: [authGuard]},
+  { path: 'dashboard/users', component: UsersAdminComponent ,
+    canActivate: [authGuard]},
+  { path: 'dashboard/requests', component: RequestsComponent,
+    canActivate: [authGuard] },
+  { path: 'dashboard/request/view/v', component: VolunteerRequestComponent,
+    canActivate: [authGuard] },
+  { path: 'dashboard/request/view/ex', component: ExaminerRequestComponent ,
+    canActivate: [authGuard] },
+  { path: 'dashboard/userProfile/volunteer', component: VolunteerProfileComponent ,
+    canActivate: [authGuard]},
+  { path: 'dashboard/userProfile/doner', component: DonorProfileComponent ,
+    canActivate: [authGuard]},
   { path: 'dashboard', component: MainComponent },
   { path: 'dashboard/users', component: UsersAdminComponent },
   { path: 'dashboard/requests', component: RequestsComponent },
@@ -113,29 +149,62 @@ export const routes: Routes = [
   { path: 'dashboard/userProfile/volunteer/:id', component: VolunteerProfileComponent },
   { path: 'dashboard/userProfile/doner/:id', component: DonorProfileComponent },
 
+  { path: 'dashboard/events', component: EventsComponent ,
+    canActivate: [authGuard] },
+  { path: 'dashboard/events/edit', component: EditEventComponent,
+    canActivate: [authGuard] },
+  { path: 'dashboard/events/view', component: ViewEventComponent,
+    canActivate: [authGuard] },
+  { path: 'dashboard/events/create', component: CreateEventComponent,
+    canActivate: [authGuard] },
   { path: 'dashboard/events', component: EventsComponent },
-  { path: 'dashboard/events/edit', component: EditEventComponent },
-  { path: 'dashboard/events/view', component: ViewEventComponent },
+  { path: 'dashboard/events/edit/:id', component: EditEventComponent },
+  { path: 'dashboard/events/view/:id', component: ViewEventComponent },
   { path: 'dashboard/events/create', component: CreateEventComponent },
 
-  { path: 'dashboard/auctions', component: AuctionsComponent },
-  { path: 'dashboard/auctions/view', component: ViewAuctionComponent },
-  { path: 'dashboard/auctions/edit', component: EditAuctionComponent },
-  { path: 'dashboard/auctions/create', component: CreateAuctionComponent },
+  { path: 'dashboard/auctions', component: AuctionsComponent ,
+    canActivate: [authGuard]},
+  { path: 'dashboard/auctions/view', component: ViewAuctionComponent,
+    canActivate: [authGuard] },
+  { path: 'dashboard/auctions/edit', component: EditAuctionComponent,
+    canActivate: [authGuard] },
+  { path: 'dashboard/auctions/create', component: CreateAuctionComponent  ,
+    canActivate: [authGuard]},
 
-  { path: 'dashboard/examiner-reports', component: ExaminerReportsComponent },
-  { path: 'dashboard/examiner-reports/report-details/:id', component: ReportDetailsComponent },
-  { path: 'dashboard/posts', component: PostsDashboardComponent},
-  { path: 'dashboard/posts/create-post', component: CreatePostComponent },
-  { path: 'dashboard/posts/view-post/:id', component: ViewPostComponent },
-  { path: 'dashboard/posts/edit-post/:id', component: EditPostComponent },
+  { path: 'dashboard/examiner-reports', component: ExaminerReportsComponent ,
+    canActivate: [authGuard]},
+  { path: 'dashboard/examiner-reports/report-details/:id', component: ReportDetailsComponent ,
+    canActivate: [authGuard]},
+  { path: 'dashboard/posts', component: PostsDashboardComponent ,
+    canActivate: [authGuard]},
+  { path: 'dashboard/posts/create-post', component: CreatePostComponent ,
+    canActivate: [authGuard]},
+  { path: 'dashboard/posts/view-post/:id', component: ViewPostComponent ,
+    canActivate: [authGuard]},
+  { path: 'dashboard/posts/edit-post/:id', component: EditPostComponent,
+    canActivate: [authGuard] },
 
 
 
   // dashboard Routs End
   
+  { path: 'listing-auctions' , component: ListingAuctionsComponent ,
+    canActivate: [authGuard]},
+  { path: 'details-auctions' , component:DetailsAuctionsComponent,
+    canActivate: [authGuard]},
+  {path:'contact-us',component:ContactUsComponent},
+  { path: 'management', component: UserManagementComponent },
+  { path: 'add-sub-admin', component: AddSubAdminComponent },
+  {path:'view-sub-admin/:id',component:ViewSubAdminComponent},
+  {path:'edit-sub-admin/:id',component:EditSubAdminComponent},
+  {path:'pendingLands',component:AvailableLandsComponent} ,
+ {path: 'blog', component:BlogComponent},
+ {path: 'blog/:id', component: BlogDetailsComponent },
+
+
   { path: 'listing-auctions' , component: ListingAuctionsComponent},
   { path: 'details-auctions' , component:DetailsAuctionsComponent},
+<<<<<<< HEAD
   {path:'contact-us',component:ContactUsComponent},
 
 
@@ -145,6 +214,9 @@ export const routes: Routes = [
   { path: 'reset-password', component: ResetPasswordComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent }, 
   
+=======
+  { path: 'land-inspection', component: LandInspectionComponent},
+>>>>>>> 9e4d20ff0cc2a095777d0163ac200d6a2157ba7c
 ];
 
 @NgModule({

@@ -12,6 +12,7 @@ export class DonationService {
   private financialDetailsUrl = 'http://localhost:8000/api/donor/view-details/Financial';
   private landDetailsUrl = 'http://localhost:8000/api/donor/view-details/land';
   private itemDetailsUrl = 'http://localhost:8000/api/donor/view-details/item';
+  private apiUrl = 'http://localhost:8000/api';
 
   constructor(private http: HttpClient, private authService: AuthService) {} // Inject AuthService
 
@@ -50,6 +51,16 @@ export class DonationService {
     const headers = this.getAuthHeaders();
     return this.http.get<any>(this.itemDetailsUrl, { headers });
   }
+  donate(amount: number, currency: string, message?: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/donate`, {
+      amount,
+      currency,
+      message
+    });
+  }
 
+  createPayment(amount: number, currency: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/create-payment`, { amount, currency });
+  }
   
 }

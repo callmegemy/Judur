@@ -40,7 +40,7 @@ export interface DonationHistory {
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://127.0.0.1:8000/api'; 
+  private apiUrl = 'http://127.0.0.1:8000/api';
   private loggedIn = new BehaviorSubject<boolean>(this.hasToken());
 
   constructor(private http: HttpClient) {}
@@ -49,31 +49,28 @@ export class AuthService {
   public hasToken(): boolean {
     return !!localStorage.getItem('auth_token');
   }
-
- 
-
-  login(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, data).pipe(
-      tap((response: any) => {
-        if (response.access_token) {
-          this.storeToken(response.access_token);
-          
-          
-          console.log('Response from login:', response.user); 
-          localStorage.setItem('user', JSON.stringify(response.user)); 
-          console.log('Token and user data stored.');
-          this.loggedIn.next(true);
-        } else {
-          console.error('No token received from login response.');
-        }
-      })
-    );
-  }
   
 
 
 
-  
+login(data: any): Observable<any> {
+  return this.http.post(`${this.apiUrl}/login`, data).pipe(
+    tap((response: any) => {
+      if (response.access_token) {
+        this.storeToken(response.access_token);
+        localStorage.setItem('user', JSON.stringify(response.user));
+        console.log('Token and user data stored.');
+        this.loggedIn.next(true);
+      } else {
+        console.error('No token received from login response.');
+      }
+    })
+  );
+}
+
+
+
+
   private storeToken(token: string): void {
     localStorage.setItem('auth_token', token);
   }
@@ -84,7 +81,7 @@ export class AuthService {
       console.warn('No user data found in localStorage.');
       return null;
     }
-  
+
     try {
       return JSON.parse(userData);
     } catch (error) {
@@ -99,7 +96,7 @@ register(data: any): Observable<any> {
     tap((response: any) => {
       if (response.access_token) {
         this.storeToken(response.access_token);
-       
+
         console.log('Registration successful, token stored.');
       }
     })
@@ -112,7 +109,7 @@ registerDonor(data: any): Observable<any> {
     tap((response: any) => {
       if (response.access_token) {
         this.storeToken(response.access_token);
-        localStorage.setItem('user', JSON.stringify(response.user)); 
+        localStorage.setItem('user', JSON.stringify(response.user));
         console.log('Donor registration successful, token and user data stored.');
         this.loggedIn.next(true);
       }
@@ -127,21 +124,18 @@ registerDonor(data: any): Observable<any> {
 
 registerVolunteer(data: any): Observable<any> {
   return this.http.post(`${this.apiUrl}/register/volunteer`, data).pipe(
-    tap((response: any) => {
-      if (response.access_token) {
-        this.storeToken(response.access_token);
-        
-        // Ensure examiner field is part of the user object being stored
-        console.log('Response from registration:', response.user); // Debugging
-        localStorage.setItem('user', JSON.stringify(response.user)); 
-        console.log('Volunteer registration successful, token and user data stored.');
-        this.loggedIn.next(true);
-      }
-    }),
-    catchError((error) => {
-      console.error('Error during volunteer registration:', error);
-      return throwError(error);
-    })
+      tap((response: any) => {
+          if (response.access_token) {
+              this.storeToken(response.access_token);
+              localStorage.setItem('user', JSON.stringify(response.user));
+              console.log('Volunteer registration successful, token and user data stored.');
+              this.loggedIn.next(true);
+          }
+      }),
+      catchError((error) => {
+          console.error('Error during volunteer registration:', error);
+          return throwError(error);
+      })
   );
 }
 
@@ -158,10 +152,10 @@ public isExaminer(): boolean {
   return false;
 }
 
-  
-  
 
- 
+
+
+
   logout(): Observable<any> {
     const token = this.getToken();
     if (!token) {
@@ -171,14 +165,14 @@ public isExaminer(): boolean {
         observer.complete();
       });
     }
-  
+
     return this.http.post(`${this.apiUrl}/logout`, {}, {
       headers: {
         Authorization: `Bearer ${token}`
       }
     }).pipe(
       tap(() => {
-        this.removeToken(); 
+        this.removeToken();
         this.loggedIn.next(false);
       }),
       catchError((error) => {
@@ -187,12 +181,12 @@ public isExaminer(): boolean {
       })
     );
   }
-  
+
 
 
   // Metho
   public getToken(): string | null {
-    return localStorage.getItem('auth_token'); 
+    return localStorage.getItem('auth_token');
   }
 
 
@@ -200,7 +194,7 @@ public isExaminer(): boolean {
     localStorage.removeItem('auth_token');
   }
 
- 
+
   isLoggedIn(): Observable<boolean> {
     return this.loggedIn.asObservable();
   }
@@ -288,5 +282,9 @@ requestExaminer(formData: any): Observable<any> {
     }
   });
 }
+
+
+
+
 
 }
