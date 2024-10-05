@@ -1,0 +1,44 @@
+<!-- src/app/land-report/land-report.component.html -->
+
+<div>
+  <h2>Submit Land Inspection Report</h2>
+  <form [formGroup]="reportForm" (ngSubmit)="submitReport()">
+    <label for="land_id">Land ID:</label>
+    <input id="land_id" formControlName="land_id" required />
+
+    <label for="date">Date:</label>
+    <input type="date" id="date" formControlName="date" required />
+
+    <label for="hygiene">Hygiene:</label>
+    <input id="hygiene" formControlName="hygiene" required />
+
+    <label for="capacity">Capacity:</label>
+    <input type="number" id="capacity" formControlName="capacity" required />
+
+    <label for="electricity_supply">Electricity Supply:</label>
+    <input
+      type="checkbox"
+      id="electricity_supply"
+      formControlName="electricity_supply"
+    />
+
+    <label for="general_condition">General Condition:</label>
+    <textarea
+      id="general_condition"
+      formControlName="general_condition"
+      required
+    ></textarea>
+
+    <button type="submit">Submit Report</button>
+  </form>
+
+  <h3>Existing Land Inspections</h3>
+  <ul>
+    <li *ngFor="let inspection of inspections">
+      <strong>ID:</strong> {{ inspection.id }} | <strong>Date:</strong>
+      {{ inspection.date }} | <strong>Hygiene:</strong>
+      {{ inspection.hygiene }} | <strong>General Condition:</strong>
+      {{ inspection.general_condition }}
+    </li>
+  </ul>
+</div>
