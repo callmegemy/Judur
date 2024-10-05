@@ -43,7 +43,7 @@
                "src/assets/lib/owlcarousel/owl.carousel.min.js",
               "src/assets/js/main.js",
               "node_modules/datatables.net/js/dataTables.min.js"
-
+                ,"node_modules/wowjs/dist/wow.min.js"
 
             ]
           },

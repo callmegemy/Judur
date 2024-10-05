@@ -1,31 +1,29 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-financial-donation-form',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterModule,RouterLinkActive,RouterLink,NavbarComponent],
+  imports: [ReactiveFormsModule, CommonModule, NavbarComponent],
   templateUrl: './financial-donation-form.component.html',
-  styleUrl: './financial-donation-form.component.css'
+  styleUrls: ['./financial-donation-form.component.css']
 })
 export class FinancialDonationFormComponent {
   registerForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) {
     this.createForm();
   }
 
   createForm(): void {
     this.registerForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(2)]],
-      email: ['', [Validators.required, Validators.email]],
-      mobile: ['', [Validators.required]],
-      donationAmount: ['', [Validators.required, Validators.min(1)]], // Donation amount validation
+      donationAmount: ['', [Validators.required, Validators.min(1)]],
+      currency: ['', [Validators.required]],
       paymentMethod: ['', [Validators.required]],
       cardNumber: [''],
       expiryDate: [''],
@@ -50,22 +48,29 @@ export class FinancialDonationFormComponent {
 
   onSubmit(): void {
     if (this.registerForm.valid) {
-      const { name, email, mobile, donationAmount, paymentMethod, cardNumber, expiryDate, cvv } = this.registerForm.value;
-      console.log('Name:', name);
-      console.log('Email:', email);
-      console.log('Mobile:', mobile);
-      console.log('Donation Amount:', donationAmount);
-      console.log('Payment Method:', paymentMethod);
+      const { donationAmount, currency, paymentMethod, cardNumber, expiryDate, cvv } = this.registerForm.value;
+      
+      // Prepare data for submission
+      const donationData = {
+        amount: donationAmount,
+        currency: currency,
+        payment_method: paymentMethod
+      };
 
-      if (paymentMethod === 'creditCard') {
-        console.log('Card Number:', cardNumber);
-        console.log('Expiry Date:', expiryDate);
-        console.log('CVV:', cvv);
-      }
-
-      // Handle payment and registration logic
-      this.router.navigate(['/login']);
+      // Make API call to donate money
+      this.authService.donateMoney(donationData).subscribe(
+        (response: any) => {
+          console.log('Money donated successfully!', response);
+          window.alert('Money donated successfully!');
+          this.router.navigate(['/some-success-route']); // Navigate to a success page if needed
+        },
+        (error: any) => {
+          console.error('Error donating money:', error);
+          window.alert('An error occurred while donating money. Please try again.');
+        }
+      );
+    } else {
+      console.error('Form is invalid.', this.registerForm.errors);
     }
   }
-
 }

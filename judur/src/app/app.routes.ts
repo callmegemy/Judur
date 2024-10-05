@@ -27,7 +27,7 @@ import { RequestsComponent } from './components/dashboard/requests/requests.comp
 import { VolunteerRequestComponent } from './components/dashboard/volunteer-request/volunteer-request.component';
 import { ExaminerRequestComponent } from './components/dashboard/examiner-request/examiner-request.component';
 import { VolunteerProfileComponent } from './components/dashboard/volunteer-profile/volunteer-profile.component';
-import { DonerProfileComponent } from './components/dashboard/doner-profile/doner-profile.component';
+import { DonorProfileComponent } from './components/dashboard/doner-profile/doner-profile.component';
 import { EventDetailsComponent } from './components/event-details/event-details.component';
 import { EventListComponent } from './components/event-list/event-list.component';
 import { ExaminerReportsComponent } from './components/dashboard/examiner-reports/examiner-reports.component';
@@ -86,9 +86,9 @@ export const routes: Routes = [
   { path: 'register-choice', component: RegisterChoiceComponent },
 
   // Donation details routes by category
-  { path: 'donation-item-details/:id', component: DonationItemDetailsComponent },
-  { path: 'donation-money-details/:id', component: DonationMoneyDetailsComponent },
-  { path: 'donation-land-details/:id', component: DonationLandDetailsComponent },
+  { path: 'donation-item-details', component: DonationItemDetailsComponent },
+  { path: 'donation-money-details', component: DonationMoneyDetailsComponent },
+  { path: 'donation-land-details', component: DonationLandDetailsComponent },
 
   // { path: 'view-profile', component: ViewProfileComponent},
   { path: 'view-profile', component: ViewProfileComponent  ,
@@ -96,6 +96,9 @@ export const routes: Routes = [
   { path: 'edit-profile', component: EditProfileComponent  },
   { path: 'list-event/event-details', component: EventDetailsComponent ,
     canActivate: [authGuard] },
+  { path: 'view-profile', component: ViewProfileComponent },
+  { path: 'edit-profile/:id', component: EditProfileComponent },
+  { path: 'list-event/event-details/:id', component: EventDetailsComponent },
 
   { path: 'list-event', component: EventListComponent ,
     canActivate: [authGuard]},
@@ -125,8 +128,15 @@ export const routes: Routes = [
     canActivate: [authGuard] },
   { path: 'dashboard/userProfile/volunteer', component: VolunteerProfileComponent ,
     canActivate: [authGuard]},
-  { path: 'dashboard/userProfile/doner', component: DonerProfileComponent ,
+  { path: 'dashboard/userProfile/doner', component: DonorProfileComponent ,
     canActivate: [authGuard]},
+  { path: 'dashboard', component: MainComponent },
+  { path: 'dashboard/users', component: UsersAdminComponent },
+  { path: 'dashboard/requests', component: RequestsComponent },
+  { path: 'dashboard/request/view/v/:id', component: VolunteerRequestComponent },
+  { path: 'dashboard/request/view/ex/:id', component: ExaminerRequestComponent },
+  { path: 'dashboard/userProfile/volunteer/:id', component: VolunteerProfileComponent },
+  { path: 'dashboard/userProfile/doner/:id', component: DonorProfileComponent },
 
   { path: 'dashboard/events', component: EventsComponent ,
     canActivate: [authGuard] },
