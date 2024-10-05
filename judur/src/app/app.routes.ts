@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';  
+import { FormsModule } from '@angular/forms';
 import { LandownerRegistrationComponent } from './components/landowner-registration/landowner-registration.component';
 import { VolunteerRegistrationComponent } from './components/volunteer-registration/volunteer-registration.component';
 import { AuctionComponent } from './components/auction/auction.component';
@@ -9,7 +9,7 @@ import { DonationHistoryComponent } from './components/donation-history/donation
 import { DonationItemDetailsComponent } from './components/donation-item-details/donation-item-details.component';
 import { DonationLandDetailsComponent } from './components/donation-land-details/donation-land-details.component';
 import { DonationMoneyDetailsComponent } from './components/donation-money-details/donation-money-details.component';
-import { EditProfileComponent } from './components/edit-profile/edit-profile.component';  
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { ViewProfileComponent } from './components/view-profile/view-profile.component';
 import { MainComponent } from './components/dashboard/main/main.component';
 import { HomeComponent } from './components/home/home.component';
@@ -21,6 +21,8 @@ import { VolunteerAnalyticsComponent } from './components/volunteer-analytics/vo
 import { ParticipationDetailsComponent } from './components/participation-details/participation-details.component';
 import { PerformanceReportsComponent } from './components/performance-reports/performance-reports.component';
 import { SuitabilityEvaluationsComponent } from './components/suitability-evaluations/suitability-evaluations.component';
+import { BlogComponent } from './components/blog/blog.component';
+import { BlogDetailsComponent } from './components/blog-details/blog-details.component';
 import { FinancialDonationFormComponent } from './components/financial-donation-form/financial-donation-form.component';
 import { UsersAdminComponent } from './components/dashboard/users-admin/users-admin.component';
 import { RequestsComponent } from './components/dashboard/requests/requests.component';
@@ -55,13 +57,14 @@ import { ViewSubAdminComponent } from './components/dashboard/view-sub-admin/vie
 import { EditSubAdminComponent } from './components/dashboard/edit-sub-admin/edit-sub-admin.component';
 import { AvailableLandsComponent } from './components/available-lands/available-lands.component';
 
+import { LandInspectionComponent } from './land-inspection/land-inspection.component';
 export const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
     title: 'Home Page',
-  }, {
-  path: 'about', 
+}, {
+  path: 'about',
   component: AboutComponent
   }
   ,
@@ -69,6 +72,7 @@ export const routes: Routes = [
   path: 'donate', 
   component: DonateComponent,
   canActivate: [authGuard]
+
   },
    { path: 'login', component: LoginComponent},
    { path: 'register', component: RegisterComponent},
@@ -114,7 +118,7 @@ export const routes: Routes = [
   },
 
   // Dashboard routes >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  
+
   // { path: '', redirectTo: '/donation-history', pathMatch: 'full' },
   // { path: '**', redirectTo: '/donation-histor>>>>>
   { path: 'dashboard', component: MainComponent  ,
@@ -147,6 +151,10 @@ export const routes: Routes = [
     canActivate: [authGuard] },
   { path: 'dashboard/events/create', component: CreateEventComponent,
     canActivate: [authGuard] },
+  { path: 'dashboard/events', component: EventsComponent },
+  { path: 'dashboard/events/edit/:id', component: EditEventComponent },
+  { path: 'dashboard/events/view/:id', component: ViewEventComponent },
+  { path: 'dashboard/events/create', component: CreateEventComponent },
 
   { path: 'dashboard/auctions', component: AuctionsComponent ,
     canActivate: [authGuard]},
@@ -183,7 +191,14 @@ export const routes: Routes = [
   { path: 'add-sub-admin', component: AddSubAdminComponent },
   {path:'view-sub-admin/:id',component:ViewSubAdminComponent},
   {path:'edit-sub-admin/:id',component:EditSubAdminComponent},
-  {path:'pendingLands',component:AvailableLandsComponent} 
+  {path:'pendingLands',component:AvailableLandsComponent} ,
+ {path: 'blog', component:BlogComponent},
+ {path: 'blog/:id', component: BlogDetailsComponent },
+
+
+  { path: 'listing-auctions' , component: ListingAuctionsComponent},
+  { path: 'details-auctions' , component:DetailsAuctionsComponent},
+  { path: 'land-inspection', component: LandInspectionComponent},
 ];
 
 @NgModule({

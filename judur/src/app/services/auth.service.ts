@@ -43,7 +43,7 @@ export interface DonationHistory {
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://127.0.0.1:8000/api'; 
+  private apiUrl = 'http://127.0.0.1:8000/api';
   private loggedIn = new BehaviorSubject<boolean>(this.hasToken());
 
   constructor(private http: HttpClient) {}
@@ -54,14 +54,14 @@ export class AuthService {
   }
   
 
- 
+
 
 login(data: any): Observable<any> {
   return this.http.post(`${this.apiUrl}/login`, data).pipe(
     tap((response: any) => {
       if (response.access_token) {
         this.storeToken(response.access_token);
-        localStorage.setItem('user', JSON.stringify(response.user)); 
+        localStorage.setItem('user', JSON.stringify(response.user));
         console.log('Token and user data stored.');
         this.loggedIn.next(true);
       } else {
@@ -73,7 +73,7 @@ login(data: any): Observable<any> {
 
 
 
-  
+
   private storeToken(token: string): void {
     localStorage.setItem('auth_token', token);
   }
@@ -84,7 +84,7 @@ login(data: any): Observable<any> {
       console.warn('No user data found in localStorage.');
       return null;
     }
-  
+
     try {
       return JSON.parse(userData);
     } catch (error) {
@@ -99,7 +99,7 @@ register(data: any): Observable<any> {
     tap((response: any) => {
       if (response.access_token) {
         this.storeToken(response.access_token);
-       
+
         console.log('Registration successful, token stored.');
       }
     })
@@ -112,7 +112,7 @@ registerDonor(data: any): Observable<any> {
     tap((response: any) => {
       if (response.access_token) {
         this.storeToken(response.access_token);
-        localStorage.setItem('user', JSON.stringify(response.user)); 
+        localStorage.setItem('user', JSON.stringify(response.user));
         console.log('Donor registration successful, token and user data stored.');
         this.loggedIn.next(true);
       }
@@ -130,7 +130,7 @@ registerVolunteer(data: any): Observable<any> {
       tap((response: any) => {
           if (response.access_token) {
               this.storeToken(response.access_token);
-              localStorage.setItem('user', JSON.stringify(response.user)); 
+              localStorage.setItem('user', JSON.stringify(response.user));
               console.log('Volunteer registration successful, token and user data stored.');
               this.loggedIn.next(true);
           }
@@ -145,10 +145,10 @@ registerVolunteer(data: any): Observable<any> {
 
 
 
-  
-  
 
- 
+
+
+
   logout(): Observable<any> {
     const token = this.getToken();
     if (!token) {
@@ -158,14 +158,14 @@ registerVolunteer(data: any): Observable<any> {
         observer.complete();
       });
     }
-  
+
     return this.http.post(`${this.apiUrl}/logout`, {}, {
       headers: {
         Authorization: `Bearer ${token}`
       }
     }).pipe(
       tap(() => {
-        this.removeToken(); 
+        this.removeToken();
         this.loggedIn.next(false);
       }),
       catchError((error) => {
@@ -174,12 +174,12 @@ registerVolunteer(data: any): Observable<any> {
       })
     );
   }
-  
+
 
 
   // Metho
   public getToken(): string | null {
-    return localStorage.getItem('auth_token'); 
+    return localStorage.getItem('auth_token');
   }
 
 
@@ -187,7 +187,7 @@ registerVolunteer(data: any): Observable<any> {
     localStorage.removeItem('auth_token');
   }
 
- 
+
   isLoggedIn(): Observable<boolean> {
     return this.loggedIn.asObservable();
   }
@@ -222,7 +222,8 @@ registerVolunteer(data: any): Observable<any> {
     );
   }
 
-  
 
-  
+
+
+
 }

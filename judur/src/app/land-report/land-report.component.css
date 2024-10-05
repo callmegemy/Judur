@@ -1,0 +1,74 @@
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.Land-Report-card {
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+h3 {
+  text-align: center;
+  color: var(--primary);
+  margin-bottom: 20px;
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.form-group i {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 40px;
+  background-color: rgb(231, 231, 231);
+  color: rgb(81, 80, 80);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+.form-control {
+  flex-grow: 1;
+  padding: 10px 10px 10px 50px;
+  border: 1px solid #ccc;
+  border-radius: 4px 4px 4px 4px;
+  font-size: 16px;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: var(--secondary);
+}
+
+/* Adjusting the file input to match other inputs */
+input[type="file"] {
+  padding: 6px 10px 6px 50px;
+}
