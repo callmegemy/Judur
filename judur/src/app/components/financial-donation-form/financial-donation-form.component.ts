@@ -1,17 +1,16 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { loadStripe, Stripe } from '@stripe/stripe-js';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-financial-donation-form',
   standalone: true,
   templateUrl: './financial-donation-form.component.html',
   styleUrls: ['./financial-donation-form.component.css'],
-  imports: [CommonModule, ReactiveFormsModule, RouterModule, NavbarComponent],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule ,], // Standalone component imports
 })
 export class FinancialDonationFormComponent implements OnInit, AfterViewInit {
   registerForm!: FormGroup;
@@ -21,31 +20,35 @@ export class FinancialDonationFormComponent implements OnInit, AfterViewInit {
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService,
-    private router: Router,
-    private cd: ChangeDetectorRef
+    private authService: AuthService,  // Inject AuthService
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     // Initialize the form
     this.registerForm = this.fb.group({
       donationAmount: ['', [Validators.required, Validators.min(1)]],
-      currency: ['usd', Validators.required],
-      paymentMethod: ['creditCard', Validators.required],
+      currency: ['', Validators.required],
+      paymentMethod: ['', Validators.required],
     });
   }
 
   ngAfterViewInit(): void {
-    // Initialize Stripe when credit card is selected as the payment method
-    this.initializeStripe();
+    // Listen for changes in the payment method selection
+    this.registerForm.get('paymentMethod')?.valueChanges.subscribe((method: string) => {
+      if (method === 'creditCard') {
+        this.initializeStripe(); // Initialize Stripe only if "Credit Card" is selected
+      }
+    });
   }
 
   async initializeStripe() {
     if (!this.stripe) {
-      this.stripe = await loadStripe('pk_test_51Q6LjhBAlYQKigvySxyy7lWHBf95fiiO3C2xB6MoUXhuUJ7Ff2iOdDSEs67w9wMlQjfxOrl2vjEkqBnlVRq5yx1400jWpx0dvq'); // Use your publishable key here
+      this.stripe = await loadStripe('your-publishable-key');  // Replace with your actual publishable key
     }
 
     const elements = this.stripe?.elements();
+
     if (elements) {
       const style = {
         base: {
@@ -66,6 +69,7 @@ export class FinancialDonationFormComponent implements OnInit, AfterViewInit {
       this.cardElement = elements.create('card', { style: style });
       this.cardElement.mount('#card-element');
 
+      // Handle real-time validation errors from the card Element
       this.cardElement.on('change', (event: any) => {
         const displayError = document.getElementById('card-errors');
         if (event.error) {
@@ -86,17 +90,12 @@ export class FinancialDonationFormComponent implements OnInit, AfterViewInit {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('auth_token')}`, // Include auth token
         },
         body: JSON.stringify({
-          amount: this.registerForm.value.donationAmount * 100, // Stripe expects amount in cents
+          amount: this.registerForm.value.donationAmount,
           currency: this.registerForm.value.currency,
         }),
       });
-
-      if (!result.ok) {
-        throw new Error(`Server returned ${result.status}: ${result.statusText}`);
-      }
 
       const { clientSecret } = await result.json();
 
@@ -117,13 +116,8 @@ export class FinancialDonationFormComponent implements OnInit, AfterViewInit {
         await this.saveFinancialDonation();
       }
     } catch (error) {
-      if (error instanceof Error) {
-        console.error('Error confirming payment:', error.message);
-        alert(`Error confirming payment: ${error.message}`);
-      } else {
-        console.error('Unknown error occurred:', error);
-        alert('An unknown error occurred. Please try again.');
-      }
+      console.error('Error confirming payment:', error);
+      alert('An error occurred. Please try again.');
     }
   }
 
@@ -132,9 +126,10 @@ export class FinancialDonationFormComponent implements OnInit, AfterViewInit {
     const donationData = {
       amount: this.registerForm.value.donationAmount,
       currency: this.registerForm.value.currency,
-      payment_method: 'creditCard', // Since this is a credit card payment
+      payment_method: 'creditCard', // As this is a credit card payment
     };
 
+    // Use AuthService to save the donation
     this.authService.donateMoney(donationData).subscribe({
       next: (response) => {
         console.log('Donation saved successfully:', response);
@@ -151,7 +146,13 @@ export class FinancialDonationFormComponent implements OnInit, AfterViewInit {
 
   onSubmit() {
     if (this.registerForm.valid) {
-      this.handleStripePayment(); // Handle Stripe payment
+      const paymentMethod = this.registerForm.value.paymentMethod;
+      if (paymentMethod === 'creditCard') {
+        this.handleStripePayment(); // Handle Stripe payment
+      } else if (paymentMethod === 'paypal') {
+        console.log('Initiating PayPal payment...');
+        // Optionally, handle PayPal payment flow here
+      }
     }
   }
 }
