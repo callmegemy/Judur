@@ -47,9 +47,9 @@ import { CreateEventComponent } from './components/dashboard/create-event/create
 import { ViewEventComponent } from './components/dashboard/view-event/view-event.component';
 import { AuctionsComponent } from './components/dashboard/auctions/auctions.component';
 import { ViewAuctionComponent } from './components/dashboard/view-auction/view-auction.component';
-import { EditAuctionComponent } from './components/dashboard/edit-auction/edit-auction.component';
 import { CreateAuctionComponent } from './components/dashboard/create-auction/create-auction.component';
 import { LandInspectionComponent } from './land-inspection/land-inspection.component';
+import { EditAuctionComponent } from './components/dashboard/edit-auction/edit-auction.component';
 export const routes: Routes = [
   {
     path: '',
@@ -117,8 +117,8 @@ export const routes: Routes = [
   { path: 'dashboard/events/create', component: CreateEventComponent },
 
   { path: 'dashboard/auctions', component: AuctionsComponent },
-  { path: 'dashboard/auctions/view', component: ViewAuctionComponent },
-  { path: 'dashboard/auctions/edit', component: EditAuctionComponent },
+  { path: 'dashboard/auctions/view/:id', component: ViewAuctionComponent },
+  { path: 'dashboard/auctions/edit/:id', component: EditAuctionComponent },
   { path: 'dashboard/auctions/create', component: CreateAuctionComponent },
 
   { path: 'dashboard/examiner-reports', component: ExaminerReportsComponent },

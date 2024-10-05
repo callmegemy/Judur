@@ -60,76 +60,52 @@
                                 <h2><i class="fa-solid fa-file-invoice-dollar"></i>  Charity Auction Details</h2>
                             </div>
                             <div class="card-body">
-                                <form action="#" method="POST">
-                                    <!-- Item Selection -->
-                                    <div class="form-group mb-3">
-                                        <label for="itemSelect" class="font-weight-bold">Select Auction Item</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="fas fa-gift"></i></span>
-                                            </div>
-                                            <select id="itemSelect" class="form-control" required>
-                                                <option value="" disabled selected>Select an item</option>
-                                                <option value="1">Handmade Quilt</option>
-                                                <option value="2">Artwork by Local Artist</option>
-                                                <option value="3">Luxury Gift Basket</option>
-                                                <option value="4">Dining Experience Voucher</option>
-                                            </select>
-                                        </div>
+                                <form (ngSubmit)="onSubmit()">
+                                    <div class="form-group">
+                                      <label for="title">Auction Title</label>
+                                      <input type="text" id="title" [(ngModel)]="auction.title" name="title" class="form-control" required>
                                     </div>
-                    
-                                    <!-- Auction Starting Price -->
-                                    <div class="form-group mb-3">
-                                        <label for="startingPrice" class="font-weight-bold">Auction Starting Price</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
-                                            </div>
-                                            <input type="number" id="startingPrice" class="form-control" placeholder="Enter starting price" required value="50">
-                                        </div>
+                                  
+                                    <div class="form-group">
+                                      <label for="status">Auction Status</label>
+                                      <select id="status" [(ngModel)]="auction.status" name="status" class="form-control" required>
+                                        <option *ngFor="let status of statuses" [value]="status.id" [selected]="auction.auction_status_id == status.id">{{ status.name }}</option>
+                                      </select>
                                     </div>
-                    
-                                    <!-- Auction Start Date -->
-                                    <div class="form-group mb-3">
-                                        <label for="startDate" class="font-weight-bold">Auction Start Date</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                                            </div>
-                                            <input type="date" id="startDate" class="form-control" required value="2024-11-01">
-                                        </div>
+                                  
+                                    <div class="form-group">
+                                      <label for="item">Select Item</label>
+                                      <select id="item" [(ngModel)]="auction.item_id" name="item_id" class="form-control" required>
+                                        <option *ngFor="let item of items" [value]="item.id">{{ item.item_name }}</option>
+                                      </select>
                                     </div>
-                    
-                                    <!-- Auction End Date -->
-                                    <div class="form-group mb-3">
-                                        <label for="endDate" class="font-weight-bold">Auction End Date</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                                            </div>
-                                            <input type="date" id="endDate" class="form-control" required value="2024-11-15">
-                                        </div>
+                                  
+                                    <div class="form-group">
+                                      <label for="start_date">Start Date</label>
+                                      <input type="date" id="start_date" [(ngModel)]="auction.start_date" name="start_date" class="form-control" required>
                                     </div>
-                    
-                                    <!-- Auction Description -->
-                                    <div class="form-group mb-4">
-                                        <label for="auctionDescription" class="font-weight-bold">Auction Description</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                            </div>
-                                            <textarea id="auctionDescription" class="form-control" rows="3" placeholder="Enter auction description" required>This is a charity auction to support local shelters. All proceeds will go to helping those in need.</textarea>
-                                        </div>
+                                  
+                                    <div class="form-group">
+                                      <label for="end_date">End Date</label>
+                                      <input type="date" id="end_date" [(ngModel)]="auction.end_date" name="end_date" class="form-control" required>
                                     </div>
-                    
-                                    <!-- Submit Button -->
-                                    <div class="display-inline text-center">
-                                        <button type="submit" class="btn btn-success mx-3"><i class="fa-solid fa-check"></i> Update Auction</button>
-                                        <button type="reset" class="btn btn-danger mx-3"><i class="fa-solid fa-xmark"></i> Cancel</button>
+                                  
+                                    <div class="form-group">
+                                      <label for="starting_price">Starting Price</label>
+                                      <input type="number" id="starting_price" [(ngModel)]="auction.starting_price" name="starting_price" class="form-control" required>
                                     </div>
-                                </form>
+                                  
+                                    <div class="form-group">
+                                      <label for="description">Description</label>
+                                      <textarea id="description" [(ngModel)]="auction.description" name="description" class="form-control" required></textarea>
+                                    </div>
+                                  
+                                    <button type="submit" class="btn btn-primary">Save Auction</button>
+                                  </form>
+                                  
+                                  
                             </div>
-                            <button type="button" class="btn btn-judur mx-3"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                            <a href="/dashboard/auctions" class="btn btn-judur mx-3"><i class="fa-solid fa-arrow-left"></i> Back</a>
                         </div>
                     </div>
                     
