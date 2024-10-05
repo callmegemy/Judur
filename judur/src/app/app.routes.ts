@@ -49,8 +49,7 @@ import { AuctionsComponent } from './components/dashboard/auctions/auctions.comp
 import { ViewAuctionComponent } from './components/dashboard/view-auction/view-auction.component';
 import { EditAuctionComponent } from './components/dashboard/edit-auction/edit-auction.component';
 import { CreateAuctionComponent } from './components/dashboard/create-auction/create-auction.component';
-import { LandReportComponent } from './land-report/land-report.component';
-
+import { LandInspectionComponent } from './land-inspection/land-inspection.component';
 export const routes: Routes = [
   {
     path: '',
@@ -138,7 +137,7 @@ export const routes: Routes = [
 
   { path: 'listing-auctions' , component: ListingAuctionsComponent},
   { path: 'details-auctions' , component:DetailsAuctionsComponent},
-  { path: 'land-report' , component:LandReportComponent},
+  { path: 'land-inspection', component: LandInspectionComponent},
 ];
 
 @NgModule({
