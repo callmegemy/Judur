@@ -2,47 +2,52 @@
 
 <div class="register-container">
   <form #form="ngForm" (ngSubmit)="onSubmit(form)">
-  
-
+    <!-- Item Name -->
     <div class="form-group mb-3">
       <label for="itemName" class="form-label"><i class="fas fa-tag"></i> Item Name</label>
-      <input type="text" class="form-control" id="itemName" placeholder="Enter item name"
-        [(ngModel)]="itemName" name="itemName" required #itemNameCtrl="ngModel">
-      <div *ngIf="itemNameCtrl.invalid && itemNameCtrl.touched" class="text-danger">Item name is required.</div>
+      <input type="text" class="form-control" id="itemName" [(ngModel)]="itemName" name="itemName" required>
     </div>
 
+    <!-- Quantity -->
     <div class="form-group mb-3">
-      <label for="estimatedValue" class="form-label"><i class="fas fa-dollar-sign"></i> Estimated Value</label>
-      <input type="number" class="form-control" id="estimatedValue" placeholder="Enter estimated value"
-        [(ngModel)]="estimatedValue" name="estimatedValue" required #estimatedValueCtrl="ngModel">
-      <div *ngIf="estimatedValueCtrl.invalid && estimatedValueCtrl.touched" class="text-danger">Estimated value is required.</div>
+      <label for="quantity" class="form-label"><i class="fas fa-cubes"></i> Quantity</label>
+      <input type="number" class="form-control" id="quantity" min="1" [(ngModel)]="quantity" name="quantity" required>
     </div>
 
- 
+    <!-- Description -->
     <div class="form-group mb-3">
-      <label for="itemCondition" class="form-label"><i class="fas fa-info-circle"></i> Condition</label>
-      <input type="text" class="form-control" id="itemCondition" placeholder="Enter item condition"
-        [(ngModel)]="itemCondition" name="itemCondition" required #itemConditionCtrl="ngModel">
-      <div *ngIf="itemConditionCtrl.invalid && itemConditionCtrl.touched" class="text-danger">Item condition is required.</div>
+      <label for="description" class="form-label"><i class="fas fa-align-left"></i> Description</label>
+      <textarea class="form-control" id="description" rows="3" [(ngModel)]="description" name="description" required></textarea>
     </div>
 
+    <!-- Upload Image -->
+    <div class="form-group mb-3">
+      <label for="uploadImage" class="form-label"><i class="fas fa-camera"></i> Upload Image</label>
+      <input type="file" class="form-control" id="uploadImage" (change)="onFileSelected($event)" />
+    </div>
 
+    <!-- Is Valuable Checkbox -->
     <div class="form-check mb-3">
-      <input type="checkbox" class="form-check-input" id="isValuable"
-        [(ngModel)]="isValuable" name="isValuable">
+      <input type="checkbox" class="form-check-input" id="isValuable" [(ngModel)]="isValuable" name="isValuable">
       <label class="form-check-label" for="isValuable"><i class="fas fa-star"></i> Is this a valuable item?</label>
     </div>
 
-    <div *ngIf="isValuable">
-      <div class="form-group mb-3">
-        <label for="extraNotes" class="form-label"><i class="fas fa-sticky-note"></i> Additional Information</label>
-        <textarea class="form-control" id="extraNotes" placeholder="Provide additional details"
-          [(ngModel)]="extraNotes" name="extraNotes"></textarea>
-      </div>
+    <!-- Estimated Value (Only required when valuable) -->
+    <div class="form-group mb-3" *ngIf="isValuable">
+      <label for="estimatedValue" class="form-label"><i class="fas fa-dollar-sign"></i> Estimated Value</label>
+      <input type="number" class="form-control" id="estimatedValue" [(ngModel)]="estimatedValue" name="estimatedValue" required>
+      <div *ngIf="!estimatedValue && isValuable" class="text-danger">Estimated value is required for valuable items.</div>
     </div>
 
+    <!-- Condition (Always present but required only when not valuable) -->
+    <div class="form-group mb-3">
+      <label for="condition" class="form-label"><i class="fas fa-info-circle"></i> Condition</label>
+      <input type="text" class="form-control" id="condition" [(ngModel)]="itemCondition" name="itemCondition" [required]="!isValuable">
+      <div *ngIf="!itemCondition && !isValuable" class="text-danger">Condition is required for non-valuable items.</div>
+    </div>
 
-    <button type="submit" class="btn register-btn w-100 mt-3" [disabled]="form.invalid">
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-dark w-100 mt-3" [disabled]="form.invalid">
       <i class="fas fa-gift"></i> Donate Item
     </button>
   </form>

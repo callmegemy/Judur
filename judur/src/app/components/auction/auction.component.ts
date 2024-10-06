@@ -1,51 +1,67 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormsModule, NgForm } from '@angular/forms';  
-import { CommonModule } from '@angular/common';  
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { NavbarComponent } from '../navbar/navbar.component';
-import { Router } from '@angular/router'; // Import Router
-import Swal from 'sweetalert2'; // Import SweetAlert2
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-auction',
-  standalone: true,  
-  imports: [CommonModule, FormsModule, NavbarComponent],  
+  standalone: true,  // Ensure the component is standalone
+  imports: [FormsModule, CommonModule , NavbarComponent],  // Ensure necessary modules are imported
   templateUrl: './auction.component.html',
   styleUrls: ['./auction.component.css']
 })
 export class AuctionComponent {
-
-  // Form model variables
   itemName: string = '';
   quantity: number = 1;
   description: string = '';
   isValuable: boolean = false;
-  estimatedValue: string = '';
-  itemCondition: string = '';
-  statusId: number = 1;
+  itemCondition: string = ''; 
+  estimatedValue: string = ''; // Estimated value field
+  statusId: number = 1; // Default status ID
   extraNotes: string = '';  
-  notifyApproval: boolean = false;
+  imageFile: File | null = null;
 
   constructor(private http: HttpClient, private router: Router) {}
-  onSubmit(form: any) {
+
+  onSubmit(form: NgForm) {
     if (!form.valid) {
-      alert('Please fill in all required fields');
+      Swal.fire({
+        icon: 'warning',
+        title: 'Form Incomplete',
+        text: 'Please fill in all required fields'
+      });
       return;
     }
   
-    const formData = {
-      item_name: this.itemName,
-      value: this.estimatedValue,
-      is_valuable: this.isValuable,
-      condition: this.itemCondition,
-      status_id: this.statusId,
-      extra_notes: this.extraNotes  
-    };
+    const formData = new FormData();
+    formData.append('item_name', this.itemName);
+    formData.append('condition', this.itemCondition);
+    formData.append('is_valuable', this.isValuable ? '1' : '0');
   
-    const token = localStorage.getItem('auth_token');  
+    if (this.isValuable) {
+      formData.append('value', this.estimatedValue); // Send value if item is valuable
+    }
+  
+    if (this.imageFile) {
+      formData.append('image', this.imageFile); // Add the image file
+    }
+  
+    const token = localStorage.getItem('auth_token');
+    if (!token) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Authentication Error',
+        text: 'User not authenticated. Please log in.'
+      });
+      this.router.navigate(['/login']);
+      return;
+    }
+  
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`, 
-      'Content-Type': 'application/json'
+      'Authorization': `Bearer ${token}`
     });
   
     this.http.post('http://localhost:8000/api/donate-item', formData, { headers })
@@ -74,4 +90,12 @@ export class AuctionComponent {
       );
   }
   
+  
+
+  // Method to handle file input
+  onFileSelected(event: any) {
+    if (event.target.files.length > 0) {
+      this.imageFile = event.target.files[0];
+    }
+  }
 }

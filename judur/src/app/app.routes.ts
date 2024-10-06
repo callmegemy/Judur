@@ -123,6 +123,7 @@ export const routes: Routes = [
 
   // { path: '', redirectTo: '/donation-history', pathMatch: 'full' },
   // { path: '**', redirectTo: '/donation-history' }
+  {path:'auction-details/:id',component:DetailsAuctionsComponent},
   {
     path: 'auction-list', component: ListingAuctionsComponent,
     canActivate: [authGuard]
@@ -221,4 +222,8 @@ export const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
+
+
+
+
