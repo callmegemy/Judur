@@ -38,7 +38,7 @@
                         <div class="event-text">
                             <h3>{{ event.title }}</h3>
                             <p>{{ event.description }}</p>
-                            <a class="btn btn-custom" href="#">Join Now</a>
+                            <app-event-join [eventId]="event.id"></app-event-join>
                             <a [routerLink]="['/list-event/event-details', event.id]" class="btn btn-custom">View Details</a>
                         </div>
                 </div>

@@ -3,12 +3,13 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ExaminerReportsService } from '../../../../services/examiner-reports.service';
 import { SidebarComponent } from '../../sidebar/sidebar.component';
+
 import { TopbarComponent } from '../../topbar/topbar.component';
 
 @Component({
   selector: 'app-report-details',
   standalone: true,
-  imports: [ SidebarComponent,TopbarComponent,CommonModule],
+  imports: [ SidebarComponent, TopbarComponent, CommonModule],
   templateUrl: './report-details.component.html',
   styleUrl: './report-details.component.css'
 })

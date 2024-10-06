@@ -11,7 +11,6 @@ import { MainComponent } from './components/dashboard/main/main.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { EventListComponent } from './components/event-list/event-list.component';
 import { EventDetailsComponent } from './components/event-details/event-details.component';
-import { ReportDetailsComponent } from './components/dashboard/examiner-reports/report-details/report-details.component';
 import { ViewPostComponent } from './components/dashboard/view-post/view-post.component';
 import { CreatePostComponent } from './components/dashboard/create-post/create-post.component';
 import { PostsDashboardComponent } from './components/dashboard/posts-dashboard/posts-dashboard.component';
@@ -21,6 +20,7 @@ import { BlogComponent } from './components/blog/blog.component';
 import { BlogDetailsComponent } from './components/blog-details/blog-details.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ReportDetailsComponent } from './components/dashboard/examiner-reports/report-details/report-details.component';
 @Component({
   selector: 'app-root',
   standalone: true,

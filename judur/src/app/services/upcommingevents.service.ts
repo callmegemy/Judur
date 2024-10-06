@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
@@ -17,4 +17,25 @@ export class UpcommingeventsService {
   getEventById(id: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/events/${id}`);
   }
+
+
+  joinEvent(eventId: number): Observable<any> {
+    const token = localStorage.getItem('auth_token');  // Use correct token key
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/json'
+    });
+
+    return this.http.post(`${this.apiUrl}/list-event/join-event`, { event_id: eventId }, { headers });
+  }
+
+  cancelEvent(eventId: number): Observable<any> {
+    const token = localStorage.getItem('auth_token'); // Retrieve the token from localStorage
+    const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}` // Include the token in the Authorization header
+    });
+
+    return this.http.delete(`${this.apiUrl}/list-event/cancel-event/${eventId}`, { headers });
+}
+
 }

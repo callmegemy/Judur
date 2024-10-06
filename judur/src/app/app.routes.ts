@@ -49,9 +49,10 @@ import { ViewAuctionComponent } from './components/dashboard/view-auction/view-a
 import { EditAuctionComponent } from './components/dashboard/edit-auction/edit-auction.component';
 import { CreateAuctionComponent } from './components/dashboard/create-auction/create-auction.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
-import { ReportDetailsComponent } from './components/dashboard/examiner-reports/report-details/report-details.component';
 
 import { LandInspectionComponent } from './land-inspection/land-inspection.component';
+import { EventJoinComponent } from './components/event-join/event-join.component';
+import { ReportDetailsComponent } from './components/dashboard/examiner-reports/report-details/report-details.component';
 export const routes: Routes = [
   {
     path: '',
@@ -91,7 +92,7 @@ export const routes: Routes = [
   { path: 'view-profile', component: ViewProfileComponent },
   { path: 'profile/edit/:id', component: EditProfileComponent },
       { path: 'list-event/event-details/:id', component: EventDetailsComponent },
-
+      { path: 'list-event/join-event/:id', component: EventJoinComponent },
   { path: 'list-event', component: EventListComponent},
 
   // { path: '', redirectTo: '/donation-history', pathMatch: 'full' },
