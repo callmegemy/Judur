@@ -9,22 +9,20 @@
             <tr>
                 <th>Event</th>
                 <th>Date</th>
-                <th>Location</th>
-                <th>Role</th>
+                <!-- <th>Location</th> -->
                 <th>Hours</th>
                 <th>People Helped</th>
-                <th>Feedback</th>
+                <!-- <th>Feedback</th> -->
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let event of events">
                 <td>{{ event.title }}</td>
                 <td>{{ event.date }}</td>
-                <td>{{ event.location }}</td>
-                <td>{{ event.role }}</td>
+                <!-- <td>{{ event.location }}</td> -->
                 <td>{{ event.duration }}</td>
                 <td>{{ event.people_helped }}</td>
-                <td>{{ event.feedback }}</td>
+                <!-- <td>{{ event.feedback }}</td> -->
             </tr>
             <tr *ngIf="events.length === 0">
                 <td colspan="7">No participation details found.</td>
@@ -38,7 +36,7 @@
 </div>
 
 <div class="navigation">
-    <a routerLink="/volunteer-analytics">Back to Dashboard</a>
+    <a routerLink="/volunteer-analytics">   Back    </a>
 </div>
 <footer class="footer">
     &copy; 2024 Judur. All rights reserved.
