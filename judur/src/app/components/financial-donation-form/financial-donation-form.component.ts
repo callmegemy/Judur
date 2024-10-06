@@ -30,27 +30,39 @@ export class FinancialDonationFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.initializeStripe(); // Initialize Stripe on component init
+    this.registerForm.get('paymentMethod')?.valueChanges.subscribe((method) => {
+      if (method === 'creditCard') {
+        setTimeout(() => {
+          this.initializeStripe();
+        });
+      } else {
+        this.destroyStripe(); 
+      }
+    });
   }
 
   createForm(): void {
     this.registerForm = this.fb.group({
       donationAmount: ['', [Validators.required, Validators.min(1)]],
       currency: ['', [Validators.required]],
-      paymentMethod: ['', [Validators.required]],
-     
+      paymentMethod: ['', [Validators.required]], 
     });
-
-    
   }
 
   initializeStripe(): void {
     // Initialize Stripe.js
     this.stripe = (window as any).Stripe('pk_test_51Q6QrU01RsRkSAFAooLLs9DvhKhJ8icYFrcZs7OraWLdFOGDdc8CxIvnFOHf6HjoZ0uhj9NkfzGqzToSIy2lHPOO003wmfAEks'); // Replace with your Stripe public key
 
-    const elements = this.stripe.elements(); // Create an instance of Elements
-    this.card = elements.create('card'); // Create a card element
-    this.card.mount('#card-element'); // Mount the card element to the specified DOM element
+    const elements = this.stripe.elements(); 
+    this.card = elements.create('card');
+    this.card.mount('#card-element'); 
+  }
+
+  destroyStripe(): void {
+    if (this.card) {
+      this.card.destroy(); 
+      this.card = null; 
+    }
   }
 
   onSubmit(): void {
@@ -79,7 +91,7 @@ export class FinancialDonationFormComponent implements OnInit {
           payment_method: {
             card: this.card,
             billing_details: {
-              name: 'Cardholder Name', // You can take this from the form or add a new field
+              name: 'Cardholder Name', 
             },
           },
         }).then((result: any) => {
@@ -116,7 +128,7 @@ export class FinancialDonationFormComponent implements OnInit {
     const donationData = {
       amount: amount,
       currency: currency,
-      payment_method: paymentMethod, // Ensure this is included
+      payment_method: paymentMethod, 
     };
 
     this.authService.donateMoney(donationData).subscribe(

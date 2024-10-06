@@ -1,13 +1,13 @@
-<app-navbar></app-navbar>
-
 <div class="register-container">
   <h2 style="margin-bottom: 20px;">Financial Donation</h2>
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <!-- Donation Amount Field -->
     <div class="form-group">
       <label for="donationAmount">Donation Amount</label>
-      <input formControlName="donationAmount" type="number" class="form-control" id="donationAmount" placeholder="Enter donation amount" required>
-      <div *ngIf="registerForm.controls['donationAmount'].invalid && registerForm.controls['donationAmount'].touched" class="text-danger">
+      <input formControlName="donationAmount" type="number" class="form-control" id="donationAmount"
+        placeholder="Enter donation amount" required>
+      <div *ngIf="registerForm.controls['donationAmount'].invalid && registerForm.controls['donationAmount'].touched"
+        class="text-danger">
         Donation Amount is required and must be greater than zero.
       </div>
     </div>
@@ -15,28 +15,28 @@
     <!-- Currency Field -->
     <div class="form-group">
       <label for="currency">Currency</label>
-      <input formControlName="currency" type="text" class="form-control" id="currency" placeholder="Enter currency (e.g., USD, EUR)" required>
-      <div *ngIf="registerForm.controls['currency'].invalid && registerForm.controls['currency'].touched" class="text-danger">
+      <input formControlName="currency" type="text" class="form-control" id="currency"
+        placeholder="Enter currency (e.g., USD, EUR)" required>
+      <div *ngIf="registerForm.controls['currency'].invalid && registerForm.controls['currency'].touched"
+        class="text-danger">
         Currency is required.
       </div>
     </div>
 
     <!-- Payment Method Field -->
     <div class="form-group">
-      <label for="paymentMethod">Select Payment Method</label>
-      <select formControlName="paymentMethod" class="form-control" id="paymentMethod" required>
-        <option value="" disabled selected>Select payment method</option>
-        <option value="creditCard">Credit Card</option>
-        <option value="paypal">PayPal</option>
-      </select>
-      <div *ngIf="registerForm.controls['paymentMethod'].invalid && registerForm.controls['paymentMethod'].touched" class="text-danger">
-        Payment Method is required.
-      </div>
+    <label for="paymentMethod">Payment Method</label>
+    <select formControlName="paymentMethod"  class="form-control"id="paymentMethod">
+      <option value="" disabled>Select payment method</option>
+      <option value="creditCard">Credit Card</option>
+      <option value="otherMethod">Other Method</option>
+    </select>
     </div>
-
-
-    
-    <div id="card-element"></div>
+    <div class="credit-card-section" *ngIf="registerForm.get('paymentMethod')?.value === 'creditCard'">
+      <h3>Credit Card Details</h3>
+      <div id="card-element" class="card-element"></div>
+      <div id="card-errors" class="text-danger"></div>
+    </div>
 
     <button type="submit" class="btn btn-dark" [disabled]="registerForm.invalid">Donate</button>
   </form>

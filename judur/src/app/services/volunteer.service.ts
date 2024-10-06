@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject, tap, catchError, throwError } from 'rxjs';
+import { AuthService } from './auth.service';
 
 
 export interface Land {
@@ -21,7 +22,7 @@ export class VolunteerService {
 
   private apiUrl = 'http://127.0.0.1:8000/api';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   getVolunteerSummary(volunteerId: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/volunteer-summary/${volunteerId}`);
@@ -46,8 +47,9 @@ getExaminerLandData(volunteerId: number): Observable<any> {
   );
 
 }
-getLandInspections(volunteerId: number): Observable<any> {
-  return this.http.get(`${this.apiUrl}/land-inspections/${volunteerId}`);
+getLandInspections(id: number) {
+  
+  return this.http.get<any>(`${this.apiUrl}/land-inspections/${id}`);
 }
 getPendingLands(): Observable<any> {
   return this.http.get<any>(`${this.apiUrl}/pending-lands`);

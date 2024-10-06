@@ -86,3 +86,33 @@ form {
 .login-link:hover {
     color: #6A9C89;
 }
+
+
+.credit-card-section {
+    margin-top: 20px; /* Space above the credit card section */
+    padding: 15px;
+    background-color: #e9ecef; /* Light gray background for card details */
+    border-radius: 5px; /* Rounded corners */
+}
+
+.card-element {
+    padding: 10px; /* Padding inside the card element */
+    border: 1px solid #ced4da; /* Light border */
+    border-radius: 4px; /* Slightly rounded corners */
+    transition: border-color 0.2s; /* Smooth border color transition */
+}
+
+.card-element:focus {
+    border-color: #007bff; /* Change border color on focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Shadow on focus */
+}
+
+.btn-dark {
+    display: block; /* Make the button full-width */
+    width: 100%; /* Full width */
+    padding: 10px; /* Padding for button */
+}
+
+.text-danger {
+    font-size: 0.9em; /* Slightly smaller error text */
+}

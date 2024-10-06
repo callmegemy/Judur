@@ -13,8 +13,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './participation-details.component.css'
 })
 export class ParticipationDetailsComponent implements OnInit {
-  events: any[] = []; // Store the volunteer events
-  errorMessage: string | null = null; // Store any error messages
+  events: any[] = []; 
+  errorMessage: string | null = null;
 
   constructor(
     private volunteerService: VolunteerService,
@@ -25,15 +25,13 @@ export class ParticipationDetailsComponent implements OnInit {
     const user = this.authService.getUserData();
 
     if (user && user.role_id === 3) {
-      // Fetch volunteer ID based on logged-in user's ID
       this.volunteerService.getVolunteerIdByUserId(user.id).subscribe({
         next: (volunteerData) => {
           const volunteerId = volunteerData.volunteer_id;
 
-          // Fetch the volunteer events
           this.volunteerService.getVolunteerEvents(volunteerId).subscribe({
             next: (events) => {
-              this.events = events; // Store the events data
+              this.events = events; 
             },
             error: (error) => {
               console.error('Error fetching volunteer events:', error);
