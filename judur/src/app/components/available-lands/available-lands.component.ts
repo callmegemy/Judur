@@ -4,6 +4,14 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+interface PendingLand {
+  id: number;
+  donor_name: string; 
+  description: string;
+  land_size: number;
+  address: string;
+}
+
 @Component({
   selector: 'app-available-lands',
   standalone: true,
@@ -25,7 +33,7 @@ export class AvailableLandsComponent implements OnInit {
   getPendingLands(): void {
     this.volunteerService.getPendingLands().subscribe(
       (data) => {
-        this.pendingLands = data; // Store the returned lands
+        this.pendingLands = data; 
         console.log('Pending Lands:', this.pendingLands);
       },
       (error) => {

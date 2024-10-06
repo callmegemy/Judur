@@ -17,6 +17,7 @@ export class VolunteerAnalyticsComponent implements OnInit {
 
   summaryData: any;
   activityChart: Chart | undefined;
+  isExaminer: boolean = false;
 
   constructor(
     private volunteerService: VolunteerService,
@@ -26,14 +27,17 @@ export class VolunteerAnalyticsComponent implements OnInit {
   ngOnInit(): void {
     const user = this.authService.getUserData();
 
-    // Check if user is logged in and has the volunteer role (role_id = 3)
     if (user && user.role_id === 3) {
-      // Fetch the volunteer ID from the API using the user's ID
       this.volunteerService.getVolunteerIdByUserId(user.id).subscribe({
         next: (volunteerData) => {
-          const volunteerId = volunteerData.volunteer_id; // Extract the volunteer ID from the response
+          console.log('Volunteer data:', volunteerData); 
 
-          // Fetch the volunteer summary using the volunteer ID
+          if (volunteerData && volunteerData.examiner === 1) {
+            this.isExaminer = true;
+          }
+          const volunteerId = volunteerData.volunteer_id;
+          console.log(this.isExaminer); 
+
           this.volunteerService.getVolunteerSummary(volunteerId).subscribe({
             next: (data) => {
               console.log(data);

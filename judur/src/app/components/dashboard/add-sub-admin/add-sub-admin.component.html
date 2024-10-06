@@ -30,10 +30,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-judur-reverse sidebar sidebar-dark accordion" id="accordionSidebar">
-            <app-sidebar></app-sidebar>
-        </ul>
-
+        <app-sidebar class="bg-gradient-judur"></app-sidebar>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -122,8 +119,8 @@
                                         <select id="role" class="form-control" [(ngModel)]="subAdminData.role_id"
                                             name="role" required>
                                             <option [ngValue]="null" disabled>Select a role</option>
-                                            <option [ngValue]="6">Organizer</option>
-                                            <option [ngValue]="7">Mentor</option>
+                                            <option [ngValue]="5">Organizer</option>
+                                            <option [ngValue]="6">Mentor</option>
                                         </select>
                                     </div>
 

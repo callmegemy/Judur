@@ -1,41 +1,46 @@
 
-<div class="container available-lands-container">
-    <h1 class="header" style="color: var(--primary);"> Available Lands To be Examined </h1>
-  
-    <div *ngIf="pendingLands.length > 0; else noLands">
-      <table class="styled-table">
-        <thead>
-          <tr>
-            <th>Land ID</th>
-            <th>Donor Name</th>
-            <th>Description</th>
-            <th>Land Size</th>
-            <th>Address</th>
-            <th>Proof of Ownership</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let land of pendingLands">
-            <td>{{ land.id }}</td>
-            <td>{{ land.donor_id }}</td>
-            <td>{{ land.description }}</td>
-            <td>{{ land.land_size }} acres</td>
-            <td>{{ land.address }}</td>
-            <td>
-              <a [href]="land.proof_of_ownership" target="_blank" class="navigation">View Document</a>
-            </td>
-            <td>
-              <button (click)="scheduleInspection(land)" class="schedule-btn">Schedule Inspection</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  
-    <!-- No pending lands found -->
-    <ng-template #noLands>
-      <p>No available lands with pending status found.</p>
-    </ng-template>
+
+<div class="header">
+  <h1>Available Lands To be Examined</h1>
+</div>
+<div class="container available-lands-container " >
+
+  <div *ngIf="pendingLands.length > 0; else noLands">
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>Land ID</th>
+          <th>Donor Name</th>
+          <th>Description</th>
+          <th>Land Size</th>
+          <th>Address</th>
+          <th>Action</th>
+        </tr>
+      </thead>          
+      <tbody>
+        <tr *ngFor="let land of pendingLands">
+          <td>{{ land.id }}</td>
+          <td>{{ land.donor.user.name }}</td>         
+           <td>{{ land.description }}</td>
+          <td>{{ land.land_size }} acres</td>
+          <td>{{ land.address }}</td>
+         
+          <td>
+            <button (click)="scheduleInspection(land)" class="schedule-btn">Schedule Inspection</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  
+
+
+  <ng-template #noLands>
+    <p>No available lands with pending status found.</p>
+  </ng-template>
+</div>
+<div class="navigation ">
+  <a routerLink="/volunteer-analytics"> Back </a>
+</div>
+<footer class="footer">
+  &copy; 2024 Judur. All rights reserved.
+</footer>

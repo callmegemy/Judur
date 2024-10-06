@@ -68,32 +68,32 @@ export const routes: Routes = [
     path: '',
     component: HomeComponent,
     title: 'Home Page',
-}, {
-  path: 'about',
-  component: AboutComponent
+  }, {
+    path: 'about',
+    component: AboutComponent
   }
   ,
   {
-  path: 'donate', 
-  component: DonateComponent,
-  canActivate: [authGuard]
+    path: 'donate',
+    component: DonateComponent,
+    canActivate: [authGuard]
 
   },
-   { path: 'login', component: LoginComponent},
-   { path: 'register', component: RegisterComponent},
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   // // { path: 'forgot-password', component: ForgotPasswordComponent },
-   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'volunteer-analytics', component: VolunteerAnalyticsComponent},
-   { path: 'participation-details', component: ParticipationDetailsComponent },
-   { path: 'performance-report', component: PerformanceReportsComponent },
-   { path: 'suitability-evaluations', component: SuitabilityEvaluationsComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'volunteer-analytics', component: VolunteerAnalyticsComponent },
+  { path: 'participation-details', component: ParticipationDetailsComponent },
+  { path: 'performance-report', component: PerformanceReportsComponent },
+  { path: 'suitability-evaluations', component: SuitabilityEvaluationsComponent },
   { path: 'landowner-registration', component: LandownerRegistrationComponent },
   { path: 'money-donation', component: FinancialDonationFormComponent },
   { path: 'volunteer-registration', component: VolunteerRegistrationComponent },
   { path: 'auction', component: AuctionComponent },
   { path: 'volunteer-to-examiner', component: VolunteerToExaminerComponent },
   { path: 'donation-history', component: DonationHistoryComponent },
-  { path: 'register-choice', component: RegisterChoiceComponent },
+  { path: 'register-choice', component: RegisterChoiceComponent },
 
   // Donation details routes by category
   { path: 'donation-item-details', component: DonationItemDetailsComponent },
@@ -101,11 +101,15 @@ export const routes: Routes = [
   { path: 'donation-land-details', component: DonationLandDetailsComponent },
 
   // { path: 'view-profile', component: ViewProfileComponent},
-  { path: 'view-profile', component: ViewProfileComponent  ,
-    canActivate: [authGuard]},
-  { path: 'edit-profile', component: EditProfileComponent  },
-  { path: 'list-event/event-details', component: EventDetailsComponent ,
-    canActivate: [authGuard] },
+  {
+    path: 'view-profile', component: ViewProfileComponent,
+    canActivate: [authGuard]
+  },
+  { path: 'edit-profile', component: EditProfileComponent },
+  {
+    path: 'list-event/event-details', component: EventDetailsComponent,
+    canActivate: [authGuard]
+  },
   { path: 'view-profile', component: ViewProfileComponent },
   { path: 'edit-profile/:id', component: EditProfileComponent },
   { path: 'list-event/event-details/:id', component: EventDetailsComponent },
@@ -119,10 +123,12 @@ export const routes: Routes = [
 
   // { path: '', redirectTo: '/donation-history', pathMatch: 'full' },
   // { path: '**', redirectTo: '/donation-history' }
-  {path:'auction-list',component:ListingAuctionsComponent ,
-    canActivate: [authGuard]},
   {
-    path:'auction-details',component:DetailsAuctionsComponent ,
+    path: 'auction-list', component: ListingAuctionsComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path: 'auction-details', component: DetailsAuctionsComponent,
     canActivate: [authGuard]
   },
 
@@ -144,7 +150,6 @@ export const routes: Routes = [
   { path: 'dashboard/request/view/ex/:id', component: ExaminerRequestComponent },
   { path: 'dashboard/userProfile/volunteer/:id', component: VolunteerProfileComponent },
   { path: 'dashboard/userProfile/doner/:id', component: DonorProfileComponent },
-
 
   { path: 'dashboard/events', component: EventsComponent },
   { path: 'dashboard/events/edit/:id', component: EditEventComponent },
@@ -176,23 +181,28 @@ export const routes: Routes = [
 
 
   // dashboard Routs End
-  
-  { path: 'listing-auctions' , component: ListingAuctionsComponent ,
-    canActivate: [authGuard]},
-  { path: 'details-auctions' , component:DetailsAuctionsComponent,
-    canActivate: [authGuard]},
-  {path:'contact-us',component:ContactUsComponent},
+
+  {
+    path: 'listing-auctions', component: ListingAuctionsComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path: 'details-auctions', component: DetailsAuctionsComponent,
+    canActivate: [authGuard]
+  },
+  { path: 'contact-us', component: ContactUsComponent },
   { path: 'management', component: UserManagementComponent },
   { path: 'add-sub-admin', component: AddSubAdminComponent },
-  {path:'view-sub-admin/:id',component:ViewSubAdminComponent},
-  {path:'edit-sub-admin/:id',component:EditSubAdminComponent},
-  {path:'pendingLands',component:AvailableLandsComponent} ,
- {path: 'blog', component:BlogComponent},
- {path: 'blog/:id', component: BlogDetailsComponent },
+  { path: 'view-sub-admin/:id', component: ViewSubAdminComponent },
+  { path: 'edit-sub-admin/:id', component: EditSubAdminComponent },
+  { path: 'pendingLands', component: AvailableLandsComponent },
+  { path: 'blog', component: BlogComponent },
+  { path: 'blog/:id', component: BlogDetailsComponent },
 
 
-  { path: 'listing-auctions' , component: ListingAuctionsComponent},
-  { path: 'details-auctions' , component:DetailsAuctionsComponent},
+  { path: 'listing-auctions', component: ListingAuctionsComponent },
+  { path: 'details-auctions', component: DetailsAuctionsComponent },
+  { path: 'land-inspection', component: LandInspectionComponent },
   {path:'contact-us',component:ContactUsComponent},
 
 
@@ -208,4 +218,4 @@ export const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
