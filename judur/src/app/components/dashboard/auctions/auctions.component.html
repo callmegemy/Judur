@@ -30,9 +30,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-judur-reverse sidebar sidebar-dark accordion" id="accordionSidebar">
-            <app-sidebar></app-sidebar>
-        </ul>
+            <app-sidebar class="bg-gradient-judur"></app-sidebar>
 
         <!-- End of Sidebar -->
 
@@ -48,246 +46,62 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-judur font-weight-bold">Auctions</h1>
-                        <a  href="/dashboard/auctions/create" class="btn btn-judur btn-sm float-right" >
-                            <i class="fa-solid fa-plus"></i>
-                            Add Auction
-                        </a>
+                      <h1 class="h3 mb-0 text-judur font-weight-bold">Auctions</h1>
+                      <a href="/dashboard/auctions/create" class="btn btn-judur btn-sm float-right">
+                        <i class="fa-solid fa-plus"></i> Add Auction
+                      </a>
                     </div>
-
+                  
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-judur">All Auctions</h6>
+                      <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-judur">All Auctions</h6>
+                      </div>
+                      <div class="card-body">
+                        <div class="table-responsive">
+                          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                              <tr>
+                                <th>Title</th>
+                                <th>Item</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                              </tr>
+                            </thead>
+                            <tfoot>
+                              <tr>
+                                <th>Title</th>
+                                <th>Item</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                              </tr>
+                            </tfoot>
+                            <tbody>
+                              <tr *ngFor="let auction of auctions">
+                                <td>{{ auction.title }}</td>
+                                <td>{{ auction.item_donation.item_name }}</td>
+                                <td>{{ auction.created_at | date }}</td>
+                                <td>
+                                  <a [href]="'/dashboard/auctions/view/' + auction.id" class="btn-circle bg-judur rounded-circle">
+                                    <i class="fa-solid fa-eye"></i>
+                                  </a>
+                                  <a [href]="'/dashboard/auctions/edit/' + auction.id" class="btn-circle bg-primary rounded-circle mx-3">
+                                    <i class="fa-solid fa-pen text-white"></i>
+                                  </a>
+                                  <a (click)="onDelete(auction.id)" class="btn-circle bg-danger rounded-circle">
+                                    <i class="fa-solid fa-trash text-white"></i>
+                                  </a>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
                         </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Title</th>
-                                            <th>Item</th>
-                                            <th>Date</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Title</th>
-                                            <th>Item</th>
-                                            <th>Date</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>61</td>
-                                            <td>
-                                                <a href="/dashboard/auctions/view"
-                                                    class="btn-circle bg-judur rounded-circle"><i
-                                                        class="fa-solid fa-eye"></i></a>
-                                                <a href="/dashboard/auctions/edit"
-                                                    class="btn-circle bg-primary rounded-circle mx-3"><i
-                                                        class="fa-solid fa-pen text-white"></i></a>
-                                                <a href="/dashboard/auctions/delete"
-                                                    class="btn-circle bg-danger rounded-circle"><i
-                                                        class="fa-solid fa-trash text-white"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>63</td>
-                                            <td>
-                                                <a href="/dashboard/auctions/view"
-                                                    class="btn-circle bg-judur rounded-circle"><i
-                                                        class="fa-solid fa-eye"></i></a>
-                                                <a href="/dashboard/auctions/edit"
-                                                    class="btn-circle bg-primary rounded-circle mx-3"><i
-                                                        class="fa-solid fa-pen text-white"></i></a>
-                                                <a href="/dashboard/auctions/delete"
-                                                    class="btn-circle bg-danger rounded-circle"><i
-                                                        class="fa-solid fa-trash text-white"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ashton Cox</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>66</td>
-                                            <td>
-                                                <a href="/dashboard/auctions/view"
-                                                    class="btn-circle bg-judur rounded-circle"><i
-                                                        class="fa-solid fa-eye"></i></a>
-                                                <a href="/dashboard/auctions/edit"
-                                                    class="btn-circle bg-primary rounded-circle mx-3"><i
-                                                        class="fa-solid fa-pen text-white"></i></a>
-                                                <a href="/dashboard/auctions/delete"
-                                                    class="btn-circle bg-danger rounded-circle"><i
-                                                        class="fa-solid fa-trash text-white"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cedric Kelly</td>
-                                            <td>Senior Javascript Developer</td>
-                                            <td>22</td>
-                                            <td>
-                                                <a href="/dashboard/auctions/view"
-                                                    class="btn-circle bg-judur rounded-circle"><i
-                                                        class="fa-solid fa-eye"></i></a>
-                                                <a href="/dashboard/auctions/edit"
-                                                    class="btn-circle bg-primary rounded-circle mx-3"><i
-                                                        class="fa-solid fa-pen text-white"></i></a>
-                                                <a href="/dashboard/auctions/delete"
-                                                    class="btn-circle bg-danger rounded-circle"><i
-                                                        class="fa-solid fa-trash text-white"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Paul Byrd</td>
-                                            <td>Chief Financial Officer (CFO)</td>
-                                            <td>64</td>
-                                            <td><a href="/dashboard/auctions/view"
-                                                    class="btn-circle bg-judur  rounded-circle"><i
-                                                        class="fa-solid fa-eye"></i></a>
-                                                <a href="/dashboard/auctions/edit"
-                                                    class="btn-circle bg-primary rounded-circle mx-3"><i
-                                                        class="fa-solid fa-pen text-white"></i></a>
-                                                <a href="/dashboard/auctions/delete"
-                                                    class="btn-circle bg-danger rounded-circle "><i
-                                                        class="fa-solid fa-trash text-white"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Gloria Little</td>
-                                            <td>Systems Administrator</td>
-                                            <td>59</td>
-                                            <td><a href="/dashboard/auctions/view"
-                                                    class="btn-circle bg-judur  rounded-circle"><i
-                                                        class="fa-solid fa-eye"></i></a>
-                                                <a href="/dashboard/auctions/edit"
-                                                    class="btn-circle bg-primary rounded-circle mx-3"><i
-                                                        class="fa-solid fa-pen text-white"></i></a>
-                                                <a href="/dashboard/auctions/delete"
-                                                    class="btn-circle bg-danger rounded-circle "><i
-                                                        class="fa-solid fa-trash text-white"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Bradley Greer</td>
-                                            <td>Software Engineer</td>
-                                            <td>41</td>
-                                            <td><a href="/dashboard/auctions/view"
-                                                    class="btn-circle bg-judur  rounded-circle"><i
-                                                        class="fa-solid fa-eye"></i></a>
-                                                <a href="/dashboard/auctions/edit"
-                                                    class="btn-circle bg-primary rounded-circle mx-3"><i
-                                                        class="fa-solid fa-pen text-white"></i></a>
-                                                <a href="/dashboard/auctions/delete"
-                                                    class="btn-circle bg-danger rounded-circle "><i
-                                                        class="fa-solid fa-trash text-white"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Dai Rios</td>
-                                            <td>Personnel Lead</td>
-                                            <td>35</td>
-                                            <td><a href="/dashboard/auctions/view"
-                                                    class="btn-circle bg-judur  rounded-circle"><i
-                                                        class="fa-solid fa-eye"></i></a>
-                                                <a href="/dashboard/auctions/edit"
-                                                    class="btn-circle bg-primary rounded-circle mx-3"><i
-                                                        class="fa-solid fa-pen text-white"></i></a>
-                                                <a href="/dashboard/auctions/delete"
-                                                    class="btn-circle bg-danger rounded-circle "><i
-                                                        class="fa-solid fa-trash text-white"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jenette Caldwell</td>
-                                            <td>Development Lead</td>
-                                            <td>30</td>
-                                            <td><a href="/dashboard/auctions/view"
-                                                    class="btn-circle bg-judur  rounded-circle"><i
-                                                        class="fa-solid fa-eye"></i></a>
-                                                <a href="/dashboard/auctions/edit"
-                                                    class="btn-circle bg-primary rounded-circle mx-3"><i
-                                                        class="fa-solid fa-pen text-white"></i></a>
-                                                <a href="/dashboard/auctions/delete"
-                                                    class="btn-circle bg-danger rounded-circle "><i
-                                                        class="fa-solid fa-trash text-white"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Yuri Berry</td>
-                                            <td>Chief Marketing Officer (CMO)</td>
-                                            <td>40</td>
-                                            <td><a href="/dashboard/auctions/view"
-                                                    class="btn-circle bg-judur  rounded-circle"><i
-                                                        class="fa-solid fa-eye"></i></a>
-                                                <a href="/dashboard/auctions/edit"
-                                                    class="btn-circle bg-primary rounded-circle mx-3"><i
-                                                        class="fa-solid fa-pen text-white"></i></a>
-                                                <a href="/dashboard/auctions/delete"
-                                                    class="btn-circle bg-danger rounded-circle "><i
-                                                        class="fa-solid fa-trash text-white"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Caesar Vance</td>
-                                            <td>Pre-Sales Support</td>
-                                            <td>21</td>
-                                            <td><a href="/dashboard/auctions/view"
-                                                    class="btn-circle bg-judur  rounded-circle"><i
-                                                        class="fa-solid fa-eye"></i></a>
-                                                <a href="/dashboard/auctions/edit"
-                                                    class="btn-circle bg-primary rounded-circle mx-3"><i
-                                                        class="fa-solid fa-pen text-white"></i></a>
-                                                <a href="/dashboard/auctions/delete"
-                                                    class="btn-circle bg-danger rounded-circle "><i
-                                                        class="fa-solid fa-trash text-white"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Doris Wilder</td>
-                                            <td>Sales Assistant</td>
-                                            <td>23</td>
-                                            <td><a href="/dashboard/auctions/view"
-                                                    class="btn-circle bg-judur  rounded-circle"><i
-                                                        class="fa-solid fa-eye"></i></a>
-                                                <a href="/dashboard/auctions/edit"
-                                                    class="btn-circle bg-primary rounded-circle mx-3"><i
-                                                        class="fa-solid fa-pen text-white"></i></a>
-                                                <a href="/dashboard/auctions/delete"
-                                                    class="btn-circle bg-danger rounded-circle "><i
-                                                        class="fa-solid fa-trash text-white"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Angelica Ramos</td>
-                                            <td>Chief Executive Officer (CEO)</td>
-                                            <td>47</td>
-                                            <td><a href="/dashboard/auctions/view"
-                                                    class="btn-circle bg-judur  rounded-circle"><i
-                                                        class="fa-solid fa-eye"></i></a>
-                                                <a href="/dashboard/auctions/edit"
-                                                    class="btn-circle bg-primary rounded-circle mx-3"><i
-                                                        class="fa-solid fa-pen text-white"></i></a>
-                                                <a href="/dashboard/auctions/delete"
-                                                    class="btn-circle bg-danger rounded-circle "><i
-                                                        class="fa-solid fa-trash text-white"></i></a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                      </div>
                     </div>
-
-                </div>
+                  </div>
+                  
+                  
                 <!-- /.container-fluid -->
 
             </div>

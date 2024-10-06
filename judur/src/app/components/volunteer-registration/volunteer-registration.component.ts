@@ -2,18 +2,19 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-volunteer-registration',
   standalone: true, 
   templateUrl: './volunteer-registration.component.html',
   styleUrls: ['./volunteer-registration.component.css'],
-  imports: [ReactiveFormsModule,CommonModule], 
+  imports: [ReactiveFormsModule,CommonModule,RouterLink], 
 })
 export class VolunteerRegistrationComponent {
   volunteerForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.volunteerForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -33,6 +34,7 @@ export class VolunteerRegistrationComponent {
         this.authService.registerVolunteer(this.volunteerForm.value).subscribe({
             next: (response) => {
                 console.log('Volunteer registration successful:', response);
+                this.router.navigate(['/login']); 
             },
             error: (err) => {
                 console.error('Error during volunteer registration:', err);

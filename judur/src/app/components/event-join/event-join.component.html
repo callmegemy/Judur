@@ -1,0 +1,9 @@
+<button
+  *ngIf="!isLoading"
+  (click)="isJoined ? onCancel() : onJoin()"
+  [disabled]="isLoading || isPending"
+  class="btn btn-custom">
+  {{ isJoined ? 'Cancel' : 'Join Now' }}
+</button>
+
+

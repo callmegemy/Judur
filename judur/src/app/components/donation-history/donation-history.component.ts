@@ -83,14 +83,14 @@ export class DonationHistoryComponent implements OnInit {
           this.errorMessage = 'No donation history found';
         }
       },
-      (error: any) => {  // Explicitly set error type to `any`
+      (error: any) => { 
         this.errorMessage = 'Error fetching donation history';
         console.error('Error fetching donation history:', error);
       }
     );
   }
 
-  // Navigation methods for viewing details
+ 
   viewFinancialDetails(): void {
     this.router.navigate(['/donation-money-details']);
   }

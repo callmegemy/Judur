@@ -25,9 +25,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-judur-reverse sidebar sidebar-dark accordion" id="accordionSidebar">
-            <app-sidebar></app-sidebar>
-        </ul>
+            <app-sidebar class="bg-gradient-judur"></app-sidebar>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -55,39 +53,55 @@
                                 <h2><i class="fa-regular fa-calendar-days"></i> Post Details</h2>
                             </div>
                             <div class="card-body">
-                                <form action="submit-post.html" method="POST" enctype="multipart/form-data">
-                                    <!-- Post Title -->
-                                    <div class="form-group mb-3">
-                                        <label for="title" class="font-weight-bold">Post Title</label>
-                                        <input type="text" id="title" name="title" class="form-control" placeholder="Enter post title" required>
-                                    </div>
-
-                                    <!-- Upload Event Picture -->
+                                <form [formGroup]="postForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+                                                                <!-- Post Title -->
+<div class="form-group mb-3">
+    <label for="title" class="font-weight-bold">Post Title</label>
+    <input type="text" id="title" formControlName="title" class="form-control" placeholder="Enter post title" required>
+    <div *ngIf="postForm.get('title')?.touched && (postForm.get('title')?.touched || postForm.get('title')?.dirty)">
+        <small class="text-danger">Title is required.</small>
+    </div>
+</div>
+                                
+                                    <!-- Upload Post Picture -->
                                     <div class="form-group mb-3">
                                         <label for="profile-picture">Upload Post Picture:</label>
-                                        <input type="file" id="profile-picture" name="profile-picture" class="form-control-file">
+                                        <input type="file" id="profile-picture" (change)="onFileSelected($event)" class="form-control-file" />
                                     </div>
+                                
 
-                                    <!-- Post Content -->
-                                    <div class="form-group mb-4">
-                                        <label for="content" class="font-weight-bold">Post Content</label>
-                                        <textarea id="content" name="content" class="form-control" rows="6" placeholder="Enter post content" required></textarea>
-                                    </div>
 
+<!-- Post Content -->
+<div class="form-group mb-4">
+    <label for="content" class="font-weight-bold">Post Content</label>
+    <textarea id="content" formControlName="content" class="form-control" rows="6" placeholder="Enter post content" required></textarea>
+    <div *ngIf="postForm.get('content')?.touched && (postForm.get('content')?.touched || postForm.get('content')?.dirty)">
+        <small class="text-danger">Content is required.</small>
+    </div>
+</div>
+                                
                                     <!-- Category Selection -->
                                     <div class="form-group mb-3">
                                         <label for="category" class="font-weight-bold">Category</label>
-                                        <select id="category" name="category" class="form-control" required>
+                                        <select id="category" formControlName="category" class="form-control" required>
+                                            <option value="" disabled selected>Select a category</option>
                                             <option value="news">News</option>
                                             <option value="auctions">Auctions</option>
                                             <option value="feeding-events">Feeding Events</option>
                                         </select>
+                                        <div *ngIf="postForm.get('category')?.invalid && (postForm.get('category')?.touched || postForm.get('category')?.dirty)">
+                                            <small class="text-danger">Category is required.</small>
+                                        </div>
                                     </div>
-
+                                
                                     <!-- Submit and Cancel Buttons -->
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-success mx-3"><i class="fa-solid fa-check"></i> Submit</button>
-                                        <button type="reset" class="btn btn-danger mx-3"><i class="fa-solid fa-xmark"></i> Cancel</button>
+                                        <button type="submit" class="btn btn-success mx-3" [disabled]="postForm.invalid">
+                                            <i class="fa-solid fa-check"></i> Submit
+                                        </button>
+                                        <button type="reset" class="btn btn-danger mx-3">
+                                            <i class="fa-solid fa-xmark"></i> Cancel
+                                        </button>
                                     </div>
                                 </form>
 

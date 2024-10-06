@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';  
+import { FormsModule, NgForm } from '@angular/forms';  
 import { CommonModule } from '@angular/common';  
 import { NavbarComponent } from '../navbar/navbar.component';
 import { AuthService } from '../../services/auth.service';
@@ -28,8 +28,8 @@ export class AuctionComponent {
   constructor(private http: HttpClient) {}
 
   // Method triggered on form submission
-  onSubmit(form: any) {
-    if (!form.valid) {
+  onSubmit(form: NgForm) {
+    if (form.invalid) {
       alert('Please fill in all required fields');
       return;
     }
@@ -50,7 +50,7 @@ export class AuctionComponent {
       'Authorization': `Bearer ${token}`
       // No need to set Content-Type, as it's automatically set when using FormData
     });
-
+  
     this.http.post('http://localhost:8000/api/donate-item', formData, { headers })
       .subscribe(
         (response) => {

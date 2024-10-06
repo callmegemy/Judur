@@ -2,6 +2,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 
@@ -15,7 +16,7 @@ import { CommonModule } from '@angular/common';
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, public authService: AuthService, private router: Router) {
+  constructor(private fb: FormBuilder, public authService: AuthService, private router: Router, private snackBar: MatSnackBar) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
@@ -26,7 +27,10 @@ export class LoginComponent {
   this.authService.login(this.loginForm.value).subscribe({
     next: (response) => {
       console.log('Login successful:', response);
-      this.router.navigate(['/']); // Navigate to home after login
+      this.snackBar.open('Login successful', 'Close', {
+        duration: 3000,
+      });
+      this.router.navigate(['/']); 
     },
     error: (err) => {
       console.error('Login error:', err);

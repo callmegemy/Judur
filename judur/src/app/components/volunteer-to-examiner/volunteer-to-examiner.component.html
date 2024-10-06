@@ -1,13 +1,24 @@
 <app-navbar></app-navbar>
+<div class="container mt-7 d-flex">
+  <!-- Descriptive Text Section -->
+  <div class="description-section mr-5">
+    <h2>Become an Examiner for Judur Charity</h2>
+    <p>
+      As an examiner at Judur Charity, you will play a vital role in helping us ensure that the land donated by kind-hearted individuals is suitable for our food festivals. Your job will be to visit the land, examine its condition, and report back to the admin with your findings. The report you provide will be used to make key decisions on whether the land is ready for the festival. 
+    </p>
+    <p>
+      Judur Charity is a non-profit organization dedicated to helping people in need. Your contribution as an examiner will be highly valued and will help us make a positive impact in our community.
+    </p>
+    <p>
+      We thank you for your commitment and look forward to working with you to bring about real change.
+    </p>
+  </div>
 
-<!-- volunteer-to-examiner.component.html -->
-<div class="container mt-5">
-    <div class="card shadow custom-hover-shadow">
-      <div class="card-header">
-        <h2><i class="fas fa-user-check"></i> Become an Examiner</h2>
-      </div>
+  <!-- Application Form Section -->
+  <div class="form-section">
+    <div *ngIf="!hasMadeRequest; else alreadyRequested" class="card shadow custom-hover-shadow">
       <div class="card-body">
-        <form action="#" method="POST">
+        <form [formGroup]="volunteerForm" (ngSubmit)="onSubmit()">
           <!-- Full Name -->
           <div class="form-group mb-3">
             <label for="fullName" class="font-weight-bold">Full Name</label>
@@ -15,10 +26,10 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-user"></i></span>
               </div>
-              <input type="text" id="fullName" class="form-control" placeholder="Enter full name" required>
+              <input type="text" id="fullName" class="form-control" formControlName="fullName" placeholder="Enter full name">
             </div>
           </div>
-  
+
           <!-- Email Address -->
           <div class="form-group mb-3">
             <label for="email" class="font-weight-bold">Email Address</label>
@@ -26,10 +37,10 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-envelope"></i></span>
               </div>
-              <input type="email" id="email" class="form-control" placeholder="Enter email address" required>
+              <input type="email" id="email" class="form-control" formControlName="email" placeholder="Enter email address">
             </div>
           </div>
-  
+
           <!-- Reason for Applying -->
           <div class="form-group mb-4">
             <label for="reason" class="font-weight-bold">Reason for Applying</label>
@@ -37,10 +48,10 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
               </div>
-              <textarea id="reason" class="form-control" rows="3" placeholder="Why do you want to become an examiner?" required></textarea>
+              <textarea id="reason" class="form-control" formControlName="reason" rows="3" placeholder="Why do you want to become an examiner?"></textarea>
             </div>
           </div>
-  
+
           <!-- Availability -->
           <div class="form-group mb-3">
             <label for="availability" class="font-weight-bold">When are you available during the week?</label>
@@ -48,10 +59,10 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-clock"></i></span>
               </div>
-              <input type="text" id="availability" class="form-control" placeholder="e.g., Monday to Friday, 5 PM - 8 PM" required>
+              <input type="text" id="availability" class="form-control" formControlName="availability" placeholder="e.g., Monday to Friday, 5 PM - 8 PM">
             </div>
           </div>
-  
+
           <!-- Hours per Week -->
           <div class="form-group mb-3">
             <label for="hours" class="font-weight-bold">How many hours can you dedicate per week?</label>
@@ -59,23 +70,30 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
               </div>
-              <input type="number" id="hours" class="form-control" placeholder="Enter hours" required>
+              <input type="number" id="hours" class="form-control" formControlName="hours" placeholder="Enter hours">
             </div>
           </div>
-  
+
           <!-- Non-Profit Awareness -->
           <div class="form-group mb-4">
             <label class="font-weight-bold">Are you aware that we are a non-profit charity?</label>
             <div class="form-check">
-              <input type="checkbox" class="form-check-input" id="nonProfitAwareness" required>
+              <input type="checkbox" class="form-check-input" id="nonProfitAwareness" formControlName="nonProfitAwareness">
               <label class="form-check-label" for="nonProfitAwareness">Yes, I understand.</label>
             </div>
           </div>
-  
+
           <!-- Submit Button -->
-          <button type="submit" class="btn btn-success btn-block">Submit Application</button>
+          <button type="submit" class="btn btn-success btn-block" [disabled]="volunteerForm.invalid">Submit Application</button>
         </form>
       </div>
     </div>
   </div>
-  
+</div>
+
+<!-- Display message if the user has already made a request -->
+<ng-template #alreadyRequested>
+  <div class="alert alert-info" role="alert">
+    {{ message }}
+  </div>
+</ng-template>

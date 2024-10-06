@@ -19,7 +19,6 @@ export class DonationMoneyDetailsComponent implements OnInit {
   constructor(private donationService: DonationService, private router: Router) {}
 
   ngOnInit(): void {
-    // Fetch the logged-in donor's financial donations
     this.donationService.getFinancialDonations().subscribe((data) => {
       if (data && data.length > 0) {
         this.financialDonations = data;

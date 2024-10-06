@@ -1,4 +1,4 @@
-/* Custom styles for the landowner registration form */
+/* Custom styles for the landowner registration form
 .container {
   margin-top: 150px;
 }
@@ -36,4 +36,9 @@
 .form-label {
   font-size: 1.1rem;
   margin-bottom: .5rem;
+} */
+
+.card-header {
+  background-color: #ffff !important; /* Dark background */
+  color: #fff !important;           /* White text */
 }

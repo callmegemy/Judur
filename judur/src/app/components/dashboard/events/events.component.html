@@ -30,9 +30,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-judur-reverse sidebar sidebar-dark accordion" id="accordionSidebar">
-            <app-sidebar></app-sidebar>
-        </ul>
+            <app-sidebar class="bg-gradient-judur"></app-sidebar>
 
         <!-- End of Sidebar -->
 
@@ -60,7 +58,7 @@
 
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-judur">All Hired Events</h6>
+                            <h6 class="m-0 font-weight-bold text-judur">All  Events</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -69,7 +67,7 @@
                                         <tr>
                                             <th>Title</th>
                                             <th>Location</th>
-                                            <th>Date</th>
+                                            <th>Status</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -77,208 +75,25 @@
                                         <tr>
                                             <th>Title</th>
                                             <th>Location</th>
-                                            <th>Date</th>
+                                            <th>Status</th>
                                             <th>Actions</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>61</td>
+                                        <tr *ngFor="let event of events">
+                                            <td>{{ event.title }}</td>
+                                            <td>{{ event.location }}</td>
+                                            <td> {{ event.event_status.name }} </td>
                                             <td>
-                                                <a href="/dashboard/events/view"
+                                                <a href="/dashboard/events/view/{{event.id}}"
                                                     class="btn-circle bg-judur rounded-circle"><i
                                                         class="fa-solid fa-eye"></i></a>
-                                                <a href="/dashboard/events/edit"
+                                                <a href="/dashboard/events/edit/{{event.id}}"
                                                     class="btn-circle bg-primary rounded-circle mx-3"><i
                                                         class="fa-solid fa-pen text-white"></i></a>
-                                                <a href="/dashboard/events/delete"
-                                                    class="btn-circle bg-danger rounded-circle"><i
-                                                        class="fa-solid fa-trash text-white"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>63</td>
-                                            <td>
-                                                <a href="/dashboard/events/view"
-                                                    class="btn-circle bg-judur rounded-circle"><i
-                                                        class="fa-solid fa-eye"></i></a>
-                                                <a href="/dashboard/events/edit"
-                                                    class="btn-circle bg-primary rounded-circle mx-3"><i
-                                                        class="fa-solid fa-pen text-white"></i></a>
-                                                <a href="/dashboard/events/delete"
-                                                    class="btn-circle bg-danger rounded-circle"><i
-                                                        class="fa-solid fa-trash text-white"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ashton Cox</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>66</td>
-                                            <td>
-                                                <a href="/dashboard/events/view"
-                                                    class="btn-circle bg-judur rounded-circle"><i
-                                                        class="fa-solid fa-eye"></i></a>
-                                                <a href="/dashboard/events/edit"
-                                                    class="btn-circle bg-primary rounded-circle mx-3"><i
-                                                        class="fa-solid fa-pen text-white"></i></a>
-                                                <a href="/dashboard/events/delete"
-                                                    class="btn-circle bg-danger rounded-circle"><i
-                                                        class="fa-solid fa-trash text-white"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cedric Kelly</td>
-                                            <td>Senior Javascript Developer</td>
-                                            <td>22</td>
-                                            <td>
-                                                <a href="/dashboard/events/view"
-                                                    class="btn-circle bg-judur rounded-circle"><i
-                                                        class="fa-solid fa-eye"></i></a>
-                                                <a href="/dashboard/events/edit"
-                                                    class="btn-circle bg-primary rounded-circle mx-3"><i
-                                                        class="fa-solid fa-pen text-white"></i></a>
-                                                <a href="/dashboard/events/delete"
-                                                    class="btn-circle bg-danger rounded-circle"><i
-                                                        class="fa-solid fa-trash text-white"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Paul Byrd</td>
-                                            <td>Chief Financial Officer (CFO)</td>
-                                            <td>64</td>
-                                            <td><a href="/dashboard/events/view"
-                                                    class="btn-circle bg-judur  rounded-circle"><i
-                                                        class="fa-solid fa-eye"></i></a>
-                                                <a href="/dashboard/events/edit"
-                                                    class="btn-circle bg-primary rounded-circle mx-3"><i
-                                                        class="fa-solid fa-pen text-white"></i></a>
-                                                <a href="/dashboard/events/delete"
-                                                    class="btn-circle bg-danger rounded-circle "><i
-                                                        class="fa-solid fa-trash text-white"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Gloria Little</td>
-                                            <td>Systems Administrator</td>
-                                            <td>59</td>
-                                            <td><a href="/dashboard/events/view"
-                                                    class="btn-circle bg-judur  rounded-circle"><i
-                                                        class="fa-solid fa-eye"></i></a>
-                                                <a href="/dashboard/events/edit"
-                                                    class="btn-circle bg-primary rounded-circle mx-3"><i
-                                                        class="fa-solid fa-pen text-white"></i></a>
-                                                <a href="/dashboard/events/delete"
-                                                    class="btn-circle bg-danger rounded-circle "><i
-                                                        class="fa-solid fa-trash text-white"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Bradley Greer</td>
-                                            <td>Software Engineer</td>
-                                            <td>41</td>
-                                            <td><a href="/dashboard/events/view"
-                                                    class="btn-circle bg-judur  rounded-circle"><i
-                                                        class="fa-solid fa-eye"></i></a>
-                                                <a href="/dashboard/events/edit"
-                                                    class="btn-circle bg-primary rounded-circle mx-3"><i
-                                                        class="fa-solid fa-pen text-white"></i></a>
-                                                <a href="/dashboard/events/delete"
-                                                    class="btn-circle bg-danger rounded-circle "><i
-                                                        class="fa-solid fa-trash text-white"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Dai Rios</td>
-                                            <td>Personnel Lead</td>
-                                            <td>35</td>
-                                            <td><a href="/dashboard/events/view"
-                                                    class="btn-circle bg-judur  rounded-circle"><i
-                                                        class="fa-solid fa-eye"></i></a>
-                                                <a href="/dashboard/events/edit"
-                                                    class="btn-circle bg-primary rounded-circle mx-3"><i
-                                                        class="fa-solid fa-pen text-white"></i></a>
-                                                <a href="/dashboard/events/delete"
-                                                    class="btn-circle bg-danger rounded-circle "><i
-                                                        class="fa-solid fa-trash text-white"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jenette Caldwell</td>
-                                            <td>Development Lead</td>
-                                            <td>30</td>
-                                            <td><a href="/dashboard/events/view"
-                                                    class="btn-circle bg-judur  rounded-circle"><i
-                                                        class="fa-solid fa-eye"></i></a>
-                                                <a href="/dashboard/events/edit"
-                                                    class="btn-circle bg-primary rounded-circle mx-3"><i
-                                                        class="fa-solid fa-pen text-white"></i></a>
-                                                <a href="/dashboard/events/delete"
-                                                    class="btn-circle bg-danger rounded-circle "><i
-                                                        class="fa-solid fa-trash text-white"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Yuri Berry</td>
-                                            <td>Chief Marketing Officer (CMO)</td>
-                                            <td>40</td>
-                                            <td><a href="/dashboard/events/view"
-                                                    class="btn-circle bg-judur  rounded-circle"><i
-                                                        class="fa-solid fa-eye"></i></a>
-                                                <a href="/dashboard/events/edit"
-                                                    class="btn-circle bg-primary rounded-circle mx-3"><i
-                                                        class="fa-solid fa-pen text-white"></i></a>
-                                                <a href="/dashboard/events/delete"
-                                                    class="btn-circle bg-danger rounded-circle "><i
-                                                        class="fa-solid fa-trash text-white"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Caesar Vance</td>
-                                            <td>Pre-Sales Support</td>
-                                            <td>21</td>
-                                            <td><a href="/dashboard/events/view"
-                                                    class="btn-circle bg-judur  rounded-circle"><i
-                                                        class="fa-solid fa-eye"></i></a>
-                                                <a href="/dashboard/events/edit"
-                                                    class="btn-circle bg-primary rounded-circle mx-3"><i
-                                                        class="fa-solid fa-pen text-white"></i></a>
-                                                <a href="/dashboard/events/delete"
-                                                    class="btn-circle bg-danger rounded-circle "><i
-                                                        class="fa-solid fa-trash text-white"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Doris Wilder</td>
-                                            <td>Sales Assistant</td>
-                                            <td>23</td>
-                                            <td><a href="/dashboard/events/view"
-                                                    class="btn-circle bg-judur  rounded-circle"><i
-                                                        class="fa-solid fa-eye"></i></a>
-                                                <a href="/dashboard/events/edit"
-                                                    class="btn-circle bg-primary rounded-circle mx-3"><i
-                                                        class="fa-solid fa-pen text-white"></i></a>
-                                                <a href="/dashboard/events/delete"
-                                                    class="btn-circle bg-danger rounded-circle "><i
-                                                        class="fa-solid fa-trash text-white"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Angelica Ramos</td>
-                                            <td>Chief Executive Officer (CEO)</td>
-                                            <td>47</td>
-                                            <td><a href="/dashboard/events/view"
-                                                    class="btn-circle bg-judur  rounded-circle"><i
-                                                        class="fa-solid fa-eye"></i></a>
-                                                <a href="/dashboard/events/edit"
-                                                    class="btn-circle bg-primary rounded-circle mx-3"><i
-                                                        class="fa-solid fa-pen text-white"></i></a>
-                                                <a href="/dashboard/events/delete"
-                                                    class="btn-circle bg-danger rounded-circle "><i
-                                                        class="fa-solid fa-trash text-white"></i></a>
+                                                        <a (click)="onDelete(event.id)" class="btn-circle bg-danger rounded-circle">
+                                                            <i class="fa-solid fa-trash text-white"></i>
+                                                          </a>
                                             </td>
                                         </tr>
                                     </tbody>
