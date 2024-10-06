@@ -1,7 +1,6 @@
 <div class="register-container">
   <h2 style="margin-bottom: 20px;">Financial Donation</h2>
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <!-- Donation Amount Field -->
     <div class="form-group">
       <label for="donationAmount">Donation Amount</label>
       <input formControlName="donationAmount" type="number" class="form-control" id="donationAmount"
@@ -12,7 +11,6 @@
       </div>
     </div>
 
-    <!-- Currency Field -->
     <div class="form-group">
       <label for="currency">Currency</label>
       <input formControlName="currency" type="text" class="form-control" id="currency"
@@ -23,7 +21,7 @@
       </div>
     </div>
 
-    <!-- Payment Method Field -->
+  
     <div class="form-group">
     <label for="paymentMethod">Payment Method</label>
     <select formControlName="paymentMethod"  class="form-control"id="paymentMethod">

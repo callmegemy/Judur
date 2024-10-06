@@ -47,9 +47,11 @@ import { CreateEventComponent } from './components/dashboard/create-event/create
 import { ViewEventComponent } from './components/dashboard/view-event/view-event.component';
 import { AuctionsComponent } from './components/dashboard/auctions/auctions.component';
 import { ViewAuctionComponent } from './components/dashboard/view-auction/view-auction.component';
-import { EditAuctionComponent } from './components/dashboard/edit-auction/edit-auction.component';
 import { CreateAuctionComponent } from './components/dashboard/create-auction/create-auction.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { LandInspectionComponent } from './land-inspection/land-inspection.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { authGuard } from '../app/auth.guard';
 import { UserManagementComponent } from './components/dashboard/user-management/user-management.component';
 import { AddSubAdminComponent } from './components/dashboard/add-sub-admin/add-sub-admin.component';
@@ -57,7 +59,7 @@ import { ViewSubAdminComponent } from './components/dashboard/view-sub-admin/vie
 import { EditSubAdminComponent } from './components/dashboard/edit-sub-admin/edit-sub-admin.component';
 import { AvailableLandsComponent } from './components/available-lands/available-lands.component';
 
-import { LandInspectionComponent } from './land-inspection/land-inspection.component';
+import { EditAuctionComponent } from './components/dashboard/edit-auction/edit-auction.component';
 export const routes: Routes = [
   {
     path: '',
@@ -129,34 +131,13 @@ export const routes: Routes = [
 
   // { path: '', redirectTo: '/donation-history', pathMatch: 'full' },
   // { path: '**', redirectTo: '/donation-histor>>>>>
-  {
-    path: 'dashboard', component: MainComponent,
-    canActivate: [authGuard]
-  },
-  {
-    path: 'dashboard/users', component: UsersAdminComponent,
-    canActivate: [authGuard]
-  },
-  {
-    path: 'dashboard/requests', component: RequestsComponent,
-    canActivate: [authGuard]
-  },
-  {
-    path: 'dashboard/request/view/v', component: VolunteerRequestComponent,
-    canActivate: [authGuard]
-  },
-  {
-    path: 'dashboard/request/view/ex', component: ExaminerRequestComponent,
-    canActivate: [authGuard]
-  },
-  {
-    path: 'dashboard/userProfile/volunteer', component: VolunteerProfileComponent,
-    canActivate: [authGuard]
-  },
-  {
-    path: 'dashboard/userProfile/doner', component: DonorProfileComponent,
-    canActivate: [authGuard]
-  },
+  { path: 'dashboard', component: MainComponent  ,},
+  { path: 'dashboard/users', component: UsersAdminComponent ,},
+  { path: 'dashboard/requests', component: RequestsComponent, },
+  { path: 'dashboard/request/view/v', component: VolunteerRequestComponent, },
+  { path: 'dashboard/request/view/ex', component: ExaminerRequestComponent , },
+  { path: 'dashboard/userProfile/volunteer', component: VolunteerProfileComponent ,},
+  { path: 'dashboard/userProfile/doner', component: DonorProfileComponent ,},
   { path: 'dashboard', component: MainComponent },
   { path: 'dashboard/users', component: UsersAdminComponent },
   { path: 'dashboard/requests', component: RequestsComponent },
@@ -165,68 +146,28 @@ export const routes: Routes = [
   { path: 'dashboard/userProfile/volunteer/:id', component: VolunteerProfileComponent },
   { path: 'dashboard/userProfile/doner/:id', component: DonorProfileComponent },
 
-  {
-    path: 'dashboard/events', component: EventsComponent,
-    canActivate: [authGuard]
-  },
-  {
-    path: 'dashboard/events/edit', component: EditEventComponent,
-    canActivate: [authGuard]
-  },
-  {
-    path: 'dashboard/events/view', component: ViewEventComponent,
-    canActivate: [authGuard]
-  },
-  {
-    path: 'dashboard/events/create', component: CreateEventComponent,
-    canActivate: [authGuard]
-  },
   { path: 'dashboard/events', component: EventsComponent },
   { path: 'dashboard/events/edit/:id', component: EditEventComponent },
   { path: 'dashboard/events/view/:id', component: ViewEventComponent },
   { path: 'dashboard/events/create', component: CreateEventComponent },
 
-  {
-    path: 'dashboard/auctions', component: AuctionsComponent,
-    canActivate: [authGuard]
-  },
-  {
-    path: 'dashboard/auctions/view', component: ViewAuctionComponent,
-    canActivate: [authGuard]
-  },
-  {
-    path: 'dashboard/auctions/edit', component: EditAuctionComponent,
-    canActivate: [authGuard]
-  },
-  {
-    path: 'dashboard/auctions/create', component: CreateAuctionComponent,
-    canActivate: [authGuard]
-  },
+  { path: 'dashboard/auctions', component: AuctionsComponent },
+  { path: 'dashboard/auctions/view/:id', component: ViewAuctionComponent },
+  { path: 'dashboard/auctions/edit/:id', component: EditAuctionComponent },
+  { path: 'dashboard/auctions/create', component: CreateAuctionComponent },
 
-  {
-    path: 'dashboard/examiner-reports', component: ExaminerReportsComponent,
-    canActivate: [authGuard]
-  },
-  {
-    path: 'dashboard/examiner-reports/report-details/:id', component: ReportDetailsComponent,
-    canActivate: [authGuard]
-  },
-  {
-    path: 'dashboard/posts', component: PostsDashboardComponent,
-    canActivate: [authGuard]
-  },
-  {
-    path: 'dashboard/posts/create-post', component: CreatePostComponent,
-    canActivate: [authGuard]
-  },
-  {
-    path: 'dashboard/posts/view-post/:id', component: ViewPostComponent,
-    canActivate: [authGuard]
-  },
-  {
-    path: 'dashboard/posts/edit-post/:id', component: EditPostComponent,
-    canActivate: [authGuard]
-  },
+  { path: 'dashboard/examiner-reports', component: ExaminerReportsComponent ,
+    canActivate: [authGuard]},
+  { path: 'dashboard/examiner-reports/report-details/:id', component: ReportDetailsComponent ,
+    canActivate: [authGuard]},
+  { path: 'dashboard/posts', component: PostsDashboardComponent ,
+    canActivate: [authGuard]},
+  { path: 'dashboard/posts/create-post', component: CreatePostComponent ,
+    canActivate: [authGuard]},
+  { path: 'dashboard/posts/view-post/:id', component: ViewPostComponent ,
+    canActivate: [authGuard]},
+  { path: 'dashboard/posts/edit-post/:id', component: EditPostComponent,
+    canActivate: [authGuard] },
 
 
 
@@ -253,6 +194,15 @@ export const routes: Routes = [
   { path: 'listing-auctions', component: ListingAuctionsComponent },
   { path: 'details-auctions', component: DetailsAuctionsComponent },
   { path: 'land-inspection', component: LandInspectionComponent },
+  {path:'contact-us',component:ContactUsComponent},
+
+
+
+
+  { path: 'land-inspection', component: LandInspectionComponent },
+  { path: 'reset-password', component: ResetPasswordComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent }, 
+  
 ];
 
 @NgModule({

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';  
+import { FormsModule, NgForm } from '@angular/forms';  
 import { CommonModule } from '@angular/common';  
 import { NavbarComponent } from '../navbar/navbar.component';
 import { AuthService } from '../../services/auth.service';// Import AuthService
@@ -28,12 +28,12 @@ export class AuctionComponent {
   constructor(private http: HttpClient) {}
 
   // Method triggered on form submission
-  onSubmit(form: any) {
-    if (!form.valid) {
+  onSubmit(form: NgForm) {
+    if (form.invalid) {
       alert('Please fill in all required fields');
       return;
     }
-
+  
     const formData = {
       item_name: this.itemName,
       value: this.estimatedValue,
@@ -42,13 +42,13 @@ export class AuctionComponent {
       status_id: this.statusId,
       extra_notes: this.extraNotes  // Include the extra notes field if valuable
     };
-
+  
     const token = localStorage.getItem('auth_token');  
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`, 
       'Content-Type': 'application/json'
     });
-
+  
     this.http.post('http://localhost:8000/api/donate-item', formData, { headers })
       .subscribe(
         (response) => {
@@ -61,4 +61,5 @@ export class AuctionComponent {
         }
       );
   }
+  
 }

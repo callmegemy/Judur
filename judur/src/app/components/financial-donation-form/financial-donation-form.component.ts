@@ -1,30 +1,36 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+
+
+
+
+ import {  RouterModule } from '@angular/router';
+ import { AuthService } from '../../services/auth.service';
+ import Swal from 'sweetalert2';
+ import { DonationService } from '../../services/donation.service';
+import { Component , OnInit , AfterViewInit} from "@angular/core";
+import { FormBuilder, FormGroup , Validator, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { CommonModule } from "@angular/common";
+import { ReactiveFormsModule } from "@angular/forms";
+import { loadStripe, Stripe } from '@stripe/stripe-js';
 import { NavbarComponent } from '../navbar/navbar.component';
-import { AuthService } from '../../services/auth.service';
-import Swal from 'sweetalert2';
-import { DonationService } from '../../services/donation.service';
 
 @Component({
   selector: 'app-financial-donation-form',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, NavbarComponent],
   templateUrl: './financial-donation-form.component.html',
-  styleUrls: ['./financial-donation-form.component.css']
+  styleUrls: ['./financial-donation-form.component.css'],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule ,NavbarComponent], // Standalone component imports
 })
 export class FinancialDonationFormComponent implements OnInit {
   registerForm!: FormGroup;
-  private stripe: any; // Define the stripe variable
-  private card: any; // Variable to hold the card element
+  private stripe: any; 
+  private card: any; 
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private authService: AuthService,
-    private donationService: DonationService // Inject the donation service
+    private donationService: DonationService 
   ) {
     this.createForm();
   }
@@ -67,8 +73,8 @@ export class FinancialDonationFormComponent implements OnInit {
 
   onSubmit(): void {
     if (this.registerForm.valid) {
-      const { donationAmount, currency, paymentMethod } = this.registerForm.value; // Get paymentMethod from form
-      this.createPayment(donationAmount, currency, paymentMethod); // Pass paymentMethod to createPayment
+      const { donationAmount, currency, paymentMethod } = this.registerForm.value;
+      this.createPayment(donationAmount, currency, paymentMethod); 
     } else {
       Swal.fire({
         title: 'Error!',
@@ -80,13 +86,12 @@ export class FinancialDonationFormComponent implements OnInit {
   }
 
   createPayment(amount: number, currency: string, paymentMethod: string): void {
-    // Create a payment intent on the server
     this.donationService.createPayment(amount * 100, currency).subscribe(
       (response: any) => {
         const clientSecret = response.clientSecret;
         console.log('Payment Intent created successfully!', clientSecret);
 
-        // Here you can use Stripe.js to handle the card payment
+      
         this.stripe.confirmCardPayment(clientSecret, {
           payment_method: {
             card: this.card,

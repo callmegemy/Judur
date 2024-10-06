@@ -5,13 +5,12 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { NavbarComponent } from '../components/navbar/navbar.component';
-
 @Component({
   selector: 'app-land-inspection',
-  standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, NavbarComponent],
+  standalone: true, // Standalone component
   templateUrl: './land-inspection.component.html',
-  styleUrls: ['./land-inspection.component.css'] // Fixed property name here
+  styleUrls: ['./land-inspection.component.css'],
+  imports: [ReactiveFormsModule, CommonModule , NavbarComponent], // Import necessary modules
 })
 export class LandInspectionComponent {
   inspectionForm: FormGroup; // FormGroup for land inspection form
@@ -51,7 +50,7 @@ export class LandInspectionComponent {
 
     if (token) {
       const headers = new HttpHeaders({
-        'Authorization': `Bearer ${token}`, // Fixed string interpolation here
+        'Authorization': `Bearer ${token}`,
         'Accept': 'application/json',
       });
 
@@ -91,20 +90,20 @@ export class LandInspectionComponent {
     }
 
     const formData = new FormData();
-    formData.append('land_id', this.inspectionForm.get('land_id')?.value || ''); // Added fallback value
+    formData.append('land_id', this.inspectionForm.get('land_id')?.value);
 
     const dateValue = this.inspectionForm.get('date')?.value;
-    const formattedDate = new Date(dateValue).toISOString().split('T')[0] || ''; // Added fallback value
+    const formattedDate = new Date(dateValue).toISOString().split('T')[0]; // Format date as YYYY-MM-DD
     formData.append('date', formattedDate);
 
-    formData.append('hygiene', this.inspectionForm.get('hygiene')?.value || ''); // Added fallback value
-    formData.append('capacity', this.inspectionForm.get('capacity')?.value || ''); // Added fallback value
+    formData.append('hygiene', this.inspectionForm.get('hygiene')?.value);
+    formData.append('capacity', this.inspectionForm.get('capacity')?.value);
 
     // Ensure electricity_supply is a boolean
     const electricitySupplyValue = this.inspectionForm.get('electricity_supply')?.value;
     formData.append('electricity_supply', electricitySupplyValue ? '1' : '0'); // Append as '1' for true and '0' for false
 
-    formData.append('general_condition', this.inspectionForm.get('general_condition')?.value || ''); // Added fallback value
+    formData.append('general_condition', this.inspectionForm.get('general_condition')?.value);
 
     if (this.selectedFile) {
         formData.append('photo', this.selectedFile);
@@ -112,7 +111,7 @@ export class LandInspectionComponent {
 
     const token = this.authService.getToken(); // Retrieve token again before making the request
     const headers = new HttpHeaders({
-        'Authorization': `Bearer ${token}`, // Fixed string interpolation here
+        'Authorization': `Bearer ${token}`,
         'Accept': 'application/json',
     });
 
@@ -125,10 +124,9 @@ export class LandInspectionComponent {
             console.error('Error submitting land inspection:', error);
             if (error.status === 422 && error.error.errors) {
                 console.error('Validation errors:', error.error.errors);  // Log validation errors from backend
-            } else {
-                alert('An unexpected error occurred. Please try again.'); // Added this line for better error handling
             }
         }
     );
-  }
+}
+
 }
