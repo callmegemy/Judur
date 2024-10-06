@@ -24,7 +24,7 @@ export class EventJoinComponent {
   ) {}
 
   ngOnInit(): void {
-    // Check if the user is a volunteer and pending approval
+    
     const user = this.authService.getUserData();
     if (user.role_id === 2) { // If the user is a volunteer
       if (!user.volunteerProfile || user.volunteerProfile.volunteer_status !== 1) {
@@ -73,9 +73,23 @@ export class EventJoinComponent {
   }
 
   private checkIfJoined() {
-    // Add logic here to check if the user is already joined
-    // This can be done via an API call if necessary
-    // Example (for now setting as default false):
-    this.isJoined = false;
+    const userId = this.authService.getUserData().id;
+    this.eventService.isVolunteerJoined(this.eventId, userId).subscribe({
+      next: (response: any) => {
+        this.isJoined = response.isJoined;
+      },
+      error: (error: any) => {
+        if (error.status === 401) {
+          console.error('User not authenticated:', error.message);
+          this.isJoined = false;
+          // Optionally, redirect to the login page
+        } else {
+          console.error('Error checking event participation:', error.message);
+          this.isJoined = false;  // Default to not joined if there's an error
+        }
+      }
+    });
   }
+
+ 
 }

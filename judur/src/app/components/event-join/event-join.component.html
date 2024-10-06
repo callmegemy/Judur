@@ -6,6 +6,4 @@
   {{ isJoined ? 'Cancel' : 'Join Now' }}
 </button>
 
-<p *ngIf="isLoading" class="text-info">Processing...</p>
-<p *ngIf="isJoined && !isLoading" class="text-success">You are currently joined to the event.</p>
-<p *ngIf="!isJoined && !isLoading" class="text-warning">You haven't joined this event yet.</p>
+
