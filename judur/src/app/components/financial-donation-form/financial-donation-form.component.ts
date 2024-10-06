@@ -12,13 +12,14 @@ import { Router } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule } from "@angular/forms";
 import { loadStripe, Stripe } from '@stripe/stripe-js';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-financial-donation-form',
   standalone: true,
   templateUrl: './financial-donation-form.component.html',
   styleUrls: ['./financial-donation-form.component.css'],
-  imports: [CommonModule, ReactiveFormsModule, RouterModule ,], // Standalone component imports
+  imports: [CommonModule, ReactiveFormsModule, RouterModule ,NavbarComponent], // Standalone component imports
 })
 export class FinancialDonationFormComponent implements OnInit {
   registerForm!: FormGroup;

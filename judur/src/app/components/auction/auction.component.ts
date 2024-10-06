@@ -3,7 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';  
 import { CommonModule } from '@angular/common';  
 import { NavbarComponent } from '../navbar/navbar.component';
-import { AuthService } from '../../services/auth.service';// Import AuthService
+import { Router } from '@angular/router'; // Import Router
+import Swal from 'sweetalert2'; // Import SweetAlert2
 
 @Component({
   selector: 'app-auction',
@@ -22,12 +23,10 @@ export class AuctionComponent {
   estimatedValue: string = '';
   itemCondition: string = '';
   statusId: number = 1;
-  extraNotes: string = '';  // New property for additional notes
+  extraNotes: string = '';  
   notifyApproval: boolean = false;
 
-  constructor(private http: HttpClient) {}
-
-  // Method triggered on form submission
+  constructor(private http: HttpClient, private router: Router) {}
   onSubmit(form: any) {
     if (!form.valid) {
       alert('Please fill in all required fields');
@@ -40,7 +39,7 @@ export class AuctionComponent {
       is_valuable: this.isValuable,
       condition: this.itemCondition,
       status_id: this.statusId,
-      extra_notes: this.extraNotes  // Include the extra notes field if valuable
+      extra_notes: this.extraNotes  
     };
 
     const token = localStorage.getItem('auth_token');  
@@ -53,11 +52,24 @@ export class AuctionComponent {
       .subscribe(
         (response) => {
           console.log('Item donation successful:', response);
-          alert('Item donated successfully!');
+          Swal.fire({
+            icon: 'success',
+            title: 'Donation Successful!',
+            text: 'Your item has been donated successfully.',
+            confirmButtonText: 'View Donations'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.router.navigate(['/donation-history']);
+            }
+          });
         },
         (error) => {
           console.error('Error donating item:', error);
-          alert('There was an error donating the item.');
+          Swal.fire({
+            icon: 'error',
+            title: 'Donation Failed',
+            text: 'There was an error donating your item.',
+          });
         }
       );
   }
