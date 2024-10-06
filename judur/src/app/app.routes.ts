@@ -33,7 +33,6 @@ import { DonorProfileComponent } from './components/dashboard/doner-profile/done
 import { EventDetailsComponent } from './components/event-details/event-details.component';
 import { EventListComponent } from './components/event-list/event-list.component';
 import { ExaminerReportsComponent } from './components/dashboard/examiner-reports/examiner-reports.component';
-import { ReportDetailsComponent } from './components/dashboard/report-details/report-details.component';
 import { PostsDashboardComponent } from './components/dashboard/posts-dashboard/posts-dashboard.component';
 import { CreatePostComponent } from './components/dashboard/create-post/create-post.component';
 import { ViewPostComponent } from './components/dashboard/view-post/view-post.component';
@@ -60,6 +59,10 @@ import { EditSubAdminComponent } from './components/dashboard/edit-sub-admin/edi
 import { AvailableLandsComponent } from './components/available-lands/available-lands.component';
 
 import { EditAuctionComponent } from './components/dashboard/edit-auction/edit-auction.component';
+
+
+import { EventJoinComponent } from './components/event-join/event-join.component';
+import { ReportDetailsComponent } from './components/dashboard/examiner-reports/report-details/report-details.component';
 export const routes: Routes = [
   {
     path: '',
@@ -109,6 +112,10 @@ export const routes: Routes = [
 
   { path: 'list-event', component: EventListComponent ,
     canActivate: [authGuard]},
+  { path: 'profile/edit/:id', component: EditProfileComponent },
+      { path: 'list-event/event-details/:id', component: EventDetailsComponent },
+      { path: 'list-event/join-event/:id', component: EventJoinComponent },
+  { path: 'list-event', component: EventListComponent},
 
   // { path: '', redirectTo: '/donation-history', pathMatch: 'full' },
   // { path: '**', redirectTo: '/donation-history' }
@@ -161,6 +168,10 @@ export const routes: Routes = [
     canActivate: [authGuard]},
   { path: 'dashboard/posts/edit-post/:id', component: EditPostComponent,
     canActivate: [authGuard] },
+  { path: 'dashboard/examiner-reports', component: ExaminerReportsComponent },
+  { path: 'dashboard/examiner-reports/report-details/:id', component: ReportDetailsComponent },
+  
+ 
 
 
 
