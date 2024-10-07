@@ -112,6 +112,19 @@
                                                 required min="0">
                                         </div>
                                     </div>
+                                    
+                                    <!-- Sub Admin Phone -->
+                                     <div class="form-group mb-3">
+                                        <label for="subAdminPhone" class="font-weight-bold">Phone</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                            </div>
+                                            <input type="tel" id="subAdminPhone" class="form-control"
+                                                [(ngModel)]="subAdminData.phone" name="phone" placeholder="Enter phone number"
+                                                required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+                                        </div>
+                                    </div>
 
                                     <!-- Role Selection -->
                                     <div class="form-group mb-3">
@@ -119,7 +132,7 @@
                                         <select id="role" class="form-control" [(ngModel)]="subAdminData.role_id"
                                             name="role" required>
                                             <option [ngValue]="null" disabled>Select a role</option>
-                                            <option [ngValue]="5">Organizer</option>
+                                            <option [ngValue]="5">Organizer </option>
                                             <option [ngValue]="6">Mentor</option>
                                         </select>
                                     </div>

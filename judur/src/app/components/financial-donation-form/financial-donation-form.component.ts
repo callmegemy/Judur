@@ -112,8 +112,10 @@ export class FinancialDonationFormComponent implements OnInit {
           } else {
             // Payment succeeded
             if (result.paymentIntent.status === 'succeeded') {
-              this.donateMoney(amount, currency, paymentMethod); // Pass paymentMethod to donateMoney
+              this.donateMoney(amount, currency, paymentMethod);
             }
+            this.router.navigate(['/donate']); 
+
           }
         });
       },
