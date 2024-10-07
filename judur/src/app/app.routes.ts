@@ -123,6 +123,7 @@ export const routes: Routes = [
 
   // { path: '', redirectTo: '/donation-history', pathMatch: 'full' },
   // { path: '**', redirectTo: '/donation-history' }
+  {path:'auction-details/:id',component:DetailsAuctionsComponent},
   {
     path: 'auction-list', component: ListingAuctionsComponent,
     canActivate: [authGuard]
@@ -200,6 +201,8 @@ export const routes: Routes = [
   { path: 'blog/:id', component: BlogDetailsComponent },
 
 
+  { path: 'listing-auctions' , component: ListingAuctionsComponent},
+  { path: 'details-auctions' , component:DetailsAuctionsComponent},
   { path: 'listing-auctions', component: ListingAuctionsComponent },
   { path: 'details-auctions', component: DetailsAuctionsComponent },
   { path: 'land-inspection', component: LandInspectionComponent },
@@ -212,10 +215,15 @@ export const routes: Routes = [
   { path: 'reset-password', component: ResetPasswordComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent }, 
   
+  { path: 'land-inspection', component: LandInspectionComponent},
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
+
+
+
+
