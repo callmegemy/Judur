@@ -33,7 +33,6 @@ import { DonorProfileComponent } from './components/dashboard/doner-profile/done
 import { EventDetailsComponent } from './components/event-details/event-details.component';
 import { EventListComponent } from './components/event-list/event-list.component';
 import { ExaminerReportsComponent } from './components/dashboard/examiner-reports/examiner-reports.component';
-import { ReportDetailsComponent } from './components/dashboard/report-details/report-details.component';
 import { PostsDashboardComponent } from './components/dashboard/posts-dashboard/posts-dashboard.component';
 import { CreatePostComponent } from './components/dashboard/create-post/create-post.component';
 import { ViewPostComponent } from './components/dashboard/view-post/view-post.component';
@@ -60,6 +59,10 @@ import { EditSubAdminComponent } from './components/dashboard/edit-sub-admin/edi
 import { AvailableLandsComponent } from './components/available-lands/available-lands.component';
 
 import { EditAuctionComponent } from './components/dashboard/edit-auction/edit-auction.component';
+
+
+import { EventJoinComponent } from './components/event-join/event-join.component';
+import { ReportDetailsComponent } from './components/dashboard/examiner-reports/report-details/report-details.component';
 export const routes: Routes = [
   {
     path: '',
@@ -108,12 +111,15 @@ export const routes: Routes = [
   { path: 'edit-profile/:id', component: EditProfileComponent },
   { path: 'list-event/event-details/:id', component: EventDetailsComponent },
 
-  {
-    path: 'list-event', component: EventListComponent
-  },
+  { path: 'list-event', component: EventListComponent },
+  { path: 'profile/edit/:id', component: EditProfileComponent },
+      { path: 'list-event/event-details/:id', component: EventDetailsComponent },
+      { path: 'list-event/join-event/:id', component: EventJoinComponent },
+  { path: 'list-event', component: EventListComponent},
 
   // { path: '', redirectTo: '/donation-history', pathMatch: 'full' },
   // { path: '**', redirectTo: '/donation-history' }
+  {path:'auction-details/:id',component:DetailsAuctionsComponent},
   {
     path: 'auction-list', component: ListingAuctionsComponent
   },
@@ -177,6 +183,8 @@ export const routes: Routes = [
   { path: 'blog/:id', component: BlogDetailsComponent },
 
 
+  { path: 'listing-auctions' , component: ListingAuctionsComponent},
+  { path: 'details-auctions' , component:DetailsAuctionsComponent},
   { path: 'listing-auctions', component: ListingAuctionsComponent },
   { path: 'details-auctions', component: DetailsAuctionsComponent },
   { path: 'land-inspection', component: LandInspectionComponent },
@@ -189,10 +197,15 @@ export const routes: Routes = [
   { path: 'reset-password', component: ResetPasswordComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent }, 
   
+  { path: 'land-inspection', component: LandInspectionComponent},
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
+
+
+
+

@@ -199,8 +199,7 @@ public isExaminer(): boolean {
     return this.loggedIn.asObservable();
   }
 
-
-
+  
   donateLand(formData: FormData): Observable<any> {
     const headers = {
       'Authorization': `Bearer ${localStorage.getItem('auth_token')}`, // Use the correct token key
@@ -218,6 +217,8 @@ public isExaminer(): boolean {
       'Accept': 'application/json'
     };
 
+
+    
     return this.http.post(`${this.apiUrl}/donate-money`, data, { headers }).pipe(
       tap((response) => {
         console.log('Money donation response:', response);
@@ -282,9 +283,5 @@ requestExaminer(formData: any): Observable<any> {
     }
   });
 }
-
-
-
-
 
 }

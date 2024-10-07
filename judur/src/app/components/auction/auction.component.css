@@ -1,4 +1,65 @@
-.card-header {
-  background-color: #ffff !important; /* Dark background */
-  color: #fff !important;           /* White text */
+body {
+  background-color: #f4f4f9;
+  font-family: 'Roboto', sans-serif;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+
+.register-container {
+  width: 100%;
+  max-width: 600px;
+  padding: 30px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  position: absolute;
+  bottom: 90px; 
+  left: 50%;  
+  transform: translate(-50%, 0);  
+}
+
+.form-control {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #6A9C89;
+  box-shadow: 0 0 5px rgba(106, 156, 137, 0.2);
+}
+
+.form-control:hover {
+  border-color: #6A9C89;
+}
+
+.register-btn {
+  background-color: #16423C;
+  color: #fff;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.register-btn:hover {
+  background-color: #6A9C89;
+  transform: translateY(-2px);
+}
+
+.register-btn:active {
+  transform: translateY(1px);
+}
+
+.text-danger {
+  font-size: 0.875rem;
 }

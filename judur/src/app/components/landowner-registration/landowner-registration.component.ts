@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { NavbarComponent } from '../navbar/navbar.component';
+import Swal from 'sweetalert2'; // Import SweetAlert2
+import { Router } from '@angular/router'; // Import Router
 
 @Component({
   selector: 'app-landowner-registration',
@@ -16,7 +18,7 @@ export class LandownerRegistrationComponent {
   selectedFile: File | null = null;
   user: any;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.landDonationForm = this.fb.group({
       description: ['', Validators.required],
       land_size: ['', [Validators.required, Validators.min(1)]],
@@ -56,12 +58,31 @@ export class LandownerRegistrationComponent {
     this.authService.donateLand(formData).subscribe(
       (response: any) => {
         console.log('Land donated successfully!', response);
-        window.alert('Land donated successfully!');
+        
+        // SweetAlert2 for success message
+        Swal.fire({
+          icon: 'success',
+          title: 'Land Donation Successful!',
+          text: 'Your land donation has been submitted successfully.',
+          confirmButtonText: 'View Donation History'
+        }).then((result) => {
+          if (result.isConfirmed) {
+          
+            this.router.navigate(['/donation-history']);
+          }
+        });
+        
         this.landDonationForm.reset();
       },
       (error: any) => {
         console.error('Error donating land:', error);
-        window.alert('An error occurred while donating land. Please try again.');
+        
+        // SweetAlert2 for error message
+        Swal.fire({
+          icon: 'error',
+          title: 'Land Donation Failed',
+          text: 'An error occurred while donating land. Please try again.',
+        });
       }
     );
   }
