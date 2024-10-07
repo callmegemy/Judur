@@ -114,8 +114,7 @@ export class FinancialDonationFormComponent implements OnInit {
             if (result.paymentIntent.status === 'succeeded') {
               this.donateMoney(amount, currency, paymentMethod);
             }
-            this.router.navigate(['/donate']); 
-
+          
           }
         });
       },
