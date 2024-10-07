@@ -12,7 +12,9 @@ interface SubAdminData {
   email: string;
   password: string;
   age:string;
-  role_id: 6 | 7 | null; // role_id can be 6, 7, or null
+  role_id: 5 | 6 | null;    
+  
+  phone:string;
 }
 
 @Component({
@@ -28,6 +30,7 @@ export class AddSubAdminComponent {
     email: '',
     password: '',
     age: '',
+    phone:'',
     role_id: null, 
   };
 

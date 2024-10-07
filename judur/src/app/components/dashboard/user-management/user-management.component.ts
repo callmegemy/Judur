@@ -33,7 +33,6 @@ export class UserManagementComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.initializeDataTables();
   
-    // Attach click event listener to delete buttons
     $(document).on('click', '.delete-button', (event) => {
       const userId = $(event.currentTarget).data('id');
       this.deleteUser(userId);
@@ -50,11 +49,9 @@ export class UserManagementComponent implements OnInit, AfterViewInit {
 
   loadUsers() {
     this.userService.getUsers().subscribe((data) => {
-      // Split users into organizers and mentors
       this.organizers = data.filter(user => user.role === 'Organizer');
       this.mentors = data.filter(user => user.role === 'Mentor');
 
-      // Re-initialize DataTables after loading users
       this.initializeDataTables();
     });
   }

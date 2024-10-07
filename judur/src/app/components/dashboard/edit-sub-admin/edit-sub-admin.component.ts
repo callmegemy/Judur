@@ -19,8 +19,8 @@ export class EditSubAdminComponent {
   userId: number | undefined; 
   user: any; 
   roles = [
-    { id: 6, name: 'Organizer' },
-    { id: 7, name: 'Mentor' }
+    { id: 5, name: 'Organizer' },
+    { id: 6, name: 'Mentor' }
   ];
 
   constructor(

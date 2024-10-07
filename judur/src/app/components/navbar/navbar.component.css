@@ -581,4 +581,13 @@ body {
     background: var(--primary);
     color: var(--light);
 }
+.notification-link:hover {
+    color: #6A9C89;
+}
+
+/* Change color when clicked */
+.notification-link:active {
+    color: #6A9C89;
+}
+
 
