@@ -132,9 +132,8 @@ export const routes: Routes = [
 
 
   // dashboard Routs End
-{path: 'blog', component:BlogComponent},
-{path: 'blog/:id', component: BlogDetailsComponent },
-
+  {path: 'blog', component:BlogComponent},
+  {path: 'blog/:id', component: BlogDetailsComponent },
 
   { path: 'listing-auctions' , component: ListingAuctionsComponent},
   { path: 'details-auctions' , component:DetailsAuctionsComponent},

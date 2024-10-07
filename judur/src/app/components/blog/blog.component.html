@@ -10,9 +10,9 @@
         <div class="blog-item">
           <div class="blog-img">
             <img
-              [src]="post.imgSrc"
+              [src]="post.image"
               alt="Blog Image"
-              style="height: 420px; width: 420px"
+              style="height: 348px; width: 348px"
             />
           </div>
           <div class="blog-text">
@@ -20,21 +20,27 @@
               <a [routerLink]="['/blog', post.id]">{{ post.title }}</a>
             </h3>
             <p>{{ post.description }}</p>
-          </div>
-          <div class="blog-meta">
-            <p>
-              <i class="fa fa-user"></i>
-              <a href="#">{{ post.author }}</a>
-            </p>
-            <p>
-              <i class="fa fa-comments"></i>
-              <a href="#">{{ post.comments }} Comments</a>
-            </p>
+            <!-- Displaying description instead of content -->
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Pagination code remains the same -->
+    <!-- Pagination (if you have it) -->
+    <div class="pagination">
+      <button
+        (click)="currentPage = currentPage - 1"
+        [disabled]="currentPage === 1"
+      >
+        Previous
+      </button>
+      <span>Page {{ currentPage }}</span>
+      <button
+        (click)="currentPage = currentPage + 1"
+        [disabled]="currentPage >= blogPosts.length / pageSize"
+      >
+        Next
+      </button>
+    </div>
   </div>
 </div>

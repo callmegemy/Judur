@@ -24,7 +24,7 @@ a {
 a:hover,
 a:active,
 a:focus {
-  color: #FDBE33;
+  color: #000000;
   outline: none;
   text-decoration: none;
 }
@@ -98,7 +98,7 @@ a:focus {
 }
 
 .blog .blog-text h3 a:hover {
-  color: #FDBE33;
+  color: #000000;
 }
 
 .blog .blog-text p {
@@ -149,7 +149,7 @@ a:focus {
 
 .blog .pagination .page-link:hover,
 .blog .pagination .page-item.active .page-link {
-  color: #FDBE33;
+  color: #000000;
   background: #4a4c70;
 }
 
