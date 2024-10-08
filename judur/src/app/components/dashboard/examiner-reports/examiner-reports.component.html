@@ -48,6 +48,7 @@
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-judur">List of Reports</h6>
+                            
                         </div>
                         <div class="card-body">
                          
@@ -55,14 +56,21 @@
                                 <thead>
                                     <tr>
                                         <th>Place</th>
+                                        <th>land id</th>
+                                        <th> Land Status</th>
                                         <th>Examiner</th>
+                                        
                                         <th>Report Date</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let report of reports">
+                                        
+                          
                                         <td>{{ report.land.address }}</td>
+                                        <td> {{ report.land.id }}</td>
+                                        <td>{{ report.land.status_id}}</td>
                                         <td>{{ report.examiner.name }}</td>
                                         <td>{{ report.date | date: 'shortDate' }}</td>
                                         <td>

@@ -32,8 +32,8 @@
 
 .single .single-tags a:hover {
   color: #ffffff;
-  background: #FDBE33;
-  border-color: #FDBE33;
+  background: black;
+  border-color: #16423C;
 }
 
 .single .single-bio {
@@ -111,7 +111,7 @@
 }
 
 .single .post-item .post-text a:hover {
-  color: #FDBE33;
+  color: #16423C;
 }
 
 .single .post-item .post-meta {
@@ -153,14 +153,14 @@
   align-items: center;
   justify-content: center;
   color: #4a4c70;
-  background: #FDBE33;
+  background: #16423C;
   font-size: 16px;
   transition: .3s;
 }
 
 .single .related-slider .owl-nav .owl-prev:hover,
 .single .related-slider .owl-nav .owl-next:hover {
-  color: #FDBE33;
+  color: #000000;
   background: #4a4c70;
 }
 
@@ -226,7 +226,7 @@
 }
 
 .single .comment-text .btn:hover {
-  background: #FDBE33;
+  background: #16423C;
 }
 
 .single .comment-form {
@@ -255,7 +255,7 @@
 
 .single .comment-form input:focus,
 .single .comment-form textarea:focus {
-  border-color: #FDBE33;
+  border-color: #000000;
 }
 
 
@@ -293,7 +293,7 @@
   height: 2px;
   bottom: 0;
   left: 0;
-  background: #FDBE33;
+  background: #16423C;
 }
 
 .sidebar .sidebar-widget .search-widget {
@@ -308,7 +308,7 @@
 
 .sidebar .search-widget input:focus {
   box-shadow: none;
-  border-color: #FDBE33;
+  border-color: #16423C;
 }
 
 .sidebar .search-widget .btn {
@@ -318,7 +318,7 @@
   height: 40px;
   padding: 0;
   font-size: 25px;
-  color: #FDBE33;
+  color: #16423C;
   background: none;
   border-radius: 0;
   border: none;
@@ -339,13 +339,13 @@
 
 .sidebar .tab-post .nav.nav-pills .nav-link {
   color: #4a4c70;
-  background: #FDBE33;
+  background: #16423C;
   border-radius: 0;
 }
 
 .sidebar .tab-post .nav.nav-pills .nav-link:hover,
 .sidebar .tab-post .nav.nav-pills .nav-link.active {
-  color: #FDBE33;
+  color: #000000;
   background: #4a4c70;
 }
 
@@ -386,7 +386,7 @@
   content: '\f105';
   font-family: 'Font Awesome 5 Free';
   font-weight: 900;
-  color: #FDBE33;
+  color: #000000;
   left: 1px;
 }
 
@@ -412,6 +412,6 @@
 
 .single .tag-widget a:hover {
   color: #ffffff;
-  background: #FDBE33;
-  border-color: #FDBE33;
+  background: #000000;
+  border-color: #000000;
 }

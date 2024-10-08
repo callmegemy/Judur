@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 import { UpcommingeventsService } from '../../services/upcommingevents.service';
+import { EventJoinComponent } from '../event-join/event-join.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 
 interface Event {
@@ -24,7 +26,7 @@ interface Feedback {
 @Component({
   selector: 'app-event-details',
   standalone: true,
-  imports: [CommonModule , RouterLink, NavbarComponent],
+  imports: [CommonModule , RouterLink, NavbarComponent,EventJoinComponent],
   templateUrl: './event-details.component.html',
   styleUrl: './event-details.component.css'
 })
@@ -33,15 +35,17 @@ export class EventDetailsComponent {
 
   constructor(
     private route: ActivatedRoute,
+    private router :Router,
     private eventService: UpcommingeventsService
   ) { }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.eventService.getEventById(+id).subscribe((data: any) => {
+    const eventId = this.route.snapshot.paramMap.get('id');
+    if (eventId) {
+      this.eventService.getEventById(+eventId).subscribe((data: any) => {
         this.event = data;
       });
     }
   }
+ 
 }

@@ -1,3 +1,107 @@
+<<<<<<< HEAD
+<div class="container">
+  <div class="Land-Report-card">
+    <h3>Land Report</h3>
+    <form [formGroup]="landReportForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <i class="fas fa-landmark"></i>
+        <select class="form-control" formControlName="land_id">
+          <option value="">Select land</option>
+          <option value="1">Land 1</option>
+          <option value="2">Land 2</option>
+          <option value="3">Land 3</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <i class="fas fa-calendar-alt"></i>
+        <input type="date" class="form-control" formControlName="date" />
+      </div>
+
+      <div class="form-group">
+        <i class="fas fa-user"></i>
+        <input
+          type="number"
+          class="form-control"
+          placeholder="Examiner ID"
+          formControlName="examiner_id"
+        />
+      </div>
+
+      <div class="form-group">
+        <i class="fas fa-broom"></i>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter hygiene rating"
+          formControlName="hygiene"
+        />
+      </div>
+
+      <div class="form-group">
+        <i class="fas fa-warehouse"></i>
+        <input
+          type="number"
+          class="form-control"
+          placeholder="Enter capacity"
+          formControlName="capacity"
+        />
+      </div>
+
+      <div class="form-group">
+        <i class="fas fa-bolt"></i>
+        <select class="form-control" formControlName="electricity_supply">
+          <option value="">Select electricity supply</option>
+          <option [ngValue]="true">Yes</option>
+          <option [ngValue]="false">No</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <i class="fas fa-info-circle"></i>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="General condition"
+          formControlName="general_condition"
+        />
+      </div>
+
+      <div class="form-group">
+        <i class="fas fa-camera"></i>
+        <input
+          type="file"
+          class="form-control"
+          (change)="onFileChange($event)"
+        />
+      </div>
+
+      <button type="submit" class="btn" [disabled]="!landReportForm.valid">
+        Submit
+      </button>
+    </form>
+
+    <h2>Land Inspections</h2>
+    <ul>
+      <li *ngFor="let inspection of inspections">
+        <strong>Date:</strong> {{ inspection.date }}<br />
+        <strong>Hygiene:</strong> {{ inspection.hygiene }}<br />
+        <strong>Capacity:</strong> {{ inspection.capacity }}<br />
+        <strong>Electricity Supply:</strong>
+        {{ inspection.electricity_supply ? "Yes" : "No" }}<br />
+        <strong>General Condition:</strong> {{ inspection.general_condition
+        }}<br />
+        <strong>Photo:</strong>
+        <img
+          *ngIf="inspection.photo_path"
+          [src]="inspection.photo_path"
+          alt="Inspection Photo"
+          width="100"
+        />
+      </li>
+    </ul>
+  </div>
+=======
 <!-- src/app/land-report/land-report.component.html -->
 
 <div>
@@ -41,4 +145,5 @@
       {{ inspection.general_condition }}
     </li>
   </ul>
+>>>>>>> 8835ea439dc3869decd1e35ea94754b133767eec
 </div>
