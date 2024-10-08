@@ -49,7 +49,6 @@ import { ViewAuctionComponent } from './components/dashboard/view-auction/view-a
 import { CreateAuctionComponent } from './components/dashboard/create-auction/create-auction.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { LandInspectionComponent } from './land-inspection/land-inspection.component';
-import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { authGuard } from '../app/auth.guard';
 import { UserManagementComponent } from './components/dashboard/user-management/user-management.component';
@@ -63,6 +62,8 @@ import { EditAuctionComponent } from './components/dashboard/edit-auction/edit-a
 
 import { EventJoinComponent } from './components/event-join/event-join.component';
 import { ReportDetailsComponent } from './components/dashboard/examiner-reports/report-details/report-details.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { NotificationComponent } from './components/notification/notification.component';
 export const routes: Routes = [
   {
     path: '',
@@ -72,7 +73,7 @@ export const routes: Routes = [
     path: 'about',
     component: AboutComponent
   }
-  ,
+  ,  { path: 'notifications', component: NotificationComponent },
   {
     path: 'donate',
     component: DonateComponent,
