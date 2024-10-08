@@ -47,16 +47,16 @@
     </div>
 </div> -->
 
-<app-navbar></app-navbar>
+
 <app-navbar></app-navbar>
 
-<div class="container mt-5" *ngIf="auctionDetails">
-    <div class="card mb-3 custom-card">
-        <div class="row g-0">
+<div class="container mt-5" *ngIf="auctionDetails" >
+    <div class="card mb-3 custom-card"  style="margin-top: 50px;" >
+        <div class="row g-0" >
             <div class="col-md-6">
                 <img *ngIf="auctionDetails.imageUrl" [src]="auctionDetails.imageUrl" class="img-fluid" alt="{{ auctionDetails.title }}">
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6" style="padding: 20px;" >
                 <h3>{{ auctionDetails.title }}</h3>
                 <p><strong>Description:</strong> {{ auctionDetails.description }}</p>
                 <p><strong>Current Price:</strong> ${{ auctionDetails.current_highest_bid | currency }}</p>

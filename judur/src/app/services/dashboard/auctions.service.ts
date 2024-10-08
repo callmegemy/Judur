@@ -31,7 +31,14 @@ export class AuctionService {
   getItems(): Observable<any> {
     return this.http.get(`${this.apiUrl}/dashboard/items/auctions`); 
   }
+  getAllItems(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/dashboard/allitems/auctions`); 
+  }
 
+  getValuableItemDetails(Id: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/dashboard/valuableitems/itemDonation/${Id}`);
+  }
+  
   editAuction(auctionId: number, formData: any): Observable<any> {
     return this.http.put(`${this.baseUrl}/${auctionId}`, formData);
   }

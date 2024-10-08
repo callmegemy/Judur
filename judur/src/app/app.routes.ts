@@ -62,8 +62,11 @@ import { EditAuctionComponent } from './components/dashboard/edit-auction/edit-a
 
 import { EventJoinComponent } from './components/event-join/event-join.component';
 import { ReportDetailsComponent } from './components/dashboard/examiner-reports/report-details/report-details.component';
+import { ViewValuableItemsComponent } from './components/dashboard/view-valuable-items/view-valuable-items.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { NotificationComponent } from './components/notification/notification.component';
+import { AuctionPaymentPageComponent } from './auction-payment-page/auction-payment-page.component';
+
 export const routes: Routes = [
   {
     path: '',
@@ -141,6 +144,7 @@ export const routes: Routes = [
   { path: 'dashboard/userProfile/doner', component: DonorProfileComponent ,},
   { path: 'dashboard', component: MainComponent },
   { path: 'dashboard/users', component: UsersAdminComponent },
+
   { path: 'dashboard/requests', component: RequestsComponent },
   { path: 'dashboard/request/view/v/:id', component: VolunteerRequestComponent },
   { path: 'dashboard/request/view/ex/:id', component: ExaminerRequestComponent },
@@ -156,6 +160,8 @@ export const routes: Routes = [
   { path: 'dashboard/auctions/view/:id', component: ViewAuctionComponent },
   { path: 'dashboard/auctions/edit/:id', component: EditAuctionComponent },
   { path: 'dashboard/auctions/create', component: CreateAuctionComponent },
+  { path: 'dashboard/item/view/:id', component: ViewValuableItemsComponent },
+  
 
   { path: 'dashboard/examiner-reports', component: ExaminerReportsComponent },
   { path: 'dashboard/examiner-reports/report-details/:id', component: ReportDetailsComponent },
@@ -167,8 +173,7 @@ export const routes: Routes = [
 
 
   // dashboard Routs End
-
-
+{path:'completed-auctions',component:AuctionPaymentPageComponent},
   {
     path: 'listing-auctions', component: ListingAuctionsComponent
   },
@@ -200,6 +205,7 @@ export const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent },
 
   { path: 'land-inspection', component: LandInspectionComponent},
+
 ];
 
 @NgModule({
