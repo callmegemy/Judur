@@ -1,9 +1,7 @@
 <button
   *ngIf="!isLoading"
   (click)="isJoined ? onCancel() : onJoin()"
-  [disabled]="isLoading || isPending"
+  [disabled]="isLoading || isPending || buttonText === 'Event is Full'"
   class="btn btn-custom">
-  {{ isJoined ? 'Cancel' : 'Join Now' }}
+  {{ isJoined ? 'Cancel' : buttonText }}
 </button>
-
-

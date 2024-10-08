@@ -24,19 +24,22 @@ export class EventJoinComponent {
   ) {}
 
   ngOnInit(): void {
-    
     const user = this.authService.getUserData();
-    if (user.role_id === 2) { // If the user is a volunteer
-      if (!user.volunteerProfile || user.volunteerProfile.volunteer_status !== 1) {
+    
+    if (user.role_id === 3) {
+      if (!user.volunteerProfile || user.volunteerProfile.volunteer_status === 1) {
         this.isPending = true;
         this.buttonText = 'Pending Approval';
+      } else if (user.volunteerProfile.volunteer_status === 2) {
+        this.isPending = false;
+        this.checkIfJoined();  // Check if already joined
       }
     }
     
-    this.checkIfJoined();// Check if the user is participating when the component loads
-    
-  
+    // Check if the volunteer has already joined the event from the backend
+    this.checkIfJoined();
   }
+  
   
 
 
@@ -71,25 +74,36 @@ export class EventJoinComponent {
       },
     });
   }
-
   private checkIfJoined() {
     const userId = this.authService.getUserData().id;
+  
+    // Fetch event participation status from the API
     this.eventService.isVolunteerJoined(this.eventId, userId).subscribe({
       next: (response: any) => {
         this.isJoined = response.isJoined;
+  
+        // Disable the join button if the event is full
+        const joinedVolunteersCount = response.joined_volunteers_count;
+        const expectedOrganizerNumber = response.expected_organizer_number;
+  
+        if (joinedVolunteersCount >= expectedOrganizerNumber) {
+          this.isPending = true;
+          this.buttonText = 'Event is Full';
+        } else if (this.isJoined) {
+          this.buttonText = 'Cancel';
+          this.isPending = false;  // Allow cancellation if already joined
+        } else {
+          this.buttonText = 'Join Now';
+          this.isPending = false;  // Enable the "Join" button
+        }
       },
       error: (error: any) => {
-        if (error.status === 401) {
-          console.error('User not authenticated:', error.message);
-          this.isJoined = false;
-          // Optionally, redirect to the login page
-        } else {
-          console.error('Error checking event participation:', error.message);
-          this.isJoined = false;  // Default to not joined if there's an error
-        }
+        console.error('Error checking event participation:', error.message);
+        this.isJoined = false;  // Default to not joined if there's an error
+        this.buttonText = 'Join Now';
       }
     });
   }
-
+  
  
 }

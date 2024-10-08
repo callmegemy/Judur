@@ -1,0 +1,25 @@
+.container {
+    max-width: 60%;
+    margin: 0 auto;
+}
+.card {
+    border: none;
+    box-shadow: none;
+}
+.product-image {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 15px 0;
+}
+.form-container {
+    max-width: 50%;
+    margin: 0 auto;
+    display: none; 
+}
+.custom-hr {
+    width: 50%; 
+    margin: 20px auto; 
+  
+}

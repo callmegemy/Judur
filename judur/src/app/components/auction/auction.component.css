@@ -20,11 +20,12 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-
+margin-top: 120px;
   position: absolute;
-  bottom: 90px; 
+  /* bottom: 90px;  */
   left: 50%;  
   transform: translate(-50%, 0);  
+  margin-top:120px !important;
 }
 
 .form-control {

@@ -15,9 +15,15 @@ export class UpcommingeventsService {
   }
 
   getEventById(id: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/events/${id}`);
+    const token = localStorage.getItem('auth_token');  // Use correct token key
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/json'
+    });
+  
+    return this.http.get(`${this.apiUrl}/events/${id}`, { headers });
   }
-
+  
 
   joinEvent(eventId: number): Observable<any> {
     const token = localStorage.getItem('auth_token');  // Use correct token key
@@ -37,6 +43,8 @@ export class UpcommingeventsService {
   
     return this.http.get(`${this.apiUrl}/events/${eventId}/is-joined`, { headers });
   }
+
+  
 
   cancelEvent(eventId: number): Observable<any> {
     const token = localStorage.getItem('auth_token'); // Retrieve the token from localStorage

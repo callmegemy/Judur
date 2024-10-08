@@ -78,9 +78,17 @@
                     </div>
 
                     <!-- Action Buttons -->
-                    <div class="actions text-center">
-                        <button class="btn btn-judur" (click)="goBack()">Back to Reports</button>
+                    <div class="actions display-inline text-center">
+
+                       
+                        <button type="button" class="btn btn-success mx-3" (click)="updateLandStatus('accepted')"> <i class="fa-solid fa-check"></i> Accept</button>
+                        <button type="button" class="btn btn-danger mx-3" (click)="updateLandStatus('rejected')"> <i class="fa-solid fa-xmark"></i> Reject</button>
+                        
+                        <button  (click)="goBack()" type="submit" class="btn btn-judur mx-3"><i class="fa-solid fa-arrow-left"></i> Back to Reports</button>
                     </div>
+
+
+
                 </div>
             </div>
 

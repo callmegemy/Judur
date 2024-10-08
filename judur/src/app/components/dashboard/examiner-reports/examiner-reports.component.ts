@@ -48,6 +48,7 @@ export class ExaminerReportsComponent {
   }
 
   fetchReports() {
+ 
     this.examinerReportsService.getReports().subscribe(
       data => {
         console.log('Reports fetched:', data);

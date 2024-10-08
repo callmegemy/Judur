@@ -21,5 +21,17 @@ export class ExaminerReportsService {
   deleteReport(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);
 }
+  // Accept land status
+  acceptLand(id: number): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}/accept`, {});
+  }
 
+  // Reject land status
+  rejectLand(id: number): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}/reject`, {});
+  }
+
+  updateLandStatus(landId: string, status: string): Observable<any> {
+    return this.http.put(`${this.apiUrl}/report-details/${landId}/status`, { status });
+  }
 }
