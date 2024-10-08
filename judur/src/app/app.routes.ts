@@ -63,6 +63,7 @@ import { EditAuctionComponent } from './components/dashboard/edit-auction/edit-a
 
 import { EventJoinComponent } from './components/event-join/event-join.component';
 import { ReportDetailsComponent } from './components/dashboard/examiner-reports/report-details/report-details.component';
+
 export const routes: Routes = [
   {
     path: '',
@@ -198,6 +199,7 @@ export const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent }, 
   
   { path: 'land-inspection', component: LandInspectionComponent},
+
 ];
 
 @NgModule({
