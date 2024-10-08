@@ -1,25 +1,15 @@
-:root {
-    --primary: #16423C;
-    --secondary: #6A9C89;
-    --light: #E9EFEC;
-    --dark: #001D23;
-}
-
-body {
-    background-color: var(--light); /* Use light background */
-    font-family: Arial, sans-serif;
-}
 
 .container {
     max-width: 1200px;
     padding: 20px;
+    margin-top: 120px;
 }
 
 .card {
     border-radius: 15px;
     border: 1px solid var(--primary); /* Primary border color */
     background-color: var(--light); /* Card background */
-    height: 500px; /* Fixed height */
+    height: 350px; /* Fixed height */
     overflow: hidden; /* To ensure nothing overflows */
 }
 

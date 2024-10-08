@@ -54,14 +54,14 @@
                             </div>
                             <div class="card-body">
                                 <form [formGroup]="postForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
-                                                                <!-- Post Title -->
-<div class="form-group mb-3">
-    <label for="title" class="font-weight-bold">Post Title</label>
-    <input type="text" id="title" formControlName="title" class="form-control" placeholder="Enter post title" required>
-    <div *ngIf="postForm.get('title')?.touched && (postForm.get('title')?.touched || postForm.get('title')?.dirty)">
-        <small class="text-danger">Title is required.</small>
-    </div>
-</div>
+                                    <!-- Post Title -->
+                                    <div class="form-group mb-3">
+                                        <label for="title" class="font-weight-bold">Post Title</label>
+                                        <input type="text" id="title" formControlName="title" class="form-control" placeholder="Enter post title" required>
+                                        <div *ngIf="postForm.get('title')?.touched && postForm.get('title')?.invalid">
+                                            <small class="text-danger" *ngIf="postForm.get('title')?.errors?.['required']">Title is required.</small>
+                                        </div>
+                                    </div>
                                 
                                     <!-- Upload Post Picture -->
                                     <div class="form-group mb-3">
@@ -69,16 +69,14 @@
                                         <input type="file" id="profile-picture" (change)="onFileSelected($event)" class="form-control-file" />
                                     </div>
                                 
-
-
-<!-- Post Content -->
-<div class="form-group mb-4">
-    <label for="content" class="font-weight-bold">Post Content</label>
-    <textarea id="content" formControlName="content" class="form-control" rows="6" placeholder="Enter post content" required></textarea>
-    <div *ngIf="postForm.get('content')?.touched && (postForm.get('content')?.touched || postForm.get('content')?.dirty)">
-        <small class="text-danger">Content is required.</small>
-    </div>
-</div>
+                                    <!-- Post Content -->
+                                    <div class="form-group mb-4">
+                                        <label for="content" class="font-weight-bold">Post Content</label>
+                                        <textarea id="content" formControlName="content" class="form-control" rows="6" placeholder="Enter post content" required></textarea>
+                                        <div *ngIf="postForm.get('content')?.touched && postForm.get('content')?.invalid">
+                                            <small class="text-danger" *ngIf="postForm.get('content')?.errors?.['required']">Content is required.</small>
+                                        </div>
+                                    </div>
                                 
                                     <!-- Category Selection -->
                                     <div class="form-group mb-3">
@@ -89,8 +87,8 @@
                                             <option value="auctions">Auctions</option>
                                             <option value="feeding-events">Feeding Events</option>
                                         </select>
-                                        <div *ngIf="postForm.get('category')?.invalid && (postForm.get('category')?.touched || postForm.get('category')?.dirty)">
-                                            <small class="text-danger">Category is required.</small>
+                                        <div *ngIf="postForm.get('category')?.touched && postForm.get('category')?.invalid">
+                                            <small class="text-danger" *ngIf="postForm.get('category')?.errors?.['required']">Category is required.</small>
                                         </div>
                                     </div>
                                 
@@ -104,7 +102,7 @@
                                         </button>
                                     </div>
                                 </form>
-
+                                
                                 <!-- Back Button -->
                                 <button class="btn btn-judur mt-3" (click)="goBack()"><i class="fa-solid fa-arrow-left"></i> Back to Posts</button>
                             </div>

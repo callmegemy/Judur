@@ -86,6 +86,22 @@
         (change)="onFileSelected($event)"
       />
     </div>
+     <!-- Password -->
+     <div class="form-group mb-3">
+      <label for="password">Password</label>
+      <input 
+        type="password" 
+        id="password" 
+        class="form-control" 
+        formControlName="password"
+        [ngClass]="{ 'is-invalid': profileForm.get('password')?.invalid && profileForm.get('password')?.touched }"
+        placeholder="Enter your password"
+      />
+      <div *ngIf="profileForm.get('password')?.invalid && profileForm.get('password')?.touched" class="invalid-feedback">
+        Password  must be at least 6 characters long.
+      </div>
+    </div>
+
 
     <!-- Submit Button -->
     <button type="submit" class="btn btn-primary" [disabled]="profileForm.invalid">Update Profile</button>

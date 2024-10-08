@@ -39,7 +39,7 @@
                                     <thead>
                                         <tr>
                                             <th>Title</th>
-                                            <th>Content</th>
+                                           
                                             <th>Date</th>
                                             <th>Actions</th>
                                         </tr>
@@ -47,7 +47,7 @@
                                     <tfoot>
                                         <tr>
                                             <th>Title</th>
-                                            <th>Content</th>
+                                            
                                             <th>Date</th>
                                             <th>Actions</th>
                                         </tr>
@@ -55,7 +55,7 @@
                                     <tbody>
                                         <tr *ngFor="let post of posts">
                                             <td>{{ post.title }}</td>
-                                            <td>{{ post.content }}</td>
+                                         
                                             <td>{{ post.created_at | date:'short'}}</td>
                                             <td>
                                                 <a href="/dashboard/posts/view-post/{{post.id}}" class="btn-circle bg-judur rounded-circle">

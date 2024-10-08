@@ -57,10 +57,11 @@
                                       <label for="title" class="font-weight-bold">Post Title</label>
                                       <div class="input-group">
                                         <input  type="text" id="title" formControlName="title" class="form-control" placeholder="Enter post title" >
-                                        <div *ngIf="postForm.get('title')?.invalid && postForm.get('title')?.touched">
-                                            <small *ngIf="postForm.get('title')?.hasError('required')">Title is required</small>
-                                          </div>
+                                       
                                       </div>
+                                      <div *ngIf="postForm.get('title')?.invalid && postForm.get('title')?.touched">
+                                        <small *ngIf="postForm.get('title')?.hasError('required')" class="text-danger">Title is required</small>
+                                    </div>
                                     </div>
                                   
                                     <!-- Update Event Picture -->
@@ -74,7 +75,7 @@
                                       <label for="content" class="font-weight-bold">Post Content</label>
                                       <textarea id="content" formControlName="content" class="form-control" rows="6" ></textarea>
                                       <div *ngIf="postForm.get('content')?.invalid && postForm.get('content')?.touched">
-                                        <small *ngIf="postForm.get('content')?.hasError('required')">Content is required</small>
+                                        <small *ngIf="postForm.get('content')?.hasError('required')" class="text-danger">Content is required</small>
                                       </div>
                                       
                                     </div>
@@ -88,7 +89,7 @@
                                         <option value="feeding-events">Feeding Events</option>
                                       </select>
                                       <div *ngIf="postForm.get('category')?.invalid && postForm.get('category')?.touched">
-                                        <small *ngIf="postForm.get('category')?.hasError('required')">Category is required</small>
+                                        <small *ngIf="postForm.get('category')?.hasError('required')" class="text-danger">Category is required</small>
                                       </div>
                                     </div>
                                   
