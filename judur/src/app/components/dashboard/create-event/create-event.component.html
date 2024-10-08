@@ -61,6 +61,7 @@
                                         <label for="eventTitle" class="font-weight-bold">Event Title</label>
                                         <input type="text" id="eventTitle" class="form-control" [(ngModel)]="event.title" name="title" required
                                             placeholder="Enter event title">
+                                        <div *ngIf="errorMessages.title" class="text-danger">{{ errorMessages.title[0] }}</div>
                                     </div>
                                 
                                     <!-- Event Status -->
@@ -70,8 +71,8 @@
                                             <option value="" disabled>Select Status</option>
                                             <option value="1">Preparing</option>
                                             <option value="2">Upcoming</option>
-
                                         </select>
+                                        <div *ngIf="errorMessages.event_status" class="text-danger">{{ errorMessages.event_status[0] }}</div>
                                     </div>
                                 
                                     <!-- Event Location -->
@@ -79,6 +80,7 @@
                                         <label for="eventLocation" class="font-weight-bold">Event Location</label>
                                         <input type="text" id="eventLocation" class="form-control" [(ngModel)]="event.location" name="location" required
                                             placeholder="Enter event location">
+                                        <div *ngIf="errorMessages.location" class="text-danger">{{ errorMessages.location[0] }}</div>
                                     </div>
                                 
                                     <!-- Event Date -->
@@ -86,6 +88,7 @@
                                         <label for="eventDate" class="font-weight-bold">Event Date</label>
                                         <input type="date" id="eventDate" class="form-control" [(ngModel)]="event.date" name="date" required
                                             placeholder="Select event date">
+                                        <div *ngIf="errorMessages.date" class="text-danger">{{ errorMessages.date[0] }}</div>
                                     </div>
                                 
                                     <!-- Event Time -->
@@ -93,6 +96,7 @@
                                         <label for="eventTime" class="font-weight-bold">Event Time</label>
                                         <input type="time" id="eventTime" class="form-control" [(ngModel)]="event.time" name="time" required
                                             placeholder="Select event time">
+                                        <div *ngIf="errorMessages.time" class="text-danger">{{ errorMessages.time[0] }}</div>
                                     </div>
                                 
                                     <!-- Expected Organizer Number -->
@@ -100,6 +104,7 @@
                                         <label for="expectedOrganizerNumber" class="font-weight-bold">Expected Organizer Number</label>
                                         <input type="number" id="expectedOrganizerNumber" class="form-control" [(ngModel)]="event.expected_organizer_number"
                                             name="expected_organizer_number" required min="1" placeholder="Enter number of organizers">
+                                        <div *ngIf="errorMessages.expected_organizer_number" class="text-danger">{{ errorMessages.expected_organizer_number[0] }}</div>
                                     </div>
                                 
                                     <!-- Event Allocated Money -->
@@ -107,6 +112,7 @@
                                         <label for="allocatedMoney" class="font-weight-bold">Allocated Money</label>
                                         <input type="number" id="allocatedMoney" class="form-control" [(ngModel)]="event.allocatedMoney" name="allocatedMoney"
                                             min="0" placeholder="Enter allocated money amount">
+                                        <div *ngIf="errorMessages.allocatedMoney" class="text-danger">{{ errorMessages.allocatedMoney[0] }}</div>
                                     </div>
                                 
                                     <!-- Event Allocated Items -->
@@ -114,6 +120,7 @@
                                         <label for="allocatedItems" class="font-weight-bold">Allocated Items</label>
                                         <input type="number" id="allocatedItems" class="form-control" [(ngModel)]="event.allocatedItems" name="allocatedItems"
                                             min="0" placeholder="Enter number of allocated items">
+                                        <div *ngIf="errorMessages.allocatedItems" class="text-danger">{{ errorMessages.allocatedItems[0] }}</div>
                                     </div>
                                 
                                     <!-- Land -->
@@ -123,6 +130,7 @@
                                             <option value="" disabled>Select Land</option>
                                             <option *ngFor="let lands of land" [value]="lands.id">{{ lands.address }}</option>
                                         </select>
+                                        <div *ngIf="errorMessages.land_id" class="text-danger">{{ errorMessages.land_id[0] }}</div>
                                     </div>
                                 
                                     <!-- Event Description -->
@@ -130,6 +138,7 @@
                                         <label for="eventDescription" class="font-weight-bold">Event Description</label>
                                         <textarea id="eventDescription" class="form-control" [(ngModel)]="event.description" name="description" required
                                             placeholder="Enter event description"></textarea>
+                                        <div *ngIf="errorMessages.description" class="text-danger">{{ errorMessages.description[0] }}</div>
                                     </div>
                                 
                                     <!-- Event Duration -->
@@ -137,6 +146,7 @@
                                         <label for="eventDuration" class="font-weight-bold">Event Duration (in hours)</label>
                                         <input type="number" id="eventDuration" class="form-control" [(ngModel)]="event.duration" name="duration" min="0"
                                             placeholder="Enter event duration in hours">
+                                        <div *ngIf="errorMessages.duration" class="text-danger">{{ errorMessages.duration[0] }}</div>
                                     </div>
                                 
                                     <!-- People Helped -->
@@ -144,6 +154,7 @@
                                         <label for="peopleHelped" class="font-weight-bold">People Targeted</label>
                                         <input type="number" id="peopleHelped" class="form-control" [(ngModel)]="event.people_helped" name="people_helped" min="0"
                                             placeholder="Enter number of people helped">
+                                        <div *ngIf="errorMessages.people_helped" class="text-danger">{{ errorMessages.people_helped[0] }}</div>
                                     </div>
                                 
                                     <!-- Goods Distributed -->
@@ -151,16 +162,19 @@
                                         <label for="goodsDistributed" class="font-weight-bold">Goods Distributed</label>
                                         <input type="number" id="goodsDistributed" class="form-control" [(ngModel)]="event.goods_distributed"
                                             name="goods_distributed" min="0" placeholder="Enter number of goods distributed">
+                                        <div *ngIf="errorMessages.goods_distributed" class="text-danger">{{ errorMessages.goods_distributed[0] }}</div>
                                     </div>
                                 
                                     <!-- Event Image -->
                                     <div class="form-group mb-3">
                                         <label for="eventImage" class="font-weight-bold">Event Image</label>
                                         <input type="file" id="eventImage" class="form-control" (change)="onFileSelected($event)" name="image">
+                                        <div *ngIf="errorMessages.image" class="text-danger">{{ errorMessages.image[0] }}</div>
                                     </div>
                                 
                                     <button type="submit" class="btn btn-success">Create Event</button>
                                 </form>
+                                
                                 
 
                             </div>

@@ -18,6 +18,7 @@ export class EditEventComponent {
   eventId: any;
   lands: any[] = []; 
   selectedFile: File | null = null; 
+  errorMessage: string = ''; // Property to hold error messages
 
   constructor(
     private eventsService: EventsService,
@@ -50,75 +51,61 @@ export class EditEventComponent {
       this.selectedFile = target.files[0];
     }
   }
+
   onEdit() {
     const reader = new FileReader();
     
     reader.onload = () => {
-      const base64Image = this.selectedFile ? `data:${this.selectedFile.type};base64,${reader.result?.toString().split(',')[1]}` : null;
-        
-        const eventData = {
-            title: this.event.title,
-            location: this.event.location,
-            land_id: this.event.land_id,
-            date: this.event.date,
-            time: this.event.time,
-            expected_organizer_number: this.event.expected_organizer_number,
-            allocatedMoney: this.event.allocatedMoney,
-            allocatedItems: this.event.allocatedItems,
-            event_status: this.event.event_status,
-            description: this.event.description,
-            duration: this.event.duration,
-            people_helped: this.event.people_helped,
-            goods_distributed: this.event.goods_distributed,
-            image: base64Image 
-        };
+      const base64Image = this.selectedFile ? (reader.result as string).split(',')[1] : null;
 
-        console.log(eventData); 
+      const formData = new FormData();
+      formData.append('title', this.event.title);
+      formData.append('event_status', this.event.event_status);
+      formData.append('location', this.event.location);
+      formData.append('date', this.event.date);
+      formData.append('time', this.event.time);
+      formData.append('expected_organizer_number', this.event.expected_organizer_number);
+      formData.append('allocatedMoney', this.event.allocatedMoney);
+      formData.append('land_id', this.event.land_id);
+      formData.append('description', this.event.description);
+      formData.append('duration', this.event.duration);
+      if (base64Image) {
+        formData.append('image', base64Image);
+      }
 
-        this.eventsService.editEvent(this.eventId, eventData).subscribe(
-            response => {
-                console.log('Event updated successfully', response);
-                this.router.navigate(['/dashboard/events']);
-            },
-            error => {
-                console.error('Error occurred while updating the event', error);
-            }
-        );
+      this.eventsService.editEvent(this.eventId, formData).subscribe(
+        (response) => {
+          console.log('Event updated successfully:', response);
+          this.router.navigate(['/events']); 
+        },
+        (error) => {
+          console.error('Error updating event:', error);
+          this.errorMessage = 'Failed to update event. Please try again.'; // Set error message on failure
+        }
+      );
     };
-
+    
     if (this.selectedFile) {
-        reader.readAsDataURL(this.selectedFile); 
+      reader.readAsDataURL(this.selectedFile);
     } else {
-        const eventData = {
-            title: this.event.title,
-            location: this.event.location,
-            land_id: this.event.land_id,
-            date: this.event.date,
-            time: this.event.time,
-            expected_organizer_number: this.event.expected_organizer_number,
-            allocatedMoney: this.event.allocatedMoney,
-            allocatedItems: this.event.allocatedItems,
-            event_status: this.event.event_status,
-            description: this.event.description,
-            duration: this.event.duration,
-            people_helped: this.event.people_helped,
-            goods_distributed: this.event.goods_distributed,
-            image: null 
-        };
-
-        this.eventsService.editEvent(this.eventId, eventData).subscribe(
-            response => {
-                console.log('Event updated successfully', response);
-                this.router.navigate(['/dashboard/events']);
-            },
-            error => {
-                console.error('Error occurred while updating the event', error);
-            }
-        );
+      this.onEditWithoutImage(); // Call a method to edit without image if necessary
     }
-}
+  }
 
+  onEditWithoutImage() {
+    const formData = new FormData();
+    // Add event details to formData
+    // ...
 
-
-  
+    this.eventsService.editEvent(this.eventId, formData).subscribe(
+      (response) => {
+        console.log('Event updated successfully:', response);
+        this.router.navigate(['/events']);
+      },
+      (error) => {
+        console.error('Error updating event:', error);
+        this.errorMessage = 'Failed to update event. Please try again.';
+      }
+    );
+  }
 }
