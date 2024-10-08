@@ -18,12 +18,15 @@ import { Router } from '@angular/router';
 export class AuctionsComponent implements AfterViewInit {
 
   auctions: any[] = [];
+  ValuableItems: any[] = [];
   private auctionsTable: any;
+  private valuedItemsTable: any;
 
   constructor(private auctionsService: AuctionService, private cdr: ChangeDetectorRef, private router: Router) { }
 
   ngOnInit(): void {
     this.fetchAuctions();
+    this.fetchValuableItems();
   }
 
   ngAfterViewInit(): void {
@@ -33,6 +36,9 @@ export class AuctionsComponent implements AfterViewInit {
   ngOnDestroy(): void {
     if (this.auctionsTable) {
       this.auctionsTable.destroy(true);
+    }
+    if (this.valuedItemsTable) {
+      this.valuedItemsTable.destroy(true);
     }
   }
 
@@ -50,6 +56,20 @@ export class AuctionsComponent implements AfterViewInit {
     );
   }
 
+  fetchValuableItems() {
+    this.auctionsService.getItems().subscribe(
+      data => {
+        console.log('Valuable Items fetched:', data);
+        this.ValuableItems = data;
+        this.cdr.detectChanges(); 
+        this.initializeDataTables(); 
+      },
+      error => {
+        console.error('Error fetching ValuableItems:', error);
+      }
+    );
+  }
+
   initializeDataTables() {
     setTimeout(() => {
       if (this.auctions.length > 0) {
@@ -57,6 +77,15 @@ export class AuctionsComponent implements AfterViewInit {
           this.auctionsTable.destroy(); 
         }
         this.auctionsTable = $('#dataTable').DataTable(); 
+      }
+    }, 0);
+
+    setTimeout(() => {
+      if (this.ValuableItems.length > 0) {
+        if (this.valuedItemsTable) {
+          this.valuedItemsTable.destroy(); 
+        }
+        this.valuedItemsTable = $('#valuedItemsTable').DataTable(); 
       }
     }, 0);
   }

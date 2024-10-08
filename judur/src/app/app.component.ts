@@ -27,7 +27,7 @@ import { ReportDetailsComponent } from './components/dashboard/examiner-reports/
  
   imports: [  AuctionComponent, // Ensure this is standalone
   ReportDetailsComponent ,RouterModule, RouterOutlet,NavbarComponent,DonationHistoryComponent , CommonModule ,ViewProfileComponent,
-    EditProfileComponent, MainComponent, EventListComponent, EventDetailsComponent, ExaminerReportsComponent, ReportDetailsComponent, 
+    EditProfileComponent, EventListComponent, EventDetailsComponent, ExaminerReportsComponent, ReportDetailsComponent, 
     HttpClientModule,ReactiveFormsModule,ViewPostComponent,
     CreatePostComponent,PostsDashboardComponent,EditPostComponent],
   templateUrl: './app.component.html',

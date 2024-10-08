@@ -40,9 +40,10 @@ export class ViewAuctionComponent implements OnInit {
     }
 
     private fetchItemDetails(itemId: number): void {
-        this.auctionService.getItems().subscribe(
+        this.auctionService.getAllItems().subscribe(
             (items) => {
                 this.item = items.find((item: any) => item.id === itemId); 
+                console.log(this.item); 
             },
             (error) => {
                 console.error('Error fetching item details:', error);
