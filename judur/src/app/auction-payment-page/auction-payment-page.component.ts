@@ -36,10 +36,16 @@ auctionWinners: any;
     this.auctionId = 1; // Placeholder value for demonstration
 
     // Fetch highest bid amount for the auction
-    this.auctionService.getHighestBid(this.auctionId).subscribe(bid => {
-      this.highestBidAmount = bid.amount; // Set the highest bid amount
-      this.auctionForm.patchValue({ auctionAmount: this.highestBidAmount }); // Populate auction amount
-    });
+    this.auctionService.getCompletedAuctions().subscribe(
+      (data) => {
+        this.auctionWinners = data;
+        console.log(this.auctionWinners);
+      },
+      (error) => {
+        console.error('Error fetching auction winners', error);
+      }
+    );
+
 
     this.auctionForm.get('paymentMethod')?.valueChanges.subscribe((method) => {
       if (method === 'creditCard') {
