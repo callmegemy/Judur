@@ -30,9 +30,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-judur-reverse sidebar sidebar-dark accordion" id="accordionSidebar">
-<app-sidebar></app-sidebar>
-</ul>
+<app-sidebar class="bg-gradient-judur"></app-sidebar>
 
         <!-- End of Sidebar -->
 
@@ -48,55 +46,53 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-judur font-weight-bold">Auction View</h1>
-                    </div>
-
-                    <div class="auction-details-container">
-                        <div class="auction-header">
+                  <!-- Page Heading -->
+                  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                      <h1 class="h3 mb-0 text-judur font-weight-bold">Auction View</h1>
+                  </div>
+              
+                  <div class="auction-details-container">
+                      <div class="auction-header">
                           <i class="fa-solid fa-gavel auction-icon"></i>
-                          <h2>Auction Item: Rare Painting Auction</h2>
-                        </div>
-                        
-                        <!-- Auction Item Image -->
-                        <div class="auction-image">
-                          <img src="https://via.placeholder.com/600x400" alt="Auction Item Image" class="img-fluid">
-                        </div>
-                        
-                        <!-- Auction Details -->
-                        <div class="auction-body">
-                          <div class="auction-detail">
-                            <span class="auction-label">Item Name:</span>
-                            <span class="auction-value">Rare Van Gogh Painting</span>
-                          </div>
-                          <div class="auction-detail">
-                            <span class="auction-label">Starting Price:</span>
-                            <span class="auction-value">$10,000</span>
-                          </div>
-                          <div class="auction-detail">
-                            <span class="auction-label">Auction Start Date:</span>
-                            <span class="auction-value">October 1, 2024</span>
-                          </div>
-                          <div class="auction-detail">
-                            <span class="auction-label">Auction End Date:</span>
-                            <span class="auction-value">October 10, 2024</span>
-                          </div>
-                          <div class="auction-detail">
-                            <span class="auction-label">Description:</span>
-                            <span class="auction-value auction-description">
-                              This rare painting is one of Van Gogh's most iconic works, featuring stunning brushstrokes and vibrant colors. It's a once-in-a-lifetime opportunity to own a piece of art history.
-                            </span>
-                          </div>
-                        </div>
-                        
-                        <!-- Back Button -->
-                        <div class="text-center">
-                        <a href="#" class="btn btn-judur btn-back">Go Back</a>
-                        </div>
+                          <h2>Auction Item: {{ item.item_name }}</h2> <!-- Dynamic auction title -->
                       </div>
-                </div>
+              
+                      <!-- Auction Item Image -->
+                      <div class="auction-image">
+                          <img [src]="item?.image_url || 'https://via.placeholder.com/600x400'" alt="Auction Item Image" class="img-fluid"> <!-- Dynamic item image -->
+                      </div>
+              
+                      <!-- Auction Details -->
+                      <div class="auction-body">
+                          <div class="auction-detail">
+                              <span class="auction-label">Item Name:</span>
+                              <span class="auction-value">{{ item?.item_name }}</span>
+                          </div>
+                          <div class="auction-detail">
+                              <span class="auction-label">Starting Price:</span>
+                              <span class="auction-value">${{ auction?.starting_price }}</span> 
+                          </div>
+                          <div class="auction-detail">
+                              <span class="auction-label">Auction Start Date:</span>
+                              <span class="auction-value">{{ auction?.start_date  }}</span>
+                          </div>
+                          <div class="auction-detail">
+                              <span class="auction-label">Auction End Date:</span>
+                              <span class="auction-value">{{ auction?.end_date  }}</span> 
+                          </div>
+                          <div class="auction-detail">
+                              <span class="auction-label">Description:</span>
+                              <span class="auction-value auction-description">{{ auction?.description }}</span>
+                          </div>
+                      </div>
+              
+                      <!-- Back Button -->
+                      <div class="text-center">
+                          <a href="/dashboard/auctions" class="btn btn-judur btn-back">Go Back</a>
+                      </div>
+                  </div>
+              </div>
+              
                 <!-- /.container-fluid -->
 
             </div>

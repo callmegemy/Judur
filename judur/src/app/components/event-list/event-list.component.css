@@ -24,7 +24,6 @@ button {
     border-radius: 5px;
     cursor: pointer;
 }
-
 button:hover {
     background-color: var(--secondary);
 }
@@ -266,12 +265,14 @@ input[type="file"] {
     position: relative;
     width: 100%;
     padding: 45px 0 15px 0;
+   
 }
 
 .event .event-item {
     margin-bottom: 30px;
     background:  var(--light);
     border-radius: 10px;
+    height: 100%;
 }
 
 .event .event-item  img {
@@ -341,14 +342,16 @@ input[type="file"] {
     font-size: 25px;
     font-weight: 700;
     margin-bottom: 10px;
+    white-space: nowrap; /* Ensures the text is on one line */
+    overflow: hidden; /* Hides the overflowed text */
+    text-overflow: ellipsis; /* Adds the ellipsis (...) */
+    width: 100%;
 }
 
-.event .event-text p {
-    margin: 0;
-}
 
 .event .btn.btn-custom {
     margin-top: 20px;
+    margin-right:20px;
     padding: 8px 30px;
 }
 
@@ -374,10 +377,47 @@ input[type="file"] {
         width: 18px;
     }
     
-    .event .event-text {
-        margin: 0;
-        padding: 0;
-    }
+  /* Ensure that the buttons are aligned at the bottom of the card */
+  .event .event-text {
+    position: relative;
+    margin-left: 20px;
+    padding-left: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* Button container for join and view buttons */
+.event .btn-container {
+    display: flex;
+    justify-content: space-between; /* Ensure buttons are spaced apart */
+    margin-top: 10px;
+}
+
+/* Styling for custom buttons */
+.event .btn-custom {
+    padding: 8px 20px;
+    background-color: var(--primary);
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    flex: 1; /* Make buttons equal width */
+    margin-right: 10px;
+}
+
+.event .btn-custom:last-child {
+    margin-right: 0;
+}
+
+.event .btn-custom:hover {
+    background-color: var(--secondary);
+    color: white;
+}
     
     .event .event-text::before,
     .event .event-text::after {
@@ -393,7 +433,7 @@ input[type="file"] {
     position: relative;
     margin-top: 45px;
     padding-top: 90px;
-    background: #20212B;
+    background: var(--dark);
 }
 
 .footer .footer-contact,
@@ -510,6 +550,34 @@ input[type="file"] {
         text-align: center;
     }
 }
+
+
+/* .back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    line-height: 40px;
+    font-size: 18px;
+    border-radius: 50%;
+    transition: all 0.3s;
+    z-index: 1000;
+    display: none; 
+} */
+
+/* .back-to-top:hover {
+    background-color: #0056b3;
+    color: #fff;
+}
+
+.back-to-top i {
+    font-size: 18px;
+} */
+
 
 /* Back to Top */
 /* 

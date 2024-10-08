@@ -29,11 +29,10 @@ import { RequestsComponent } from './components/dashboard/requests/requests.comp
 import { VolunteerRequestComponent } from './components/dashboard/volunteer-request/volunteer-request.component';
 import { ExaminerRequestComponent } from './components/dashboard/examiner-request/examiner-request.component';
 import { VolunteerProfileComponent } from './components/dashboard/volunteer-profile/volunteer-profile.component';
-import { DonerProfileComponent } from './components/dashboard/doner-profile/doner-profile.component';
+import { DonorProfileComponent } from './components/dashboard/doner-profile/doner-profile.component';
 import { EventDetailsComponent } from './components/event-details/event-details.component';
 import { EventListComponent } from './components/event-list/event-list.component';
 import { ExaminerReportsComponent } from './components/dashboard/examiner-reports/examiner-reports.component';
-import { ReportDetailsComponent } from './components/dashboard/report-details/report-details.component';
 import { PostsDashboardComponent } from './components/dashboard/posts-dashboard/posts-dashboard.component';
 import { CreatePostComponent } from './components/dashboard/create-post/create-post.component';
 import { ViewPostComponent } from './components/dashboard/view-post/view-post.component';
@@ -47,97 +46,159 @@ import { CreateEventComponent } from './components/dashboard/create-event/create
 import { ViewEventComponent } from './components/dashboard/view-event/view-event.component';
 import { AuctionsComponent } from './components/dashboard/auctions/auctions.component';
 import { ViewAuctionComponent } from './components/dashboard/view-auction/view-auction.component';
-import { EditAuctionComponent } from './components/dashboard/edit-auction/edit-auction.component';
 import { CreateAuctionComponent } from './components/dashboard/create-auction/create-auction.component';
-import { LandReportComponent } from './land-report/land-report.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { LandInspectionComponent } from './land-inspection/land-inspection.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+//import { authGuard } from '../app/auth.guard';
+import { UserManagementComponent } from './components/dashboard/user-management/user-management.component';
+import { AddSubAdminComponent } from './components/dashboard/add-sub-admin/add-sub-admin.component';
+import { ViewSubAdminComponent } from './components/dashboard/view-sub-admin/view-sub-admin.component';
+import { EditSubAdminComponent } from './components/dashboard/edit-sub-admin/edit-sub-admin.component';
+import { AvailableLandsComponent } from './components/available-lands/available-lands.component';
 
+import { EditAuctionComponent } from './components/dashboard/edit-auction/edit-auction.component';
+
+
+import { EventJoinComponent } from './components/event-join/event-join.component';
+import { ReportDetailsComponent } from './components/dashboard/examiner-reports/report-details/report-details.component';
 export const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
     title: 'Home Page',
-}, {
-  path: 'about',
-  component: AboutComponent
+  }, {
+    path: 'about',
+    component: AboutComponent
   }
   ,
   {
-  path: 'donate',
-  component: DonateComponent
+    path: 'donate',
+    component: DonateComponent
+
   },
-   { path: 'login', component: LoginComponent},
-   { path: 'register', component: RegisterComponent},
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   // // { path: 'forgot-password', component: ForgotPasswordComponent },
-   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'volunteer-analytics', component: VolunteerAnalyticsComponent},
-   { path: 'participation-details', component: ParticipationDetailsComponent },
-   { path: 'performance-report', component: PerformanceReportsComponent },
-   { path: 'suitability-evaluations', component: SuitabilityEvaluationsComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'volunteer-analytics', component: VolunteerAnalyticsComponent },
+  { path: 'participation-details', component: ParticipationDetailsComponent },
+  { path: 'performance-report', component: PerformanceReportsComponent },
+  { path: 'suitability-evaluations', component: SuitabilityEvaluationsComponent },
   { path: 'landowner-registration', component: LandownerRegistrationComponent },
   { path: 'money-donation', component: FinancialDonationFormComponent },
   { path: 'volunteer-registration', component: VolunteerRegistrationComponent },
   { path: 'auction', component: AuctionComponent },
   { path: 'volunteer-to-examiner', component: VolunteerToExaminerComponent },
   { path: 'donation-history', component: DonationHistoryComponent },
-  { path: 'register-choice', component: RegisterChoiceComponent },
+  { path: 'register-choice', component: RegisterChoiceComponent },
 
   // Donation details routes by category
-  { path: 'donation-item-details/:id', component: DonationItemDetailsComponent },
-  { path: 'donation-money-details/:id', component: DonationMoneyDetailsComponent },
-  { path: 'donation-land-details/:id', component: DonationLandDetailsComponent },
+  { path: 'donation-item-details', component: DonationItemDetailsComponent },
+  { path: 'donation-money-details', component: DonationMoneyDetailsComponent },
+  { path: 'donation-land-details', component: DonationLandDetailsComponent },
 
   // { path: 'view-profile', component: ViewProfileComponent},
-  { path: 'view-profile', component: ViewProfileComponent },
+  {
+    path: 'view-profile', component: ViewProfileComponent
+  },
   { path: 'edit-profile', component: EditProfileComponent },
-  { path: 'event-details', component: EventDetailsComponent },
+  {
+    path: 'list-event/event-details', component: EventDetailsComponent
+  },
+  { path: 'view-profile', component: ViewProfileComponent },
+  { path: 'edit-profile/:id', component: EditProfileComponent },
+  { path: 'list-event/event-details/:id', component: EventDetailsComponent },
 
+  { path: 'list-event', component: EventListComponent },
+  { path: 'profile/edit/:id', component: EditProfileComponent },
+      { path: 'list-event/event-details/:id', component: EventDetailsComponent },
+      { path: 'list-event/join-event/:id', component: EventJoinComponent },
   { path: 'list-event', component: EventListComponent},
-  { path: 'examiner-reports', component: ExaminerReportsComponent },
-  { path: 'report-details/:id', component: ReportDetailsComponent },
-  { path: 'posts', component: PostsDashboardComponent},
-  { path: 'create-post', component: CreatePostComponent },
-  { path: 'view-post/:id', component: ViewPostComponent },
-  { path: 'edit-post/:id', component: EditPostComponent },
+
   // { path: '', redirectTo: '/donation-history', pathMatch: 'full' },
   // { path: '**', redirectTo: '/donation-history' }
-  {path:'auction-list',component:ListingAuctionsComponent},
+  {path:'auction-details/:id',component:DetailsAuctionsComponent},
   {
-    path:'auction-details',component:DetailsAuctionsComponent
+    path: 'auction-list', component: ListingAuctionsComponent
+  },
+  {
+    path: 'auction-details', component: DetailsAuctionsComponent
   },
 
   // Dashboard routes >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
   // { path: '', redirectTo: '/donation-history', pathMatch: 'full' },
   // { path: '**', redirectTo: '/donation-histor>>>>>
+  { path: 'dashboard', component: MainComponent  ,},
+  { path: 'dashboard/users', component: UsersAdminComponent ,},
+  { path: 'dashboard/requests', component: RequestsComponent, },
+  { path: 'dashboard/request/view/v', component: VolunteerRequestComponent, },
+  { path: 'dashboard/request/view/ex', component: ExaminerRequestComponent , },
+  { path: 'dashboard/userProfile/volunteer', component: VolunteerProfileComponent ,},
+  { path: 'dashboard/userProfile/doner', component: DonorProfileComponent ,},
   { path: 'dashboard', component: MainComponent },
   { path: 'dashboard/users', component: UsersAdminComponent },
   { path: 'dashboard/requests', component: RequestsComponent },
-  { path: 'dashboard/request/view/v', component: VolunteerRequestComponent },
-  { path: 'dashboard/request/view/ex', component: ExaminerRequestComponent },
-  { path: 'dashboard/userProfile/volunteer', component: VolunteerProfileComponent },
-  { path: 'dashboard/userProfile/doner', component: DonerProfileComponent },
+  { path: 'dashboard/request/view/v/:id', component: VolunteerRequestComponent },
+  { path: 'dashboard/request/view/ex/:id', component: ExaminerRequestComponent },
+  { path: 'dashboard/userProfile/volunteer/:id', component: VolunteerProfileComponent },
+  { path: 'dashboard/userProfile/doner/:id', component: DonorProfileComponent },
 
   { path: 'dashboard/events', component: EventsComponent },
-  { path: 'dashboard/events/edit', component: EditEventComponent },
-  { path: 'dashboard/events/view', component: ViewEventComponent },
+  { path: 'dashboard/events/edit/:id', component: EditEventComponent },
+  { path: 'dashboard/events/view/:id', component: ViewEventComponent },
   { path: 'dashboard/events/create', component: CreateEventComponent },
 
   { path: 'dashboard/auctions', component: AuctionsComponent },
-  { path: 'dashboard/auctions/view', component: ViewAuctionComponent },
-  { path: 'dashboard/auctions/edit', component: EditAuctionComponent },
+  { path: 'dashboard/auctions/view/:id', component: ViewAuctionComponent },
+  { path: 'dashboard/auctions/edit/:id', component: EditAuctionComponent },
   { path: 'dashboard/auctions/create', component: CreateAuctionComponent },
 
-
+  { path: 'dashboard/examiner-reports', component: ExaminerReportsComponent },
+  { path: 'dashboard/examiner-reports/report-details/:id', component: ReportDetailsComponent },
+  { path: 'dashboard/posts', component: PostsDashboardComponent },
+  { path: 'dashboard/posts/create-post', component: CreatePostComponent },
+  { path: 'dashboard/posts/view-post/:id', component: ViewPostComponent },
+  { path: 'dashboard/posts/edit-post/:id', component: EditPostComponent },
 
 
 
   // dashboard Routs End
-  {path: 'blog', component:BlogComponent},
-  {path: 'blog/:id', component: BlogDetailsComponent },
+
+
+  {
+    path: 'listing-auctions', component: ListingAuctionsComponent
+  },
+  {
+    path: 'details-auctions', component: DetailsAuctionsComponent
+  },
+  { path: 'contact-us', component: ContactUsComponent },
+  { path: 'management', component: UserManagementComponent },
+  { path: 'add-sub-admin', component: AddSubAdminComponent },
+  { path: 'view-sub-admin/:id', component: ViewSubAdminComponent },
+  { path: 'edit-sub-admin/:id', component: EditSubAdminComponent },
+  { path: 'pendingLands', component: AvailableLandsComponent },
+  { path: 'blog', component: BlogComponent },
+  { path: 'blog/:id', component: BlogDetailsComponent },
+
 
   { path: 'listing-auctions' , component: ListingAuctionsComponent},
   { path: 'details-auctions' , component:DetailsAuctionsComponent},
-  { path: 'land-report' , component:LandReportComponent},
+  { path: 'listing-auctions', component: ListingAuctionsComponent },
+  { path: 'details-auctions', component: DetailsAuctionsComponent },
+  { path: 'land-inspection', component: LandInspectionComponent },
+  {path:'contact-us',component:ContactUsComponent},
+
+
+
+
+  { path: 'land-inspection', component: LandInspectionComponent },
+  { path: 'reset-password', component: ResetPasswordComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
+
+  { path: 'land-inspection', component: LandInspectionComponent},
 ];
 
 @NgModule({
@@ -145,3 +206,7 @@ export const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
+
+
+
+

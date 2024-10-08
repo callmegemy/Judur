@@ -1,0 +1,198 @@
+:root {
+  --primary: #16423C;
+  --secondary: #6A9C89;
+  --light: #E9EFEC;
+  --dark: #001D23;
+}
+.header {
+    
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+ 
+}
+
+
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: white;
+  font-size: 1rem;
+  text-align: left;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.styled-table thead {
+  background-color: var(--primary);
+  color: white;
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--secondary);
+}
+
+
+
+.styled-table td a.navigation {
+  color: var(--secondary);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.styled-table td a.navigation:hover {
+  text-decoration: underline;
+}
+
+.schedule-btn {
+  background-color: var(--secondary);
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.schedule-btn:hover {
+  background-color: var(--primary);
+  color: var(--light);
+}
+
+h1.header {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Navigation Links */
+.navigation {
+  margin: 60px 0;
+  text-align: center;
+}
+
+.navigation a {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  margin: 0 10px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.navigation a:hover {
+  background: linear-gradient(135deg, var(--secondary), var(--primary));
+  transform: translateY(-2px);
+}
+
+.footer {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: #fff;
+  text-align: center;
+  padding: 15px;
+  font-size: 14px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+
+  h1.header {
+    font-size: 1.5rem;
+  }
+
+  .styled-table th,
+  .styled-table td {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
+
+  .schedule-btn {
+    padding: 8px 10px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1.header {
+    font-size: 1.2rem;
+  }
+
+  .styled-table th,
+  .styled-table td {
+    padding: 8px 10px;
+    font-size: 0.8rem;
+    display: block;
+    /* Stack rows */
+    width: 100%;
+    /* Full width for smaller screens */
+  }
+
+  .styled-table tr {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    /* Add space between rows */
+  }
+
+  .styled-table td {
+    border: none;
+    /* Remove borders on small screens */
+    position: relative;
+    padding-left: 50%;
+    /* Space for responsive design */
+    text-align: left;
+    /* Align text to the left */
+  }
+
+  .styled-table td:before {
+    position: absolute;
+    left: 10px;
+    width: 45%;
+    /* Space for labels */
+    white-space: nowrap;
+    /* Prevent label wrapping */
+    font-weight: bold;
+  }
+
+  .styled-table td:nth-child(1):before {
+    content: "Land ID";
+  }
+
+  .styled-table td:nth-child(2):before {
+    content: "Donor Name";
+  }
+
+  .styled-table td:nth-child(3):before {
+    content: "Description";
+  }
+
+  .styled-table td:nth-child(4):before {
+    content: "Land Size";
+  }
+
+  .styled-table td:nth-child(5):before {
+    content: "Address";
+  }
+
+  .styled-table td:nth-child(6):before {
+    content: "Proof of Ownership";
+  }
+
+  .styled-table td:nth-child(7):before {
+    content: "Action";
+  }
+}

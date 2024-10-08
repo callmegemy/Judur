@@ -1,57 +1,95 @@
 <app-navbar></app-navbar>
 
-<div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-8"> 
-        <form>
-          <!-- Full Name -->
-          <div class="mb-3">
-            <label for="name" class="form-label"><i class="fas fa-user me-2"></i> Full Name</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your full name">
-          </div>
-          
-          <!-- ID Number -->
-          <div class="mb-3">
-            <label for="id_number" class="form-label"><i class="fas fa-id-card me-2"></i> ID Number</label>
-            <input type="text" class="form-control" id="id_number" name="id_number" placeholder="Enter your national ID number">
-          </div>
-  
-          <!-- Phone Number -->
-          <div class="mb-3">
-            <label for="phone" class="form-label"><i class="fas fa-phone me-2"></i> Phone Number</label>
-            <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter your phone number">
-          </div>
-  
-          <!-- Email Address -->
-          <div class="mb-3">
-            <label for="email" class="form-label"><i class="fas fa-envelope me-2"></i> Email Address</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email address">
-          </div>
-  
-          <!-- Address -->
-          <div class="mb-3">
-            <label for="address" class="form-label"><i class="fas fa-map-marker-alt me-2"></i> Address</label>
-            <input type="text" class="form-control" id="address" name="address" placeholder="Enter your full address">
-          </div>
-  
-          <!-- Land Size -->
-          <div class="mb-3">
-            <label for="land_size" class="form-label"><i class="fas fa-ruler-combined me-2"></i> Land Size (sqm)</label>
-            <input type="number" class="form-control" id="land_size" name="land_size" placeholder="Enter land size in square meters">
-          </div>
-  
-          <!-- Land Ownership Proof -->
-          <div class="mb-3">
-            <label for="land_proof" class="form-label"><i class="fas fa-file-alt me-2"></i> Upload Proof of Ownership</label>
-            <input type="file" class="form-control" id="land_proof" name="land_proof">
-          </div>
-  
-          <!-- Submit Button -->
-          <button type="submit" class="btn btn-dark">
-            <i class="fas fa-paper-plane"></i> Submit
-          </button>
-        </form>
+<div class="container" style="max-width: 1000px; margin: 150px auto 0;">
+  <div class="row justify-content-center">
+    
+    <!-- Form on the left side -->
+    <div class="col-md-7 d-flex align-items-center">
+      <div class="card shadow-sm border-0 rounded-lg" style="width: 100%;">
+        <div class="card-header text-center rounded-top">
+          <h2 class="mb-0">Donate Your Land</h2>
+        </div>
+        <div class="card-body bg-light">
+          <!-- Land Donation Form -->
+          <form [formGroup]="landDonationForm" (ngSubmit)="onSubmit()">
+            
+            <!-- Description Field -->
+            <div class="mb-3">
+              <label for="description" class="form-label"><i class="fas fa-pencil-alt"></i> Description</label>
+              <input
+                type="text"
+                class="form-control form-control-lg"
+                id="description"
+                placeholder="Enter a brief description"
+                formControlName="description"
+              >
+              <div *ngIf="landDonationForm.get('description')?.touched && landDonationForm.get('description')?.invalid" class="text-danger">
+                <small *ngIf="landDonationForm.get('description')?.errors?.['required']">Description is required.</small>
+              </div>
+            </div>
+
+            <!-- Land Size Field -->
+            <div class="mb-3">
+              <label for="land_size" class="form-label"><i class="fas fa-ruler-combined"></i> Land Size (sqm)</label>
+              <input
+                type="number"
+                class="form-control form-control-lg"
+                id="land_size"
+                placeholder="Enter land size in sqm"
+                formControlName="land_size"
+              >
+              <div *ngIf="landDonationForm.get('land_size')?.touched && landDonationForm.get('land_size')?.invalid" class="text-danger">
+                <small *ngIf="landDonationForm.get('land_size')?.errors?.['required']">Land size is required.</small>
+                <small *ngIf="landDonationForm.get('land_size')?.errors?.['min']">Land size must be greater than 0.</small>
+              </div>
+            </div>
+
+            <!-- Address Field -->
+            <div class="mb-3">
+              <label for="address" class="form-label"><i class="fas fa-map-marker-alt"></i> Address</label>
+              <input
+                type="text"
+                class="form-control form-control-lg"
+                id="address"
+                placeholder="Enter land address"
+                formControlName="address"
+              >
+              <div *ngIf="landDonationForm.get('address')?.touched && landDonationForm.get('address')?.invalid" class="text-danger">
+                <small *ngIf="landDonationForm.get('address')?.errors?.['required']">Address is required.</small>
+              </div>
+            </div>
+
+            <!-- Proof of Ownership Field -->
+            <div class="mb-3">
+              <label for="proof_of_ownership" class="form-label"><i class="fas fa-file-upload"></i> Upload Proof of Ownership</label>
+              <input
+                type="file"
+                class="form-control form-control-lg"
+                id="proof_of_ownership"
+                (change)="onFileSelected($event)"
+              >
+              <div *ngIf="landDonationForm.get('proof_of_ownership')?.touched && landDonationForm.get('proof_of_ownership')?.invalid" class="text-danger">
+                <small *ngIf="landDonationForm.get('proof_of_ownership')?.errors?.['required']">Proof of ownership is required.</small>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-lg btn-dark btn-block mt-3" [disabled]="landDonationForm.invalid">
+              <i class="fas fa-hand-holding-heart"></i> Submit Land Donation
+            </button>
+          </form>
+        </div> 
+      </div> 
+    </div>
+
+    <!-- Paragraph on the right side -->
+    <div class="col-md-5 d-flex align-items-center">
+      <div style="padding: 20px;">
+        <p class="mb-4" style="font-size: 1.5rem; line-height: 1.6;">
+          By donating your land temporarily to <strong>Judur</strong>, you are contributing to a noble cause, helping those who are in need. We will take good care of your land while it's in use, ensuring that it's well-maintained. Your land will play a vital role in providing space for important community events, helping feed and support people in need. Together, we can make a meaningful impact.
+        </p>
       </div>
     </div>
+
   </div>
-  
+</div>

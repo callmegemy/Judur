@@ -3,182 +3,176 @@
 
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <title>Judur - Dashboard</title>
+  <title>Judur - Dashboard</title>
 
-    <!-- Custom fonts for this template-->
-    <link href="../../../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+  <!-- Custom fonts for this template-->
+  <link href="../../../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
 
-    <!-- Custom styles for this template-->
-    <link href="../../../../assets/css/sb-admin-2.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <!-- Custom styles for this template-->
+  <link href="../../../../assets/css/sb-admin-2.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
 
 </head>
 
 <body id="page-top">
 
-    <!-- Page Wrapper -->
-    <div id="wrapper">
+  <!-- Page Wrapper -->
+  <div id="wrapper">
 
-        <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-judur-reverse sidebar sidebar-dark accordion" id="accordionSidebar">
-<app-sidebar></app-sidebar>
-</ul>
+    <!-- Sidebar -->
+      <app-sidebar class="bg-gradient-judur"></app-sidebar>
 
-        <!-- End of Sidebar -->
+    <!-- End of Sidebar -->
 
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
 
-            <!-- Main Content -->
-            <div id="content">
+      <!-- Main Content -->
+      <div id="content">
 
-                <!-- Topbar -->
-<app-topbar></app-topbar>
-                <!-- End of Topbar -->
+        <!-- Topbar -->
+        <app-topbar></app-topbar>
+        <!-- End of Topbar -->
 
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-judur font-weight-bold">(Vounteers'name)`s Request</h1>
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-judur font-weight-bold">{{examiner.user.name}}`s Request</h1>
+          </div>
+
+
+          <!-- volunteer-to-examiner.component.html -->
+          <div class="container mt-5 text-judur">
+            <div class="card shadow custom-hover-shadow">
+              <div class="card-header">
+                <h2><i class="fas fa-user-check"></i> Examiner Request</h2>
+              </div>
+              <div class="card-body">
+                <form action="#" method="POST">
+                  <!-- Full Name -->
+                  <div class="form-group mb-3">
+                    <label for="fullName" class="font-weight-bold">Full Name</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                      </div>
+                      <input type="text" id="fullName" class="form-control" placeholder="Enter full name" required
+                        value="{{examiner.user.name}}">
                     </div>
+                  </div>
+
+                  <!-- Email Address -->
+                  <div class="form-group mb-3">
+                    <label for="email" class="font-weight-bold">Email Address</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                      </div>
+                      <input type="email" id="email" class="form-control" placeholder="Enter email address" required
+                        value="{{examiner.user.email}}">
+                    </div>
+                  </div>
+
+                  <!-- Education  -->
+                  <div class="form-group mb-3">
+                    <label for="Education" class="font-weight-bold">Education </label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa-solid fa-school"></i></span>
+                      </div>
+                      <input type="text" id="Education" class="form-control" placeholder="Enter Education" required
+                        value="{{examiner.education}}">
+                    </div>
+                  </div>
 
 
-                    <!-- volunteer-to-examiner.component.html -->
-<div class="container mt-5 text-judur">
-    <div class="card shadow custom-hover-shadow">
-      <div class="card-header">
-        <h2 ><i class="fas fa-user-check"></i> Examiner Request</h2>
+                  <!-- Reason for Applying -->
+                  <div class="form-group mb-4">
+                    <label for="reason" class="font-weight-bold">Reason for Applying</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                      </div>
+                      <textarea id="reason" class="form-control" rows="3"
+                        placeholder="Why do you want to become an examiner?" required>{{examiner.reason}}</textarea>
+                    </div>
+                  </div>
+
+
+
+
+
+                  <!-- Submit Button -->
+                  <div class="display-inline text-center">
+                    <button type="button" class="btn btn-success mx-3" (click)="confirmAccept()"><i class="fa-solid fa-check"></i> Accept</button>
+                    <button type="button" class="btn btn-danger mx-3" (click)="confirmReject()"><i class="fa-solid fa-xmark"></i> Reject</button>
+                  </div>
+                </form>
+              </div>
+              <button type="submit" class="btn btn-judur mx-3"><i class="fa-solid fa-arrow-left"></i> back</button>
+
+            </div>
+          </div>
+
+
+        </div>
+        <!-- /.container-fluid -->
+
       </div>
-      <div class="card-body">
-        <form action="#" method="POST">
-          <!-- Full Name -->
-          <div class="form-group mb-3">
-            <label for="fullName" class="font-weight-bold">Full Name</label>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-user"></i></span>
-              </div>
-              <input type="text" id="fullName" class="form-control" placeholder="Enter full name" required value="Omar Gamal">
-            </div>
-          </div>
-  
-          <!-- Email Address -->
-          <div class="form-group mb-3">
-            <label for="email" class="font-weight-bold">Email Address</label>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-              </div>
-              <input type="email" id="email" class="form-control" placeholder="Enter email address" required value="omar@gmail.com">
-            </div>
-          </div>
-  
-          <!-- Reason for Applying -->
-          <div class="form-group mb-4">
-            <label for="reason" class="font-weight-bold">Reason for Applying</label>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-              </div>
-              <textarea id="reason" class="form-control" rows="3" placeholder="Why do you want to become an examiner?" required>passion of helping people</textarea>
-            </div>
-          </div>
-  
-          <!-- Availability -->
-          <div class="form-group mb-3">
-            <label for="availability" class="font-weight-bold">When are you available during the week?</label>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-clock"></i></span>
-              </div>
-              <input type="text" id="availability" class="form-control" placeholder="e.g., Monday to Friday, 5 PM - 8 PM" required value="weekends">
-            </div>
-          </div>
-  
-          <!-- Hours per Week -->
-          <div class="form-group mb-3">
-            <label for="hours" class="font-weight-bold">How many hours can you dedicate per week?</label>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-              </div>
-              <input type="number" id="hours" class="form-control" placeholder="Enter hours" required value="12">
-            </div>
-          </div>
-  
+      <!-- End of Main Content -->
 
-  
-          <!-- Submit Button -->
-          <div class="display-inline text-center">
-            <button type="submit" class="btn btn-success mx-3 "><i class="fa-solid fa-check"></i>  Accept</button>
-            <button type="submit" class="btn btn-danger mx-3"><i class="fa-solid fa-xmark"></i>  Reject</button>
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Judur 2024</span>
           </div>
-            </form>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="login.html">Logout</a>
+        </div>
       </div>
-      <button type="submit" class="btn btn-judur mx-3"><i class="fa-solid fa-arrow-left"></i>  back</button>
-
     </div>
   </div>
-                
-
-                </div>
-                <!-- /.container-fluid -->
-
-            </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Judur 2024</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
-
-        </div>
-        <!-- End of Content Wrapper -->
-
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
 

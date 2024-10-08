@@ -26,12 +26,10 @@ body {
 
 /* Header with Gradient */
 .header {
-    
     color: #fff;
     padding: 20px;
     text-align: center;
-   
-    margin-top: 115px;
+    box-shadow: 0 1px 5px var(--secondary);
 }
 
 /* Main Container */
@@ -68,6 +66,11 @@ body {
     transform: translateY(-5px);
 }
 
+/* Headings Color */
+.h4 {
+    color: white !important;
+}
+
 /* Table Styles */
 table {
     width: 100%;
@@ -93,23 +96,20 @@ th {
     padding: 20px;
     margin: 20px auto;
     max-width: 900px;
-  
     border-radius: 10px;
-   
 }
 
 /* Report Card Styles */
 .report-card {
     padding: 20px;
     border-radius: 10px;
-
-   
-    color:var(--primary);
+    color: var(--primary);
     box-shadow: 0 2px 10px var(--primary);
     margin: 10px 0;
-    width: 600px;
+    width: 100%; /* Adjusted to be responsive */
 }
 
+/* Highlighted Text */
 .highlight {
     font-weight: bold;
     color: var(--primary);
@@ -145,6 +145,7 @@ th {
     transform: translateY(-2px);
 }
 
+/* Footer */
 .footer {
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     color: #fff;
@@ -158,3 +159,36 @@ th {
     z-index: 100; 
 }
 
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .summary {
+        flex-direction: column; /* Stack cards vertically on smaller screens */
+    }
+
+    .summary-card {
+        flex: 1 1 100%; /* Full width for cards on small screens */
+        margin: 10px 0; /* Adjust margin for vertical stacking */
+    }
+
+    .report-card {
+        width: 100%; /* Full width for report cards on small screens */
+    }
+
+    /* Adjust padding and margins for mobile */
+    .container, .table-container, .report-section {
+        padding: 10px;
+        margin: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 15px; /* Smaller padding for mobile */
+    }
+
+    .navigation a {
+        padding: 8px 15px; /* Smaller button size for mobile */
+        margin: 5px 0; /* Adjust margin for vertical stacking */
+        display: block; /* Stack navigation links vertically */
+    }
+}

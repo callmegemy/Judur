@@ -1,32 +1,94 @@
 <app-navbar></app-navbar>
 
-<div class="container">
-    <h1>Edit Profile</h1>
+<div class="container mt-4">
+  <h2>Edit Profile</h2>
 
-    <div class="profile-container">
-        <div class="profile-pic">
-            <img src="assets/img/profile-picture.jpg" alt="Profile Picture">
-        </div>
+  <!-- Display error message if any -->
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
 
-        <div class="profile-info">
-            <form>
-                <div class="form-group">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" value="Admin Name">
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" value="admin@example.com">
-                </div>
-
-                <div class="form-group">
-                    <label for="profile-picture">Update Profile Picture:</label>
-                    <input type="file" id="profile-picture" name="profile-picture">
-                </div>
-
-                <button type="submit" class="btn">Update Profile</button>
-            </form>
-        </div>
+  <!-- Profile Edit Form -->
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+    
+    <!-- Name -->
+    <div class="form-group mb-3">
+      <label for="name">Name</label>
+      <input 
+        type="text" 
+        id="name" 
+        class="form-control" 
+        formControlName="name" 
+        [ngClass]="{ 'is-invalid': profileForm.get('name')?.invalid && profileForm.get('name')?.touched }"
+        placeholder="Enter your name"
+      />
+      <div *ngIf="profileForm.get('name')?.invalid && profileForm.get('name')?.touched" class="invalid-feedback">
+        Name is required and must be less than 255 characters.
+      </div>
     </div>
+
+    <!-- Email -->
+    <div class="form-group mb-3">
+      <label for="email">Email</label>
+      <input 
+        type="email" 
+        id="email" 
+        class="form-control" 
+        formControlName="email"
+        [ngClass]="{ 'is-invalid': profileForm.get('email')?.invalid && profileForm.get('email')?.touched }"
+        placeholder="Enter your email"
+      />
+      <div *ngIf="profileForm.get('email')?.invalid && profileForm.get('email')?.touched" class="invalid-feedback">
+        Valid email is required.
+      </div>
+    </div>
+
+    <!-- Age -->
+    <div class="form-group mb-3">
+      <label for="age">Age</label>
+      <input 
+        type="number" 
+        id="age" 
+        class="form-control" 
+        formControlName="age"
+        [ngClass]="{ 'is-invalid': profileForm.get('age')?.invalid && profileForm.get('age')?.touched }"
+        placeholder="Enter your age"
+      />
+      <div *ngIf="profileForm.get('age')?.invalid && profileForm.get('age')?.touched" class="invalid-feedback">
+        Age must be between 0 and 150.
+      </div>
+    </div>
+
+    <!-- Phone -->
+    <div class="form-group mb-3">
+      <label for="phone">Phone</label>
+      <input 
+        type="text" 
+        id="phone" 
+        class="form-control" 
+        formControlName="phone"
+        [ngClass]="{ 'is-invalid': profileForm.get('phone')?.invalid && profileForm.get('phone')?.touched }"
+        placeholder="Enter your phone number"
+      />
+      <div *ngIf="profileForm.get('phone')?.invalid && profileForm.get('phone')?.touched" class="invalid-feedback">
+        Phone number must be less than 20 characters.
+      </div>
+    </div>
+
+    <!-- Profile Picture -->
+    <div class="form-group mb-3">
+      <label for="profilePicture">Profile Picture</label>
+      <input 
+        type="file" 
+        id="profilePicture" 
+        class="form-control" 
+        name="profile_picture"
+        (change)="onFileSelected($event)"
+      />
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary" [disabled]="profileForm.invalid">Update Profile</button>
+
+  </form>
 </div>

@@ -1,29 +1,248 @@
-<div class="container">
-    <h1>Create New Post</h1>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
 
-    <form action="submit-post.html" method="POST">
-        <div class="form-group">
-            <label for="title">Post Title</label>
-            <input type="text" id="title" name="title" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="profile-picture">Upload Event Picture:</label>
-            <input type="file" id="profile-picture" name="profile-picture">
-        </div>
-        <div class="form-group">
-            <label for="content">Post Content</label>
-            <textarea id="content" name="content" class="form-control" rows="6" required></textarea>
-        </div>
-        <div class="form-group">
-            <label for="category">Category</label>
-            <select id="category" name="category" class="form-control">
-                <option value="news">News</option>
-                <option value="auctions">Auctions</option>
-                <option value="feeding-events">Feeding Events</option>
-            </select>
-        </div>
-        <button type="submit" class="btn">Submit</button>
-    </form>
+    <title>Judur - Dashboard</title>
 
-    <button class="btn back-btn" (click)="goBack()">Back to Posts</button>
-</div>
+    <!-- Custom fonts for this template-->
+    <link
+      href="../../../../assets/vendor/fontawesome-free/css/all.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet"
+    />
+
+    <!-- Custom styles for this template-->
+    <link href="../../../../assets/css/sb-admin-2.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+  </head>
+
+  <body id="page-top">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+      <!-- Sidebar -->
+      <app-sidebar class="bg-gradient-judur"></app-sidebar>
+      <!-- End of Sidebar -->
+
+      <!-- Content Wrapper -->
+      <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main Content -->
+        <div id="content">
+          <!-- Topbar -->
+          <app-topbar></app-topbar>
+          <!-- End of Topbar -->
+
+          <!-- Begin Page Content -->
+          <div class="container-fluid">
+            <!-- Page Heading -->
+            <div
+              class="d-sm-flex align-items-center justify-content-between mb-4"
+            >
+              <h1 class="h3 mb-0 text-judur font-weight-bold">
+                Create New Post
+              </h1>
+            </div>
+
+            <!-- Event Details Form -->
+            <div class="container mt-5 text-judur">
+              <div class="card shadow custom-hover-shadow">
+                <div class="card-header">
+                  <h2>
+                    <i class="fa-regular fa-calendar-days"></i> Post Details
+                  </h2>
+                </div>
+                <div class="card-body">
+                  <form
+                    [formGroup]="postForm"
+                    (ngSubmit)="onSubmit()"
+                    enctype="multipart/form-data"
+                  >
+                    <!-- Post Title -->
+                    <div class="form-group mb-3">
+                      <label for="title" class="font-weight-bold"
+                        >Post Title</label
+                      >
+                      <input
+                        type="text"
+                        id="title"
+                        formControlName="title"
+                        class="form-control"
+                        placeholder="Enter post title"
+                        required
+                      />
+                      <div
+                        *ngIf="
+                          postForm.get('title')?.touched &&
+                          (postForm.get('title')?.touched ||
+                            postForm.get('title')?.dirty)
+                        "
+                      >
+                        <small class="text-danger">Title is required.</small>
+                      </div>
+                    </div>
+
+                    <!-- Upload Post Picture -->
+                    <div class="form-group mb-3">
+                      <label for="profile-picture">Upload Post Picture:</label>
+                      <input
+                        type="file"
+                        id="profile-picture"
+                        (change)="onFileSelected($event)"
+                        class="form-control-file"
+                      />
+                    </div>
+
+                    <!-- Post Content -->
+                    <div class="form-group mb-4">
+                      <label for="content" class="font-weight-bold"
+                        >Post Content</label
+                      >
+                      <textarea
+                        id="content"
+                        formControlName="content"
+                        class="form-control"
+                        rows="6"
+                        placeholder="Enter post content"
+                        required
+                      ></textarea>
+                      <div
+                        *ngIf="
+                          postForm.get('content')?.touched &&
+                          (postForm.get('content')?.touched ||
+                            postForm.get('content')?.dirty)
+                        "
+                      >
+                        <small class="text-danger">Content is required.</small>
+                      </div>
+                    </div>
+
+                    <!-- Category Selection -->
+                    <div class="form-group mb-3">
+                      <label for="category" class="font-weight-bold"
+                        >Category</label
+                      >
+                      <select
+                        id="category"
+                        formControlName="category"
+                        class="form-control"
+                        required
+                      >
+                        <option value="" disabled selected>
+                          Select a category
+                        </option>
+                        <option value="news">News</option>
+                        <option value="auctions">Auctions</option>
+                        <option value="feeding-events">Feeding Events</option>
+                      </select>
+                      <div
+                        *ngIf="
+                          postForm.get('category')?.invalid &&
+                          (postForm.get('category')?.touched ||
+                            postForm.get('category')?.dirty)
+                        "
+                      >
+                        <small class="text-danger">Category is required.</small>
+                      </div>
+                    </div>
+
+                    <!-- Submit and Cancel Buttons -->
+                    <div class="text-center">
+                      <button
+                        type="submit"
+                        class="btn btn-success mx-3"
+                        [disabled]="postForm.invalid"
+                      >
+                        <i class="fa-solid fa-check"></i> Submit
+                      </button>
+                      <button type="reset" class="btn btn-danger mx-3">
+                        <i class="fa-solid fa-xmark"></i> Cancel
+                      </button>
+                    </div>
+                  </form>
+
+                  <!-- Back Button -->
+                  <button class="btn btn-judur mt-3" (click)="goBack()">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Posts
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- End of Event Details Form -->
+          </div>
+          <!-- /.container-fluid -->
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright &copy; Judur 2024</span>
+            </div>
+          </div>
+        </footer>
+        <!-- End of Footer -->
+      </div>
+      <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div
+      class="modal fade"
+      id="logoutModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button
+              class="close"
+              type="button"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Select "Logout" below if you are ready to end your current session.
+          </div>
+          <div class="modal-footer">
+            <button
+              class="btn btn-secondary"
+              type="button"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <a class="btn btn-primary" href="login.html">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

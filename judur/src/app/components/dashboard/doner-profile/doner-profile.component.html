@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,15 +12,11 @@
 
     <!-- Custom fonts for this template-->
     <link href="../../../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="../../../../assets/css/sb-admin-2.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
-
 </head>
 
 <body id="page-top">
@@ -30,10 +25,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-judur-reverse sidebar sidebar-dark accordion" id="accordionSidebar">
-<app-sidebar></app-sidebar>
-</ul>
-
+            <app-sidebar class="bg-gradient-judur"></app-sidebar>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -43,7 +35,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-<app-topbar></app-topbar>
+                <app-topbar></app-topbar>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -51,38 +43,29 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-judur font-weight-bold">(Vounteers'name)`s Profile</h1>
+                        <h1 class="h3 mb-0 text-judur font-weight-bold">{{ donor.name }}'s Profile</h1> 
                     </div>
 
                     <div class="container my-5">
-                    
                         <div class="profile-container">
                             <div class="profile-pic">
                                 <img src="assets/img/profile-picture.jpg" alt="Profile Picture">
                             </div>
-                    
+
                             <div class="profile-info">
-                                <p><strong>Name:</strong> Admin Name</p>
-                                <p><strong>Email:</strong> admin&#64;example.com</p>
-                    
-                    
-                    
+                                <p><strong>Name:</strong> {{ donor.name }}</p>
+                                <p><strong>Email:</strong> {{ donor.email }}</p>
                             </div>
                         </div>
-                    
-                    
-                    
-                        <div class="user-type-section doner" >
+
+                        <div class="user-type-section doner">
                             <h2>Donor Information</h2>
-                            <p>Donation Amount: $100</p>
-                            <p>Last Donation Date: 2024-09-01</p>
-                            <p>Favorite Causes: Education, Health</p>
+                            <p><strong>Last Donation Amount:</strong> $@if(donor.last_donation){donor.last_donation.created_at}@else{N/A}</p>
+                            <p><strong>Total Donations:</strong> ${{ donor.total_donations || 'N/A' }}</p>
+                            <p><strong>Last Donation Date:</strong>  @if(donor.last_donation){donor.last_donation.created_at}@else{No Date Provided}  </p>
                             <a routerLink="/donation-history" class="btn">My Donations</a>
                         </div>
-                    
-                      
                     </div>
-                
 
                 </div>
                 <!-- /.container-fluid -->
@@ -112,8 +95,7 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -130,8 +112,6 @@
             </div>
         </div>
     </div>
-
-
 
 </body>
 

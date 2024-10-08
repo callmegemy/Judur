@@ -30,9 +30,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-judur-reverse sidebar sidebar-dark accordion" id="accordionSidebar">
-<app-sidebar></app-sidebar>
-</ul>
+<app-sidebar class="bg-gradient-judur"></app-sidebar>
 
         <!-- End of Sidebar -->
 
@@ -51,41 +49,45 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-judur font-weight-bold">Event View</h1>
+                        <h1 class="h3 mb-0 text-judur font-weight-bold"> {{event.title}} Event </h1>
                     </div>
 
 
                     <div class="event-details-container">
                         <div class="event-header">
                           <i class="fa-solid fa-calendar-check event-icon text-judur"></i>
-                          <h2 >Event Title: Feeding the Homeless Campaign</h2>
+                          <h2 >Event Title: {{event.title}}</h2>
                         </div>
                         <div class="event-body">
                           <div class="event-detail">
                             <span class="event-label">Location:</span>
-                            <span class="event-value">City Central Park</span>
+                            <span class="event-value">{{event.location}}</span>
                           </div>
                           <div class="event-detail">
                             <span class="event-label">Date:</span>
-                            <span class="event-value">November 25, 2024</span>
+                            <span class="event-value">{{event.date}}</span>
                           </div>
                           <div class="event-detail">
                             <span class="event-label">Time:</span>
-                            <span class="event-value">12:00 PM</span>
+                            <span class="event-value">{{event.time | timeFormat}}</span>
+                          </div>
+                          <div class="event-detail">
+                            <span class="event-label">Duration:</span>
+                            <span class="event-value">{{event.duration}}</span>
                           </div>
                           <div class="event-detail">
                             <span class="event-label">Volunteers:</span>
-                            <span class="event-value">30 Volunteers</span>
+                            <span class="event-value">{{event.expected_organizer_number}}</span>
                           </div>
                           <div class="event-detail">
                             <span class="event-label">Description:</span>
                             <span class="event-value event-description">
-                              A charity event focused on feeding the homeless community. Volunteers will distribute meals and provide support services.
+                                {{event.description}}
                             </span>
                           </div>
                         </div>
                         <div class="text-center">
-                        <a href="#" class="btn btn-judur btn-back ">Go Back</a>
+                        <a href="/dashboard/events" class="btn btn-judur btn-back ">Go Back</a>
                     </div>
                       </div>
                 </div>

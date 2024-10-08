@@ -1,24 +1,32 @@
-<app-navbar></app-navbar>
+<div class="container my-5">
+  <div class="row">
+    <h2 class="mb-4 text-center">Land Donation History</h2>
 
-<div *ngIf="donationDetails" class="card shadow-sm mt-3" style="max-width: 400px; border-color: #6A9C89;">
-   
-    <div class="card-header" style="background-color: #6A9C89; color: white;">
-      <h4 class="card-title text-center">Land Donation Details</h4>
-    </div>
+    <!-- Loop through land donations and display cards -->
+    <div class="col-md-4 mb-3" *ngFor="let donation of landDonations">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title"><i class="fas fa-map-marked-alt"></i> Land Donation</h5>
+          <p><strong>Address:</strong> {{ donation.address || 'N/A' }}</p>
+          <p><strong>Land Size:</strong> {{ donation.land_size }} sq ft</p>
+          <p><strong>Date Donated:</strong> {{ donation.created_at | date:'medium' }}</p>
     
-
-    <div class="card-body" style="background-color: #E9EFEC;">
-      <p><strong>Date:</strong> {{ donationDetails.date }}</p>
-      <p><strong>Location:</strong> {{ donationDetails.location }}</p>
-      <p><strong>Capacity:</strong> {{ donationDetails.capacity }} people</p>
-      <p><strong>Owner Name:</strong> {{ donationDetails.ownerName }}</p>
-      <p><strong>Land Area:</strong> {{ donationDetails.landArea }}</p>
+        </div>
+      </div>
     </div>
-  
-    <div class="card-footer text-center" style="background-color: #E9EFEC;">
-      <button (click)="goBack()" class="btn btn-sm" style="background-color: #6A9C89; color: white;">
-        <i class="fas fa-arrow-left"></i> Back to Donation History
-      </button>
+
+    <!-- If no donations are found, show an error message -->
+    <div *ngIf="errorMessage" class="col-12">
+      <div class="alert alert-warning text-center">
+        {{ errorMessage }}
+      </div>
     </div>
   </div>
-  
+
+  <!-- Button to go back to donation history -->
+  <div class="row mt-4">
+    <div class="col text-center">
+      <button class="btn btn-primary" (click)="goBack()">Back to Donation History</button>
+    </div>
+  </div>
+</div>

@@ -1,45 +1,97 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { CommonModule, DatePipe } from '@angular/common';
+import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { FormsModule } from '@angular/forms';
+import { PostService } from '../../../services/post.service';
+import { SidebarComponent } from '../sidebar/sidebar.component'; // Ensure this is standalone
+import { TopbarComponent } from '../topbar/topbar.component'; // Ensure this is standalone
+import $ from 'jquery';
+import 'datatables.net';
 
 @Component({
   selector: 'app-posts-dashboard',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, DatePipe, SidebarComponent, TopbarComponent, FormsModule, NgxPaginationModule],
   templateUrl: './posts-dashboard.component.html',
-  styleUrl: './posts-dashboard.component.css'
+  styleUrls: ['./posts-dashboard.component.css'] // Corrected 'styleUrl' to 'styleUrls'
 })
-export class PostsDashboardComponent {
-  posts = [
-    {
-      id: 1, // Ensure to keep the id property
-      title: 'Post Title 1',
-      createdAt: '2024-09-20', // Change 'date' to 'createdAt'
-      image: 'assets/img/feeding.png'
-    },
-    {
-      id: 2,
-      title: 'Post Title 2',
-      createdAt: '2024-09-19', // Change 'date' to 'createdAt'
-      image: 'assets/img/feeding.png'
-    },
-    {
-      id: 3,
-      title: 'Post Title 3',
-      createdAt: '2024-09-18', // Change 'date' to 'createdAt'
-      image: 'assets/img/feeding.png'
+export class PostsDashboardComponent implements AfterViewInit {
+  posts: any[] = [];
+  private postsTable: any;
+
+  constructor(
+    private postsService: PostService,
+    private cdr: ChangeDetectorRef,
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
+    this.fetchPosts();
+  }
+
+  ngAfterViewInit(): void {
+    this.initializeDataTables();
+  }
+
+  ngOnDestroy(): void {
+    if (this.postsTable) {
+      this.postsTable.destroy(true);
     }
-  ];
-  constructor(private router: Router  ) {} // Inject Router
-  createPost() {
-    this.router.navigate(['/create-post']);
   }
 
-  viewPost(postId: number) {
-    this.router.navigate(['/view-post', postId]);
+  fetchPosts() {
+    this.postsService.getPosts().subscribe(
+      data => {
+        console.log('Posts fetched:', data);
+        this.posts = data;
+        this.cdr.detectChanges();
+        this.initializeDataTables();
+      },
+      error => {
+        console.error('Error fetching posts:', error);
+      }
+    );
   }
 
-  editPost(postId: number) {
-    this.router.navigate(['/edit-post', postId]);
+  initializeDataTables() {
+    setTimeout(() => {
+      if (this.posts.length > 0) {
+        if (this.postsTable) {
+          this.postsTable.destroy();
+        }
+        this.postsTable = $('#dataTable').DataTable();
+      }
+    }, 0);
   }
+
+  onDelete(postId: number) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'This action will permanently delete the post!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.postsService.deletePost(postId).subscribe(
+          response => {
+            console.log('Post deleted successfully', response);
+            Swal.fire('Deleted!', 'The post has been deleted.', 'success').then(() => {
+              location.reload();
+            });
+          },
+          error => {
+            console.error('Error occurred while deleting post', error);
+            Swal.fire('Error!', 'Failed to delete the post.', 'error');
+          }
+        );
+      }
+    });
+  }
+ 
 }

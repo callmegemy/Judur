@@ -30,9 +30,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-judur-reverse sidebar sidebar-dark accordion" id="accordionSidebar">
-<app-sidebar></app-sidebar>
-</ul>
+<app-sidebar class="bg-gradient-judur"></app-sidebar>
 
         <!-- End of Sidebar -->
 
@@ -51,7 +49,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-judur font-weight-bold">(User Name)`s Request</h1>
+                        <h1 class="h3 mb-0 text-judur font-weight-bold">{{volunteer.user.name}}s Request</h1>
 
                     </div>
 
@@ -63,40 +61,40 @@
         <form>
           <div class="mb-3">
             <label for="fullName" class="form-label"><i class="fas fa-user me-2"></i>Full Name</label>
-            <input type="text" class="form-control" id="fullName" placeholder="Enter full name" value="Omar">
+            <input readonly type="text" class="form-control" id="fullName" placeholder="Enter full name" value="{{volunteer.user.name}}">
           </div>
           <div class="mb-3">
             <label for="email" class="form-label"><i class="fas fa-envelope me-2"></i>Email Address</label>
-            <input type="email" class="form-control" id="email" placeholder="Enter email" value="Omar@gmail.com">
+            <input readonly type="email" class="form-control" id="email" placeholder="Enter email" value="{{volunteer.user.email}}">
           </div>
           <div class="mb-3">
             <label for="skills" class="form-label"><i class="fas fa-tools me-2"></i>Skills</label>
-            <input type="text" class="form-control" id="skills" placeholder="Specify skills" value="Organizer">
+            <input readonly type="text" class="form-control" id="skills" placeholder="Specify skills" value="{{volunteer.skills}}">
           </div>
           <div class="mb-3">
             <label for="age" class="form-label"><i class="fas fa-birthday-cake me-2"></i>Age</label>
-            <input type="number" class="form-control" id="age" placeholder="Enter your age" value="23">
+            <input readonly type="number" class="form-control" id="age" placeholder="Enter your age" value="{{volunteer.user.age}}">
           </div>
           <div class="mb-3">
             <label for="availability" class="form-label"><i class="fas fa-calendar-alt me-2"></i>Availability</label>
-            <input type="text" class="form-control" id="availability" placeholder="Enter availability" value="weekends">
+            <input readonly type="text" class="form-control" id="availability" placeholder="Enter availability" value="{{volunteer.availability}}">
           </div>
           <div class="mb-3">
             <label for="preferredRoles" class="form-label"><i class="fas fa-heart me-2"></i>Preferred Volunteer Roles</label>
-            <input type="text" class="form-control" id="preferredRoles" placeholder="e.g., Fundraising, Teaching" value="Fundraising">
+            <input readonly type="text" class="form-control" id="preferredRoles" placeholder="e.g., Fundraising, Teaching" value="Fundraising">
           </div>
           <div class="mb-3">
             <label for="experience" class="form-label"><i class="fas fa-history me-2"></i>Past Volunteering Experience</label>
-            <textarea class="form-control" id="experience" placeholder="Describe any past volunteering experience"> It was Great</textarea>
+            <textarea readonly class="form-control" id="experience" placeholder="Describe any past volunteering experience"> It was Great</textarea>
           </div>
           <div class="mb-3">
             <label for="motivation" class="form-label"><i class="fas fa-search me-2"></i>Why do you want to volunteer?</label>
-            <textarea class="form-control" id="motivation" placeholder="What motivates you to volunteer with us?">Yes</textarea>
+            <textarea readonly class="form-control" id="motivation" placeholder="What motivates you to volunteer with us?">{{volunteer.aim}}</textarea>
           </div>
           <div class="display-inline text-center">
-          <button type="submit" class="btn btn-success mx-3 "><i class="fa-solid fa-check"></i>  Accept</button>
-          <button type="submit" class="btn btn-danger mx-3"><i class="fa-solid fa-xmark"></i>  Reject</button>
-        </div>
+            <button type="button" class="btn btn-success mx-3" (click)="confirmAccept()"><i class="fa-solid fa-check"></i> Accept</button>
+            <button type="button" class="btn btn-danger mx-3" (click)="confirmReject()"><i class="fa-solid fa-xmark"></i> Reject</button>
+          </div>
         </form>
       </div>
       <button type="submit" class="btn btn-judur mx-3"><i class="fa-solid fa-arrow-left"></i>  back</button>

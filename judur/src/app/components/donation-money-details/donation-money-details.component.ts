@@ -1,33 +1,34 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
-import { NavbarComponent } from '../navbar/navbar.component';
+import { CommonModule } from '@angular/common';
+import { DonationService } from '../../services/donation.service';
+import { Router, RouterModule } from '@angular/router';
+import { CurrencyPipe, DatePipe } from '@angular/common'; // Import pipes for currency and date formatting
 
 @Component({
   selector: 'app-donation-money-details',
   standalone: true,
-  imports: [CommonModule, NavbarComponent],
+  imports: [CommonModule, RouterModule, CurrencyPipe, DatePipe], // Include necessary modules and pipes
   templateUrl: './donation-money-details.component.html',
   styleUrls: ['./donation-money-details.component.css']
 })
 export class DonationMoneyDetailsComponent implements OnInit {
 
-  donationDetails: any;
-  donationDate: string | null = null;
+  financialDonations: any[] = [];
+  errorMessage: string = '';
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(private donationService: DonationService, private router: Router) {}
 
   ngOnInit(): void {
-    this.donationDate = this.route.snapshot.paramMap.get('id');
-    this.donationDetails = this.getDonationDetails(this.donationDate);
-  }
-
-  getDonationDetails(date: string | null): any {
-    const allDonations = [
-      { type: 'money', details: 'Monetary Donation', amount: 500, currency: 'USD', date: '2024-08-01', donorName: 'John Doe', paymentMethod: 'Credit Card' }
-    ];
-    return allDonations.find(donation => donation.date === date);
+    this.donationService.getFinancialDonations().subscribe((data) => {
+      if (data && data.length > 0) {
+        this.financialDonations = data;
+      } else {
+        this.errorMessage = 'No financial donations found for the current donor.';
+      }
+    }, (error) => {
+      this.errorMessage = 'Error fetching financial donations';
+      console.error('Error fetching financial donations', error);
+    });
   }
 
   goBack(): void {

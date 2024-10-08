@@ -11,8 +11,8 @@ body {
 .login-container {
     width: 600px;
     padding: 30px;
-    margin-top: 140px;
-    margin-left: 32%;
+    margin: 140px auto;
+
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -46,6 +46,8 @@ form {
     border-radius: 4px;
     transition: all 0.3s ease;
     box-shadow: none;
+    display: flex;
+    justify-content: center;
     border-radius: 8px;
 }
 
@@ -59,6 +61,10 @@ form {
     color: #fff;
     transition: background-color 0.3s ease, transform 0.3s ease;
     border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: 600;
+    text-align: center;
+    justify-content: center;
 }
 
 .login-btn:hover {

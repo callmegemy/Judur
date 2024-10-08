@@ -1,135 +1,134 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router'; // Import RouterModule for routerLink
+import { Router, RouterModule } from '@angular/router';
+import { DonationService } from '../../services/donation.service';
 import { Chart } from 'chart.js/auto';
 import { NavbarComponent } from '../navbar/navbar.component';
+
+interface Donation {
+  date: string;
+  type: 'item' | 'financial' | 'land';
+  count: number;
+}
 
 @Component({
   selector: 'app-donation-history',
   standalone: true,
-  imports: [CommonModule, RouterModule, NavbarComponent], // Add RouterModule to imports
+  imports: [CommonModule, RouterModule , NavbarComponent],
   templateUrl: './donation-history.component.html',
   styleUrls: ['./donation-history.component.css']
 })
 export class DonationHistoryComponent implements OnInit {
-  donationHistory = {
-    name: 'John Doe',
-    totalDonations: 7,
-    lastDonationDate: '2024-09-10',
-    donations: [
-      {
-        type: 'item',
-        details: 'Canned Food',
-        quantity: 50,
-        description: 'Canned beans',
-        date: '2024-09-10'
-      },
-      {
-        type: 'money',
-        details: 'Monetary Donation',
-        amount: 500,
-        currency: 'USD',
-        date: '2024-08-01'
-      },
-      {
-        type: 'land',
-        details: 'Community Hall',
-        capacity: 200,
-        location: 'Downtown',
-        date: '2024-06-15'
-      }
-    ]
-  };
-
+  donationHistory: any = {};
   totalItemsDonated: number = 0;
   totalMonetaryDonations: number = 0;
   totalLandDonated: number = 0;
+  totalDonations: number = 0;
+  lastDonationDate: string = 'N/A';
+  errorMessage: string = '';
+  donationHistoryByDate: { [key: string]: { items: number, financial: number, land: number } } = {}; // Add this line to store donations by date
 
-  constructor() {}
+  @ViewChild('donationChartCanvas') donationChartCanvas!: ElementRef;
+
+  constructor(private donationService: DonationService, private router: Router) {}
 
   ngOnInit(): void {
-    this.calculateDonationTotals();
-    this.createDonationChart();
+    this.fetchDonationHistory();
   }
 
-  calculateDonationTotals(): void {
-    this.donationHistory.donations.forEach(donation => {
-      if (donation.type === 'item') {
-        this.totalItemsDonated += donation.quantity || 0;
-      } else if (donation.type === 'money') {
-        this.totalMonetaryDonations += donation.amount || 0;
-      } else if (donation.type === 'land') {
-        this.totalLandDonated += donation.capacity || 0;
+  // Fetch the donation history from the service
+  fetchDonationHistory(): void {
+    this.donationService.getDonationHistory().subscribe(
+      (data) => {
+        console.log('Fetched donation data:', data);
+  
+        if (data) {
+          this.donationHistory = data;
+  
+          // Initialize totals
+          this.totalItemsDonated = data.total_item_donations || 0;
+          this.totalMonetaryDonations = data.total_financial_donations?.amount || 0;
+          this.totalLandDonated = data.total_land_donations || 0;
+  
+          // Sum the totals
+          this.totalDonations = this.totalItemsDonated + this.totalLandDonated + (this.totalMonetaryDonations > 0 ? 1 : 0);
+          this.lastDonationDate = data.last_donation_date || 'N/A';
+  
+          // Process the donations based on date
+          const donationsByDate: { [date: string]: { items: number, financial: number, land: number } } = {};
+  
+          const allDonations: Donation[] = [
+            ...data.financial_donations?.map((donation: any) => ({ ...donation, type: 'financial', count: 1 })) || [],
+            ...data.item_donations?.map((donation: any) => ({ ...donation, type: 'item', count: 1 })) || [],
+            ...data.land_donations?.map((donation: any) => ({ ...donation, type: 'land', count: 1 })) || []
+          ];
+  
+          allDonations.forEach((donation: Donation) => {
+            const donationDate = donation.date;
+            if (!donationsByDate[donationDate]) {
+              donationsByDate[donationDate] = { items: 0, financial: 0, land: 0 };
+            }
+  
+            if (donation.type === 'item') {
+              donationsByDate[donationDate].items += donation.count;
+            } else if (donation.type === 'financial') {
+              donationsByDate[donationDate].financial += donation.count;
+            } else if (donation.type === 'land') {
+              donationsByDate[donationDate].land += donation.count;
+            }
+          });
+  
+          this.donationHistoryByDate = donationsByDate;
+        } else {
+          this.errorMessage = 'No donation history found';
+        }
+      },
+      (error: any) => { 
+        this.errorMessage = 'Error fetching donation history';
+        console.error('Error fetching donation history:', error);
       }
-    });
+    );
   }
 
-  createDonationChart() {
-    const ctx = document.getElementById('donationChart') as HTMLCanvasElement;
-    if (ctx) {
-      const donationDates = this.donationHistory.donations.map(donation => donation.date);
-      const donationCounts = donationDates.reduce((acc: any, date: any) => {
-        acc[date] = (acc[date] || 0) + 1;
-        return acc;
-      }, {});
+ 
+  viewFinancialDetails(): void {
+    this.router.navigate(['/donation-money-details']);
+  }
 
-      new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: Object.keys(donationCounts),
-          datasets: [{
-            label: 'Number of Donations',
-            data: Object.values(donationCounts),
-            backgroundColor: 'rgba(106, 156, 137, 0.5)', // Soft Green
-            borderColor: '#16423C', // Dark Teal
-            borderWidth: 2,
-            pointBackgroundColor: '#C4DAD2', // Light Green
-            pointBorderColor: '#fff', // White point border
-            pointBorderWidth: 2,
-            pointRadius: 5,
-            fill: false,
-            tension: 0.4
-          }]
-        },
-        options: {
-          responsive: true,
-          scales: {
-            y: {
-              beginAtZero: true,
-              grid: {
-                display: true,
-                color: '#E9EFEC' 
-              }
-            },
-            x: {
-              grid: {
-                display: false 
-              }
-            }
-          },
-          plugins: {
-            legend: {
-              display: true,
-              position: 'top',
-              labels: {
-                color: '#16423C' // Dark Teal legend text
-              }
-            },
-            tooltip: {
-              mode: 'index',
-              intersect: false
-            }
-          }
-        }});
+  viewItemDetails(): void {
+    this.router.navigate(['/donation-item-details']);
+  }
+
+  viewLandDetails(): void {
+    this.router.navigate(['/donation-land-details']);
+  }
+
+  goToDetails(type: string): void {
+    switch (type) {
+      case 'item':
+        this.router.navigate(['/donation-item-details']);
+        break;
+      case 'money':
+        this.router.navigate(['/donation-money-details']);
+        break;
+      case 'land':
+        this.router.navigate(['/donation-land-details']);
+        break;
+      default:
+        console.error('Unknown donation type:', type);
     }
   }
-
-  getIcon(type: string): string {
-    switch (type) {
-      case 'item': return 'fas fa-boxes';
-      case 'money': return 'fas fa-dollar-sign';
-      case 'land': return 'fas fa-map-marked-alt';
-      default: return 'fas fa-gift';
+  
+  getIcon(donationType: string): string {
+    switch (donationType) {
+      case 'item':
+        return 'fas fa-boxes';
+      case 'money':
+        return 'fas fa-dollar-sign';
+      case 'land':
+        return 'fas fa-map-marked-alt';
+      default:
+        return 'fas fa-gift';
     }
   }
 }
