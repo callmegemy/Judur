@@ -1,78 +1,46 @@
 <div class="container mt-5">
     <div class="card text-center">
         <div class="card-body">
-            <img src="فاظات.jpeg" alt="اسم المنتج" class="product-image">
+            <img src="فاظات.jpeg" alt="Product Image" class="product-image">
             <h3 class="card-title">Congratulations, You Have Won The Auction</h3>
             <p class="card-text"><strong>Overall Appearance:</strong>
                 These artifacts reflect exquisite craftsmanship and tell unique historical stories.
             </p>
-            
             <hr class="custom-hr">
-
             <div class="register-container">
-            
-                <button class="btn btn-success" onclick="toggleForm()">Pay the auction now</button>
-
-                <div class="form-container" id="auctionForm">
-                    <form>
+                <button class="btn btn-success" (click)="toggleForm()">Pay the auction now</button>
+                <div *ngIf="formVisible" id="auctionForm">
+                    <form [formGroup]="auctionForm" (ngSubmit)="onSubmit()">
                         <div class="form-group">
-                            <label for="donationAmount">Auction Amount</label>
-                            <input type="number" class="form-control" id="donationAmount" placeholder="Enter donation amount" value="100" required>
-                            <div class="text-danger">
-                              Auction Amount is required and must be greater than zero.
+                            <label for="auctionAmount">Auction Amount</label>
+                            <input formControlName="auctionAmount" type="number" class="form-control" id="auctionAmount" placeholder="Enter auction amount" required [value]="highestBidAmount">
+                            <div *ngIf="auctionForm.controls['auctionAmount'].invalid && auctionForm.controls['auctionAmount'].touched" class="text-danger">
+                                Auction Amount is required and must be greater than zero.
                             </div>
                         </div>
-
                         <div class="form-group">
                             <label for="currency">Currency</label>
-                            <input type="text" class="form-control" id="currency" placeholder="Enter currency (e.g., USD, EUR)" value="USD" required>
-                            <div class="text-danger">
+                            <input formControlName="currency" type="text" class="form-control" id="currency" placeholder="Enter currency (e.g., USD, EUR)" required>
+                            <div *ngIf="auctionForm.controls['currency'].invalid && auctionForm.controls['currency'].touched" class="text-danger">
                                 Currency is required.
                             </div>
                         </div>
-
                         <div class="form-group">
                             <label for="paymentMethod">Select Payment Method</label>
-                            <select class="form-control" id="paymentMethod" required>
-                                <option value="creditCard" selected>Credit Card</option>
-                                <option value="paypal">PayPal</option>
+                            <select formControlName="paymentMethod" class="form-control" id="paymentMethod">
+                                <option value="" disabled>Select payment method</option>
+                                <option value="creditCard">Credit Card</option>
                             </select>
-                            <div class="text-danger">
+                            <div *ngIf="auctionForm.controls['paymentMethod'].invalid && auctionForm.controls['paymentMethod'].touched" class="text-danger">
                                 Payment Method is required.
                             </div>
                         </div>
-
-                        <div>
-                            <div class="form-group">
-                                <label for="cardNumber">Card Number</label>
-                                <input type="text" class="form-control" id="cardNumber" placeholder="Enter your card number" value="1234 5678 9876 5432">
-                                <div class="text-danger">
-                                    Valid Card Number is required.
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col">
-                                    <label for="expiryDate">Expiry Date</label>
-                                    <input type="text" class="form-control" id="expiryDate" placeholder="MM/YY" value="12/25">
-                                    <div class="text-danger">
-                                        Expiry Date is required.
-                                    </div>
-                                </div>
-                                <div class="form-group col">
-                                    <label for="cvv">CVV</label>
-                                    <input type="text" class="form-control" id="cvv" placeholder="CVV" value="123">
-                                    <div class="text-danger">
-                                        CVV is required.
-                                    </div>
-                                </div>
-                            </div>
+                        <div *ngIf="auctionForm.get('paymentMethod')?.value === 'creditCard'">
+                            <h3>Credit Card Details</h3>
+                            <div id="card-element" class="card-element"></div>
+                            <div id="card-errors" class="text-danger"></div>
                         </div>
-
-                        <div>
-                            <p>You will be redirected to PayPal to complete the payment.</p>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary" disabled>Payment Confirmation</button>
+                        <button type="submit" class="btn btn-primary" [disabled]="auctionForm.invalid">Confirm Payment</button>
                     </form>
                 </div>
             </div>

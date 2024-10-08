@@ -62,5 +62,11 @@ export class DonationService {
   createPayment(amount: number, currency: string): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/create-payment`, { amount, currency });
   }
+  confirmAuctionPayment(paymentData: { auction_id: number; [key: string]: any }): Observable<any> {
+    const headers = this.getAuthHeaders();
+    return this.http.post<any>(`${this.apiUrl}/confirm-auction-payment`, paymentData, { headers });
+  }
+  
+  
   
 }
