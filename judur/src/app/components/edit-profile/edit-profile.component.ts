@@ -28,7 +28,7 @@ export class EditProfileComponent implements OnInit {
       name: ['', [Validators.required, Validators.maxLength(255)]],
       email: ['', [Validators.required, Validators.email]],
       age: ['', [Validators.required, Validators.min(1)]],
-      phone: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
+      phone: ['', [Validators.required, Validators.pattern(/^\d{11}$/)]],
       profilePicture: ['']
     });
   }
