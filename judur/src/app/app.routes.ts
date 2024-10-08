@@ -65,6 +65,8 @@ import { ReportDetailsComponent } from './components/dashboard/examiner-reports/
 import { ViewValuableItemsComponent } from './components/dashboard/view-valuable-items/view-valuable-items.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { NotificationComponent } from './components/notification/notification.component';
+import { AuctionPaymentPageComponent } from './auction-payment-page/auction-payment-page.component';
+
 export const routes: Routes = [
   {
     path: '',
@@ -171,8 +173,7 @@ export const routes: Routes = [
 
 
   // dashboard Routs End
-
-
+{path:'completed-auctions',component:AuctionPaymentPageComponent},
   {
     path: 'listing-auctions', component: ListingAuctionsComponent
   },

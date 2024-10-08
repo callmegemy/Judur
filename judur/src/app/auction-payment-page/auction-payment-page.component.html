@@ -1,7 +1,7 @@
-<div class="container mt-5">
+<!-- <div class="container mt-5">
     <div class="card text-center">
         <div class="card-body">
-            <img src="فاظات.jpeg" alt="اسم المنتج" class="product-image">
+            <img src="فاظات.jpeg" alt="item name" class="product-image">
             <h3 class="card-title">Congratulations, You Have Won The Auction</h3>
             <p class="card-text"><strong>Overall Appearance:</strong>
                 These artifacts reflect exquisite craftsmanship and tell unique historical stories.
@@ -78,4 +78,23 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
+<div class="container">
+    <div class="row">
+      <div class="col-md-4" *ngFor="let winner of auctionWinners">
+        <div class="card mb-4">
+          <img [src]="winner.auction_image" alt="Auction Image" class="card-img-top" />
+          <div class="card-body">
+            <h5 class="card-title">Auction: {{ winner.auction_title }}</h5>
+            <p class="card-text">
+              Highest Bidder: {{ winner.highest_bidder_name }} (ID: {{ winner.highest_bidder_id }})
+            </p>
+            <p class="card-text">
+              Bid Amount: {{ winner.bid_amount | currency }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
