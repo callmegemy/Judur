@@ -49,7 +49,6 @@ import { ViewAuctionComponent } from './components/dashboard/view-auction/view-a
 import { CreateAuctionComponent } from './components/dashboard/create-auction/create-auction.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { LandInspectionComponent } from './land-inspection/land-inspection.component';
-import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { authGuard } from '../app/auth.guard';
 import { UserManagementComponent } from './components/dashboard/user-management/user-management.component';
@@ -72,6 +71,8 @@ import { donorGuard } from './donor.guard';
 import { combineGuard } from './combine.guard';
 import { adminmGuard } from './adminm.guard';
 import { adminoGuard } from './admino.guard';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { NotificationComponent } from './components/notification/notification.component';
 export const routes: Routes = [
   {
     path: '',
@@ -81,7 +82,7 @@ export const routes: Routes = [
     path: 'about',
     component: AboutComponent
   }
-  ,
+  ,  { path: 'notifications', component: NotificationComponent },
   {
     path: 'donate',
     component: DonateComponent,
@@ -222,6 +223,21 @@ export const routes: Routes = [
   { path: 'dashboard/posts/view-post/:id', component: ViewPostComponent ,canActivate:[adminmGuard]},
   { path: 'dashboard/posts/edit-post/:id', component: EditPostComponent,canActivate:[adminmGuard]  },
 
+  {
+    path: 'listing-auctions', component: ListingAuctionsComponent
+  },
+  {
+    path: 'details-auctions', component: DetailsAuctionsComponent
+  },
+  { path: 'contact-us', component: ContactUsComponent },
+  { path: 'management', component: UserManagementComponent },
+  { path: 'add-sub-admin', component: AddSubAdminComponent },
+  { path: 'view-sub-admin/:id', component: ViewSubAdminComponent },
+  { path: 'edit-sub-admin/:id', component: EditSubAdminComponent },
+  { path: 'pendingLands', component: AvailableLandsComponent },
+  { path: 'blog', component: BlogComponent },
+  { path: 'blog/:id', component: BlogDetailsComponent },
+
 
 
   // dashboard Routs End
@@ -271,7 +287,12 @@ export const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent }, 
   
 
-  { path: 'unauthorized', component: UnauthorizedComponent } 
+  { path: 'unauthorized', component: UnauthorizedComponent } ,
+  { path: 'land-inspection', component: LandInspectionComponent },
+  { path: 'reset-password', component: ResetPasswordComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
+
+  { path: 'land-inspection', component: LandInspectionComponent},
 
 ];
 

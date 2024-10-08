@@ -17,21 +17,26 @@
         <p>{{ event.date }} - {{ event.time }}</p>
       </div>
       <div class="event-section">
-        <h3> Duration</h3>
+        <h3>Duration</h3>
         <p>{{ event.duration }}</p>
       </div>
       <div class="event-section">
-        <h3> Expected Organizers</h3>
-      <p> {{ event.expected_organizer_number }}</p>
+        <h3>Expected Organizers</h3>
+        <p>{{ event.expected_organizer_number }}</p>
+      </div>
     </div>
+
     <div class="event-description">
       <h3>Description</h3>
       <p>{{ event.description }}</p>
     </div>
 
+   
+
     <div class="event-actions">
-      <a class="btn" routerLink="/join-event">Join Now</a>
-      <a class="btn" routerLink="/list-event">Back To Events</a>
+      <app-event-join [eventId]="event.id"></app-event-join>
+
+      <a class="btn btn-custom" routerLink="/list-event">Back To Events</a>
     </div>
 
     <div class="feedbacks">
