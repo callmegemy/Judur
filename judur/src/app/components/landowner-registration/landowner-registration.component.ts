@@ -30,6 +30,32 @@ export class LandownerRegistrationComponent {
     this.user = this.authService.getUserData();
   }
 
+  // Helper to check if field is invalid
+  isFieldInvalid(field: string): boolean {
+    const control = this.landDonationForm.get(field);
+    return control ? control.invalid && (control.dirty || control.touched) : false;
+  }
+
+  // Helper to get all errors of a specific field
+  getFieldErrors(field: string): string[] {
+    const control = this.landDonationForm.get(field);
+    if (!control || !control.errors) return [];
+
+    const errorMessages: string[] = [];
+    if (control.errors['required']) {
+      errorMessages.push(`${field} is required.`);
+    }
+    if (control.errors['min']) {
+      errorMessages.push(`${field} must be greater than 0.`);
+    }
+    if (control.errors['email']) {
+      errorMessages.push('Please enter a valid email.');
+    }
+    // Add more error messages based on your validations
+
+    return errorMessages;
+  }
+
   onFileSelected(event: Event): void {
     const target = event.target as HTMLInputElement;
     if (target.files && target.files.length > 0) {

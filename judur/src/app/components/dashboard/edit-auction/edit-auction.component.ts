@@ -17,7 +17,7 @@ export class EditAuctionComponent {
   auction: any = {};
   statuses: any[] = [];
   items: any[] = [];
-  auctionId: number | null = null; 
+  auctionId: number | null = null;
 
   constructor(
     private auctionService: AuctionService,
@@ -26,8 +26,8 @@ export class EditAuctionComponent {
   ) {}
 
   ngOnInit(): void {
-    this.auctionId = this.route.snapshot.params['id']; 
-  
+    this.auctionId = this.route.snapshot.params['id'];
+
     // Fetch statuses
     this.auctionService.getStatuses().subscribe(
       (data) => {
@@ -37,7 +37,7 @@ export class EditAuctionComponent {
         console.error('Error fetching auction statuses:', error);
       }
     );
-  
+
     // Fetch items
     this.auctionService.getItems().subscribe(
       (data) => {
@@ -47,13 +47,13 @@ export class EditAuctionComponent {
         console.error('Error fetching auction items:', error);
       }
     );
-  
+
     // If editing, fetch the auction details
     if (this.auctionId) {
       this.auctionService.getAuctionDetails(this.auctionId).subscribe(
         (data) => {
-          this.auction = data; // Populate the auction object with existing data
-          this.auction.status = data.status; // Ensure status is set correctly
+          this.auction = data; 
+          this.auction.status = data.status; 
         },
         (error) => {
           console.error('Error fetching auction details:', error);
@@ -61,13 +61,12 @@ export class EditAuctionComponent {
       );
     }
   }
-  
 
   onSubmit() {
     const formData = {
       title: this.auction.title,
       status: this.auction.status,
-      item_id: this.auction.item_id, 
+      item_id: this.auction.item_id,
       start_date: this.auction.start_date,
       end_date: this.auction.end_date,
       starting_price: this.auction.starting_price,

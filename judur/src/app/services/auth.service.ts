@@ -89,6 +89,10 @@ login(data: any): Observable<any> {
       return null;
     }
   }
+  getCurrentUser(): any {
+    return this.getUserData();
+  }
+
 
   // AuthService
 register(data: any): Observable<any> {

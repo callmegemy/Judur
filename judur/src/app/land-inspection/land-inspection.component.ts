@@ -13,18 +13,17 @@ import { NavbarComponent } from '../components/navbar/navbar.component';
   imports: [ReactiveFormsModule, CommonModule , NavbarComponent], // Import necessary modules
 })
 export class LandInspectionComponent {
-  inspectionForm: FormGroup; // FormGroup for land inspection form
-  lands: any[] = []; // Array to store lands
-  selectedFile: File | null = null; // File for the photo
-  user: any; // To store user data
-  isExaminer: boolean = false; // To check if the user is an examiner
+  inspectionForm: FormGroup; 
+  lands: any[] = []; 
+  selectedFile: File | null = null;
+  user: any;
+  isExaminer: boolean = false; 
 
   constructor(
-    private fb: FormBuilder, // FormBuilder for reactive forms
-    private http: HttpClient, // HttpClient for making API calls
-    private authService: AuthService // Assuming AuthService is used for getting the user token
+    private fb: FormBuilder, 
+    private http: HttpClient,
+    private authService: AuthService 
   ) {
-    // Initialize the form with default values
     this.inspectionForm = this.fb.group({
       land_id: ['', Validators.required],
       date: ['', Validators.required],

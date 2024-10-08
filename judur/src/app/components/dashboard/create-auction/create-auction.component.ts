@@ -44,25 +44,30 @@ export class CreateAuctionComponent {
     );
   }
 
-  onSubmit() {
-    const formData = {
-      title: this.auction.title,
-      status: this.auction.status,
-      item_id: this.auction.item_id, 
-      start_date: this.auction.start_date,
-      end_date: this.auction.end_date,
-      starting_price: this.auction.starting_price,
-      description: this.auction.description
-    };
+  onSubmit(auctionForm: any) {
+    if (auctionForm.valid) {
+        const formData = {
+            title: this.auction.title,
+            status: this.auction.status,
+            item_id: this.auction.item_id, 
+            start_date: this.auction.start_date,
+            end_date: this.auction.end_date,
+            starting_price: this.auction.starting_price,
+            description: this.auction.description
+        };
 
-    this.auctionService.createAuction(formData).subscribe(
-      response => {
-        console.log('Auction created successfully', response);
-        this.router.navigate(['/dashboard/auctions']);
-      },
-      error => {
-        console.log('Error occurred while creating auction', error);
-      }
-    );
-  }
+        this.auctionService.createAuction(formData).subscribe(
+            response => {
+                console.log('Auction created successfully', response);
+                this.router.navigate(['/dashboard/auctions']);
+            },
+            error => {
+                console.log('Error occurred while creating auction', error);
+            }
+        );
+    } else {
+        console.log('Form is invalid');
+    }
+}
+
 }

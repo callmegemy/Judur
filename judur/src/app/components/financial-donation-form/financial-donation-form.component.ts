@@ -128,6 +128,8 @@ export class FinancialDonationFormComponent implements OnInit {
         });
       }
     );
+    
+
   }
 
   donateMoney(amount: number, currency: string, paymentMethod: string): void {
@@ -146,7 +148,7 @@ export class FinancialDonationFormComponent implements OnInit {
           icon: 'success',
           confirmButtonText: 'OK'
         });
-        this.router.navigate(['/some-success-route']); // Navigate to a success page if needed
+        this.router.navigate(['/donate']); 
       },
       (error: any) => {
         console.error('Error donating money:', error);
