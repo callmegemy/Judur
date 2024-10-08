@@ -19,26 +19,17 @@ import { EditPostComponent } from './components/dashboard/edit-post/edit-post.co
 
 import { BlogComponent } from './components/blog/blog.component';
 import { BlogDetailsComponent } from './components/blog-details/blog-details.component';
+import { ReportDetailsComponent } from './components/dashboard/examiner-reports/report-details/report-details.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [
-    CommonModule,
-    RouterModule,
-    RouterOutlet,
-    HttpClientModule, // Add HttpClientModule here
-    NavbarComponent,
-    DonationHistoryComponent,
-    ViewProfileComponent,
-    EditProfileComponent,
-    MainComponent,
-    EventListComponent,
-    EventDetailsComponent,
-    ExaminerReportsComponent,
-    BlogComponent,
-    BlogDetailsComponent,
-  ],
+ 
+  imports: [  AuctionComponent
+ ,RouterModule, RouterOutlet,NavbarComponent,DonationHistoryComponent , CommonModule ,ViewProfileComponent,
+    EditProfileComponent, EventListComponent, EventDetailsComponent, ExaminerReportsComponent, ReportDetailsComponent,ReactiveFormsModule,ViewPostComponent,
+    CreatePostComponent,PostsDashboardComponent,EditPostComponent,    BlogComponent,
+    BlogDetailsComponent,],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })

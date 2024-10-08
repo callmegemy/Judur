@@ -71,9 +71,12 @@ import { donorGuard } from './donor.guard';
 import { combineGuard } from './combine.guard';
 import { adminmGuard } from './adminm.guard';
 import { adminoGuard } from './admino.guard';
+
+import { ViewValuableItemsComponent } from './components/dashboard/view-valuable-items/view-valuable-items.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { AuctionPaymentPageComponent } from './auction-payment-page/auction-payment-page.component';
+
 export const routes: Routes = [
   {
     path: '',
@@ -224,6 +227,40 @@ export const routes: Routes = [
   { path: 'dashboard/posts/view-post/:id', component: ViewPostComponent ,canActivate:[adminmGuard]},
   { path: 'dashboard/posts/edit-post/:id', component: EditPostComponent,canActivate:[adminmGuard]  },
 
+  { path: 'dashboard', component: MainComponent  ,},
+  { path: 'dashboard/users', component: UsersAdminComponent ,},
+  { path: 'dashboard/requests', component: RequestsComponent, },
+  { path: 'dashboard/request/view/v', component: VolunteerRequestComponent, },
+  { path: 'dashboard/request/view/ex', component: ExaminerRequestComponent , },
+  { path: 'dashboard/userProfile/volunteer', component: VolunteerProfileComponent ,},
+  { path: 'dashboard/userProfile/doner', component: DonorProfileComponent ,},
+  { path: 'dashboard', component: MainComponent },
+  { path: 'dashboard/users', component: UsersAdminComponent },
+
+  { path: 'dashboard/requests', component: RequestsComponent },
+  { path: 'dashboard/request/view/v/:id', component: VolunteerRequestComponent },
+  { path: 'dashboard/request/view/ex/:id', component: ExaminerRequestComponent },
+  { path: 'dashboard/userProfile/volunteer/:id', component: VolunteerProfileComponent },
+  { path: 'dashboard/userProfile/doner/:id', component: DonorProfileComponent },
+
+  { path: 'dashboard/events', component: EventsComponent },
+  { path: 'dashboard/events/edit/:id', component: EditEventComponent },
+  { path: 'dashboard/events/view/:id', component: ViewEventComponent },
+  { path: 'dashboard/events/create', component: CreateEventComponent },
+
+  { path: 'dashboard/auctions', component: AuctionsComponent },
+  { path: 'dashboard/auctions/view/:id', component: ViewAuctionComponent },
+  { path: 'dashboard/auctions/edit/:id', component: EditAuctionComponent },
+  { path: 'dashboard/auctions/create', component: CreateAuctionComponent },
+  { path: 'dashboard/item/view/:id', component: ViewValuableItemsComponent },
+  
+
+  { path: 'dashboard/examiner-reports', component: ExaminerReportsComponent },
+  { path: 'dashboard/examiner-reports/report-details/:id', component: ReportDetailsComponent },
+  { path: 'dashboard/posts', component: PostsDashboardComponent },
+  { path: 'dashboard/posts/create-post', component: CreatePostComponent },
+  { path: 'dashboard/posts/view-post/:id', component: ViewPostComponent },
+  { path: 'dashboard/posts/edit-post/:id', component: EditPostComponent },
 
 
 

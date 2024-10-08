@@ -41,6 +41,7 @@ export class AuctionComponent {
     formData.append('item_name', this.itemName);
     formData.append('condition', this.itemCondition);
     formData.append('is_valuable', this.isValuable ? '1' : '0');
+    formData.append('quantity', this.quantity.toString());
   
     if (this.isValuable) {
       formData.append('value', this.estimatedValue); 

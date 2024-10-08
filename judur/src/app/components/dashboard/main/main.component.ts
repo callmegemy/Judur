@@ -3,31 +3,56 @@ import { Chart, registerables } from 'chart.js';
 import $ from 'jquery';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { TopbarComponent } from '../topbar/topbar.component';
-
+import { MainService } from '../../../services/dashboard/main.service';
+import { CommonModule } from '@angular/common';
 
 Chart.register(...registerables);
 
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports:[SidebarComponent, TopbarComponent],
+  imports: [SidebarComponent, TopbarComponent, CommonModule],
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css'],
 })
-export class MainComponent implements AfterViewInit, OnInit{
+export class MainComponent implements AfterViewInit, OnInit {
   @ViewChild('myAreaChart') myAreaChart!: ElementRef<HTMLCanvasElement>;
   @ViewChild('myPieChart') myPieChart!: ElementRef<HTMLCanvasElement>;
+  dashboardData: any = {}; 
+  constructor(private donationService: MainService) {}
 
-  constructor() {}
   ngOnInit(): void {
     this.initializeJQuery();
-  }
-  ngAfterViewInit(): void {
-    this.createAreaChart();
-    this.createPieChart();
+    this.fetchDashboardData();
+
   }
 
-  private createAreaChart(): void {
+  ngAfterViewInit(): void {
+    this.fetchDonationData(); 
+    this.fetchPieChartData();
+  }
+
+  private fetchDonationData(): void {
+    this.donationService.getDonations().subscribe(data => {
+      const donationData = Array(12).fill(0); 
+
+      data.forEach((item: any) => {
+        donationData[item.month - 1] = item.total_amount; 
+      });
+
+      this.createAreaChart(donationData);
+    });
+  }
+
+  private fetchPieChartData(): void {
+    this.donationService.getPieChartData().subscribe(data => {
+      const pieChartData = [data.donors, data.volunteers, data.examiners];
+
+      this.createPieChart(pieChartData);
+    });
+  }
+
+  private createAreaChart(donationData: number[]): void {
     const ctx = this.myAreaChart.nativeElement.getContext('2d');
     new Chart(ctx!, {
       type: 'line',
@@ -46,7 +71,7 @@ export class MainComponent implements AfterViewInit, OnInit{
           pointHoverBorderColor: "#6A9C89",
           pointHitRadius: 10,
           pointBorderWidth: 2,
-          data: [0, 10000, 5000, 15000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 40000],
+          data: donationData,
         }],
       },
       options: {
@@ -79,16 +104,16 @@ export class MainComponent implements AfterViewInit, OnInit{
     });
   }
 
-  private createPieChart(): void {
+  private createPieChart(pieChartData: number[]): void {
     const ctx = this.myPieChart.nativeElement.getContext('2d');
     new Chart(ctx!, {
       type: 'doughnut',
       data: {
-        labels: ["Doners", "Volunteers", "Examiners"],
+        labels: ["Donors", "Volunteers", "Examiners"],
         datasets: [{
-          data: [165, 75, 13],
-          backgroundColor: ['#6A9C89','#4e73df', '#FFA500'],
-          hoverBackgroundColor: ['#16423C','#2e59d9', '#FF8C00'],
+          data: pieChartData, 
+          backgroundColor: ['#6A9C89', '#4e73df', '#FFA500'],
+          hoverBackgroundColor: ['#16423C', '#2e59d9', '#FF8C00'],
           hoverBorderColor: "rgba(234, 236, 244, 1)",
         }],
       },
@@ -96,11 +121,23 @@ export class MainComponent implements AfterViewInit, OnInit{
         maintainAspectRatio: false,
         plugins: {
           legend: {
-            display: false
+            display: true 
           },
         }
       }
     });
+  }
+
+  private fetchDashboardData(): void {
+    this.donationService.getDashboardData().subscribe(
+      (data) => {
+        this.dashboardData = data;
+        console.log(this.dashboardData); 
+      },
+      (error) => {
+        console.error('Error fetching dashboard data', error);
+      }
+    );
   }
 
   private initializeJQuery(): void {
@@ -115,34 +152,34 @@ export class MainComponent implements AfterViewInit, OnInit{
       });
 
       $(window).resize(() => {
-        const windowWidth: number = $(window).width() ?? 0; 
+        const windowWidth: number = $(window).width() ?? 0;
 
         if (windowWidth < 768) {
-          $('.sidebar .collapse').hide(); 
+          $('.sidebar .collapse').hide();
         }
 
         if (windowWidth < 480 && !$(".sidebar").hasClass("toggled")) {
           $("body").addClass("sidebar-toggled");
           $(".sidebar").addClass("toggled");
-          $('.sidebar .collapse').hide(); 
+          $('.sidebar .collapse').hide();
         }
       });
 
       $(document).on('scroll', () => {
-        const scrollDistance: number = $(window).scrollTop() ?? 0; 
+        const scrollDistance: number = $(window).scrollTop() ?? 0;
         if (scrollDistance > 100) {
-          $('.scroll-to-top').fadeIn(); 
+          $('.scroll-to-top').fadeIn();
         } else {
-          $('.scroll-to-top').fadeOut(); 
+          $('.scroll-to-top').fadeOut();
         }
       });
 
       $(document).on('click', 'a.scroll-to-top', (e) => {
         e.preventDefault();
-        const target = $(e.currentTarget).attr('href'); 
+        const target = $(e.currentTarget).attr('href');
         if (target) {
           $('html, body').stop().animate({
-            scrollTop: $(target).offset()?.top ?? 0 
+            scrollTop: $(target).offset()?.top ?? 0
           }, 1000, 'easeInOutExpo');
         }
       });

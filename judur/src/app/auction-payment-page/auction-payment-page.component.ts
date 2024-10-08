@@ -4,29 +4,29 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { DonationService } from '../services/donation.service';
 import { CommonModule } from '@angular/common';
-import { AuctionService } from '../auction.service';
+import { AuctionserviceService } from '../services/auctionservice.service';
 
 @Component({
   selector: 'app-auction-payment-page',
   standalone: true,
   templateUrl: './auction-payment-page.component.html',
   styleUrls: ['./auction-payment-page.component.css'],
-  imports: [ CommonModule, ReactiveFormsModule ],
-
+  imports: [CommonModule, ReactiveFormsModule],
 })
 export class AuctionPaymentPageComponent implements OnInit, AfterViewInit {
   auctionForm!: FormGroup;
   formVisible = false; 
   private stripe: any;
   private card: any;   
-  auctionId: number; // Auction ID
-  highestBidAmount: number; // Highest bid amount
+  auctionId: number | undefined; // Auction ID
+  highestBidAmount: number | undefined; // Highest bid amount
+auctionWinners: any;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private donationService: DonationService,
-    private auctionService:  // Inject auction service
+    private auctionService:AuctionserviceService
   ) {
     this.createForm();
   }
@@ -139,12 +139,17 @@ export class AuctionPaymentPageComponent implements OnInit, AfterViewInit {
   }
 
   confirmAuctionPayment(amount: number, currency: string, paymentMethod: string): void {
-    const paymentData = {
-      auction_id: this.auctionId,
-      amount: amount,
-      currency: currency,
-      payment_method: paymentMethod,
-    };
+    if (this.auctionId === undefined) {
+      throw new Error("Auction ID is required for the payment.");
+  }
+  
+  
+  const paymentData = {
+    auction_id: this.auctionId, // Now this is guaranteed to be a number
+    amount: amount,
+    currency: currency,
+    payment_method: paymentMethod,
+};
 
     // Make a call to complete the auction payment
     this.donationService.confirmAuctionPayment(paymentData).subscribe(
