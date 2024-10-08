@@ -1,20 +1,9 @@
-:root {
-    --primary: #16423C;   /* Primary color */
-    --secondary: #6A9C89; /* Secondary color */
-    --light: #E9EFEC;     /* Light background color */
-    --dark: #001D23;      /* Dark text color */
-    --accent: #C08962;    /* Accent color for contrast */
-}
-
-body {
-    background-color: var(--light); /* Light background */
-    font-family: 'Arial', sans-serif; /* Clean font */
-}
 
 .container {
     max-width: 900px; /* Set a max-width for the container */
     margin: 50px auto; /* Add more spacing at the top */
     padding: 20px;
+    margin-top: 120px;
 }
 
 .card {
@@ -34,6 +23,7 @@ body {
     border-radius: 0; /* No rounding for images */
     height: 450px; /* Fixed height for better layout */
     object-fit: cover; /* Ensures the image is cropped properly */
+    border-radius: 5px;
 }
 
 .card-body {
@@ -52,6 +42,7 @@ body {
     font-size: 1rem;
     color: var(--dark); /* Dark text for better readability */
     line-height: 1.6;
+   
 }
 
 .card-text strong {
@@ -107,10 +98,7 @@ input[type="number"] {
         --accent: #C08962;    /* Accent color for contrast */
     }
     
-    body {
-        background-color: var(--light); /* Light background */
-        font-family: 'Arial', sans-serif; /* Clean font */
-    }
+ 
     
     .container {
         max-width: 900px; /* Set a max-width for the container */

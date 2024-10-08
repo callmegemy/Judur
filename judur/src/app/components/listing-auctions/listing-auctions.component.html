@@ -28,10 +28,10 @@
     <div class="row">
         <div class="col-md-4 mb-4" *ngFor="let item of auctionItems">
             <div class="card">
-                <img *ngIf="item.imageUrl" [src]="item.imageUrl" class="card-img-top" alt="{{ item.title }}" style="height: 200px; object-fit: cover;">
+                <img *ngIf="item.image_url" [src]="item.image_url" class="card-img-top" alt="{{ item.title }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ item.title }}</h5>
-                    <p class="card-text">{{ item.description }}</p>
+                    
                     <p class="card-text"><strong>Current Price:</strong> ${{ item.current_highest_bid }}</p>
                     <a [routerLink]="['/auction-details', item.id]" class="btn btn-primary">More details</a>
                 </div>

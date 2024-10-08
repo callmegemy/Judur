@@ -22,12 +22,13 @@ export class ListingAuctionsComponent implements OnInit {
   }
   loadOngoingAuctions(): void {
     this.auctionService.getOngoingAuctions().subscribe(data => {
-        console.log(data); // Check if imageUrl is included
+        console.log('Fetched auction items:', data);
         this.auctionItems = data;
     }, error => {
         console.error('Error fetching ongoing auctions:', error);
     });
 }
+
 
   placeBid(auctionId: number, bidAmount: number): void {
     this.auctionService.placeBid(auctionId, bidAmount).subscribe(response => {

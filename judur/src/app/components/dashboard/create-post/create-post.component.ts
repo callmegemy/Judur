@@ -22,8 +22,8 @@ export class CreatePostComponent {
       title: ['', Validators.required],
       profilePicture: [''],
       content: ['', Validators.required],
-      category: ['news'] // Default category
-    });
+      category: ['', Validators.required] // Add Validators.required here
+  });
   }
   ngOnInit(): void {}
   onFileSelected(event: Event) {
@@ -31,6 +31,7 @@ export class CreatePostComponent {
     if (target.files && target.files.length > 0) {
         const file = target.files[0];
         this.postForm.patchValue({ profilePicture: file });
+        this.postForm.get('profilePicture')?.updateValueAndValidity(); // Ensure validation is updated
     }
 }
 
