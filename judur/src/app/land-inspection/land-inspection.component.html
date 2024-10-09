@@ -17,26 +17,39 @@
             <div class="mb-3">
               <label for="land_id" class="form-label"><i class="fas fa-map-marker-alt"></i> Land</label>
               <select class="form-control form-control-lg" formControlName="land_id" required>
+                <option value="">Select a land</option>
                 <option *ngFor="let land of lands" [value]="land.id">{{ land.description }}</option>
               </select>
+              <div *ngIf="inspectionForm.get('land_id')?.invalid && (inspectionForm.get('land_id')?.touched || inspectionForm.get('land_id')?.dirty)" class="text-danger">
+                <small *ngIf="inspectionForm.get('land_id')?.errors?.['required']">Land selection is required.</small>
+              </div>
             </div>
             
             <!-- Inspection Date -->
             <div class="mb-3">
               <label for="date" class="form-label"><i class="fas fa-calendar-alt"></i> Inspection Date</label>
               <input type="date" class="form-control form-control-lg" formControlName="date" required />
+              <div *ngIf="inspectionForm.get('date')?.invalid && (inspectionForm.get('date')?.touched || inspectionForm.get('date')?.dirty)" class="text-danger">
+                <small *ngIf="inspectionForm.get('date')?.errors?.['required']">Inspection date is required.</small>
+              </div>
             </div>
 
             <!-- Hygiene -->
             <div class="mb-3">
               <label for="hygiene" class="form-label"><i class="fas fa-broom"></i> Hygiene</label>
               <input type="text" class="form-control form-control-lg" formControlName="hygiene" required />
+              <div *ngIf="inspectionForm.get('hygiene')?.invalid && (inspectionForm.get('hygiene')?.touched || inspectionForm.get('hygiene')?.dirty)" class="text-danger">
+                <small *ngIf="inspectionForm.get('hygiene')?.errors?.['required']">Hygiene information is required.</small>
+              </div>
             </div>
             
             <!-- Capacity -->
             <div class="mb-3">
               <label for="capacity" class="form-label"><i class="fas fa-users"></i> Capacity</label>
               <input type="number" class="form-control form-control-lg" formControlName="capacity" required />
+              <div *ngIf="inspectionForm.get('capacity')?.invalid && (inspectionForm.get('capacity')?.touched || inspectionForm.get('capacity')?.dirty)" class="text-danger">
+                <small *ngIf="inspectionForm.get('capacity')?.errors?.['required']">Capacity is required.</small>
+              </div>
             </div>
             
             <!-- Electricity Supply -->
@@ -52,6 +65,9 @@
             <div class="mb-3">
               <label for="general_condition" class="form-label"><i class="fas fa-clipboard-check"></i> General Condition</label>
               <input type="text" class="form-control form-control-lg" formControlName="general_condition" required />
+              <div *ngIf="inspectionForm.get('general_condition')?.invalid && (inspectionForm.get('general_condition')?.touched || inspectionForm.get('general_condition')?.dirty)" class="text-danger">
+                <small *ngIf="inspectionForm.get('general_condition')?.errors?.['required']">General condition is required.</small>
+              </div>
             </div>
             
             <!-- Upload Photo -->

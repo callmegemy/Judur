@@ -23,6 +23,7 @@ export class AuctionComponent {
   statusId: number = 1; // Default status ID
   extraNotes: string = '';  
   imageFile: File | null = null;
+  backendErrors: string[] = []; // Store backend validation errors
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -43,11 +44,11 @@ export class AuctionComponent {
     formData.append('quantity', this.quantity.toString());
   
     if (this.isValuable) {
-      formData.append('value', this.estimatedValue); // Send value if item is valuable
+      formData.append('value', this.estimatedValue); 
     }
   
     if (this.imageFile) {
-      formData.append('image', this.imageFile); // Add the image file
+      formData.append('image', this.imageFile); 
     }
   
     const token = localStorage.getItem('auth_token');
@@ -82,16 +83,18 @@ export class AuctionComponent {
         },
         (error) => {
           console.error('Error donating item:', error);
-          Swal.fire({
-            icon: 'error',
-            title: 'Donation Failed',
-            text: 'There was an error donating your item.',
-          });
+          if (error.status === 422) {
+            this.backendErrors = (Object.values(error.error.errors) as string[][]).flat();
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Donation Failed',
+              text: 'There was an error donating your item.',
+            });
+          }
         }
       );
   }
-  
-  
 
   // Method to handle file input
   onFileSelected(event: any) {

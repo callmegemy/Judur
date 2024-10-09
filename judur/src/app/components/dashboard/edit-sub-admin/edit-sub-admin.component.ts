@@ -36,7 +36,7 @@ export class EditSubAdminComponent {
       password: ['', [Validators.minLength(6)]],
       role_id: ['', Validators.required],
       age: [''],
-      phone: ['', Validators.pattern(/^\d{10}$/)] 
+      phone: ['', Validators.maxLength(15)] 
     });
   }
 

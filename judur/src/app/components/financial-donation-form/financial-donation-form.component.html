@@ -4,33 +4,32 @@
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="donationAmount">Donation Amount</label>
-      <input formControlName="donationAmount" type="number" class="form-control" id="donationAmount"
-        placeholder="Enter donation amount" required>
-      <div *ngIf="registerForm.controls['donationAmount'].invalid && registerForm.controls['donationAmount'].touched"
-        class="text-danger">
+      <input formControlName="donationAmount" type="number" class="form-control" id="donationAmount" placeholder="Enter donation amount" required>
+      <div *ngIf="registerForm.controls['donationAmount'].invalid && registerForm.controls['donationAmount'].touched" class="text-danger">
         Donation Amount is required and must be greater than zero.
       </div>
     </div>
 
     <div class="form-group">
       <label for="currency">Currency</label>
-      <input formControlName="currency" type="text" class="form-control" id="currency"
-        placeholder="Enter currency (e.g., USD, EUR)" required>
-      <div *ngIf="registerForm.controls['currency'].invalid && registerForm.controls['currency'].touched"
-        class="text-danger">
+      <input formControlName="currency" type="text" class="form-control" id="currency" placeholder="Enter currency (e.g., USD, EUR)" required>
+      <div *ngIf="registerForm.controls['currency'].invalid && registerForm.controls['currency'].touched" class="text-danger">
         Currency is required.
       </div>
     </div>
 
-  
     <div class="form-group">
-    <label for="paymentMethod">Payment Method</label>
-    <select formControlName="paymentMethod"  class="form-control"id="paymentMethod">
-      <option value="" disabled>Select payment method</option>
-      <option value="creditCard">Credit Card</option>
-      <option value="otherMethod">Other Method</option>
-    </select>
+      <label for="paymentMethod">Payment Method</label>
+      <select formControlName="paymentMethod" class="form-control" id="paymentMethod">
+        <option value="" disabled>Select payment method</option>
+        <option value="creditCard">Credit Card</option>
+        <option value="otherMethod">Other Method</option>
+      </select>
+      <div *ngIf="registerForm.controls['paymentMethod'].invalid && registerForm.controls['paymentMethod'].touched" class="text-danger">
+        Payment method is required.
+      </div>
     </div>
+
     <div class="credit-card-section" *ngIf="registerForm.get('paymentMethod')?.value === 'creditCard'">
       <h3>Credit Card Details</h3>
       <div id="card-element" class="card-element"></div>

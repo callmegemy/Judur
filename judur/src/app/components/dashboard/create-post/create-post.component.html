@@ -3,32 +3,19 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
 
     <title>Judur - Dashboard</title>
 
     <!-- Custom fonts for this template-->
-    <link
-      href="../../../../assets/vendor/fontawesome-free/css/all.min.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-      rel="stylesheet"
-    />
+    <link href="../../../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
 
     <!-- Custom styles for this template-->
     <link href="../../../../assets/css/sb-admin-2.css" rel="stylesheet" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
   </head>
 
   <body id="page-top">
@@ -49,113 +36,64 @@
           <!-- Begin Page Content -->
           <div class="container-fluid">
             <!-- Page Heading -->
-            <div
-              class="d-sm-flex align-items-center justify-content-between mb-4"
-            >
-              <h1 class="h3 mb-0 text-judur font-weight-bold">
-                Create New Post
-              </h1>
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+              <h1 class="h3 mb-0 text-judur font-weight-bold">Create New Post</h1>
             </div>
 
             <!-- Event Details Form -->
             <div class="container mt-5 text-judur">
               <div class="card shadow custom-hover-shadow">
                 <div class="card-header">
-                  <h2>
-                    <i class="fa-regular fa-calendar-days"></i> Post Details
-                  </h2>
+                  <h2><i class="fa-regular fa-calendar-days"></i> Post Details</h2>
                 </div>
                 <div class="card-body">
-                  <form
-                    [formGroup]="postForm"
-                    (ngSubmit)="onSubmit()"
-                    enctype="multipart/form-data"
-                  >
+                  <form [formGroup]="postForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
                     <!-- Post Title -->
                     <div class="form-group mb-3">
-                      <label for="title" class="font-weight-bold"
-                        >Post Title</label
-                      >
-                      <input
-                        type="text"
-                        id="title"
-                        formControlName="title"
-                        class="form-control"
-                        placeholder="Enter post title"
-                        required
-                      />
-                      <div
-                        *ngIf="
-                          postForm.get('title')?.touched &&
-                          (postForm.get('title')?.touched ||
-                            postForm.get('title')?.dirty)
-                        "
-                      >
-                        <small class="text-danger">Title is required.</small>
+                      <label for="title" class="font-weight-bold">Post Title</label>
+                      <input type="text" id="title" formControlName="title" class="form-control" placeholder="Enter post title" required />
+                      <div *ngIf="postForm.get('title')?.touched && postForm.get('title')?.invalid">
+                        <small class="text-danger" *ngIf="postForm.get('title')?.errors?.['required']">Title is required.</small>
                       </div>
                     </div>
 
-                    <!-- Event Details Form -->
-                    <div class="container mt-5 text-judur">
-                        <div class="card shadow custom-hover-shadow">
-                            <div class="card-header">
-                                <h2><i class="fa-regular fa-calendar-days"></i> Post Details</h2>
-                            </div>
-                            <div class="card-body">
-                                <form [formGroup]="postForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
-                                    <!-- Post Title -->
-                                    <div class="form-group mb-3">
-                                        <label for="title" class="font-weight-bold">Post Title</label>
-                                        <input type="text" id="title" formControlName="title" class="form-control" placeholder="Enter post title" required>
-                                        <div *ngIf="postForm.get('title')?.touched && postForm.get('title')?.invalid">
-                                            <small class="text-danger" *ngIf="postForm.get('title')?.errors?.['required']">Title is required.</small>
-                                        </div>
-                                    </div>
-                                
-                                    <!-- Upload Post Picture -->
-                                    <div class="form-group mb-3">
-                                        <label for="profile-picture">Upload Post Picture:</label>
-                                        <input type="file" id="profile-picture" (change)="onFileSelected($event)" class="form-control-file" />
-                                    </div>
-                                
-                                    <!-- Post Content -->
-                                    <div class="form-group mb-4">
-                                        <label for="content" class="font-weight-bold">Post Content</label>
-                                        <textarea id="content" formControlName="content" class="form-control" rows="6" placeholder="Enter post content" required></textarea>
-                                        <div *ngIf="postForm.get('content')?.touched && postForm.get('content')?.invalid">
-                                            <small class="text-danger" *ngIf="postForm.get('content')?.errors?.['required']">Content is required.</small>
-                                        </div>
-                                    </div>
-                                
-                                    <!-- Category Selection -->
-                                    <div class="form-group mb-3">
-                                        <label for="category" class="font-weight-bold">Category</label>
-                                        <select id="category" formControlName="category" class="form-control" required>
-                                            <option value="" disabled selected>Select a category</option>
-                                            <option value="news">News</option>
-                                            <option value="auctions">Auctions</option>
-                                            <option value="feeding-events">Feeding Events</option>
-                                        </select>
-                                        <div *ngIf="postForm.get('category')?.touched && postForm.get('category')?.invalid">
-                                            <small class="text-danger" *ngIf="postForm.get('category')?.errors?.['required']">Category is required.</small>
-                                        </div>
-                                    </div>
-                                
-                                    <!-- Submit and Cancel Buttons -->
-                                    <div class="text-center">
-                                        <button type="submit" class="btn btn-success mx-3" [disabled]="postForm.invalid">
-                                            <i class="fa-solid fa-check"></i> Submit
-                                        </button>
-                                        <button type="reset" class="btn btn-danger mx-3">
-                                            <i class="fa-solid fa-xmark"></i> Cancel
-                                        </button>
-                                    </div>
-                                </form>
-                                
-                                <!-- Back Button -->
-                                <button class="btn btn-judur mt-3" (click)="goBack()"><i class="fa-solid fa-arrow-left"></i> Back to Posts</button>
-                            </div>
-                        </div>
+                    <!-- Upload Post Picture -->
+                    <div class="form-group mb-3">
+                      <label for="profile-picture">Upload Post Picture:</label>
+                      <input type="file" id="profile-picture" (change)="onFileSelected($event)" class="form-control-file" />
+                    </div>
+
+                    <!-- Post Content -->
+                    <div class="form-group mb-4">
+                      <label for="content" class="font-weight-bold">Post Content</label>
+                      <textarea id="content" formControlName="content" class="form-control" rows="6" placeholder="Enter post content" required></textarea>
+                      <div *ngIf="postForm.get('content')?.touched && postForm.get('content')?.invalid">
+                        <small class="text-danger" *ngIf="postForm.get('content')?.errors?.['required']">Content is required.</small>
+                      </div>
+                    </div>
+
+                    <!-- Category Selection -->
+                    <div class="form-group mb-3">
+                      <label for="category" class="font-weight-bold">Category</label>
+                      <select id="category" formControlName="category" class="form-control" required>
+                        <option value="" disabled selected>Select a category</option>
+                        <option value="news">News</option>
+                        <option value="auctions">Auctions</option>
+                        <option value="feeding-events">Feeding Events</option>
+                      </select>
+                      <div *ngIf="postForm.get('category')?.touched && postForm.get('category')?.invalid">
+                        <small class="text-danger" *ngIf="postForm.get('category')?.errors?.['required']">Category is required.</small>
+                      </div>
+                    </div>
+
+                    <!-- Submit and Cancel Buttons -->
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-success mx-3" [disabled]="postForm.invalid">
+                        <i class="fa-solid fa-check"></i> Submit
+                      </button>
+                      <button type="reset" class="btn btn-danger mx-3">
+                        <i class="fa-solid fa-xmark"></i> Cancel
+                      </button>
                     </div>
                   </form>
 
@@ -192,24 +130,12 @@
     </a>
 
     <!-- Logout Modal-->
-    <div
-      class="modal fade"
-      id="logoutModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-            <button
-              class="close"
-              type="button"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
           </div>
@@ -217,13 +143,7 @@
             Select "Logout" below if you are ready to end your current session.
           </div>
           <div class="modal-footer">
-            <button
-              class="btn btn-secondary"
-              type="button"
-              data-dismiss="modal"
-            >
-              Cancel
-            </button>
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
             <a class="btn btn-primary" href="login.html">Logout</a>
           </div>
         </div>

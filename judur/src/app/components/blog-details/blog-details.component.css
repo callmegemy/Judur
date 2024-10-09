@@ -1,7 +1,12 @@
+/* Main Post Section */
 .single {
   position: relative;
   padding: 45px 0;
   margin-top: 80px;
+  background-color: #f8f9fa; /* Light background */
+  padding: 20px; /* Padding for entire section */
+  box-shadow: 0 4px 20px rgba(0, 61, 51, 0.1); /* Lighter and more blurred shadow */
+  border-radius: 10px; /* Rounded corners */
 }
 
 .single .single-content {
@@ -13,6 +18,14 @@
 .single .single-content img {
   margin-bottom: 20px;
   width: 100%;
+  border-radius: 10px; /* Rounds the image corners */
+  border: 3px solid #dcdcdc; /* Subtle border around the image */
+}
+
+.single .single-content h2 {
+  color: #003d33; /* Text color matching border */
+  margin-bottom: 15px;
+  font-weight: 700;
 }
 
 .single .single-tags {
@@ -33,7 +46,7 @@
 .single .single-tags a:hover {
   color: #ffffff;
   background: black;
-  border-color: #16423C;
+  border-color: #003d33;
 }
 
 .single .single-bio {
@@ -111,7 +124,7 @@
 }
 
 .single .post-item .post-text a:hover {
-  color: #16423C;
+  color: #003d33; /* Darker green */
 }
 
 .single .post-item .post-meta {
@@ -136,34 +149,62 @@
   font-style: normal;
 }
 
-.single .related-slider .owl-nav {
-  position: absolute;
-  width: 90px;
-  top: -55px;
-  right: 15px;
-  display: flex;
+/* Recent Posts Section */
+.recent-post {
+  background-color: #fff; /* White background */
+  padding: 20px;
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 20px rgba(0, 61, 51, 0.1); /* Lighter and more blurred shadow */
+  margin-bottom: 30px;
 }
 
-.single .related-slider .owl-nav .owl-prev,
-.single .related-slider .owl-nav .owl-next {
-  margin-left: 15px;
-  width: 30px;
-  height: 30px;
+.recent-post .post-item {
   display: flex;
   align-items: center;
-  justify-content: center;
-  color: #4a4c70;
-  background: #16423C;
-  font-size: 16px;
-  transition: .3s;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-bottom: 1px solid #dcdcdc; /* Divider between posts */
+  transition: background-color 0.3s ease;
 }
 
-.single .related-slider .owl-nav .owl-prev:hover,
-.single .related-slider .owl-nav .owl-next:hover {
-  color: #000000;
-  background: #4a4c70;
+.recent-post .post-item:hover {
+  background-color: #f1f1f1; /* Light grey background on hover */
 }
 
+.recent-post .post-img {
+  width: 60px; /* Fixed width */
+  height: 60px; /* Fixed height to make it square */
+  margin-right: 10px;
+}
+
+.recent-post .post-img img {
+  width: 100%;
+  height: 100%; /* Forces image to fill the square */
+  object-fit: cover; /* Ensures the image covers the square without distortion */
+}
+
+.recent-post .post-text a {
+  color: #003d33; /* Updated to match border */
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.recent-post .post-text a:hover {
+  color: #d9534f; /* Changes to a red color on hover */
+}
+
+/* Customization for Post Snippet */
+.recent-post .post-snippet {
+  color: #777;
+  font-size: 14px;
+  margin: 5px 0 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Adds '...' at the end if text overflows */
+}
+
+/* Comment Section */
 .single .single-comment {
   position: relative;
   margin-bottom: 45px;
@@ -180,10 +221,6 @@
   padding: 0;
 }
 
-.single .comment-child {
-  list-style: none;
-}
-
 .single .comment-body {
   display: flex;
   margin-bottom: 30px;
@@ -195,223 +232,44 @@
 
 .single .comment-img img {
   width: 100%;
-  border-radius: 0;
 }
 
 .single .comment-text {
-  padding-left: 15px;
-  width: calc(100% - 60px);
+  padding-left: 20px;
 }
 
 .single .comment-text h3 {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 3px;
-}
-
-.single .comment-text span {
-  display: block;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 700;
   margin-bottom: 5px;
 }
 
-.single .comment-text .btn {
-  padding: 3px 10px;
+.single .comment-text h3 a {
+  color: #4a4c70;
+}
+
+.single .comment-text h3 a:hover {
+  color: #003d33; /* Updated to match border */
+}
+
+.single .comment-text .comment-meta {
   font-size: 14px;
-  font-weight: 500;
-  color: #4a4c70;
-  background: #dddddd;
-  border-radius: 0;
+  margin-bottom: 15px;
 }
 
-.single .comment-text .btn:hover {
-  background: #16423C;
+.single .comment-text .comment-meta a {
+  color: #999999;
+  margin-left: 5px;
 }
 
-.single .comment-form {
-  position: relative;
-}
-
-.single .comment-form h2 {
-  font-size: 30px;
-  font-weight: 700;
-  margin-bottom: 25px;
-}
-
-.single .comment-form form {
-  padding: 30px;
-  background: #f3f6ff;
-}
-
-.single .comment-form form .form-group:last-child {
-  margin: 0;
-}
-
-.single .comment-form input,
-.single .comment-form textarea {
-  border-radius: 0;
-}
-
-.single .comment-form input:focus,
-.single .comment-form textarea:focus {
-  border-color: #000000;
-}
-
-
-/**********************************/
-/*********** Sidebar CSS **********/
-/**********************************/
-.sidebar {
-  position: relative;
-  width: 100%;
-}
-
-@media(max-width: 991.98px) {
-  .sidebar {
-      margin-top: 45px;
-  }
-}
-
-.sidebar .sidebar-widget {
-  position: relative;
-  margin-bottom: 45px;
-}
-
-.sidebar .sidebar-widget .widget-title {
-  position: relative;
-  margin-bottom: 30px;
-  padding-bottom: 5px;
-  font-size: 25px;
-  font-weight: 700;
-}
-
-.sidebar .sidebar-widget .widget-title::after {
-  position: absolute;
-  content: "";
-  width: 60px;
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background: #16423C;
-}
-
-.sidebar .sidebar-widget .search-widget {
-  position: relative;
-}
-
-.sidebar .search-widget input {
-  height: 50px;
-  border: 1px solid #dddddd;
-  border-radius: 0;
-}
-
-.sidebar .search-widget input:focus {
-  box-shadow: none;
-  border-color: #16423C;
-}
-
-.sidebar .search-widget .btn {
-  position: absolute;
-  top: 6px;
-  right: 15px;
-  height: 40px;
-  padding: 0;
-  font-size: 25px;
-  color: #16423C;
-  background: none;
-  border-radius: 0;
-  border: none;
-  transition: .3s;
-}
-
-.sidebar .search-widget .btn:hover {
-  color: #4a4c70;
-}
-
-.sidebar .sidebar-widget .recent-post {
-  position: relative;
-}
-
-.sidebar .sidebar-widget .tab-post {
-  position: relative;
-}
-
-.sidebar .tab-post .nav.nav-pills .nav-link {
-  color: #4a4c70;
-  background: #16423C;
-  border-radius: 0;
-}
-
-.sidebar .tab-post .nav.nav-pills .nav-link:hover,
-.sidebar .tab-post .nav.nav-pills .nav-link.active {
-  color: #000000;
-  background: #4a4c70;
-}
-
-.sidebar .tab-post .tab-content {
-  padding: 15px 0 0 0;
-  background: transparent;
-}
-
-.sidebar .tab-post .tab-content .container {
-  padding: 0;
-}
-
-.sidebar .sidebar-widget .category-widget {
-  position: relative;
-}
-
-.sidebar .category-widget ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.sidebar .category-widget ul li {
-  margin: 0 0 12px 22px;
-}
-
-.sidebar .category-widget ul li:last-child {
+.single .comment-text p {
   margin-bottom: 0;
 }
 
-.sidebar .category-widget ul li a {
-  display: inline-block;
-  line-height: 23px;
+.single .comment-text a {
+  color: #003d33; /* Updated to match border */
 }
 
-.sidebar .category-widget ul li::before {
-  position: absolute;
-  content: '\f105';
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 900;
-  color: #000000;
-  left: 1px;
-}
-
-.sidebar .category-widget ul li span {
-  display: inline-block;
-  float: right;
-}
-
-.sidebar .sidebar-widget .tag-widget {
-  position: relative;
-  margin: -5px -5px;
-}
-
-.single .tag-widget a {
-  margin: 5px;
-  display: inline-block;
-  padding: 5px 10px;
-  font-size: 14px;
-  font-weight: 500;
+.single .comment-text a:hover {
   color: #4a4c70;
-  border: 1px solid #4a4c70;
-}
-
-.single .tag-widget a:hover {
-  color: #ffffff;
-  background: #000000;
-  border-color: #000000;
 }

@@ -27,6 +27,7 @@ export class BlogComponent implements OnInit {
     this.blogService.getPosts().subscribe(
       (data) => {
         this.blogPosts = data;
+        console.log(this.blogPosts);
         this.paginatePosts();
       },
       (error) => {
@@ -42,12 +43,20 @@ export class BlogComponent implements OnInit {
   }
 
   nextPage(): void {
-    this.currentPage++;
-    this.paginatePosts();
+    if (this.currentPage < this.totalPages()) {
+      this.currentPage++;
+      this.paginatePosts();
+    }
   }
 
   previousPage(): void {
-    this.currentPage--;
-    this.paginatePosts();
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.paginatePosts();
+    }
+  }
+
+  totalPages(): number {
+    return Math.ceil(this.blogPosts.length / this.pageSize);
   }
 }

@@ -12,7 +12,6 @@
         <div class="card-body bg-light">
           <!-- Land Donation Form -->
           <form [formGroup]="landDonationForm" (ngSubmit)="onSubmit()">
-            
             <!-- Description Field -->
             <div class="mb-3">
               <label for="description" class="form-label"><i class="fas fa-pencil-alt"></i> Description</label>
@@ -23,11 +22,13 @@
                 placeholder="Enter a brief description"
                 formControlName="description"
               >
-              <div *ngIf="landDonationForm.get('description')?.touched && landDonationForm.get('description')?.invalid" class="text-danger">
-                <small *ngIf="landDonationForm.get('description')?.errors?.['required']">Description is required.</small>
+              <div *ngIf="isFieldInvalid('description')" class="text-danger">
+                <ng-container *ngFor="let error of getFieldErrors('description')">
+                  <small>{{ error }}</small>
+                </ng-container>
               </div>
             </div>
-
+          
             <!-- Land Size Field -->
             <div class="mb-3">
               <label for="land_size" class="form-label"><i class="fas fa-ruler-combined"></i> Land Size (sqm)</label>
@@ -38,12 +39,13 @@
                 placeholder="Enter land size in sqm"
                 formControlName="land_size"
               >
-              <div *ngIf="landDonationForm.get('land_size')?.touched && landDonationForm.get('land_size')?.invalid" class="text-danger">
-                <small *ngIf="landDonationForm.get('land_size')?.errors?.['required']">Land size is required.</small>
-                <small *ngIf="landDonationForm.get('land_size')?.errors?.['min']">Land size must be greater than 0.</small>
+              <div *ngIf="isFieldInvalid('land_size')" class="text-danger">
+                <ng-container *ngFor="let error of getFieldErrors('land_size')">
+                  <small>{{ error }}</small>
+                </ng-container>
               </div>
             </div>
-
+          
             <!-- Address Field -->
             <div class="mb-3">
               <label for="address" class="form-label"><i class="fas fa-map-marker-alt"></i> Address</label>
@@ -54,11 +56,13 @@
                 placeholder="Enter land address"
                 formControlName="address"
               >
-              <div *ngIf="landDonationForm.get('address')?.touched && landDonationForm.get('address')?.invalid" class="text-danger">
-                <small *ngIf="landDonationForm.get('address')?.errors?.['required']">Address is required.</small>
+              <div *ngIf="isFieldInvalid('address')" class="text-danger">
+                <ng-container *ngFor="let error of getFieldErrors('address')">
+                  <small>{{ error }}</small>
+                </ng-container>
               </div>
             </div>
-
+          
             <!-- Proof of Ownership Field -->
             <div class="mb-3">
               <label for="proof_of_ownership" class="form-label"><i class="fas fa-file-upload"></i> Upload Proof of Ownership</label>
@@ -68,16 +72,19 @@
                 id="proof_of_ownership"
                 (change)="onFileSelected($event)"
               >
-              <div *ngIf="landDonationForm.get('proof_of_ownership')?.touched && landDonationForm.get('proof_of_ownership')?.invalid" class="text-danger">
-                <small *ngIf="landDonationForm.get('proof_of_ownership')?.errors?.['required']">Proof of ownership is required.</small>
+              <div *ngIf="isFieldInvalid('proof_of_ownership')" class="text-danger">
+                <ng-container *ngFor="let error of getFieldErrors('proof_of_ownership')">
+                  <small>{{ error }}</small>
+                </ng-container>
               </div>
             </div>
-
+          
             <!-- Submit Button -->
             <button type="submit" class="btn btn-lg btn-dark btn-block mt-3" [disabled]="landDonationForm.invalid">
               <i class="fas fa-hand-holding-heart"></i> Submit Land Donation
             </button>
           </form>
+          
         </div> 
       </div> 
     </div>
