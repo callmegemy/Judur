@@ -64,6 +64,7 @@ import { EventJoinComponent } from './components/event-join/event-join.component
 import { ReportDetailsComponent } from './components/dashboard/examiner-reports/report-details/report-details.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { NotificationComponent } from './components/notification/notification.component';
+import { FeedbackForEventComponent } from './components/feedback-for-event/feedback-for-event.component';
 export const routes: Routes = [
   {
     path: '',
@@ -200,6 +201,10 @@ export const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent },
 
   { path: 'land-inspection', component: LandInspectionComponent},
+
+
+  { path: 'feedback', component: FeedbackForEventComponent},
+
 
 ];
 
