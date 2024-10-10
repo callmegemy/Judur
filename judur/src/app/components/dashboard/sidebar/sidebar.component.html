@@ -1,94 +1,122 @@
-      
-    <link href="../../../../assets/css/sb-admin-2.css" rel="stylesheet">
-      
-      <!-- Sidebar -->
-        <ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar">
+<link href="../../../../assets/css/sb-admin-2.css" rel="stylesheet">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon ">
-                    <i class="fa-solid fa-seedling"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">Judur</div>
-            </a>
+<!-- Sidebar -->
+<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <div class="sidebar-brand-icon ">
+            <i class="fa-solid fa-seedling"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">Judur</div>
+    </a>
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="/dashboard">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span> Main</span></a>
-            </li>
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+        <a class="nav-link" href="/dashboard">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span> Main</span></a>
+    </li>
 
-            <li   class="nav-item active">
-                <a class="nav-link" href="/dashboard/users">
-                    <i class="fa-solid fa-users"></i>
-                    <span> Users</span></a>
-            </li>
+    <!-- Divider -->
+    <hr class="sidebar-divider">
 
-            <hr class="sidebar-divider">
+    <li class="nav-item active">
+        <a class="nav-link" href="/dashboard/users">
+            <i class="fa-solid fa-users"></i>
+            <span> Users</span></a>
+    </li>
 
-            <li  class="nav-item active">
-                <a class="nav-link" href="/dashboard/requests">
-                    <i class="fa-solid fa-code-pull-request"></i>
-                    <span> Requests</span></a>
-            </li>
+    <hr class="sidebar-divider">
 
-            <hr class="sidebar-divider">
+    <li class="nav-item active">
+        <a class="nav-link" href="/dashboard/requests">
+            <i class="fa-solid fa-code-pull-request"></i>
+            <span> Requests</span></a>
+    </li>
 
-            <li class="nav-item active">
-                <a class="nav-link" href="/dashboard/events">
-                    <i class="fa-regular fa-calendar-days"></i>
-                    <span> Events</span></a>
-            </li>
+    <hr class="sidebar-divider">
 
-            <hr class="sidebar-divider">
+    <li class="nav-item active">
+        <a class="nav-link" href="/dashboard/events">
+            <i class="fa-regular fa-calendar-days"></i>
+            <span> Events</span></a>
+    </li>
 
-            <li class="nav-item active">
-                <a class="nav-link" href="/dashboard/auctions">
-                    <i class="fa-solid fa-file-invoice-dollar"></i>
-                    <span> Auctions</span></a>
-            </li>
+    <hr class="sidebar-divider">
 
-            <hr class="sidebar-divider">
-            
-    
-        <!-- Add Posts Link -->
-        <li class="nav-item active">
-            <a class="nav-link" href="/dashboard/posts">
-                <i class="fa-solid fa-newspaper"></i>
-                <span>Posts</span>
-            </a>
-        </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="/dashboard/auctions">
+            <i class="fa-solid fa-file-invoice-dollar"></i>
+            <span> Auctions</span></a>
+    </li>
 
-        <hr class="sidebar-divider">
-
-        <!-- Add Examiner Reports Link -->
-        <li class="nav-item active">
-            <a class="nav-link" href="/dashboard/examiner-reports">
-                <i class="fa-solid fa-file-circle-plus"></i>
-                <span>Examiner Reports</span>
-            </a>
-        </li>
-        <hr class="sidebar-divider">
-
-        <li class="nav-item active">
-            <a class="nav-link" href="/management">
-                <i class="fa-solid fa-users"></i>
-                <span> Users Mangement</span></a>
-        </li>
-
-        <hr class="sidebar-divider">
+    <hr class="sidebar-divider">
 
 
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    <!-- Add Posts Link -->
+    <li class="nav-item active">
+        <a class="nav-link" href="/dashboard/posts">
+            <i class="fa-solid fa-newspaper"></i>
+            <span>Posts</span>
+        </a>
+    </li>
+
+    <hr class="sidebar-divider">
+
+    <!-- Add Examiner Reports Link -->
+    <li class="nav-item active">
+        <a class="nav-link" href="/dashboard/examiner-reports">
+            <i class="fa-solid fa-file-circle-plus"></i>
+            <span>Examiner Reports</span>
+        </a>
+    </li>
+    <hr class="sidebar-divider">
+
+    <li class="nav-item active">
+        <a class="nav-link" href="/management">
+            <i class="fas fa-users-cog me-2"></i>
+            <span> Users Mangement</span></a>
+    </li>
+    <!-- Trigger Logout Modal -->
+    <!-- Trigger Logout Modal -->
+    <li class="nav-item d-flex justify-content-center">
+        <a class="nav-link">
+            <button class="btn btn-judur align-items-center" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                Logout
+            </button>
+        </a>
+    </li>
+
+
+    <hr class="sidebar-divider">
+
+
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+
+</ul>
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
             </div>
-
-        </ul>
-        <!-- End of Sidebar -->
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="/login">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of Sidebar -->

@@ -1,25 +1,96 @@
+:root {
+    --primary: #16423C;
+    --secondary: #6A9C89;
+    --light: #E9EFEC;
+    --dark: #001D23;
+}
+
 .container {
-    max-width: 60%;
-    margin: 0 auto;
+    max-width: 800px;
+    min-width: 700px !important;
+    margin: auto;
 }
+
+h2, p {
+    margin-top: 10px;
+    color: #6A9C89;
+}
+
 .card {
+    margin-top: 30px;
     border: none;
-    box-shadow: none;
+    min-height: 500px !important;
+    width: 900px;
+    margin: auto;
 }
-.product-image {
-    width: 250px;
-    height: 250px;
+
+.img-circle {
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     object-fit: cover;
-    margin: 15px 0;
+    margin-top: 5px;
 }
-.form-container {
-    max-width: 50%;
-    margin: 0 auto;
-    display: none; 
+
+.no-image-placeholder {
+    height: 200px;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+    border-radius: 50%;
+    font-weight: bold;
+    color: #666;
 }
-.custom-hr {
-    width: 50%; 
-    margin: 20px auto; 
-  
+
+.card-title {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+.btn {
+    width: 200px; /* Set a fixed width for the buttons */
+    padding: 10px;
+    margin: 0 auto; /* Center the button */
+    display: block; /* Make button a block element */
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+}
+
+.btn-success {
+    background-color: var(--secondary);
+    color: white; /* Corrected from columns to color */
+    border: none;
+}
+
+.border-top {
+    border-top: 1px solid #dee2e6;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+.form-select {
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+}
+
+.text-danger {
+    font-size: 0.875rem;
+}
+
+.mt-3 {
+    margin-top: 1rem;
 }

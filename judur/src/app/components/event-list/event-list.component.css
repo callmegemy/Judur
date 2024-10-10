@@ -28,15 +28,7 @@ button:hover {
     background-color: var(--secondary);
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
 
-.section {
-    padding: 60px 0;
-}
 
 .text-center {
     text-align: center;
@@ -133,7 +125,7 @@ input[type="file"] {
     margin-bottom: 45px;
     padding: 210px 0 90px 0;
     text-align: center;
-    background: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)),url('/assets/img/page-header.jpg');
+    background: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)),url('/assets/img/StockCake-Volunteers Packing Food_1728509909.jpg');
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -427,122 +419,7 @@ input[type="file"] {
 }
 
 
-/*******************************/
-/********* Footer CSS **********/
-/*******************************/
-.footer {
-    position: relative;
-    margin-top: 45px;
-    padding-top: 90px;
-    background: var(--dark);
-}
 
-.footer .footer-contact,
-.footer .footer-link,
-.footer .footer-newsletter {
-    position: relative;
-    margin-bottom: 45px;
-    color: #ffffff;
-}
-
-.footer .footer-contact h2,
-.footer .footer-link h2,
-.footer .footer-newsletter h2 {
-    margin-bottom: 30px;
-    font-size: 22px;
-    font-weight: 700;
-    color:  var(--secondary);
-}
-
-.footer .footer-link a {
-    display: block;
-    margin-bottom: 10px;
-    color: var(--light);
-    transition: .3s;
-}
-
-.footer .footer-link a::before {
-    position: relative;
-    content: "\f105";
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    margin-right: 10px;
-}
-
-.footer .footer-link a:hover {
-    color:  var(--secondary);
-    letter-spacing: 1px;
-}
-
-.footer .footer-contact p i {
-    width: 25px;
-}
-
-.footer .footer-social {
-    position: relative;
-    margin-top: 20px;
-}
-
-.footer .footer-social a {
-    width: 40px;
-    height: 40px;
-    padding: 6px 0;
-}
-
-.footer .footer-social a {
-    margin-top: 5px;
-}
-
-.footer .footer-newsletter form {
-    position: relative;
-    width: 100%;
-}
-
-.footer .footer-newsletter input {
-    margin-bottom: 15px;
-    height: 60px;
-    border: none;
-    border-radius: 0;
-}
-
-.footer .footer-newsletter label {
-    margin-top: 5px;
-    color: var(--secondary);
-    font-size: 14px;
-    letter-spacing: 1px;
-}
-
-.footer .footer-newsletter .btn.btn-custom {
-    width: 100%;
-    padding: 15px 0;
-}
-
-.footer .copyright {
-    padding: 0 30px;
-}
-
-.footer .copyright .row {
-    padding-top: 25px;
-    padding-bottom: 25px;
-    border-top: 1px solid rgba(256, 256, 256, .1);
-}
-
-.footer .copyright p {
-    margin: 0;
-    color: var(--secondary);
-}
-
-.footer .copyright .col-md-6:last-child p {
-    text-align: right;
-}
-
-.footer .copyright p a {
-    color: #ffffff;
-}
-
-.footer .copyright p a:hover {
-    color:  var(--secondary);
-}
 
 @media (max-width: 767.98px) {
     .footer .copyright p,
@@ -551,73 +428,6 @@ input[type="file"] {
         text-align: center;
     }
 }
-
-
-/* .back-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 40px;
-    height: 40px;
-    background-color: #007bff;
-    color: #fff;
-    text-align: center;
-    line-height: 40px;
-    font-size: 18px;
-    border-radius: 50%;
-    transition: all 0.3s;
-    z-index: 1000;
-    display: none; 
-} */
-
-/* .back-to-top:hover {
-    background-color: #0056b3;
-    color: #fff;
-}
-
-.back-to-top i {
-    font-size: 18px;
-} */
-
-
-/* Back to Top */
-/* 
-.back-to-top-event {
-    position: fixed; 
-    right: 2%;
-    bottom: 2%;
-    z-index: 9;
-   text-align: right;
-}
-
-.back-to-top-event > a {
-    display: inline-block;
-    width: 4rem; 
-    height:4rem;
-    border-radius: 50%; 
-    background: var(--primary);
-    text-align: center;
-    font-size:1.5rem;
-    line-height: 4rem;
-    transition: background 0.5s;
-   margin-left: 94%;
-    margin-top: 5px;
-}
-
-.back-to-top-event i {
-    color: var(--light);
-}
-
-.back-to-top-event:hover a {
-    background: var(--secondary); 
-}
-
-.back-to-top-event:hover i {
-    color: var(--dark);
-}
- */
-  /* Responsive Media Queries */
-
 /* Large Devices (Desktops, 1200px and up) */
 @media (min-width: 1200px) {
     .event-item img {
@@ -685,5 +495,116 @@ input[type="file"] {
     .footer-social a {
         font-size: 1.2rem;
         margin-right: 10px;
+    }
+}
+
+
+
+
+.fixed-card {
+    display: flex;
+    flex-direction: row;
+    height: 400px;
+    width: 100%; /* Make the card take full width of the column */
+    gap: 20px;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.fixed-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-img-left {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures image fits nicely */
+}
+
+.card-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.card-text {
+    margin-top: 10px;
+    color: #666;
+    font-size: 1rem;
+}
+
+.event-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.event-meta p {
+    margin: 0;
+    padding: 0 10px;
+    white-space: nowrap;
+}
+
+.btn-custom {
+    background-color: #28a745;
+    color: white;
+    margin-top: 15px;
+    transition: background-color 0.3s;
+}
+
+.btn-custom:hover {
+    background-color: #218838;
+}
+
+/* Create space between the cards */
+.col-lg-6, .col-md-12 {
+    padding: 0 15px; /* Add spacing between cards */
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .fixed-card {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .card-img-left {
+        height: 250px;
+    }
+}
+
+@media (max-width: 576px) {
+    .fixed-card {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .card-img-left {
+        height: 200px;
+    }
+
+    .card-title {
+        font-size: 1.2rem;
+    }
+
+    .card-text {
+        font-size: 0.9rem;
+    }
+
+    .event-meta p {
+        font-size: 0.8rem;
     }
 }

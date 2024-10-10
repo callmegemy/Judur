@@ -1,27 +1,27 @@
 <app-navbar></app-navbar>
 
-<div class="container mt-5">
+<div class="container">
   <div class="event-details" *ngIf="event">
     <div class="event-header">
-      <h1>{{ event.title }}</h1>
-      <img [src]="event.image_url" alt="{{ event.title }} Image" loading="lazy">
+      <h1 class="event-title">{{ event.title }}</h1>
+      <img [src]="event.image_url" alt="{{ event.title }} Image" loading="lazy" class="event-image">
     </div>
 
     <div class="event-info">
       <div class="event-section">
-        <h3>Location</h3>
+        <h3>Location:</h3>
         <p>{{ event.location }}</p>
       </div>
       <div class="event-section">
-        <h3>Date & Time</h3>
+        <h3>Date & Time:</h3>
         <p>{{ event.date }} - {{ event.time }}</p>
       </div>
       <div class="event-section">
-        <h3>Duration</h3>
+        <h3>Duration:</h3>
         <p>{{ event.duration }}</p>
       </div>
       <div class="event-section">
-        <h3>Expected Organizers</h3>
+        <h3>Expected Organizers:</h3>
         <p>{{ event.expected_organizer_number }}</p>
       </div>
     </div>
@@ -31,14 +31,77 @@
       <p>{{ event.description }}</p>
     </div>
 
-   
-
     <div class="event-actions">
       <app-event-join [eventId]="event.id"></app-event-join>
-
-      <a class="btn btn-custom" routerLink="/list-event">Back To Events</a>
+      <a class="btn btn-custom" routerLink="/list-event">Back</a>
     </div>
 
 
   </div>
 </div>
+
+
+
+
+
+
+
+
+
+<!-- 
+<app-navbar></app-navbar>
+
+<div class="container ">
+  <div class="event-details" *ngIf="true"> 
+    <div class="event-header">
+      <h1>Community Clean-Up Day</h1>
+      <img src="/assets/img/aboutus.jpg" alt="Community Clean-Up Day Image" loading="lazy" class="event-image">
+    </div>
+
+    <div class="event-info">
+      <div class="event-section">
+        <h3>Location</h3>
+        <p>Central Park, Main City</p>
+      </div>
+      <div class="event-section">
+        <h3>Date & Time</h3>
+        <p>2024-10-15 - 10:00 AM</p>
+      </div>
+      <div class="event-section">
+        <h3>Duration</h3>
+        <p>3 hours</p>
+      </div>
+      <div class="event-section">
+        <h3>Expected Organizers</h3>
+        <p>5</p>
+      </div>
+    </div>
+
+    <div class="event-description">
+      <h3>Description</h3>
+      <p>Join us for a day of cleaning up our beautiful Central Park! We will provide all necessary supplies and refreshments for volunteers. Let’s work together to make our community a cleaner place.</p>
+    </div>
+
+    <div class="event-actions">
+      <app-event-join [eventId]="1"></app-event-join>
+      <a class="btn btn-custom" routerLink="/list-event">Back To Events</a>
+    </div>
+
+    <div class="feedbacks">
+      <h2>Feedbacks</h2>
+      <div class="feedback-list">
+        <div class="feedback">
+          <p>"It was a great experience! I met wonderful people."</p>
+          <small>By Alice Johnson on 2024-10-01</small>
+        </div>
+        <div class="feedback">
+          <p>"Really enjoyed the day and the food was amazing!"</p>
+          <small>By Bob Smith on 2024-10-02</small>
+        </div>
+      </div>
+      <p *ngIf="false">No feedback yet.</p> 
+    </div>
+  </div>
+</div>
+
+ -->

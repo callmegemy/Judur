@@ -7,7 +7,7 @@ import { BlogService, BlogPost } from '../../services/blog.service';
 @Component({
   selector: 'app-blog',
   standalone: true,
-  imports: [CommonModule, RouterLink, NavbarComponent], // Import standalone NavbarComponent and necessary modules
+  imports: [CommonModule, RouterLink, NavbarComponent], 
   templateUrl: './blog.component.html',
   styleUrls: ['./blog.component.css'],
 })
