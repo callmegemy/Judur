@@ -54,5 +54,14 @@ export class UpcommingeventsService {
 
     return this.http.delete(`${this.apiUrl}/list-event/cancel-event/${eventId}`, { headers });
 }
+// checkVolunteerStatus(eventId: number): Observable<any> {
+//   return this.http.get<any>(`http://localhost:8000/api/list-event/${eventId}/status`);
+// }
+getVolunteerProfile(userId: number): Observable<any> {
+  return this.http.get<any>(`${this.apiUrl}/volunteers/${userId}`); // Adjust the endpoint as needed
+}
+checkVolunteerStatus(eventId: number): Observable<any> {
+  return this.http.get<any>(`http://localhost:8000/api/volunteer-status/${eventId}`);
+}
 
 }

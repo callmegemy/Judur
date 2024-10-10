@@ -1,7 +1,9 @@
+<!-- Hide button if the user is a donor or admin -->
 <button
-  *ngIf="!isLoading"
+  *ngIf="!hideButton && !isLoading"
   (click)="isJoined ? onCancel() : onJoin()"
-  [disabled]="isLoading || isPending || buttonText === 'Event is Full'"
+  [disabled]="isLoading || isPending || buttonText === 'Event is Full' || buttonText === 'Pending Approval'"
   class="btn btn-custom">
   {{ isJoined ? 'Cancel' : buttonText }}
 </button>
+

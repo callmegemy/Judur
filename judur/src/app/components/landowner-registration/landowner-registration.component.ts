@@ -24,7 +24,8 @@ export class LandownerRegistrationComponent {
       land_size: ['', [Validators.required, Validators.min(1)]],
       address: ['', Validators.required],
       proof_of_ownership: [null, Validators.required],
-      status_id: [1, Validators.required]
+      status_id: [1, Validators.required],
+      availability_time: ['', Validators.required] 
     });
 
     this.user = this.authService.getUserData();
@@ -76,7 +77,9 @@ export class LandownerRegistrationComponent {
     formData.append('land_size', this.landDonationForm.get('land_size')?.value);
     formData.append('address', this.landDonationForm.get('address')?.value);
     formData.append('status_id', this.landDonationForm.get('status_id')?.value);
-
+    console.log('Availability Time:', this.landDonationForm.get('availability_time')?.value);
+    formData.append('availability_time', this.landDonationForm.get('availability_time')?.value);
+  
     if (this.selectedFile) {
       formData.append('proof_of_ownership', this.selectedFile, this.selectedFile.name);
     }
