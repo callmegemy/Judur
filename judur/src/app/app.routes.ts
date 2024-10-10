@@ -77,6 +77,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { NotificationComponent } from './components/notification/notification.component';
 import { AuctionPaymentPageComponent } from './auction-payment-page/auction-payment-page.component';
 
+import { FeedbackForEventComponent } from './components/feedback-for-event/feedback-for-event.component';
 export const routes: Routes = [
   {
     path: '',
@@ -307,7 +308,11 @@ export const routes: Routes = [
   { path: 'unauthorized', component: UnauthorizedComponent } ,
   { path: 'reset-password', component: ResetPasswordComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
-{ path : 'auction-payment',component:AuctionPaymentPageComponent}
+{ path : 'auction-payment',component:AuctionPaymentPageComponent},
+
+
+  { path: 'feedback', component: FeedbackForEventComponent},
+
 
 ];
 
