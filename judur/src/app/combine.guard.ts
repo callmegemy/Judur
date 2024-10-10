@@ -8,8 +8,11 @@ export const combineGuard: CanActivateFn = (route, state) => {
 
   const user = authService.getUserData();
   console.log('Combine guard:', user);
-
   if (!authService.hasToken()) {
+    router.navigate(['/login']);
+    return false;
+  }
+
     if (user.role_id === 1 || user.role_id === 5 || user.role_id === 6) {
       return true; 
     } else {
@@ -17,9 +20,4 @@ export const combineGuard: CanActivateFn = (route, state) => {
       router.navigate(['/unauthorized']); 
       return false;
     }
-  } else {
-    console.log('User not logged in: redirecting to login page');
-    router.navigate(['/login']); 
-    return false;
   }
-};

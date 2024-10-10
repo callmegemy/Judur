@@ -8,8 +8,11 @@ export const adminGuard: CanActivateFn = (route, state) => {
 
   const user = authService.getUserData();
   console.log('Admin guard:', user);
-
-  if (user && user.role_id == 1 && authService.hasToken()) {
+  if (!authService.hasToken()) {
+    router.navigate(['/login']);
+    return false;
+  }
+  if (user && user.role_id == 1 ) {
     console.log('Access granted to admin');
     return true;
   } else {

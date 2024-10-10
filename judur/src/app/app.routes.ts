@@ -161,11 +161,9 @@ export const routes: Routes = [
     ,canActivate:[authGuard]
    },
   { path: 'list-event/event-details/:id', component: EventDetailsComponent
-    ,canActivate:[volunteerGuard]
    },
 
   { path: 'list-event', component: EventListComponent 
-    ,canActivate:[volunteerGuard]
   },
   { path: 'profile/edit/:id', component: EditProfileComponent
     ,canActivate:[authGuard]
@@ -175,21 +173,20 @@ export const routes: Routes = [
         ,canActivate:[volunteerGuard]
       },
   { path: 'list-event', component: EventListComponent
-    ,canActivate:[volunteerGuard]
   },
 
   // { path: '', redirectTo: '/donation-history', pathMatch: 'full' },
   // { path: '**', redirectTo: '/donation-history' }
   {path:'auction-details/:id',component:DetailsAuctionsComponent
-    ,canActivate:[volunteerGuard]
+   
   },
   {
     path: 'auction-list', component: ListingAuctionsComponent
-    ,canActivate:[volunteerGuard]
+  
   },
   {
     path: 'auction-details', component: DetailsAuctionsComponent
-    ,canActivate:[volunteerGuard]
+   
   },
 
   // Dashboard routes >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
