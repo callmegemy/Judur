@@ -71,7 +71,6 @@
                                     </div>
                     
                                     <div class="form-group">
-<<<<<<< HEAD
                                         <label for="status">Auction Status</label>
                                         <select id="status" [(ngModel)]="auction.status" name="status" class="form-control" required>
                                             <option *ngFor="let status of statuses" [value]="status.id" [selected]="auction.auction_status_id == status.id">{{ status.name }}</option>
@@ -79,12 +78,6 @@
                                         <div *ngIf="auctionForm.controls['status']?.invalid && (auctionForm.controls['status']?.touched || auctionForm.submitted)" class="text-danger">
                                             <small *ngIf="auctionForm.controls['status']?.errors?.['required']">Auction status is required.</small>
                                         </div>
-=======
-                                      <label for="status">Auction Status</label>
-                                      <select id="status" [(ngModel)]="auction.status" name="status" class="form-control" required>
-                                        <option *ngFor="let status of statuses" [selected]="auction.auction_status_id == status.id" [value]="status.id" >{{ status.name }}</option>
-                                      </select>
->>>>>>> a7562e09918cc00c479ec2f04c1d3436c8b52719
                                     </div>
                     
                                     <div class="form-group">

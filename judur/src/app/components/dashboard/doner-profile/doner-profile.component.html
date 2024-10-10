@@ -63,7 +63,6 @@
                             <p><strong>Last Donation Amount:</strong> $@if(donor.last_donation){donor.last_donation.created_at}@else{N/A}</p>
                             <p><strong>Total Donations:</strong> ${{ donor.total_donations || 'N/A' }}</p>
                             <p><strong>Last Donation Date:</strong>  @if(donor.last_donation){donor.last_donation.created_at}@else{No Date Provided}  </p>
-                            <a routerLink="/donation-history" class="btn">My Donations</a>
                         </div>
                     </div>
 

@@ -43,116 +43,158 @@
                 <h2><i class="fa-regular fa-calendar-days"></i> Edit Event</h2>
               </div>
               <div class="card-body">
-                <form (ngSubmit)="onEdit()" enctype="multipart/form-data">
+                <form (ngSubmit)="onEdit()" enctype="multipart/form-data" #eventForm="ngForm">
 
                   <!-- Event Title -->
                   <div class="form-group mb-3">
                     <label for="eventTitle" class="font-weight-bold">Event Title</label>
                     <input type="text" id="eventTitle" class="form-control" [(ngModel)]="event.title" name="title"
-                      required />
+                      required #title="ngModel" />
+                    <div *ngIf="title.invalid && title.touched" class="text-danger">
+                      Event title is required.
+                    </div>
                   </div>
-
+                
                   <!-- Event Status -->
                   <div class="form-group mb-3">
                     <label for="eventStatus" class="font-weight-bold">Event Status</label>
-                    <select id="eventStatus" class="form-control" [(ngModel)]="event.event_status" name="event_status"
-                      required>
+                    <select id="eventStatus" class="form-control" [(ngModel)]="event.event_status" name="event_status" required
+                      #eventStatus="ngModel">
                       <option value="" disabled>Select Status</option>
                       <option value="1" [selected]="event.event_status == '1'">Preparing</option>
                       <option value="2" [selected]="event.event_status == '2'">Upcoming</option>
                       <option value="3" [selected]="event.event_status == '3'">Completed</option>
                       <option value="4" [selected]="event.event_status == '4'">Cancelled</option>
                     </select>
+                    <div *ngIf="eventStatus.invalid && eventStatus.touched" class="text-danger">
+                      Please select an event status.
+                    </div>
                   </div>
-
+                
                   <!-- Event Location -->
                   <div class="form-group mb-3">
                     <label for="eventLocation" class="font-weight-bold">Event Location</label>
-                    <input type="text" id="eventLocation" class="form-control" [(ngModel)]="event.location"
-                      name="location" required />
+                    <input type="text" id="eventLocation" class="form-control" [(ngModel)]="event.location" name="location" required
+                      #location="ngModel" />
+                    <div *ngIf="location.invalid && location.touched" class="text-danger">
+                      Event location is required.
+                    </div>
                   </div>
-
+                
                   <!-- Event Date -->
                   <div class="form-group mb-3">
                     <label for="eventDate" class="font-weight-bold">Event Date</label>
-                    <input type="date" id="eventDate" class="form-control" [(ngModel)]="event.date" name="date"
-                      required />
+                    <input type="date" id="eventDate" class="form-control" [(ngModel)]="event.date" name="date" required
+                      #date="ngModel" />
+                    <div *ngIf="date.invalid && date.touched" class="text-danger">
+                      Event date is required.
+                    </div>
                   </div>
-
+                
                   <!-- Event Time -->
                   <div class="form-group mb-3">
                     <label for="eventTime" class="font-weight-bold">Event Time</label>
-                    <input type="time" id="eventTime" class="form-control" [(ngModel)]="event.time" name="time"
-                      required />
+                    <input type="time" id="eventTime" class="form-control" [(ngModel)]="event.time" name="time" required
+                      #time="ngModel" />
+                    <div *ngIf="time.invalid && time.touched" class="text-danger">
+                      Event time is required.
+                    </div>
                   </div>
-
+                
                   <!-- Expected Organizer Number -->
                   <div class="form-group mb-3">
                     <label for="expectedOrganizerNumber" class="font-weight-bold">Expected Organizer Number</label>
-                    <input type="number" id="expectedOrganizerNumber" class="form-control"
-                      [(ngModel)]="event.expected_organizer_number" name="expected_organizer_number" required min="1" />
+                    <input type="number" id="expectedOrganizerNumber" class="form-control" [(ngModel)]="event.expected_organizer_number"
+                      name="expected_organizer_number" required min="1" #expectedOrganizerNumber="ngModel" />
+                    <div *ngIf="expectedOrganizerNumber.invalid && expectedOrganizerNumber.touched" class="text-danger">
+                      Expected organizer number is required and must be at least 1.
+                    </div>
                   </div>
-
-                  <!-- Event Duration -->
+                
+                  <!-- Allocated Money -->
                   <div class="form-group mb-3">
                     <label for="allocatedMoney" class="font-weight-bold">Allocated Money</label>
                     <input type="number" id="allocatedMoney" class="form-control" [(ngModel)]="event.allocatedMoney"
-                      name="allocatedMoney" min="0" />
+                      name="allocatedMoney" min="0" #allocatedMoney="ngModel" />
+                    <div *ngIf="allocatedMoney.invalid && allocatedMoney.touched" class="text-danger">
+                      Allocated money must be 0 or more.
+                    </div>
                   </div>
-
-                  <!-- Event Duration -->
+                
+                  <!-- Allocated Items -->
                   <div class="form-group mb-3">
                     <label for="allocatedItems" class="font-weight-bold">Allocated Items</label>
                     <input type="number" id="allocatedItems" class="form-control" [(ngModel)]="event.allocatedItems"
-                      name="allocatedItems" min="0" />
+                      name="allocatedItems" min="0" #allocatedItems="ngModel" />
+                    <div *ngIf="allocatedItems.invalid && allocatedItems.touched" class="text-danger">
+                      Allocated items must be 0 or more.
+                    </div>
                   </div>
+                
                   <!-- Land Selection -->
                   <div class="form-group mb-3">
                     <label for="land_id" class="font-weight-bold">Land</label>
-                    <select id="land_id" class="form-control" [(ngModel)]="event.land_id" name="land_id" required>
+                    <select id="land_id" class="form-control" [(ngModel)]="event.land_id" name="land_id" required #landId="ngModel">
                       <option value="" disabled>Select Land</option>
                       <option *ngFor="let land of lands" [value]="land.id" [selected]="event.land_id == land.id">
                         {{ land.address }}
                       </option>
                     </select>
+                    <div *ngIf="landId.invalid && landId.touched" class="text-danger">
+                      Please select a land.
+                    </div>
                   </div>
-
+                
                   <!-- Event Description -->
                   <div class="form-group mb-3">
                     <label for="eventDescription" class="font-weight-bold">Event Description</label>
-                    <textarea id="eventDescription" class="form-control" [(ngModel)]="event.description"
-                      name="description" required></textarea>
+                    <textarea id="eventDescription" class="form-control" [(ngModel)]="event.description" name="description" required
+                      #description="ngModel"></textarea>
+                    <div *ngIf="description.invalid && description.touched" class="text-danger">
+                      Event description is required.
+                    </div>
                   </div>
-
+                
                   <!-- Event Duration -->
                   <div class="form-group mb-3">
                     <label for="eventDuration" class="font-weight-bold">Event Duration (in hours)</label>
-                    <input type="number" id="eventDuration" class="form-control" [(ngModel)]="event.duration"
-                      name="duration" min="0" />
+                    <input type="number" id="eventDuration" class="form-control" [(ngModel)]="event.duration" name="duration" min="0"
+                      #duration="ngModel" />
+                    <div *ngIf="duration.invalid && duration.touched" class="text-danger">
+                      Event duration must be 0 or more.
+                    </div>
                   </div>
-
+                
                   <!-- People Helped -->
                   <div class="form-group mb-3">
                     <label for="peopleHelped" class="font-weight-bold">People Helped</label>
-                    <input type="number" id="peopleHelped" class="form-control" [(ngModel)]="event.people_helped"
-                      name="people_helped" min="0" />
+                    <input type="number" id="peopleHelped" class="form-control" [(ngModel)]="event.people_helped" name="people_helped"
+                      min="0" #peopleHelped="ngModel" />
+                    <div *ngIf="peopleHelped.invalid && peopleHelped.touched" class="text-danger">
+                      People helped must be 0 or more.
+                    </div>
                   </div>
-
+                
                   <!-- Goods Distributed -->
                   <div class="form-group mb-3">
                     <label for="goodsDistributed" class="font-weight-bold">Goods Distributed</label>
-                    <input type="number" id="goodsDistributed" class="form-control"
-                      [(ngModel)]="event.goods_distributed" name="goods_distributed" min="0" />
+                    <input type="number" id="goodsDistributed" class="form-control" [(ngModel)]="event.goods_distributed"
+                      name="goods_distributed" min="0" #goodsDistributed="ngModel" />
+                    <div *ngIf="goodsDistributed.invalid && goodsDistributed.touched" class="text-danger">
+                      Goods distributed must be 0 or more.
+                    </div>
                   </div>
-
+                
                   <!-- Image Upload -->
                   <div class="form-group mb-3">
                     <label for="eventImage" class="font-weight-bold">Upload Event Image</label>
                     <input type="file" id="eventImage" (change)="onFileSelected($event)" />
                   </div>
-
-                  <button type="submit" class="btn btn-judur">Update Event</button>
+                
+                  <button type="submit" class="btn btn-judur" [disabled]="eventForm.invalid">Update Event</button>
                 </form>
+                
+                
               </div>
             </div>
           </div>

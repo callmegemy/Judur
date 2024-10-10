@@ -10,13 +10,25 @@
       </div>
     </div>
 
+
     <div class="form-group">
       <label for="currency">Currency</label>
-      <input formControlName="currency" type="text" class="form-control" id="currency" placeholder="Enter currency (e.g., USD, EUR)" required>
+      <select formControlName="currency" class="form-control" id="currency" required>
+        <option value="" disabled>Select currency</option>
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+        <option value="GBP">GBP</option>
+        <option value="AUD">AUD</option>
+        <option value="CAD">CAD</option>
+        <option value="JPY">JPY</option>
+        <option value="CNY">CNY</option>
+      
+      </select>
       <div *ngIf="registerForm.controls['currency'].invalid && registerForm.controls['currency'].touched" class="text-danger">
         Currency is required.
       </div>
     </div>
+
 
     <div class="form-group">
       <label for="paymentMethod">Payment Method</label>

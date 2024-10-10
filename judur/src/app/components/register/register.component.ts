@@ -13,7 +13,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class RegisterComponent {
   donorForm: FormGroup;
-  profilePictureBase64: string | null = null;  // Variable to hold base64 image data
+  profilePictureBase64: string | null = null; 
 
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.donorForm = this.fb.group({
@@ -23,11 +23,10 @@ export class RegisterComponent {
       role_id: [2],
       age: ['', Validators.required],
       phone: ['', Validators.required],
-      profile_picture: ['']
+      profile_picture: ['']  
     });
   }
 
-  // Method to handle file selection and convert to base64
   onFileSelected(event: Event) {
     const target = event.target as HTMLInputElement;
     if (target.files && target.files.length > 0) {
@@ -35,14 +34,13 @@ export class RegisterComponent {
       const reader = new FileReader();
 
       reader.onload = (e: any) => {
-        this.profilePictureBase64 = e.target.result.split(',')[1];  // Extract base64 part of the image
+        this.profilePictureBase64 = e.target.result.split(',')[1];  
       };
 
-      reader.readAsDataURL(file);  // Convert file to base64
+      reader.readAsDataURL(file);  
     }
   }
 
-  // Method to submit form
   registerDonor() {
     if (this.donorForm.valid) {
       const formData = {
@@ -52,13 +50,13 @@ export class RegisterComponent {
         age: this.donorForm.value.age,
         phone: this.donorForm.value.phone,
         role_id: this.donorForm.value.role_id,
-        profile_picture: this.profilePictureBase64  // Send base64 string of the image
+        profile_picture: this.profilePictureBase64 
       };
 
       this.authService.registerDonor(formData).subscribe({
         next: (response) => {
           console.log('Donor registration successful:', response);
-          this.router.navigate(['/login']);  // Redirect to login page after registration
+          this.router.navigate(['/login']); 
         },
         error: (err) => {
           console.error('Error during donor registration:', err);

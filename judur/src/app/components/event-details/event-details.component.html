@@ -36,16 +36,7 @@
       <a class="btn btn-custom" routerLink="/list-event">Back</a>
     </div>
 
-    <div class="feedbacks">
-      <h2>Feedbacks</h2>
-      <div class="feedback-list" *ngIf="event.feedbacks.length > 0">
-        <div class="feedback" *ngFor="let feedback of event.feedbacks">
-          <p>"{{ feedback.text }}"</p>
-          <small>By {{ feedback.user }} on {{ feedback.date }}</small>
-        </div>
-      </div>
-      <p *ngIf="event.feedbacks.length === 0">No feedback yet.</p>
-    </div>
+
   </div>
 </div>
 

@@ -13,6 +13,8 @@
                 <a routerLink="#aboutus" routerLinkActive="active" class="nav-item nav-link">About</a>
                 <a *ngIf="isDonor" routerLink="/donate" routerLinkActive="active" class="nav-item nav-link">Donate</a>
                 <a routerLink="/contact-us" routerLinkActive="active" class="nav-item nav-link">Contact</a>
+                <a  *ngIf="isAdmin" routerLink="/dashboard" routerLinkActive="active" class="nav-item nav-link">Dashboard</a>
+
                 <a *ngIf="isjustvolunteer"  routerLink="/volunteer-to-examiner" routerLinkActive="active" class="nav-item nav-link">Examiner</a>
                 <a *ngIf="isExaminer" routerLink="/land-inspection" routerLinkActive="active" class="nav-item nav-link">Land Report</a>
             </div>

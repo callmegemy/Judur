@@ -12,7 +12,6 @@ export const combineGuard: CanActivateFn = (route, state) => {
     router.navigate(['/login']);
     return false;
   }
-
     if (user.role_id === 1 || user.role_id === 5 || user.role_id === 6) {
       return true; 
     } else {

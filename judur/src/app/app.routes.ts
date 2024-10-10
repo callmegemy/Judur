@@ -180,7 +180,7 @@ export const routes: Routes = [
   {path:'auction-details/:id',component:DetailsAuctionsComponent
    
   },
-  {
+  { 
     path: 'auction-list', component: ListingAuctionsComponent
   
   },

@@ -41,32 +41,33 @@ export class LandInspectionComponent {
     console.log('Logged-in user:', this.user); // For debugging
 
     this.checkIfExaminer(); // Check if the user is an examiner
-    this.fetchLands(); // Fetch available lands
+    this. fetchPendingLands(); // Fetch available lands
   }
 
-  fetchLands(): void {
+  fetchPendingLands(): void {
     const token = this.authService.getToken(); // Retrieve token from AuthService
-
+  
     if (token) {
       const headers = new HttpHeaders({
         'Authorization': `Bearer ${token}`,
         'Accept': 'application/json',
       });
-
-      this.http.get<any[]>('http://localhost:8000/api/lands', { headers }).subscribe(
-        (lands: any[]) => {
-          this.lands = lands; // Store fetched lands
-          console.log('Fetched lands:', this.lands); // For debugging
-        },
-        (error) => {
-          console.error('Error fetching lands:', error);
-        }
-      );
+  
+      this.http.get<any[]>('http://localhost:8000/api/pending-lands', { headers }) // Adjust the endpoint here
+        .subscribe(
+          (lands: any[]) => {
+            this.lands = lands; // Store fetched lands
+            console.log('Fetched pending lands:', this.lands); // For debugging
+          },
+          (error) => {
+            console.error('Error fetching pending lands:', error); // Updated error message
+          }
+        );
     } else {
       console.error('No token found.');
     }
   }
-
+  
   checkIfExaminer(): void {
     if (this.user && this.user.role_id === 3 && this.user.examiner === 1) {
       this.isExaminer = true;

@@ -16,6 +16,7 @@ export class NavbarComponent implements OnInit {
   loggedIn: boolean = false;
   isExaminer: boolean = false; 
   isDonor: boolean = false;
+  isAdmin:boolean=false;
   isjustvolunteer:boolean=false; 
 
   constructor(
@@ -35,6 +36,9 @@ export class NavbarComponent implements OnInit {
         if (user) {
           if (user.role_id === 2) { 
             this.isDonor = true;
+          }
+          if (user.role_id === 1 ) { 
+            this.isAdmin= true;
           }
         
           if (user.role_id === 3) { 
