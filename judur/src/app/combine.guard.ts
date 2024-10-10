@@ -8,7 +8,6 @@ export const combineGuard: CanActivateFn = (route, state) => {
 
   const user = authService.getUserData();
   console.log('Combine guard:', user);
-
   if (!authService.hasToken()) {
     router.navigate(['/login']);
     return false;
@@ -20,4 +19,4 @@ export const combineGuard: CanActivateFn = (route, state) => {
       router.navigate(['/unauthorized']); 
       return false;
     }
-  } 
+  }

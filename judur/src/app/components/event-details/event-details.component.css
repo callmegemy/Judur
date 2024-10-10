@@ -1,21 +1,27 @@
-
 body {
-    font-family: var(--font-family);
-    color: var(--font-color);
+  font-family: var(--font-family);
+  color: var(--font-color);
+  margin: 0;
+  padding: 0;
 }
 
 .container {
-  max-width: 1200px;
-  margin: 20px auto;
-  padding: 0 20px;
+  max-width: 1000px;
+  margin: 115px auto;
 
+  padding: 0 20px;
 }
 
 .event-details {
-  background-color: var(--light); /* Use light background */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  padding: 30px;
+  background-color: var(--light); 
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 40px;
+  transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.event-details:hover {
+  transform: translateY(-2px); /* Lift effect on hover */
 }
 
 .event-header {
@@ -25,16 +31,21 @@ body {
 
 .event-header h1 {
   color: var(--primary);
+  margin-bottom: 15px;
+  font-size: 2.5rem; /* Larger font size */
 }
 
-.event-header img {
+.event-image {
   max-width: 100%;
   height: auto;
-  border-radius: 8px;
+  border-radius: 12px;
   margin-top: 20px;
+  border: 2px solid var(--primary); /* Border for the image */
 }
 
-.event-info, .event-description, .feedbacks {
+.event-info,
+.event-description,
+.feedbacks {
   margin-bottom: 30px;
 }
 
@@ -45,6 +56,7 @@ body {
 .event-section h3 {
   color: var(--primary);
   margin-bottom: 5px;
+  font-size: 1.6rem; /* Responsive font size */
 }
 
 .event-actions {
@@ -53,45 +65,68 @@ body {
   gap: 20px;
 }
 
-.btn,app-event-join {
+.btn,
+app-event-join {
   padding: 12px 20px;
   background-color: var(--primary);
   color: var(--light); /* Ensure good contrast */
   text-decoration: none;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
+  border-radius: 6px; /* Rounded corners */
+  transition: background-color 0.3s ease, transform 0.2s; /* Smooth transition */
+  font-size: 1.1rem; /* Responsive font size */
 }
 
-.btn:hover,app-event-join:hover {
+.btn:hover,
+app-event-join:hover {
   background-color: var(--secondary);
+  transform: translateY(-2px); /* Lift effect on hover */
 }
 
 .feedbacks h2 {
   color: var(--primary);
+  margin-bottom: 15px;
 }
 
 .feedback-list {
   display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   grid-gap: 15px;
 }
 
 .feedback {
   background-color: var(--light);
   padding: 15px;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s; /* Smooth transition */
+}
+
+.feedback:hover {
+  transform: translateY(-2px); /* Lift effect on hover */
 }
 
 .feedback small {
   display: block;
   color: var(--dark);
   font-size: 14px;
+  text-align: right; /* Align small text to the right */
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .event-item, .event-details-card {
-        margin: 0 auto;
-        max-width: 100%;
-    }
+  .event-section h3 {
+    font-size: 1.5rem; /* Smaller font size for mobile */
+  }
+  
+  .event-actions {
+    flex-direction: column; /* Stack buttons on smaller screens */
+  }
+
+  .feedback-list {
+    grid-template-columns: 1fr; /* Single column on small screens */
+  }
+
+  .event-details {
+    padding: 20px; /* Less padding on mobile */
+  }
 }

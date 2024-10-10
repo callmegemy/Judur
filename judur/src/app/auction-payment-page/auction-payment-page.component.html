@@ -1,68 +1,51 @@
-<!-- <div class="container mt-5">
-    <div class="card text-center">
-        <div class="card-body">
-            <img src="فاظات.jpeg" alt="Product Image" class="product-image">
-            <h3 class="card-title">Congratulations, You Have Won The Auction</h3>
-            <p class="card-text"><strong>Overall Appearance:</strong>
-                These artifacts reflect exquisite craftsmanship and tell unique historical stories.
-            </p>
-            <hr class="custom-hr">
-            <div class="register-container">
-                <button class="btn btn-success" (click)="toggleForm()">Pay the auction now</button>
-                <div *ngIf="formVisible" id="auctionForm">
-                    <form [formGroup]="auctionForm" (ngSubmit)="onSubmit()">
-                        <div class="form-group">
-                            <label for="auctionAmount">Auction Amount</label>
-                            <input formControlName="auctionAmount" type="number" class="form-control" id="auctionAmount" placeholder="Enter auction amount" required [value]="highestBidAmount">
-                            <div *ngIf="auctionForm.controls['auctionAmount'].invalid && auctionForm.controls['auctionAmount'].touched" class="text-danger">
-                                Auction Amount is required and must be greater than zero.
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="currency">Currency</label>
-                            <input formControlName="currency" type="text" class="form-control" id="currency" placeholder="Enter currency (e.g., USD, EUR)" required>
-                            <div *ngIf="auctionForm.controls['currency'].invalid && auctionForm.controls['currency'].touched" class="text-danger">
-                                Currency is required.
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="paymentMethod">Select Payment Method</label>
-                            <select formControlName="paymentMethod" class="form-control" id="paymentMethod">
-                                <option value="" disabled>Select payment method</option>
-                                <option value="creditCard">Credit Card</option>
-                            </select>
-                            <div *ngIf="auctionForm.controls['paymentMethod'].invalid && auctionForm.controls['paymentMethod'].touched" class="text-danger">
-                                Payment Method is required.
-                            </div>
-                        </div>
-                        <div *ngIf="auctionForm.get('paymentMethod')?.value === 'creditCard'">
-                            <h3>Credit Card Details</h3>
-                            <div id="card-element" class="card-element"></div>
-                            <div id="card-errors" class="text-danger"></div>
-                        </div>
-                        <button type="submit" class="btn btn-primary" [disabled]="auctionForm.invalid">Confirm Payment</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
-<div class="container">
-    <div class="row">
-      <div class="col-md-4" *ngFor="let winner of auctionWinners">
-        <div class="card mb-4">
-          <img [src]="winner.auction_image" alt="Auction Image" class="card-img-top" />
-          <div class="card-body">
-            <h5 class="card-title">Auction: {{ winner.auction_title }}</h5>
-            <p class="card-text">
-              Highest Bidder: {{ winner.highest_bidder_name }} (ID: {{ winner.highest_bidder_id }})
-            </p>
-            <p class="card-text">
-              Bid Amount: {{ winner.bid_amount | currency }}
-            </p>
+<div class="container mt-5">
+  <div class="card shadow mt-5">
+    <h2 class="card-title">
+      Congratulations, You Have Won The Auction!
+      <i class="fas fa-trophy"></i>
+    </h2>
+    <p class="lead" style="text-align: center;">You are one step away from securing your winning bid.</p>
+    <hr class="custom-hr">
+    <div class="row g-0 mt-3">
+      <div class="text-center">
+        <img *ngIf="auctionImage; else noImage" [src]="auctionImage" alt="Auction Image" class="img-circle" />
+        <ng-template #noImage>
+          <div class="no-image-placeholder">
+            <p class="text-muted">No Auction Image Available</p>
           </div>
+        </ng-template>
+        <h2 class="card-title mt-3">{{ auctionTitle || 'No Auction Title Available' }}</h2>
+      </div>
+
+      <div class="card-body text-center">
+        <!-- "Pay Now" button displayed initially -->
+        <button *ngIf="auctionStatusId !== 5 && !formVisible" class="btn btn-primary" (click)="toggleForm()">
+          Pay Now
+        </button>
+
+        <!-- Message shown if the user has already paid -->
+        <div *ngIf="auctionStatusId === 5">
+          <p class="text-center text-success">You have already paid for this auction. Thank you!</p>
         </div>
+      </div>
+
+      <!-- Payment form section only shown when formVisible is true -->
+      <div *ngIf="formVisible && auctionStatusId !== 5" class="p-3 border-top">
+        <form [formGroup]="auctionForm" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="paymentMethod" class="form-label">Select Payment Method</label>
+            <select formControlName="paymentMethod" id="paymentMethod" class="form-select" required>
+              <option value="" disabled>Select a method</option>
+              <option value="creditCard">Credit Card</option>
+              <option value="bankTransfer">Bank Transfer</option>
+            </select>
+          </div>
+
+          <div id="card-element" class="mt-3"></div>
+
+          <button type="submit" class="btn btn-success mt-3">Submit Payment</button>
+        </form>
       </div>
     </div>
   </div>
-  
+</div>

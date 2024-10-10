@@ -92,6 +92,11 @@ login(data: any): Observable<any> {
   getCurrentUser(): any {
     return this.getUserData();
   }
+  getUserId(): number | null {
+    const userData = this.getUserData(); // Retrieve user data from local storage or another source
+    return userData ? userData.id : null; // Assuming user data has an 'id' property
+}
+
 
 
   // AuthService
@@ -234,7 +239,6 @@ public isExaminer(): boolean {
     );
   }
     
-  // auth.service.ts
 startPaypalPayment(data: any): Observable<any> {
   const token = this.getToken(); // Get the token from local storage
   const headers = {

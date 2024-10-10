@@ -70,7 +70,6 @@ h1.header {
   margin-bottom: 20px;
 }
 
-/* Navigation Links */
 .navigation {
   margin: 60px 0;
   text-align: center;
@@ -104,7 +103,6 @@ h1.header {
   z-index: 100;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .container {
     padding: 10px;
@@ -136,35 +134,27 @@ h1.header {
     padding: 8px 10px;
     font-size: 0.8rem;
     display: block;
-    /* Stack rows */
     width: 100%;
-    /* Full width for smaller screens */
   }
 
   .styled-table tr {
     display: flex;
     flex-direction: column;
     margin-bottom: 15px;
-    /* Add space between rows */
   }
 
   .styled-table td {
     border: none;
-    /* Remove borders on small screens */
     position: relative;
     padding-left: 50%;
-    /* Space for responsive design */
     text-align: left;
-    /* Align text to the left */
   }
 
   .styled-table td:before {
     position: absolute;
     left: 10px;
     width: 45%;
-    /* Space for labels */
     white-space: nowrap;
-    /* Prevent label wrapping */
     font-weight: bold;
   }
 

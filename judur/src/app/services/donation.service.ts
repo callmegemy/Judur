@@ -14,11 +14,10 @@ export class DonationService {
   private itemDetailsUrl = 'http://localhost:8000/api/donor/view-details/item';
   private apiUrl = 'http://localhost:8000/api';
 
-  constructor(private http: HttpClient, private authService: AuthService) {} // Inject AuthService
+  constructor(private http: HttpClient, private authService: AuthService) { } 
 
-  // Helper method to get the authorization headers
   private getAuthHeaders(): HttpHeaders {
-    const token = this.authService.getToken(); // Use AuthService to get token
+    const token = this.authService.getToken(); 
     if (!token) {
       console.error('Token is missing, ensure the user is logged in.');
     }
@@ -28,25 +27,21 @@ export class DonationService {
     });
   }
 
-  // Fetch donation history for the donor
   getDonationHistory(): Observable<any> {
     const headers = this.getAuthHeaders();
     return this.http.get<any>(this.dashboardUrl, { headers });
   }
 
-  // Fetch financial donation details
   getFinancialDonations(): Observable<any> {
     const headers = this.getAuthHeaders();
     return this.http.get<any>(this.financialDetailsUrl, { headers });
   }
 
-  // Fetch land donation details
   getLandDonations(): Observable<any> {
     const headers = this.getAuthHeaders();
     return this.http.get<any>(this.landDetailsUrl, { headers });
   }
 
-  // Fetch item donation details
   getItemDonations(): Observable<any> {
     const headers = this.getAuthHeaders();
     return this.http.get<any>(this.itemDetailsUrl, { headers });
@@ -62,12 +57,19 @@ export class DonationService {
   createPayment(amount: number, currency: string): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/create-payment`, { amount, currency });
   }
-  createAuctionPayment(amount: number, currency: string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/create-auction-payment`, { amount, currency });
+  createAuctionPayment(amount: number, currency: string, auctionId: number): Observable<any> {
+    const headers = this.getAuthHeaders();
+    return this.http.post<any>(`${this.apiUrl}/create-auction-payment`, {
+      amount,
+      currency,
+      auction_id: auctionId 
+    }, { headers }); 
   }
-  
 
-  confirmAuctionPayment(paymentData: { auction_id: number; [key: string]: any }): Observable<any> {
+
+
+
+  confirmAuctionPayment(paymentData: { auction_id: number;[key: string]: any }): Observable<any> {
     const headers = this.getAuthHeaders();
     return this.http.post<any>(`${this.apiUrl}/confirm-auction-payment`, paymentData, { headers });
   }
@@ -87,4 +89,7 @@ export class DonationService {
   }
   
   
+
+
+
 }
