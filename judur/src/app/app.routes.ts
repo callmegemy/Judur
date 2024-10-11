@@ -309,6 +309,7 @@ export const routes: Routes = [
   { path: 'reset-password', component: ResetPasswordComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
 { path : 'auction-payment',component:AuctionPaymentPageComponent},
+{ path:'notify',component:NotificationComponent},
 
 
   { path: 'feedback', component: FeedbackForEventComponent},
