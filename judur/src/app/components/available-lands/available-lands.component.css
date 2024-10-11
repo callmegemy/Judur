@@ -13,6 +13,14 @@
 }
 
 
+.scheduled-btn {
+  background-color: #E9EFEC;
+  color: #001D23;
+  cursor: not-allowed;
+}
+
+
+
 
 .styled-table {
   width: 100%;

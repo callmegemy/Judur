@@ -310,7 +310,7 @@ export const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent },
 { path : 'auction-payment',component:AuctionPaymentPageComponent},
 { path:'notify',component:NotificationComponent},
-
+{ path: 'notify/:id', component: NotificationComponent }, 
 
   { path: 'feedback', component: FeedbackForEventComponent},
 

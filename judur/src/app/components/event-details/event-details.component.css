@@ -1,9 +1,4 @@
-body {
-  font-family: var(--font-family);
-  color: var(--font-color);
-  margin: 0;
-  padding: 0;
-}
+
 
 .container {
   max-width: 1000px;
@@ -67,7 +62,7 @@ body {
 
 .btn,
 app-event-join {
-  padding: 12px 20px;
+  /* padding: 12px 20px; */
   background-color: var(--primary);
   color: var(--light); /* Ensure good contrast */
   text-decoration: none;
@@ -80,36 +75,6 @@ app-event-join {
 app-event-join:hover {
   background-color: var(--secondary);
   transform: translateY(-2px); /* Lift effect on hover */
-}
-
-.feedbacks h2 {
-  color: var(--primary);
-  margin-bottom: 15px;
-}
-
-.feedback-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  grid-gap: 15px;
-}
-
-.feedback {
-  background-color: var(--light);
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s; /* Smooth transition */
-}
-
-.feedback:hover {
-  transform: translateY(-2px); /* Lift effect on hover */
-}
-
-.feedback small {
-  display: block;
-  color: var(--dark);
-  font-size: 14px;
-  text-align: right; /* Align small text to the right */
 }
 
 /* Responsive Design */

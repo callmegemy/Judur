@@ -591,6 +591,12 @@ body {
 }.notification-link:active {
     color: #6A9C89;
 }
+.dropdown-menu {
+    left: auto; 
+    right: 0; 
+}
+
+
 
 
 

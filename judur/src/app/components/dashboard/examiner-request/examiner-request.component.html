@@ -68,7 +68,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-user"></i></span>
                       </div>
-                      <input type="text" id="fullName" class="form-control" placeholder="Enter full name" required
+                      <input readonly type="text" id="fullName" class="form-control" placeholder="Enter full name" required
                         value="{{examiner.user.name}}">
                     </div>
                   </div>
@@ -80,7 +80,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                       </div>
-                      <input type="email" id="email" class="form-control" placeholder="Enter email address" required
+                      <input readonly type="email" id="email" class="form-control" placeholder="Enter email address" required
                         value="{{examiner.user.email}}">
                     </div>
                   </div>
@@ -92,7 +92,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa-solid fa-school"></i></span>
                       </div>
-                      <input type="text" id="Education" class="form-control" placeholder="Enter Education" required
+                      <input readonly type="text" id="Education" class="form-control" placeholder="Enter Education" required
                         value="{{examiner.education}}">
                     </div>
                   </div>
@@ -105,7 +105,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
                       </div>
-                      <textarea id="reason" class="form-control" rows="3"
+                      <textarea readonly id="reason" class="form-control" rows="3"
                         placeholder="Why do you want to become an examiner?" required>{{examiner.reason}}</textarea>
                     </div>
                   </div>

@@ -13,28 +13,43 @@
                 <a routerLink="#aboutus" routerLinkActive="active" class="nav-item nav-link">About</a>
                 <a *ngIf="isDonor" routerLink="/donate" routerLinkActive="active" class="nav-item nav-link">Donate</a>
                 <a routerLink="/contact-us" routerLinkActive="active" class="nav-item nav-link">Contact</a>
-                <a *ngIf="isAdmin" routerLink="/dashboard" routerLinkActive="active" class="nav-item nav-link">Dashboard</a>
-                <a *ngIf="isjustvolunteer" routerLink="/volunteer-to-examiner" routerLinkActive="active" class="nav-item nav-link">Examiner</a>
-                <a *ngIf="isExaminer" routerLink="/land-inspection" routerLinkActive="active" class="nav-item nav-link">Land Report</a>
+                <a *ngIf="isAdmin" routerLink="/dashboard" routerLinkActive="active"
+                    class="nav-item nav-link">Dashboard</a>
+                <a *ngIf="isjustvolunteer" routerLink="/volunteer-to-examiner" routerLinkActive="active"
+                    class="nav-item nav-link">Examiner</a>
+                <a *ngIf="isExaminer" routerLink="/land-inspection" routerLinkActive="active"
+                    class="nav-item nav-link">Land Report</a>
             </div>
-            <a routerLink="/view-profile" routerLinkActive="active" class="nav-item nav-link">
+            <a *ngIf="isDonor || isExaminer" routerLink="/view-profile" routerLinkActive="active"
+                class="nav-item nav-link">
                 <i class="fa fa-user-circle" style="font-size: 24px;"></i>
             </a>
+
             <div class="nav-item ms-1 dropdown">
                 <a href="#" class="nav-link position-relative notification-link" (click)="toggleDropdown()">
                     <i class="fa fa-bell" style="font-size: 24px;"></i>
-                    <span class="badge position-absolute top-0 start-100 translate-middle" style="background-color: #6A9C89;">
+                    <span class="badge position-absolute top-0 start-100 translate-middle"
+                        style="background-color: #6A9C89;">
                         {{ notificationCount }}
                     </span>
                 </a>
-                <div *ngIf="dropdownVisible" class="dropdown-menu dropdown-menu-end">
+                <div *ngIf="dropdownVisible" class="dropdown-menu dropdown-menu-end responsive-dropdown">
                     <h6 class="dropdown-header">Notifications</h6>
+
                     <div *ngFor="let notification of notifications" class="dropdown-item">
-                        {{ notification.message }}
-                        <small class="text-muted">{{ notification.time }}</small>
+                        <a [routerLink]="['/notify', notification.id]">
+                            {{ notification.message }}
+                            <small class="text-muted">{{ notification.time }}</small>
+                        </a>
                     </div>
+
+                    <div class="dropdown-item text-center">
+                        <a [routerLink]="['/notify']" class="see-more-link">See More</a>
+                    </div>
+
                     <div *ngIf="!notifications.length" class="dropdown-item text-center">No notifications</div>
                 </div>
+
             </div>
 
             <!-- Show Logout button if user is logged in -->

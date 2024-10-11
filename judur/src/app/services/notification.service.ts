@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { AuthService } from './auth.service'; // Make sure to import your AuthService
+import { AuthService } from './auth.service'; 
 
 export interface Notification {
   id: number;
   message: string;
   time: string;
+  is_read: boolean;
 }
 
 @Injectable({
@@ -47,19 +48,28 @@ export class NotificationService {
       id: notification.id,
       message: notification.message,
       time: new Date(notification.created_at).toLocaleTimeString(),
+      is_read: false,
     }));
     this.notificationsSubject.next(formattedNotifications);
   }
+  
 
 
   addNotification(notification: Notification) {
     const currentNotifications = this.notificationsSubject.value;
     this.notificationsSubject.next([...currentNotifications, notification]);
   }
-
+  toggleNotificationStatus(notificationId: number): Observable<any> {
+    const headers = this.getAuthHeaders();
+    return this.http.post<any>(
+      `http://localhost:8000/api/notifications/${notificationId}/mark-as-read`,
+      {},
+      { headers }
+    );
+  }
+  
+  
   
 
-  clearNotifications() {
-    this.notificationsSubject.next([]);
-  }
+
 }

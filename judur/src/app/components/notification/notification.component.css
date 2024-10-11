@@ -1,32 +1,92 @@
+:root {
+  --primary: #16423C;
+  --secondary: #6A9C89;
+  --light: #E9EFEC;
+  --dark: #001D23;
+  --text-color: #f8f9fa;
+  --success: #28a745;
+}
+.no-notifications p {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--primary);
+  animation: bounceIn 0.5s ease-in-out;
+}
+
+
+
 .notifications-container {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    background-color: #f9f9f9;
+  max-width: 1200px;
+  width : 1200px;
+  margin: auto;
+}
+
+.notification-item {
+  margin-bottom: 10px;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #f8f9fa;
+  transition: transform 0.2s ease-in-out;
+}
+
+.notification-item:hover {
+  transform: scale(1.03); 
+  background-color: #e9ecef;
+}
+
+.list-group-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+/* Animation classes for fadeInUp */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
-  .notification-item {
-    margin: 5px 0;
-    padding: 5px;
-    border-bottom: 1px solid #e0e0e0;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .notification-time {
-    font-size: 0.9em;
-    color: #888;
-  }
-  
-  .clear-button {
-    margin-top: 10px;
-    padding: 5px 10px;
-    background-color: #ff4d4d;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .clear-button:hover {
-    background-color: #ff1a1a;
-  }
-  
+}
+
+.animated {
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+}
+
+.fadeInUp {
+  animation-name: fadeInUp;
+}
+
+
+.notification-read {
+  background-color: var(--light);
+}
+
+.notification-unread {
+  background-color: var(--secondary);
+  color: var(--text-color);
+}
+
+.toggle-read-btn {
+  background-color: var(--primary);
+  color: var(--light);
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+  margin-left: 20px;
+}
+
+.toggle-read-btn:hover {
+  background-color: var(--secondary);
+  color: var(--dark)}

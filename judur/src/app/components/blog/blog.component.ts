@@ -15,7 +15,7 @@ export class BlogComponent implements OnInit {
   blogPosts: any[] = [];
   paginatedPosts: any[] = [];
   currentPage: number = 1;
-  pageSize: number = 6; // Adjust as needed
+  pageSize: number = 6; 
 
   constructor(private blogService: BlogService) {}
 
