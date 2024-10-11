@@ -73,6 +73,22 @@ export class DonationService {
     const headers = this.getAuthHeaders();
     return this.http.post<any>(`${this.apiUrl}/confirm-auction-payment`, paymentData, { headers });
   }
+  
+
+
+  updateLandAvailability(landId: number, data: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.authService.getToken()}`
+    });
+  
+    // Pass the entire data object in the body, which contains availability_time
+    return this.http.put(`${this.apiUrl}/land/${landId}/availability`, data, { headers });
+  }
+  getLandDetails(landId: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/land/${landId}`);
+  }
+  
+  
 
 
 

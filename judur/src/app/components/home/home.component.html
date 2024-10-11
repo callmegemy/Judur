@@ -413,30 +413,41 @@
           Trusted By Communities, Donors, and Volunteers Alike
         </h1>
       </div>
+
+
+      <div class="text-center my-5">
+
+        <h1><a href="/feedback" class="feedback-btn btn">Leave Your Feedback</a></h1>
+
+      </div>
+
+
+
       <div
         id="testimonialCarousel"
         class="carousel slide"
         data-bs-ride="carousel"
       >
-        <div class="carousel-inner">
-          <div
-            *ngFor="let testimonial of testimonials; let i = index"
-            [ngClass]="{ 'carousel-item': true, active: i === 0 }"
-          >
-            <div class="testimonial-item text-center">
-              <img
-                class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4"
-                [src]="testimonial.img"
-                style="width: 100px; height: 100px"
-              />
-              <div class="testimonial-text rounded text-center p-4">
-                <p>{{ testimonial.text }}</p>
-                <h5 class="mb-1">{{ testimonial.name }}</h5>
-                <span class="fst-italic">{{ testimonial.role }}</span>
-              </div>
+      <div class="carousel-inner">
+        <div
+          *ngFor="let testimonial of testimonials; let i = index"
+          [ngClass]="{ 'carousel-item': true, active: i === 0 }"
+        >
+          <div class="testimonial-item text-center">
+            <img
+              class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4"
+              [src]="testimonial.user.profile_picture"
+              style="width: 100px; height: 100px"
+            />
+            <div class="testimonial-text rounded text-center p-4">
+              <p>{{ testimonial.feedback }}</p>
+              <h5 class="mb-1">{{ testimonial.user.name }}</h5> 
+              <span class="fst-italic">@if(testimonial.user.role_id == 2){Doner} @else if(testimonial.user.role_id == 2){Volunteer}</span>
             </div>
           </div>
         </div>
+      </div>
+      
         <button
           class="carousel-control-prev"
           type="button"

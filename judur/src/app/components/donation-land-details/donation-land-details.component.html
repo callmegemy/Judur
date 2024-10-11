@@ -10,7 +10,11 @@
           <p><strong>Address:</strong> {{ donation.address || 'N/A' }}</p>
           <p><strong>Land Size:</strong> {{ donation.land_size }} sq ft</p>
           <p><strong>Date Donated:</strong> {{ donation.created_at | date:'medium' }}</p>
-    
+
+          <!-- Redonate button -->
+          <button class="btn btn-success mt-3" (click)="openRedonateForm(donation.id)">
+            {{ currentDate > donation.availability_time ? 'Redonate Land' : 'Extend' }}
+          </button>
         </div>
       </div>
     </div>
@@ -20,6 +24,20 @@
       <div class="alert alert-warning text-center">
         {{ errorMessage }}
       </div>
+    </div>
+  </div>
+
+  <!-- Form for redonating land (display conditionally if a land is selected) -->
+  <div *ngIf="selectedLandId !== null" class="row mt-5">
+    <div class="col-12">
+      <h4 class="text-center">Redonate Land</h4>
+      <form [formGroup]="redonateForm" (ngSubmit)="redonateLand()">
+        <div class="mb-3">
+          <label for="availability_time" class="form-label">New Availability Date:</label>
+          <input formControlName="availability_time" type="date" class="form-control" id="availability_time" required>
+        </div>
+        <button type="submit" class="btn btn-success">Update Availability</button>
+      </form>
     </div>
   </div>
 
