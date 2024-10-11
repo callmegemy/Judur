@@ -307,7 +307,8 @@ export const routes: Routes = [
   { path: 'unauthorized', component: UnauthorizedComponent } ,
   { path: 'reset-password', component: ResetPasswordComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
-{ path : 'auction-payment',component:AuctionPaymentPageComponent}
+{ path : 'auction-payment',component:AuctionPaymentPageComponent},
+{ path:'notify',component:NotificationComponent}
 
 ];
 

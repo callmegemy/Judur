@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { EchoService } from '../../services/echo.service';
 interface PendingLand {
   id: number;
   donor_name: string; 
@@ -24,10 +25,15 @@ export class AvailableLandsComponent implements OnInit {
   pendingLands: any[] = [];
 
   constructor(private volunteerService: VolunteerService,
-  ) { }
+    private echoService: EchoService
+  ) { 
+    
+  }
 
   ngOnInit(): void {
     this.getPendingLands();
+    this.echoService.listenForLandInspection();
+
   }
 
   getPendingLands(): void {
@@ -59,5 +65,10 @@ export class AvailableLandsComponent implements OnInit {
         }
       );
     }
+  }
+  listenForLandInspection(): void {
+    this.echoService.listenForLandInspection().subscribed((data: any) => {
+      alert(`New inspection scheduled on land: ${data.land.description} for date: ${data.inspectionDate}`);
+    });
   }
 }

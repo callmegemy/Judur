@@ -1,27 +1,35 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NotificationService } from '../../services/notification.service';
-interface NotificationData {
+import { EchoService } from '../../services/echo.service';
+import { RouterLink } from '@angular/router';
+
+interface Notification {
+  id: number;
   message: string;
-  // Add any other properties you expect in the event payload
+  time: string;
 }
+
 @Component({
   selector: 'app-notification',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './notification.component.html',
-  styleUrl: './notification.component.css'
+  styleUrls: ['./notification.component.css'],
 })
-export class NotificationComponent {
-  notifications: string[] = []; 
+export class NotificationComponent implements OnInit {
+  notifications: Notification[] = [];
 
   constructor(private notificationService: NotificationService) {}
 
-  ngOnInit() {
-    // Subscribe to the 'events' channel and listen for the 'EventCreated' event
-    this.notificationService.subscribeToChannel('events', 'App\\Events\\EventCreated', (data : NotificationData) => {
-      console.log('Notification received: ', data);
-      this.notifications.push(data.message);  // Update your component state with the notification
+  ngOnInit(): void {
+    this.notificationService.fetchNotifications(); // Fetch notifications on init
+    this.notificationService.notifications$.subscribe((data: Notification[]) => {
+      this.notifications = data; // Update the notifications array with fetched data
     });
+  }
+
+  clearNotifications() {
+    this.notificationService.clearNotifications();
   }
 }

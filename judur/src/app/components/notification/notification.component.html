@@ -1,6 +1,15 @@
-<div>
-    <h1>Notifications</h1>
-    <ul>
-      <li *ngFor="let notification of notifications">{{ notification }}</li>
-    </ul>
-  </div>
+<div class="notifications-container">
+  <h3>Notifications</h3>
+  <ul *ngIf="notifications.length > 0; else noNotifications">
+    <li *ngFor="let notification of notifications" class="notification-item">
+      <p>{{ notification.message }}</p>
+      <span class="notification-time">{{ notification.time }}</span>
+    </li>
+  </ul>
+  <ng-template #noNotifications>
+    <p>No notifications available.</p>
+  </ng-template>
+  <button (click)="clearNotifications()" class="clear-button" *ngIf="notifications.length > 0">
+    Clear Notifications
+  </button>
+</div>
