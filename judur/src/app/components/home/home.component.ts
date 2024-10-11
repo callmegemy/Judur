@@ -3,13 +3,14 @@ import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FeedbackService } from '../../feedback.service';
+import { BlogPost, BlogService } from '../../services/blog.service';
 
 
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ RouterLink, RouterLinkActive ,CommonModule, NavbarComponent],
+  imports: [RouterLink, RouterLinkActive, CommonModule, NavbarComponent],
 
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
@@ -17,10 +18,17 @@ import { FeedbackService } from '../../feedback.service';
 export class HomeComponent implements OnInit {
 
   testimonials: any[] = [];
-  constructor(private feedbackService: FeedbackService) {}
+  recentPosts: BlogPost[] = [];
+
+
+  constructor(private feedbackService: FeedbackService,
+    private blogService: BlogService
+  ) { }
 
   ngOnInit(): void {
     this.loadFeedback();
+    this.loadRecentPosts();
+
   }
 
   loadFeedback(): void {
@@ -33,6 +41,13 @@ export class HomeComponent implements OnInit {
         console.error('Error fetching feedback:', error);
       }
     );
+  }
+
+  loadRecentPosts(): void {
+    this.blogService.getPosts().subscribe((posts: BlogPost[]) => {
+      // Assuming posts are sorted by date with the most recent first
+      this.recentPosts = posts.slice(0, 3); // Get the first three posts
+    });
   }
 
 }

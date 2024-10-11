@@ -25,8 +25,8 @@ export class NavbarComponent implements OnInit {
   isAdmin: boolean = false;
   isjustvolunteer: boolean = false; 
   notificationCount: number = 0; 
-  notifications: Notification[] = []; // Add notifications array
-  dropdownVisible: boolean = false; // Track dropdown visibility
+  notifications: Notification[] = []; 
+  dropdownVisible: boolean = false; 
 
   constructor(
     private router: Router,
@@ -70,7 +70,6 @@ export class NavbarComponent implements OnInit {
           }
         }
 
-        // Fetch notifications when the user is logged in
         this.fetchNotifications();
       }
     });
@@ -86,7 +85,7 @@ export class NavbarComponent implements OnInit {
   }
 
   toggleDropdown() {
-    this.dropdownVisible = !this.dropdownVisible; // Toggle dropdown visibility
+    this.dropdownVisible = !this.dropdownVisible;
   }
 
   onLogout(): void {

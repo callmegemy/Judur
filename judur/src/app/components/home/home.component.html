@@ -255,45 +255,28 @@
   </div>
   <!-- Service End -->
 
-  <section id="blog-section" class="blog-section mb-5 mt-5`" style="box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-    <div class="container mb-4">
-        <h2 class="section-title mb-5 mt-4 text-center">Latest News & Updates</h2>
-        <div class="row">
-            <!-- Blog Post 1 -->
-            <div class="col-lg-4 col-md-6 blog-post">
-                <div class="post-card">
-                    <img src="/assets/img/blog1.jpg" alt="Impact of Donations" class="img-fluid">
-                    <h3 class="post-title"><a href="/blog/impact-of-donations">The Impact of Donations in Our Community</a></h3>
-                    <p class="post-excerpt">Learn how your contributions have made a significant difference in the lives of those in need.</p>
-                    <a href="/blog/impact-of-donations" class="btn read-more">Read More</a>
-                </div>
-            </div>
-
-            <!-- Blog Post 2 -->
-            <div class="col-lg-4 col-md-6 blog-post">
-                <div class="post-card">
-                    <img src="/assets/img/blog2.jpg" alt="Volunteer Stories" class="img-fluid">
-                    <h3 class="post-title"><a href="/blog/volunteer-stories">Inspiring Stories from Our Volunteers</a></h3>
-                    <p class="post-excerpt">Discover the incredible experiences of our volunteers and how they are changing lives.</p>
-                    <a href="/blog/volunteer-stories" class="btn read-more">Read More</a>
-                </div>
-            </div>
-
-            <!-- Blog Post 3 -->
-            <div class="col-lg-4 col-md-6 blog-post">
-                <div class="post-card">
-                    <img src="/assets/img/blog3.jpg" alt="Upcoming Events" class="img-fluid">
-                    <h3 class="post-title"><a href="/blog/upcoming-events">Upcoming Events: Get Involved!</a></h3>
-                    <p class="post-excerpt">Join us for our upcoming events and help us in our mission to support the community.</p>
-                    <a href="/blog/upcoming-events" class="btn read-more">Read More</a>
-                </div>
-            </div>
+<!-- homepage.component.html -->
+<section id="blog-section" class="blog-section mb-5 mt-5" style="box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+  <div class="container mb-4">
+    <h2 class="section-title mb-5 mt-4 text-center">Latest News & Updates</h2>
+    <div class="row">
+      <div class="col-lg-4 col-md-6 blog-post" *ngFor="let post of recentPosts">
+        <div class="post-card">
+          <img [src]="post.image" alt="{{ post.title }}" class="img-fluid" />
+          <h3 class="post-title">
+            <a [routerLink]="['/blog', post.id]">{{ post.title }}</a>
+          </h3>
+          <p class="post-excerpt">{{ post.description }}</p>
+          <a [routerLink]="['/blog', post.id]" class="btn read-more">Read More</a>
         </div>
-        <div class="text-center mt-4 mb-5">
-            <a href="/blog" class="btn btn-secondary mt-5  mb-5" style="background-color: #16423C; color: white;" >View All Posts</a>
-        </div>
+      </div>
     </div>
+    <div class="text-center mt-4 mb-5">
+      <a routerLink="/blog" class="btn btn-secondary mt-5 mb-5" style="background-color: #16423C; color: white;">View All Posts</a>
+    </div>
+  </div>
 </section>
+
 
 
   <!-- Team Start -->

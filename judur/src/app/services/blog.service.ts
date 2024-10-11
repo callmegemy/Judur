@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'; // Import HttpClient for API calls
+import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -8,18 +8,18 @@ export interface BlogPost {
   title: string;
   description: string;
   content: string;
-  image: string; // This should be included
+  image: string; 
   category: string;
 }
 
 export interface Comment {
-  id: number; // Assuming you have an ID for each comment
+  id: number; 
   post_id: number;
-  user_id: number; // User who posted the comment
+  user_id: number; 
   content: string;
-  created_at: string; // Assuming this is the date format you are using
+  created_at: string; 
   user?: {
-    name: string; // Include user name if needed
+    name: string; 
   };
 }
 
@@ -55,6 +55,14 @@ export class BlogService {
 
   // Fetch recent posts with an optional limit
   getRecentPosts(limit: number = 10): Observable<BlogPost[]> {
+    return this.http.get<BlogPost[]>(`${this.apiUrl}?_limit=${limit}&sort=recent`).pipe(
+      catchError((error) => {
+        console.error('Error fetching recent posts:', error);
+        return throwError(() => new Error('Error fetching recent posts; please try again later.'));
+      })
+    );
+  }
+  getRecentPostsinhome(limit: number = 3): Observable<BlogPost[]> {
     return this.http.get<BlogPost[]>(`${this.apiUrl}?_limit=${limit}&sort=recent`).pipe(
       catchError((error) => {
         console.error('Error fetching recent posts:', error);

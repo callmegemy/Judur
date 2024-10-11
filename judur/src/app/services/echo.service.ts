@@ -29,7 +29,8 @@ export class EchoService {
             this.notificationService.addNotification({
               id: Date.now(),
               message: `Land inspection scheduled for ${data.inspectionDate} by ${data.ownerName}`,
-              time: new Date().toLocaleTimeString()
+              time: new Date().toLocaleTimeString(),
+              is_read: false,
             });
             
         });
