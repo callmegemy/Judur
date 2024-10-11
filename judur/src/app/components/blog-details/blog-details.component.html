@@ -21,7 +21,7 @@
             <div class="comment d-flex align-items-start">
               <img
                 *ngIf="comment.user?.profile_picture"
-                [src]="comment.user.profile_picture"
+                [src]="getProfilePictureUrl(comment.user.profile_picture)"
                 alt="Profile Picture"
                 class="profile-picture"
                 style="

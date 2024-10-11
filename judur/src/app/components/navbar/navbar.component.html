@@ -20,7 +20,7 @@
                 <a *ngIf="isExaminer" routerLink="/land-inspection" routerLinkActive="active"
                     class="nav-item nav-link">Land Report</a>
             </div>
-            <a *ngIf="isDonor || isExaminer" routerLink="/view-profile" routerLinkActive="active"
+            <a *ngIf="!isAdmin " routerLink="/view-profile" routerLinkActive="active"
                 class="nav-item nav-link">
                 <i class="fa fa-user-circle" style="font-size: 24px;"></i>
             </a>
