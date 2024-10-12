@@ -1,12 +1,19 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
 import { AuctionserviceService } from '../services/auctionservice.service';
 import { DonationService } from '../services/donation.service';
 import { AuthService } from '../services/auth.service';
 
+interface Auction {
+  auction_id: number;
+  auction_title: string;
+  auction_image: string;
+  bid_amount: number;
+  auction_status_id: number;
+}
 @Component({
   selector: 'app-auction-payment-page',
   standalone: true,
@@ -15,6 +22,7 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./auction-payment-page.component.css'],
 })
 export class AuctionPaymentPageComponent implements OnInit, AfterViewInit {
+  
   auctionForm!: FormGroup;
   formVisible = false;
   private stripe: any;
@@ -30,56 +38,71 @@ export class AuctionPaymentPageComponent implements OnInit, AfterViewInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    private route: ActivatedRoute,
     private donationService: DonationService,
     private auctionService: AuctionserviceService,
     private authService: AuthService
   ) {
     this.createForm();
   }
+  
 
   ngOnInit(): void {
-    this.auctionService.getCompletedAuctions().subscribe(
-      (data) => {
-        console.log('Fetched auction data:', data);
-        if (data.length > 0) {
-          this.auctionId = data[0].auction_id;
-          this.highestBidAmount = data[0].bid_amount;
-          this.auctionTitle = data[0].auction_title;
-          this.auctionImage = data[0].auction_image;
-          this.auctionStatusId = data[0].auction_status_id;
+    // Get auctionId and userId from the URL parameters using snapshot
+    this.auctionId = +this.route.snapshot.queryParams['auctionId']; // Convert to number
+    this.userId = +this.route.snapshot.queryParams['userId']; // Convert to number
+  
+    if (this.auctionId) {
+      this.fetchCompletedAuction(this.auctionId);
+    } else {
+      console.error('Auction ID is missing from the URL.');
+    }
+  }
+  
 
-          if (this.auctionStatusId === 5) {
-            Swal.fire({
-              title: 'Payment Completed',
-              text: 'You have already paid for this auction, thank you!',
-              icon: 'info',
-              confirmButtonText: 'OK',
-            });
-            this.formVisible = false;
-          } else {
-            this.formVisible = false;
-            this.auctionForm.get('paymentMethod')?.valueChanges.subscribe((method) => {
-              if (method === 'creditCard') {
-                setTimeout(() => this.initializeStripe());
+// In auction-payment-page.component.ts
+fetchCompletedAuction(auctionId: number): void {
+  this.auctionService.getCompletedAuctions(auctionId).subscribe(
+      (data: Auction) => {
+          console.log('Fetched auction data:', data);
+          if (data) {
+              this.highestBidAmount = data.bid_amount;
+              this.auctionTitle = data.auction_title;
+              this.auctionImage = data.auction_image;
+              this.auctionStatusId = data.auction_status_id;
+
+              if (this.auctionStatusId === 5) {
+                  Swal.fire({
+                      title: 'Payment Completed',
+                      text: 'You have already paid for this auction, thank you!',
+                      icon: 'info',
+                      confirmButtonText: 'OK',
+                  });
+                  this.formVisible = false;
               } else {
-                this.destroyStripe();
+                  this.formVisible = true; // Show the form since payment is needed
+                  this.auctionForm.get('paymentMethod')?.valueChanges.subscribe((method) => {
+                      if (method === 'creditCard') {
+                          setTimeout(() => this.initializeStripe());
+                      } else {
+                          this.destroyStripe();
+                      }
+                  });
               }
-            });
+          } else {
+              console.log('No auction data available for the specified auction ID.');
           }
-        } else {
-          console.log('No auction data available.');
-        }
       },
       (error) => {
-        console.error('Error fetching auction winners', error);
+          console.error('Error fetching auction winners', error);
       }
-    );
-  }
+  );
+}
+
 
   
 
   ngAfterViewInit(): void {
-  
     if (this.auctionForm.get('paymentMethod')?.value === 'creditCard') {
       this.initializeStripe();
     }
@@ -134,7 +157,6 @@ export class AuctionPaymentPageComponent implements OnInit, AfterViewInit {
       });
     }
   }
-
 
   createAuctionPayment(amount: number, currency: string, userId: string, auctionId: number): void {
     this.donationService.createAuctionPayment(amount, currency, auctionId).subscribe(
@@ -211,4 +233,3 @@ export class AuctionPaymentPageComponent implements OnInit, AfterViewInit {
     );
   }
 }
-

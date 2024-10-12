@@ -586,17 +586,29 @@ body {
 }
 
 .nav-item i {
-    margin-right: 5px; 
-    color: white; 
-}.notification-link:active {
+    margin-right: 5px;
+    color: white;
+}
+
+.notification-link:active {
     color: #6A9C89;
 }
+
 .dropdown-menu {
-    left: auto; 
-    right: 0; 
+    left: auto;
+    right: 0;
+    width: 300px;
 }
 
+.dropdown-item a {
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    display: block;
+    max-width: 100%;
+}
 
-
-
-
+.responsive-dropdown {
+    max-height: 400px; 
+    overflow-y: auto; 
+}

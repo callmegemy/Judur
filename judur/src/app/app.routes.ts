@@ -196,7 +196,7 @@ export const routes: Routes = [
   // { path: '**', redirectTo: '/donation-histor>>>>>
   { path: 'dashboard', component: MainComponent
      
-  ,canActivate:[combineGuard]
+  ,canActivate:[adminGuard]
 
   },
 

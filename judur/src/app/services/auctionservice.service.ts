@@ -17,14 +17,19 @@ export class AuctionserviceService {
   }
 
   // Include the token in the Authorization header
-  getCompletedAuctions(): Observable<any> {
-    const token = this.getToken();
+// In auctionservice.service.ts
+getCompletedAuctions(auctionId: number): Observable<any> {
+  const token = this.getToken();
 
-    // Ensure the token exists
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  // Ensure the token exists
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    return this.http.get<any>(this.apiUrl, { headers });
-  }
+  // Send the auctionId as a query parameter
+  return this.http.get<any>(`${this.apiUrl}?auctionId=${auctionId}`, { headers });
+}
+
+
+  
   getHighestBid(auctionId: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/auctions/${auctionId}/highest-bid`);
   }
