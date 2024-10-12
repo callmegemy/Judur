@@ -23,6 +23,9 @@ export class NavbarComponent implements OnInit {
   isExaminer: boolean = false; 
   isDonor: boolean = false;
   isAdmin: boolean = false;
+  isMentor: boolean = false;
+  isOrganizer: boolean = false;
+  isAdminAtAll: boolean=false;
   isjustvolunteer: boolean = false; 
   notificationCount: number = 0; 
   notifications: Notification[] = []; 
@@ -53,6 +56,16 @@ export class NavbarComponent implements OnInit {
           if (user.role_id === 1) { 
             this.isAdmin = true;
           }
+          if (user.role_id === 5) { 
+            this.isOrganizer = true;
+          }
+          if (user.role_id === 6) { 
+            this.isMentor = true;
+          }
+          if (user.role_id === 1 || user.role_id === 5 || user.role_id === 6 ) { 
+            this.isAdminAtAll = true;
+          }
+          
         
           if (user.role_id === 3) { 
             this.volunteerService.getVolunteerIdByUserId(user.id).subscribe({

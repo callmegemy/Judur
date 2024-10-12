@@ -8,8 +8,8 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-auction',
-  standalone: true,  // Ensure the component is standalone
-  imports: [FormsModule, CommonModule , NavbarComponent],  // Ensure necessary modules are imported
+  standalone: true,
+  imports: [FormsModule, CommonModule, NavbarComponent],
   templateUrl: './auction.component.html',
   styleUrls: ['./auction.component.css']
 })
@@ -18,12 +18,12 @@ export class AuctionComponent {
   quantity: number = 1;
   description: string = '';
   isValuable: boolean = false;
-  itemCondition: string = ''; 
-  estimatedValue: string = ''; // Estimated value field
-  statusId: number = 1; // Default status ID
+  itemCondition: string = '';
+  estimatedValue: string = ''; 
+  statusId: number = 1;
   extraNotes: string = '';  
   imageFile: File | null = null;
-  backendErrors: string[] = []; // Store backend validation errors
+  backendErrors: string[] = []; 
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -36,21 +36,21 @@ export class AuctionComponent {
       });
       return;
     }
-  
+
     const formData = new FormData();
     formData.append('item_name', this.itemName);
     formData.append('condition', this.itemCondition);
     formData.append('is_valuable', this.isValuable ? '1' : '0');
     formData.append('quantity', this.quantity.toString());
-  
+
     if (this.isValuable) {
       formData.append('value', this.estimatedValue); 
     }
-  
+
     if (this.imageFile) {
       formData.append('image', this.imageFile); 
     }
-  
+
     const token = localStorage.getItem('auth_token');
     if (!token) {
       Swal.fire({
@@ -61,14 +61,14 @@ export class AuctionComponent {
       this.router.navigate(['/login']);
       return;
     }
-  
+
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-  
+
     this.http.post('http://localhost:8000/api/donate-item', formData, { headers })
       .subscribe(
-        (response) => {
+        (response: any) => {
           console.log('Item donation successful:', response);
           Swal.fire({
             icon: 'success',
@@ -81,7 +81,7 @@ export class AuctionComponent {
             }
           });
         },
-        (error) => {
+        (error: any) => {
           console.error('Error donating item:', error);
           if (error.status === 422) {
             this.backendErrors = (Object.values(error.error.errors) as string[][]).flat();
@@ -98,8 +98,9 @@ export class AuctionComponent {
 
   // Method to handle file input
   onFileSelected(event: any) {
-    if (event.target.files.length > 0) {
-      this.imageFile = event.target.files[0];
+    const input = event.target as HTMLInputElement;
+    if (input && input.files && input.files.length > 0) {
+      this.imageFile = input.files[0];
     }
   }
 }

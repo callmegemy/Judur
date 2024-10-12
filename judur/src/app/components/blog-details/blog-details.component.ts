@@ -89,4 +89,8 @@ export class BlogDetailsComponent implements OnInit {
   onPostClick(postId: number): void {
     this.loadPostDetails(postId);
   }
+
+  getProfilePictureUrl(picture: string): string {
+    return picture ? `http://127.0.0.1:8000/storage/${picture}` : 'assets/img/profile-picture.jpg';
+  }
 }

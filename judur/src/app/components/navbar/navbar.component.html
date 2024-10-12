@@ -15,13 +15,16 @@
                 <a routerLink="/contact-us" routerLinkActive="active" class="nav-item nav-link">Contact</a>
                 <a *ngIf="isAdmin" routerLink="/dashboard" routerLinkActive="active"
                     class="nav-item nav-link">Dashboard</a>
+                <a *ngIf="isOrganizer" routerLink="/dashboard/events" routerLinkActive="active"
+                    class="nav-item nav-link">Dashboard</a>
+                <a *ngIf="isMentor" routerLink="/dashboard/requests" routerLinkActive="active"
+                    class="nav-item nav-link">Dashboard</a>
                 <a *ngIf="isjustvolunteer" routerLink="/volunteer-to-examiner" routerLinkActive="active"
                     class="nav-item nav-link">Examiner</a>
                 <a *ngIf="isExaminer" routerLink="/land-inspection" routerLinkActive="active"
                     class="nav-item nav-link">Land Report</a>
             </div>
-            <a *ngIf="isDonor || isExaminer" routerLink="/view-profile" routerLinkActive="active"
-                class="nav-item nav-link">
+            <a *ngIf="!isAdminAtAll " routerLink="/view-profile" routerLinkActive="active" class="nav-item nav-link">
                 <i class="fa fa-user-circle" style="font-size: 24px;"></i>
             </a>
 
