@@ -45,8 +45,7 @@ export class HomeComponent implements OnInit {
 
   loadRecentPosts(): void {
     this.blogService.getPosts().subscribe((posts: BlogPost[]) => {
-      // Assuming posts are sorted by date with the most recent first
-      this.recentPosts = posts.slice(0, 3); // Get the first three posts
+      this.recentPosts = posts.slice(0, 3); 
     });
   }
 
