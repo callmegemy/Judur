@@ -1,6 +1,12 @@
 <!-- Navbar Start -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
 <div class="container-fluid fixed-top px-0 bg-dark" style="margin-bottom: 115px;">
-    <nav class="navbar navbar-expand-lg navbar-dark py-lg-0 px-lg-5">
+    <nav class="navbar navbar-expand-lg navbar-dark py-lg-0 px-lg-3">
         <a href="/" class="navbar-brand ms-4 ms-lg-0">
             <h1 class="fw-bold text-primary m-0">JUDUR<span class="text-white"></span></h1>
         </a>
@@ -22,41 +28,40 @@
                 <a *ngIf="isjustvolunteer" routerLink="/volunteer-to-examiner" routerLinkActive="active"
                     class="nav-item nav-link">Examiner</a>
                 <a *ngIf="isExaminer" routerLink="/land-inspection" routerLinkActive="active"
-                    class="nav-item nav-link">Land Report</a>
+                    class="nav-item  nav-link">Land Report</a>
             </div>
             <a *ngIf="!isAdminAtAll " routerLink="/view-profile" routerLinkActive="active" class="nav-item nav-link">
                 <i class="fa fa-user-circle" style="font-size: 24px;"></i>
             </a>
-
-            <div class="nav-item ms-1 dropdown">
-                <a href="#" class="nav-link position-relative notification-link" (click)="toggleDropdown()">
-                    <i class="fa fa-bell" style="font-size: 24px;"></i>
-                    <span class="badge position-absolute top-0 start-100 translate-middle"
-                        style="background-color: #6A9C89;">
+            <div class="nav-item ms-1 dropdown" style="margin-right: 8px">
+                <a href="#" class="nav-link position-relative notification-link" style="padding: 0; margin-right: 0;" (click)="toggleDropdown()">
+                    <i class="fa fa-bell" style="font-size: 24px; margin-right: 0;"></i>
+                    <span class="badge position-absolute top-0 start-100 translate-middle" style="background-color: #6A9C89; border-radius: 50%;">
                         {{ notificationCount }}
                     </span>
                 </a>
-                <div *ngIf="dropdownVisible" class="dropdown-menu dropdown-menu-end responsive-dropdown">
+                <div *ngIf="dropdownVisible" class="dropdown-menu dropdown-menu-end responsive-dropdown fade-in">
                     <h6 class="dropdown-header">Notifications</h6>
+            
+                    <div *ngFor="let notification of notifications" (click)="toggleReadStatus(notification.id)" class="dropdown-item notification-item">
+                        <div *ngIf="!notification.is_read" class="notification-dot text-primary"></div>
 
-                    <div *ngFor="let notification of notifications" class="dropdown-item">
-                        <a [routerLink]="['/notify', notification.id]">
+                        <a [routerLink]="['/notify', notification.id]" class="text-decoration-none">
                             {{ notification.message }}
                             <small class="text-muted">{{ notification.time }}</small>
                         </a>
                     </div>
-
+            
                     <div class="dropdown-item text-center">
                         <a [routerLink]="['/notify']" class="see-more-link">See More</a>
                     </div>
-
+            
                     <div *ngIf="!notifications.length" class="dropdown-item text-center">No notifications</div>
                 </div>
-
             </div>
-
+            
             <!-- Show Logout button if user is logged in -->
-            <div class="d-none d-lg-flex ms-4 mt-3 mb-3" *ngIf="loggedIn">
+            <div class="d-none d-lg-flex ms-5    mt-3 mb-3" *ngIf="loggedIn">
                 <a class="btn btn-outline-primary py-2 px-3" (click)="onLogout()">
                     Logout
                     <div class="d-inline-flex btn-sm-square bg-white text-primary rounded-circle ms-2">
@@ -66,8 +71,8 @@
             </div>
 
             <!-- Show Login button if user is not logged in -->
-            <div class="d-none d-lg-flex ms-2 mt-3 mb-3" *ngIf="!loggedIn">
-                <a class="btn btn-outline-primary py-2 px-3" routerLink="/login">
+            <div class="d-none d-lg-flex ms-4 mt-3 mb-3" *ngIf="!loggedIn">
+                <a class="btn btn-outline-primary py-2 px-2" routerLink="/login">
                     Login
                     <div class="d-inline-flex btn-sm-square bg-white text-primary rounded-circle ms-2">
                         <i class="fa fa-arrow-right"></i>

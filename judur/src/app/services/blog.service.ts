@@ -30,6 +30,8 @@ export class BlogService {
   private apiUrl = 'http://localhost:8000/api/posts'; // URL of your Laravel API
   private commentsApiUrl = 'http://localhost:8000/api/comments'; // URL for comments API
   private usersApiUrl = 'http://localhost:8000/api/users'; // URL for users API
+  private apiUrlc = 'http://localhost:8000/api';
+
 
   constructor(private http: HttpClient) {}
 
@@ -80,6 +82,10 @@ export class BlogService {
       })
     );
   }
+  deleteComment(commentId: number): Observable<any> {
+    return this.http.delete(`${this.apiUrlc}/comments/${commentId}`);
+  }
+  
 
   // Post a new comment
   addComment(comment: { post_id: number; user_id: number; content: string }): Observable<Comment> {
@@ -91,6 +97,7 @@ export class BlogService {
       })
     );
   }
+
 
   // Fetch user by ID
   getUserById(userId: number): Observable<any> {

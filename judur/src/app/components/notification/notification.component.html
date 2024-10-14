@@ -1,18 +1,22 @@
+
+
+
 <app-navbar></app-navbar>
 
-<div class="notifications-container container " style="margin-top: 115px;">
-  <h3 class="text-center mb-4">Notifications</h3>
-  
+<div class="notifications-container container" style="margin-top: 115px;">
+  <h3 class="text-center mb-5">Notifications</h3>
+
   <ul class="list-group" *ngIf="notifications.length > 0; else noNotifications">
-    <li *ngFor="let notification of notifications" class="list-group-item notification-item animated fadeInUp">
-      <div class="d-flex justify-content-between align-items-center">
-        <div>
-          <i class="bi bi-bell-fill text-primary me-2"></i> 
-          <span>{{ notification.message }}</span>
-        </div>
-        <span class="text-muted">{{ notification.time }}</span>
+    <li *ngFor="let notification of notifications"
+      class="list-group-item notification-item animated fadeInUp d-flex justify-content-between align-items-center"
+>
+      <div class="d-flex align-items-center">
+        <i class="bi bi-bell-fill text-primary me-2"></i> 
+
+        <span class="ms-4">{{ notification.message }}</span>
       </div>
 
+      <span class=" notification-time">{{ notification.time }}</span>
     </li>
   </ul>
 
@@ -22,10 +26,4 @@
     </div>
   </ng-template>
 </div>
-
-
-
-
-
-
 

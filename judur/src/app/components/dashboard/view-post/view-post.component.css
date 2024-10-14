@@ -14,16 +14,22 @@
     text-align: center;
     margin-bottom: 30px;
 }
+.post-detail1 {
+    margin-top: 35px; 
+}
+
 .post-detail {
-    margin-top: 15px; /* Adds some space above */
+    display: flex;
+    justify-content: center; 
+    margin-top: 15px;
 }
 
 .post-detail img {
-    max-width: 100%; /* Responsive image */
-    height: auto; /* Maintain aspect ratio */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-    transition: transform 0.3s ease; /* Smooth scaling on hover */
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
 }
 
 .post-detail img:hover {
@@ -95,5 +101,34 @@ footer .copyright {
     font-size: 0.9em;
     color: #6c757d;
 }
-
-
+/* Styling for the comments section */
+.comments-section {
+    margin-top: 20px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .comment-wrapper {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto; /* Center the comment wrapper */
+  }
+  
+  .comment {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .comment:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .comment button {
+    margin-top: 10px;
+  }
+  
+ 

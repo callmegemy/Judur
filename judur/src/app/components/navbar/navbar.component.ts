@@ -5,11 +5,14 @@ import { VolunteerService } from '../../services/volunteer.service';
 import { NotificationService } from '../../services/notification.service'; 
 import { CommonModule } from '@angular/common';
 import { EchoService } from '../../services/echo.service';
+
 export interface Notification {
   id: number;
   message: string;
   time: string;
+  is_read: boolean; // Add is_read property to track read status
 }
+
 @Component({
   selector: 'app-navbar',
   standalone: true,
@@ -25,7 +28,7 @@ export class NavbarComponent implements OnInit {
   isAdmin: boolean = false;
   isMentor: boolean = false;
   isOrganizer: boolean = false;
-  isAdminAtAll: boolean=false;
+  isAdminAtAll: boolean = false;
   isjustvolunteer: boolean = false; 
   notificationCount: number = 0; 
   notifications: Notification[] = []; 
@@ -66,7 +69,6 @@ export class NavbarComponent implements OnInit {
             this.isAdminAtAll = true;
           }
           
-        
           if (user.role_id === 3) { 
             this.volunteerService.getVolunteerIdByUserId(user.id).subscribe({
               next: (volunteerData) => {
@@ -91,6 +93,10 @@ export class NavbarComponent implements OnInit {
       this.notifications = notifications; 
       this.notificationCount = notifications.length; 
     });
+    this.notificationService.fetchNotifications(); 
+    this.notificationService.notifications$.subscribe((data: Notification[]) => {
+      this.notifications = data;
+    });
   }
 
   fetchNotifications() {
@@ -99,6 +105,22 @@ export class NavbarComponent implements OnInit {
 
   toggleDropdown() {
     this.dropdownVisible = !this.dropdownVisible;
+  }
+
+  // Function to toggle read status of a notification
+  toggleReadStatus(notificationId: number) {
+    this.notificationService.toggleNotificationStatus(notificationId).subscribe(
+      (response: any) => {
+        const updatedNotification = response.notification;  
+        const index = this.notifications.findIndex(n => n.id === notificationId);
+        if (index !== -1) {
+          this.notifications[index].is_read = updatedNotification.is_read;
+        }
+      },
+      (error: any) => {
+        console.error('Error toggling notification status:', error);
+      }
+    );
   }
 
   onLogout(): void {

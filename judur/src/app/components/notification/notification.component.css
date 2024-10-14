@@ -6,6 +6,7 @@
   --text-color: #f8f9fa;
   --success: #28a745;
 }
+
 .no-notifications p {
   text-align: center;
   font-size: 1.2rem;
@@ -16,8 +17,8 @@
 
 
 .notifications-container {
-  max-width: 1200px;
-  width : 1200px;
+  max-width: 1400px;
+  width: 1400px;
   margin: auto;
 }
 
@@ -25,12 +26,12 @@
   margin-bottom: 10px;
   padding: 15px;
   border-radius: 10px;
-  background-color: #f8f9fa;
+  background-color: #e9ecef;
   transition: transform 0.2s ease-in-out;
 }
 
 .notification-item:hover {
-  transform: scale(1.03); 
+  transform: scale(1.03);
   background-color: #e9ecef;
 }
 
@@ -41,8 +42,9 @@
   padding: 15px 20px;
   border-radius: 10px;
   border: none;
+  color: #001D23;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  background-color: var(--light);
 }
 
 /* Animation classes for fadeInUp */
@@ -51,6 +53,7 @@
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -67,14 +70,6 @@
 }
 
 
-.notification-read {
-  background-color: var(--light);
-}
-
-.notification-unread {
-  background-color: var(--secondary);
-  color: var(--text-color);
-}
 
 .toggle-read-btn {
   background-color: var(--primary);
@@ -89,4 +84,24 @@
 
 .toggle-read-btn:hover {
   background-color: var(--secondary);
-  color: var(--dark)}
+  color: var(--dark)
+}
+
+.notification-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--primary);
+}
+
+.notification-item:hover {
+  background-color: #f8f9fa;
+  cursor: pointer;
+}
+
+.notification-time {
+  white-space: nowrap; 
+  margin-left: auto;   
+  font-size: 0.9em;   
+  color: var(--dark);
+}
