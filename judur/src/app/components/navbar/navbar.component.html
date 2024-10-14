@@ -33,6 +33,8 @@
             <a *ngIf="!isAdminAtAll " routerLink="/view-profile" routerLinkActive="active" class="nav-item nav-link">
                 <i class="fa fa-user-circle" style="font-size: 24px;"></i>
             </a>
+
+
             <div class="nav-item ms-1 dropdown" style="margin-right: 8px">
                 <a href="#" class="nav-link position-relative notification-link" style="padding: 0; margin-right: 0;" (click)="toggleDropdown()">
                     <i class="fa fa-bell" style="font-size: 24px; margin-right: 0;"></i>
@@ -42,23 +44,43 @@
                 </a>
                 <div *ngIf="dropdownVisible" class="dropdown-menu dropdown-menu-end responsive-dropdown fade-in">
                     <h6 class="dropdown-header">Notifications</h6>
-            
-                    <div *ngFor="let notification of notifications" (click)="toggleReadStatus(notification.id)" class="dropdown-item notification-item">
+                
+                    <div *ngFor="let notification of notifications | slice:0:5" (click)="toggleReadStatus(notification.id)" class="dropdown-item notification-item d-flex align-items-center">
                         <div *ngIf="!notification.is_read" class="notification-dot text-primary"></div>
+                
 
+                            <i [ngClass]="{
+                                  'fa-gavel text-success': notification.message.toLowerCase().includes('auction'),
+                                  'fa-calendar text-danger': notification.message.toLowerCase().includes('event'),
+                                  'fa-exclamation-circle text-warning': notification.message.toLowerCase().includes('request'),
+                                  'fa-hand-holding-heart text-info': notification.message.toLowerCase().includes('donation')
+                                }"
+                                class="fa "
+                                aria-hidden="true">
+                            </i>
+                
+                        <!-- Vertical divider -->
+                        <div class="vertical-line mx-2"></div>
+                
+                        <!-- Notification message -->
                         <a [routerLink]="['/notify', notification.id]" class="text-decoration-none">
                             {{ notification.message }}
                             <small class="text-muted">{{ notification.time }}</small>
                         </a>
                     </div>
-            
+                
                     <div class="dropdown-item text-center">
                         <a [routerLink]="['/notify']" class="see-more-link">See More</a>
                     </div>
-            
+                
                     <div *ngIf="!notifications.length" class="dropdown-item text-center">No notifications</div>
                 </div>
+                
+                
+                
             </div>
+            
+
             
             <!-- Show Logout button if user is logged in -->
             <div class="d-none d-lg-flex ms-5    mt-3 mb-3" *ngIf="loggedIn">

@@ -220,7 +220,7 @@
 }
 
 .notification-item:hover {
-box-shadow: 0 4px 10px var(--primary);
+box-shadow: 0 1px 0px var(--primary);
 }
 
 .text-decoration-none {
@@ -246,3 +246,24 @@ box-shadow: 0 4px 10px var(--primary);
         transform: translateY(0); 
     }
 }
+
+.icon-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 30px;
+    border-radius: 50%;
+    color: white;
+}
+
+.vertical-line {
+    border-left: 1px solid #ddd; 
+    height: 30px; 
+}
+
+.notification-item {
+    display: flex;
+    align-items: center;
+}
+
