@@ -40,11 +40,12 @@
           <p>{{ event.description }}</p>
         </div>
 
-        <div class="event-actions">
-          <app-event-join style="background-color: transparent; border: none;" [eventId]="event.id"></app-event-join>
-          <a class="btn btn-custom" routerLink="/list-event">Back</a>
-        </div>
+       
+
       </div>
     </div>
+  </div>
+  <div class="event-actions d-flex justify-content-center">
+    <app-event-join style="background-color: transparent; border: none;" [eventId]="event.id"></app-event-join>
   </div>
 </div>

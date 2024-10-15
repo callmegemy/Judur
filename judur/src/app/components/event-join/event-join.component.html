@@ -1,9 +1,22 @@
-<!-- Hide button if the user is a donor or admin -->
-<button
-  *ngIf="!hideButton && !isLoading"
-  (click)="isJoined ? onCancel() : onJoin()"
-  [disabled]="isLoading || isPending || buttonText === 'Event is Full' || buttonText === 'Pending Approval'"
-  class="btn btn-custom">
-  {{ isJoined ? 'Cancel' : buttonText }}
-</button>
+<!-- join.component.html -->
+<div *ngIf="isJoined && qrCodeUrl" class="qr-code-container">
+  <p>Your event QR code:</p>
+  <div class="qr-code-wrapper">
+    <qr-code [value]="qrCodeUrl" [size]="200" [errorCorrectionLevel]="'M'"></qr-code>
+  </div>
+  <p class="qr-code-note">Show this QR code at the event for check-in.</p>
+</div>
 
+<div class="d-flex justify-content-center event-actions">
+  <button *ngIf="!hideButton" 
+          (click)="isJoined ? onCancel() : onJoin()"
+          [disabled]="isLoading || isPending || buttonText === 'Event is Full' || buttonText === 'Pending Approval'" 
+          class="btn btn-custom">
+    {{ isJoined ? 'Cancel' : buttonText }}
+  </button>
+  <a class="btn btn-custom" routerLink="/list-event">Back</a>
+</div>
+
+<div *ngIf="isLoading" class="spinner-border text-primary" role="status">
+  <span class="sr-only">Loading...</span>
+</div>

@@ -46,6 +46,7 @@ export class EventDetailsComponent {
         this.event = data;
       });
     }
+    
   }
  
 }
