@@ -40,12 +40,16 @@
           <p>{{ event.description }}</p>
         </div>
 
-       
-
+        <a class="btn btn-facebook mt-3 justify-content-center" (click)="shareOnFacebook()" title="Share on Facebook">
+          <i class="fab fa-facebook-f "></i> 
+        </a>
       </div>
     </div>
   </div>
   <div class="event-actions d-flex justify-content-center">
     <app-event-join style="background-color: transparent; border: none;" [eventId]="event.id"></app-event-join>
+  </div>
+  <div>
+
   </div>
 </div>
