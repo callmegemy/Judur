@@ -105,6 +105,8 @@ export class AuthService {
     );
   }
 
+ 
+
   // Register a donor
   registerDonor(data: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/register/donor`, data).pipe(

@@ -314,7 +314,8 @@ export const routes: Routes = [
 { path: 'notify/:id', component: NotificationComponent }, 
 
   { path: 'feedback', component: FeedbackForEventComponent},
-{path:'dashboard/feedbacks',component:FeedbacksComponent}
+{path:'dashboard/feedbacks',component:FeedbacksComponent},
+
 
 ];
 
