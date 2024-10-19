@@ -68,4 +68,15 @@ loadAuctionDetails(): void {
       );
     });
   }
+
+  shareOnFacebook(): void {
+    const ngrokUrl = `https://bb6a-102-185-35-68.ngrok-free.app/auction/${this.auctionId}`; 
+    const title = encodeURIComponent(this.auctionDetails.title);
+    const description = encodeURIComponent(this.auctionDetails.description);
+    const image = encodeURIComponent(this.auctionDetails.imageUrl); 
+    const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(ngrokUrl)}&quote=${title}%0A${description}&picture=${image}`;
+  
+    window.open(facebookShareUrl, '_blank');
+  }
+  
 }
