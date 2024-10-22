@@ -5,15 +5,20 @@ import { VolunteerService } from '../../services/volunteer.service';
 import { NotificationService } from '../../services/notification.service'; 
 import { CommonModule } from '@angular/common';
 import { EchoService } from '../../services/echo.service';
+import { BroadcasterComponent } from '../../broadcaster/broadcaster.component';
+
 export interface Notification {
   id: number;
   message: string;
   time: string;
+  is_read: boolean; // Add is_read property to track read status
 }
+
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, CommonModule],
+  imports: [RouterLink, RouterLinkActive, CommonModule,BroadcasterComponent,viewerComponent
+  ],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
@@ -23,10 +28,13 @@ export class NavbarComponent implements OnInit {
   isExaminer: boolean = false; 
   isDonor: boolean = false;
   isAdmin: boolean = false;
+  isMentor: boolean = false;
+  isOrganizer: boolean = false;
+  isAdminAtAll: boolean = false;
   isjustvolunteer: boolean = false; 
   notificationCount: number = 0; 
-  notifications: Notification[] = []; // Add notifications array
-  dropdownVisible: boolean = false; // Track dropdown visibility
+  notifications: Notification[] = []; 
+  dropdownVisible: boolean = false; 
 
   constructor(
     private router: Router,
@@ -53,7 +61,16 @@ export class NavbarComponent implements OnInit {
           if (user.role_id === 1) { 
             this.isAdmin = true;
           }
-        
+          if (user.role_id === 5) { 
+            this.isOrganizer = true;
+          }
+          if (user.role_id === 6) { 
+            this.isMentor = true;
+          }
+          if (user.role_id === 1 || user.role_id === 5 || user.role_id === 6 ) { 
+            this.isAdminAtAll = true;
+          }
+          
           if (user.role_id === 3) { 
             this.volunteerService.getVolunteerIdByUserId(user.id).subscribe({
               next: (volunteerData) => {
@@ -70,7 +87,6 @@ export class NavbarComponent implements OnInit {
           }
         }
 
-        // Fetch notifications when the user is logged in
         this.fetchNotifications();
       }
     });
@@ -79,6 +95,10 @@ export class NavbarComponent implements OnInit {
       this.notifications = notifications; 
       this.notificationCount = notifications.length; 
     });
+    this.notificationService.fetchNotifications(); 
+    this.notificationService.notifications$.subscribe((data: Notification[]) => {
+      this.notifications = data;
+    });
   }
 
   fetchNotifications() {
@@ -86,7 +106,23 @@ export class NavbarComponent implements OnInit {
   }
 
   toggleDropdown() {
-    this.dropdownVisible = !this.dropdownVisible; // Toggle dropdown visibility
+    this.dropdownVisible = !this.dropdownVisible;
+  }
+
+  // Function to toggle read status of a notification
+  toggleReadStatus(notificationId: number) {
+    this.notificationService.toggleNotificationStatus(notificationId).subscribe(
+      (response: any) => {
+        const updatedNotification = response.notification;  
+        const index = this.notifications.findIndex(n => n.id === notificationId);
+        if (index !== -1) {
+          this.notifications[index].is_read = updatedNotification.is_read;
+        }
+      },
+      (error: any) => {
+        console.error('Error toggling notification status:', error);
+      }
+    );
   }
 
   onLogout(): void {
