@@ -5,6 +5,8 @@ import { VolunteerService } from '../../services/volunteer.service';
 import { NotificationService } from '../../services/notification.service'; 
 import { CommonModule } from '@angular/common';
 import { EchoService } from '../../services/echo.service';
+import { BroadcasterComponent } from '../../broadcaster/broadcaster.component';
+import { ViewerComponent } from '../../viewer/viewer.component';
 
 
 export interface Notification {
@@ -17,7 +19,7 @@ export interface Notification {
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, CommonModule],
+  imports: [RouterLink, RouterLinkActive, CommonModule,BroadcasterComponent,ViewerComponent],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
