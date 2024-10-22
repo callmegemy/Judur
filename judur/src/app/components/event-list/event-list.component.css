@@ -559,14 +559,14 @@ input[type="file"] {
 }
 
 .btn-custom {
-    background-color: #28a745;
+    background-color: var(--primary);
     color: white;
     margin-top: 15px;
     transition: background-color 0.3s;
 }
 
 .btn-custom:hover {
-    background-color: #218838;
+    background-color: var(--secondary);
 }
 
 /* Create space between the cards */

@@ -20,10 +20,8 @@
         <div class="row justify-content-center" style="width: 100%;">
             <div class="col-lg-6 col-md-12 mb-4" *ngFor="let event of events">
                 <div class="card fixed-card d-flex flex-row">
-                    <!-- Image on the Left -->
                     <div class="col-md-5 p-0">
                         <img [src]="event.image_url" alt="Event Image" class="card-img-left img-fluid">
-
                     </div>
                     <!-- Event Info on the Right -->
                     <div class="col-md-7 d-flex flex-column justify-content-center">
@@ -34,16 +32,15 @@
                                 <p>
                                     <i class="fa fa-calendar-alt"></i> {{ event.date }}
                                     <i class="far fa-clock"></i> {{ event.time }}
-
                                 </p>
                                 <p>
                                     <i class="fa fa-map-marker-alt"></i> {{ event.location }}
                                 </p>
                             </div>
-                            <div style=" display:flex;justify-content: center; align-items: center;">
-                                <app-event-join [eventId]="event.id"></app-event-join>
-                                <a [routerLink]="['/list-event/event-details', event.id]" class="btn btn-custom">View
-                                    Details</a>
+                            <div style="display: flex; justify-content: center; align-items: center;" >
+                                <a [routerLink]="['/list-event/event-details', event.id]" class="btn btn-custom">
+                                    {{ event.isJoined ? 'View Details' : 'View Details and Join' }}
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -52,4 +49,3 @@
         </div>
     </div>
 </div>
-<!-- Event End -->

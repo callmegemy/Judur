@@ -1,97 +1,188 @@
-
+:root {
+  --primary: #16423C;
+  --secondary: #6A9C89;
+  --light: #E9EFEC;
+  --dark: #001D23;
+}
 
 .container {
-  max-width: 1000px;
-  margin: 115px auto;
-
-  padding: 0 20px;
+  max-width: 1100px;
+  margin: 110px auto;
+  padding: 20px;
 }
 
-.event-details {
-  background-color: var(--light); 
+.event-container {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
-  padding: 40px;
-  transition: transform 0.3s ease; /* Smooth hover effect */
-}
-
-.event-details:hover {
-  transform: translateY(-2px); /* Lift effect on hover */
-}
-
-.event-header {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.event-header h1 {
-  color: var(--primary);
-  margin-bottom: 15px;
-  font-size: 2.5rem; /* Larger font size */
+  padding: 30px;
 }
 
 .event-image {
   max-width: 100%;
   height: auto;
   border-radius: 12px;
-  margin-top: 20px;
-  border: 2px solid var(--primary); /* Border for the image */
+  border: 2px solid var(--primary);
 }
 
-.event-info,
-.event-description,
-.feedbacks {
-  margin-bottom: 30px;
+.event-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 50px;
 }
 
-.event-section {
+.event-header h1 {
+  color: var(--primary);
+  font-size: 2.5rem;
   margin-bottom: 20px;
 }
 
-.event-section h3 {
-  color: var(--primary);
-  margin-bottom: 5px;
-  font-size: 1.6rem; /* Responsive font size */
-}
-
-.event-actions {
-  display: flex;
-  justify-content: center;
+.event-info {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
 }
 
-.btn,
-app-event-join {
-  /* padding: 12px 20px; */
+.event-info h3 {
+  font-size: 1.3rem;
+  color: var(--primary);
+}
+
+.event-description {
+  margin-top: 30px;
+}
+
+.event-description h3 {
+  font-size: 1.4rem;
+  color: var(--primary);
+}
+
+.event-description p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+.event-actions {
+  margin-top: 20px; /* Reduced margin to bring elements closer */
+  display: flex; /* Use flexbox layout */
+  justify-content: flex-start; /* Align items to the start */
+  gap: 20px; /* Space between buttons */
+}
+
+/* Optional: If you want to adjust button styles further */
+.btn-custom {
+  margin: 0; /* Ensure no extra margin around buttons */
+}
+
+.qr-code-container {
+  background-color: #f9f9f9; /* Light background color for contrast */
+  border: 1px solid #e0e0e0; /* Subtle border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 15px; /* Reduced padding */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  text-align: center; /* Center align text */
+  margin-top: 20px; /* Space above the QR code container */
+  max-width: 300px; /* Limit the width of the container */
+  margin-left: auto; /* Center the container */
+  margin-right: auto; /* Center the container */
+}
+
+.qr-code-wrapper {
+  margin: 10px 0; /* Adjust space around the QR code */
+  max-width: 100%; /* Ensure it fits the container */
+}
+
+.qr-code-note {
+  font-size: 0.9em; /* Smaller note text */
+  color: #555; /* Darker text color for better readability */
+}
+
+h2 {
+  font-size: 1.3em; /* Smaller heading size */
+  margin-bottom: 10px; /* Space below the heading */
+  color: #333; /* Dark text color */
+}
+
+.qr-code-container:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow on hover */
+  transition: box-shadow 0.3s; /* Smooth transition for shadow */
+}
+
+.btn {
   background-color: var(--primary);
-  color: var(--light); /* Ensure good contrast */
+  color: white;
   text-decoration: none;
-  border-radius: 6px; /* Rounded corners */
-  transition: background-color 0.3s ease, transform 0.2s; /* Smooth transition */
-  font-size: 1.1rem; /* Responsive font size */
+  border-radius: 6px;
+  padding: 12px 20px;
+  transition: background-color 0.3s ease, transform 0.2s;
+  margin-top: 20px; /* Ensure there's space above the button */
 }
 
-.btn:hover,
-app-event-join:hover {
-  background-color: var(--secondary);
-  transform: translateY(-2px); /* Lift effect on hover */
+.btn:hover {
+  background-color: var(--dark);
+  transform: translateY(-2px);
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
+  .event-container {
+    padding: 20px;
+  }
+
+  .event-image {
+    margin-bottom: 20px;
+  }
+
+  .event-header h1 {
+    font-size: 2rem;
+  }
+
+  .event-info {
+    grid-template-columns: 1fr;
+  }
+
   .event-section h3 {
-    font-size: 1.5rem; /* Smaller font size for mobile */
+    font-size: 1.5rem;
   }
-  
+
+  .event-description p {
+    font-size: 1rem;
+  }
+
   .event-actions {
-    flex-direction: column; /* Stack buttons on smaller screens */
+    flex-direction: column;
+    gap: 10px;
   }
 
-  .feedback-list {
-    grid-template-columns: 1fr; /* Single column on small screens */
+  .qr-code-container {
+    max-width: 90%; /* Make the container wider on small screens */
   }
 
-  .event-details {
-    padding: 20px; /* Less padding on mobile */
+  h2 {
+    font-size: 1.1em; /* Smaller font size for headings on mobile */
   }
+
+  .qr-code-wrapper {
+    margin: 5px 0; /* Adjust margin on smaller screens */
+  }
+}
+
+
+.btn-facebook {
+  background-color: #3b5998; 
+  color: white; 
+  border: none; 
+  border-radius: 5px; 
+  padding: 10px 15px; 
+  font-size: 16px; 
+  cursor: pointer; 
+  text-align: center; 
+  display: inline-flex; 
+  align-items: center; 
+  transition: background-color 0.3s;
+}
+
+.btn-facebook:hover {
+  background-color: #2d4373; 
 }

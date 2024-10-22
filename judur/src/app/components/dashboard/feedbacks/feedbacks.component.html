@@ -41,63 +41,35 @@
                 <app-topbar></app-topbar>
                 <!-- End of Topbar -->
 
+                <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <!-- Post Details -->
-                    <div class="post-list-container" *ngIf="post">
-                        <div class="post-header">
-                            <i class="fa-solid fa-newspaper post-icon text-judur"></i>
-                            <h2>Post Title: {{ post.title }}</h2>
-                        </div>
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-4 text-gray-800 animate__animated animate__fadeInDown">User Feedbacks</h1>
 
-                        <div class="post-body">
-                            <div class="post-detail">
-                                <span class="post-label">Posted on:</span>
-                                <span class="post-value">{{ post.created_at | date:'medium'}}</span>
-                            </div>
-
-                            <div class="post-detail" >
-                                <span class="post-value">
-                                    <img [src]="post.image" alt="Post Image">
-                                </span>
-                            </div>
-
-                            <div class="post-detail1" style="margin-top: 35px; margin-bottom: 15px;">
-                                <span class="post-label">Description:</span>
-                                <span class="post-value post-description">{{ post.content }}</span>
-                            </div>
-                        </div>
-
-                        <!-- Comments Section -->
-                        <div class="comments-section" *ngIf="comments.length > 0">
-                            <h3 class=" mb-4">Comments</h3>
-                            <div *ngFor="let comment of comments" class="comment-wrapper">
-                                <div class="comment p-3 shadow-sm rounded mb-3 animate__animated animate__fadeInUp">
-                                    <p class="mb-2 d-flex justify-content-between">
-                                        <span><strong>Comment :</strong> {{ comment.content }}</span>
-                                        <span>{{ comment.created_at | date:'medium' }}</span>
-                                    </p>
-                                    
-                                    <p class="mb-2 d-flex ">
-                                        <strong>Commented by:</strong> {{ comment.user?.name }}
-
-                                    </p>
-                                    
-                                    <button *ngIf="isAdmin" class="btn btn-sm btn-danger"
-                                        (click)="deleteComment(comment.id)">
-                                        Delete
-                                    </button>
+                    <!-- Feedback List -->
+                    <div class="row">
+                        <div *ngIf="feedbacks.length > 0" class="col-md-12">
+                            <div *ngFor="let feedback of feedbacks" class="feedback-item p-4 shadow-sm rounded bg-white animate__animated animate__fadeInUp mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <p class="user-name font-weight-bold"><i class="fas fa-user"></i> {{ feedback.user.name }}</p>
+                                    <p class="feedback-date">{{ feedback.created_at | date:'medium' }}</p>
                                 </div>
+                                <p class="mb-2" style=" color: #16423C; margin-bottom: 15px;"><strong>Feedback:</strong> {{ feedback.feedback }}</p>
+
+                                <button class="btn btn-sm btn-danger" (click)="deleteFeedback(feedback.id)">
+                                    <i class="fas fa-trash-alt"></i> Delete
+                                </button>
                             </div>
                         </div>
 
-
-                        <div class="text-center">
-                            <button class="btn btn-judur btn-back" (click)="goBack()">Back to Posts</button>
+                        <div *ngIf="feedbacks.length === 0" class="col-md-12 text-center">
+                            <p class="text-muted">No feedbacks available at the moment.</p>
                         </div>
                     </div>
                 </div>
+                <!-- End of Page Content -->
 
-                <!-- End of Main Content -->
+            </div>
 
                 <!-- Footer -->
                 <!-- <footer class="sticky-footer bg-white">
@@ -135,7 +107,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    
 
 </body>
 

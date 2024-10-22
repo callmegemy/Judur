@@ -1,0 +1,25 @@
+.feedback-item {
+    transition: transform 0.3s ease-in-out;
+}
+
+.feedback-item:hover {
+    transform: scale(1.03);
+}
+
+.feedback-item .user-name {
+    color: #16423C;
+}
+
+.feedback-item .feedback-date {
+    color: #16423C;
+    margin-bottom: 15px;
+}
+
+.btn-danger {
+    background-color: #e74a3b;
+    border-color: #e74a3b;
+}
+
+.btn-danger:hover {
+    background-color: #c92a27;
+}

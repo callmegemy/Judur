@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuctionService } from '../../auction.service';
 import Swal from 'sweetalert2'; // For SweetAlert
 import { CommonModule } from '@angular/common';
@@ -20,7 +20,8 @@ export class DetailsAuctionsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private auctionService: AuctionService
+    private auctionService: AuctionService,
+    private router: Router, // Needed to navigate to the details page after a bid is placed
   ) {}
 
   ngOnInit(): void {
@@ -55,8 +56,10 @@ loadAuctionDetails(): void {
       this.auctionService.placeBid(this.auctionId, this.bidAmount).subscribe(
         (response) => {
           Swal.fire('Bid Placed!', 'Your bid was successfully placed.', 'success');
-          this.loadAuctionDetails(); // Refresh auction details after placing a bid
-          this.bidAmount = 0; // Reset bid amount
+          this.loadAuctionDetails();
+          this.bidAmount = 0;
+
+          this.router.navigate(['/auction-list']);
         },
         (error) => {
           console.error('Error placing bid:', error);
@@ -65,4 +68,15 @@ loadAuctionDetails(): void {
       );
     });
   }
+
+  shareOnFacebook(): void {
+    const ngrokUrl = `https://bb6a-102-185-35-68.ngrok-free.app/auction/${this.auctionId}`; 
+    const title = encodeURIComponent(this.auctionDetails.title);
+    const description = encodeURIComponent(this.auctionDetails.description);
+    const image = encodeURIComponent(this.auctionDetails.imageUrl); 
+    const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(ngrokUrl)}&quote=${title}%0A${description}&picture=${image}`;
+  
+    window.open(facebookShareUrl, '_blank');
+  }
+  
 }

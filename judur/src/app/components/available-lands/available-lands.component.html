@@ -1,9 +1,7 @@
-
-
 <div class="header">
   <h1>Available Lands To be Examined</h1>
 </div>
-<div class="container available-lands-container " >
+<div class="container available-lands-container ">
 
   <div *ngIf="pendingLands.length > 0; else noLands">
     <table class="styled-table">
@@ -16,18 +14,25 @@
           <th>Address</th>
           <th>Action</th>
         </tr>
-      </thead>          
+      </thead>
       <tbody>
         <tr *ngFor="let land of pendingLands">
           <td>{{ land.id }}</td>
-          <td>{{ land.donor.user.name }}</td>         
-           <td>{{ land.description }}</td>
+          <td>{{ land.donor.user.name }}</td>
+          <td>{{ land.description }}</td>
           <td>{{ land.land_size }} acres</td>
           <td>{{ land.address }}</td>
-         
+
           <td>
-            <button (click)="scheduleInspection(land)" class="schedule-btn">Schedule Inspection</button>
+            <button *ngIf="land.status_id === 1; else scheduledBtn" (click)="scheduleInspection(land)"
+              class="schedule-btn">
+              Schedule Inspection
+            </button>
+            <ng-template #scheduledBtn>
+              <button class="scheduled-btn" disabled>Scheduled</button>
+            </ng-template>
           </td>
+
         </tr>
       </tbody>
     </table>
