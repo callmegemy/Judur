@@ -79,6 +79,8 @@ import { AuctionPaymentPageComponent } from './auction-payment-page/auction-paym
 
 import { FeedbackForEventComponent } from './components/feedback-for-event/feedback-for-event.component';
 import { FeedbacksComponent } from './components/dashboard/feedbacks/feedbacks.component';
+import { BroadcasterComponent } from './broadcaster/broadcaster.component';
+import { ViewerComponent } from './viewer/viewer.component';
 export const routes: Routes = [
   {
     path: '',
@@ -314,8 +316,9 @@ export const routes: Routes = [
 { path: 'notify/:id', component: NotificationComponent }, 
 
   { path: 'feedback', component: FeedbackForEventComponent},
-{path:'dashboard/feedbacks',component:FeedbacksComponent}
-
+{path:'dashboard/feedbacks',component:FeedbacksComponent},
+{ path: 'broadcaster', component: BroadcasterComponent },
+{ path: 'viewer', component: ViewerComponent },
 ];
 
 @NgModule({
