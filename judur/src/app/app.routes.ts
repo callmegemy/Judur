@@ -79,6 +79,7 @@ import { AuctionPaymentPageComponent } from './auction-payment-page/auction-paym
 
 import { FeedbackForEventComponent } from './components/feedback-for-event/feedback-for-event.component';
 import { FeedbacksComponent } from './components/dashboard/feedbacks/feedbacks.component';
+import { ChatbotComponent } from './components/chatbot/chatbot.component';
 export const routes: Routes = [
   {
     path: '',
@@ -315,6 +316,7 @@ export const routes: Routes = [
 
   { path: 'feedback', component: FeedbackForEventComponent},
 {path:'dashboard/feedbacks',component:FeedbacksComponent},
+{path:'chatbot',component:ChatbotComponent}
 
 
 ];
