@@ -267,3 +267,10 @@ box-shadow: 0 1px 0px var(--primary);
     align-items: center;
 }
 
+
+  
+.live-stream .nav-link {
+    /* margin-right: 10px; */
+    font-weight: bold;
+    color: white; 
+  }

@@ -1,0 +1,7 @@
+<div class="viewer-container">
+    <button (click)="startViewing()" [disabled]="isViewing" class="btn-viewer">Start Viewing</button>
+    <button (click)="stopViewing()" [disabled]="!isViewing" class="btn-viewer">Stop Viewing</button>
+    <video #remoteVideo autoplay class="video-element"></video>
+    <a [routerLink]="['/']" routerLinkActive="router-link-active" >Back To Home</a>
+
+  </div>
