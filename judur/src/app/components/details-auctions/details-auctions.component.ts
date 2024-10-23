@@ -70,7 +70,7 @@ loadAuctionDetails(): void {
   }
 
   shareOnFacebook(): void {
-    const ngrokUrl = `https://bb6a-102-185-35-68.ngrok-free.app/auction/${this.auctionId}`; 
+    const ngrokUrl = `https://323e-102-185-35-68.ngrok-free.app/auction-details/${this.auctionId}`; 
     const title = encodeURIComponent(this.auctionDetails.title);
     const description = encodeURIComponent(this.auctionDetails.description);
     const image = encodeURIComponent(this.auctionDetails.imageUrl); 

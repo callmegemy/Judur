@@ -6,12 +6,12 @@ import 'datatables.net';
 import { AuctionService } from '../../../services/dashboard/auctions.service';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-auctions',
   standalone: true,
-  imports: [SidebarComponent, TopbarComponent, CommonModule],
+  imports: [SidebarComponent, TopbarComponent, CommonModule, RouterLink],
   templateUrl: './auctions.component.html',
   styleUrls: ['./auctions.component.css']
 })

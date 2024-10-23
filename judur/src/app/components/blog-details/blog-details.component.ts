@@ -93,7 +93,7 @@ export class BlogDetailsComponent implements OnInit {
 
   shareOnFacebook(): void {
     const postId = this.route.snapshot.paramMap.get('id'); 
-    const ngrokUrl = `https://bb6a-102-185-35-68.ngrok-free.app/blog/${postId}`;
+    const ngrokUrl = `https://323e-102-185-35-68.ngrok-free.app/blog/${postId}`;
     const title = encodeURIComponent(this.postTitle);
     const image = encodeURIComponent(this.mainImage);
     const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(ngrokUrl)}&quote=${title}&picture=${image}`;

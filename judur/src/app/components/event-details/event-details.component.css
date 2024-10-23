@@ -181,6 +181,8 @@ h2 {
   display: inline-flex; 
   align-items: center; 
   transition: background-color 0.3s;
+  width: 45px;
+
 }
 
 .btn-facebook:hover {

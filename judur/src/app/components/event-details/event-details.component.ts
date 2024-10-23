@@ -33,7 +33,7 @@ interface Feedback {
 })
 export class EventDetailsComponent {
   event: any;
-  ngrokUrl: string = 'https://bb6a-102-185-35-68.ngrok-free.app'; 
+  ngrokUrl: string = 'https://323e-102-185-35-68.ngrok-free.app'; 
 
   constructor(
     private route: ActivatedRoute,
@@ -54,7 +54,7 @@ export class EventDetailsComponent {
   setMetaTags(event: any) {
     this.renderer.setAttribute(document.querySelector('meta[property="og:title"]'), 'content', event.title);
     this.renderer.setAttribute(document.querySelector('meta[property="og:description"]'), 'content', event.description);
-    this.renderer.setAttribute(document.querySelector('meta[property="og:image"]'), 'content', event.image); // Use the correct image URL
+    this.renderer.setAttribute(document.querySelector('meta[property="og:image"]'), 'content', event.image_url); // Use the correct image URL
     this.renderer.setAttribute(document.querySelector('meta[property="og:url"]'), 'content', window.location.href);
   }
 
