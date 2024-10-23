@@ -27,6 +27,24 @@
       </div>
     </div>
   </div>
+  <!-- Chatbot Section -->
+<div class="chat-container">
+  <!-- Chat Toggle Button -->
+  <button class="chat-toggle" (click)="toggleChat()"><span>Chat</span></button>
+
+  <!-- Chat Window -->
+  <div class="chat-window" [class.open]="isChatOpen">
+    <div *ngFor="let message of chatMessages" [ngClass]="{'user-message': message.fromUser, 'bot-message': !message.fromUser}">
+      {{ message.text }}
+    </div>
+
+    <form [formGroup]="chatForm" (ngSubmit)="sendMessage()">
+      <input formControlName="message" placeholder="Type your message..." required>
+      <button type="submit">Send</button>
+    </form>
+  </div>
+</div>
+
   <section id="donation-section" class="donation-section">
     <div class="container">
         <div class="row align-items-center">

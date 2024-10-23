@@ -12,39 +12,46 @@
 <!-- Navbar End -->
 
 <div class="login-container">
-  <img src="assets/img/ju.png" alt="Judur Logo" class="logo">
+    <img src="assets/img/ju.png" alt="Judur Logo" class="logo">
 
-  <div *ngIf="loginError" class="alert alert-danger mt-2">
-    {{ loginError }}
-</div>
+    <div *ngIf="loginError" class="alert alert-danger mt-2">
+        {{ loginError }}
+    </div>
 
-  <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-      <div class="form-group">
-          <label for="email">Email:</label>
-          <input id="email" formControlName="email" type="email" placeholder="Enter your email" class="form-control" />
-          <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
-              <small class="error" *ngIf="loginForm.get('email')?.errors?.['required']">Email is required.</small>
-              <small class="error" *ngIf="loginForm.get('email')?.errors?.['email']">Please enter a valid email.</small>
-          </div>
-         
-      </div>
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input id="email" formControlName="email" type="email" placeholder="Enter your email"
+                class="form-control" />
+            <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+                <small class="error" *ngIf="loginForm.get('email')?.errors?.['required']">Email is required.</small>
+                <small class="error" *ngIf="loginForm.get('email')?.errors?.['email']">Please enter a valid
+                    email.</small>
+            </div>
 
-      <div class="form-group">
-          <label for="password">Password:</label>
-          <input id="password" formControlName="password" type="password" placeholder="Enter your password" class="form-control" />
-          <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
-              <small class="error" *ngIf="loginForm.get('password')?.errors?.['required']">Password is required.</small>
-          </div>
-      </div>
+        </div>
 
-      <button type="submit" [disabled]="loginForm.invalid" class="login-btn mt-4 mb-4" style="align-items: center;">Login</button>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input id="password" formControlName="password" type="password" placeholder="Enter your password"
+                class="form-control" />
+            <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+                <small class="error" *ngIf="loginForm.get('password')?.errors?.['required']">Password is
+                    required.</small>
+            </div>
+        </div>
 
-      <div class="forgot-password" style="text-align: center;">
-        <a routerLink="/forgot-password">Forgot your password?</a>
-      </div>
+        <button type="submit" [disabled]="loginForm.invalid" class="login-btn mt-4 mb-4"
+            style="align-items: center;">Login</button>
+        <!-- Existing login form -->
 
-      <div class="register-link">
-          <a routerLink="/register-choice">Don't have an account? Register here</a>
-      </div>
-  </form>
+       
+        <div class="forgot-password" style="text-align: center;">
+            <a routerLink="/forgot-password">Forgot your password?</a>
+        </div>
+
+        <div class="register-link">
+            <a routerLink="/register-choice">Don't have an account? Register here</a>
+        </div>
+    </form>
 </div>
