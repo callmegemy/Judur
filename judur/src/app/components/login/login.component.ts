@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
+
+declare const gapi: any; // Declare gapi for TypeScript
 
 @Component({
   selector: 'app-login',
@@ -12,14 +14,32 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./login.component.css'],
   templateUrl: './login.component.html',
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loginError: string | null = null; 
 
-  constructor(private fb: FormBuilder, public authService: AuthService, private router: Router, private snackBar: MatSnackBar) {
+  constructor(
+    private fb: FormBuilder, 
+    public authService: AuthService, 
+    private router: Router, 
+    private snackBar: MatSnackBar
+  ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
+    });
+  }
+
+  ngOnInit() {
+    this.initGoogleSignIn();
+  }
+
+  initGoogleSignIn() {
+    const clientId = '6039932738-v9qq8npq87r8v52f6rbtnk1ntv5lhg1s.apps.googleusercontent.com'; 
+    gapi.load('auth2', () => {
+      gapi.auth2.init({
+        client_id: clientId,
+      });
     });
   }
 
@@ -49,5 +69,7 @@ export class LoginComponent {
       this.loginError = 'Please fill in the required fields correctly.'; 
     }
   }
-  
+ 
+
+ 
 }

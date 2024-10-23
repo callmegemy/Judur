@@ -81,6 +81,7 @@ import { FeedbackForEventComponent } from './components/feedback-for-event/feedb
 import { FeedbacksComponent } from './components/dashboard/feedbacks/feedbacks.component';
 import { BroadcasterComponent } from './broadcaster/broadcaster.component';
 import { ViewerComponent } from './viewer/viewer.component';
+import { ChatbotComponent } from './components/chatbot/chatbot.component';
 export const routes: Routes = [
   {
     path: '',
@@ -319,6 +320,9 @@ export const routes: Routes = [
 {path:'dashboard/feedbacks',component:FeedbacksComponent},
 { path: 'broadcaster', component: BroadcasterComponent },
 { path: 'viewer', component: ViewerComponent },
+{path:'chatbot',component:ChatbotComponent}
+
+
 ];
 
 @NgModule({
