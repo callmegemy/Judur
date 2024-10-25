@@ -6,10 +6,11 @@ import { FeedbackService } from '../../feedback.service';
 
 
 
+
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ RouterLink, RouterLinkActive ,CommonModule, NavbarComponent],
+  imports: [ RouterLink, RouterLinkActive ,CommonModule, NavbarComponent , ],
 
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'

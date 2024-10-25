@@ -8,8 +8,8 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-auction',
-  standalone: true,  // Ensure the component is standalone
-  imports: [FormsModule, CommonModule , NavbarComponent],  // Ensure necessary modules are imported
+  standalone: true,
+  imports: [FormsModule, CommonModule, NavbarComponent],  // Ensure necessary modules are imported
   templateUrl: './auction.component.html',
   styleUrls: ['./auction.component.css']
 })
@@ -36,21 +36,21 @@ export class AuctionComponent {
       });
       return;
     }
-  
+
     const formData = new FormData();
     formData.append('item_name', this.itemName);
     formData.append('condition', this.itemCondition);
     formData.append('is_valuable', this.isValuable ? '1' : '0');
     formData.append('quantity', this.quantity.toString());
-  
+
     if (this.isValuable) {
       formData.append('value', this.estimatedValue); 
     }
-  
+
     if (this.imageFile) {
       formData.append('image', this.imageFile); 
     }
-  
+
     const token = localStorage.getItem('auth_token');
     if (!token) {
       Swal.fire({
@@ -61,11 +61,11 @@ export class AuctionComponent {
       this.router.navigate(['/login']);
       return;
     }
-  
+
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-  
+
     this.http.post('http://localhost:8000/api/donate-item', formData, { headers })
       .subscribe(
         (response) => {

@@ -1,25 +1,34 @@
 <app-navbar></app-navbar>
 
 <div class="auction-container" style="margin-top: 115px !important;">
-  <h2 class="text-center mb-2  mt-4">Item Donation Form</h2>
-  
-  <form #form="ngForm" (ngSubmit)="onSubmit(form)" style="margin-top: 80px !important;">
+  <h2 class="text-center mb-2 mt-4">Item Donation Form</h2>
+
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)" style="margin-top: 80px !important;" novalidate>
     <!-- Item Name -->
     <div class="form-group mb-3">
       <label for="itemName" class="form-label"><i class="fas fa-tag"></i> Item Name</label>
-      <input type="text" class="form-control" id="itemName" [(ngModel)]="itemName" name="itemName" required>
+      <input type="text" class="form-control" id="itemName" [(ngModel)]="itemName" name="itemName" required #itemNameField="ngModel">
+      <div *ngIf="itemNameField.invalid && (itemNameField.dirty || itemNameField.touched)" class="text-danger">
+        Item Name is required.
+      </div>
     </div>
 
     <!-- Quantity -->
     <div class="form-group mb-3">
       <label for="quantity" class="form-label"><i class="fas fa-cubes"></i> Quantity</label>
-      <input type="number" class="form-control" id="quantity" min="1" [(ngModel)]="quantity" name="quantity" required>
+      <input type="number" class="form-control" id="quantity" min="1" [(ngModel)]="quantity" name="quantity" required #quantityField="ngModel">
+      <div *ngIf="quantityField.invalid && (quantityField.dirty || quantityField.touched)" class="text-danger">
+        Quantity is required and must be at least 1.
+      </div>
     </div>
 
     <!-- Description -->
     <div class="form-group mb-3">
       <label for="description" class="form-label"><i class="fas fa-align-left"></i> Description</label>
-      <textarea class="form-control" id="description" rows="3" [(ngModel)]="description" name="description" required></textarea>
+      <textarea class="form-control" id="description" rows="3" [(ngModel)]="description" name="description" required #descriptionField="ngModel"></textarea>
+      <div *ngIf="descriptionField.invalid && (descriptionField.dirty || descriptionField.touched)" class="text-danger">
+        Description is required.
+      </div>
     </div>
 
     <!-- Upload Image -->
@@ -30,22 +39,26 @@
 
     <!-- Is Valuable Checkbox -->
     <div class="form-check mb-3">
-      <input type="checkbox" class="form-check-input" id="isValuable" [(ngModel)]="isValuable" name="isValuable">
+      <input type="checkbox" class="form-check-input" id="isValuable" [(ngModel)]="isValuable" name="isValuable" #isValuableField="ngModel">
       <label class="form-check-label" for="isValuable"><i class="fas fa-star"></i> Is this a valuable item?</label>
     </div>
 
     <!-- Estimated Value (Only required when valuable) -->
     <div class="form-group mb-3" *ngIf="isValuable">
       <label for="estimatedValue" class="form-label"><i class="fas fa-dollar-sign"></i> Estimated Value</label>
-      <input type="number" class="form-control" id="estimatedValue" [(ngModel)]="estimatedValue" name="estimatedValue" required>
-      <div *ngIf="!estimatedValue && isValuable" class="text-danger">Estimated value is required for valuable items.</div>
+      <input type="number" class="form-control" id="estimatedValue" [(ngModel)]="estimatedValue" name="estimatedValue" required #estimatedValueField="ngModel">
+      <div *ngIf="estimatedValueField.invalid && (estimatedValueField.dirty || estimatedValueField.touched)" class="text-danger">
+        Estimated value is required 
+      </div>
     </div>
 
     <!-- Condition (Always present but required only when not valuable) -->
     <div class="form-group mb-3">
       <label for="condition" class="form-label"><i class="fas fa-info-circle"></i> Condition</label>
-      <input type="text" class="form-control" id="condition" [(ngModel)]="itemCondition" name="itemCondition" [required]="!isValuable">
-      <div *ngIf="!itemCondition && !isValuable" class="text-danger">Condition is required for non-valuable items.</div>
+      <input type="text" class="form-control" id="condition" [(ngModel)]="itemCondition" name="itemCondition" [required]="!isValuable" #itemConditionField="ngModel">
+      <div *ngIf="itemConditionField.invalid && (itemConditionField.dirty || itemConditionField.touched) && !isValuable" class="text-danger">
+        Condition is required 
+      </div>
     </div>
 
     <!-- Submit Button -->
