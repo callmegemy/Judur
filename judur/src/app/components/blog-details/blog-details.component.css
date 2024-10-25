@@ -233,3 +233,22 @@
 .footer .btn:focus {
   box-shadow: none;
 }
+
+
+.btn-facebook {
+  background-color: #3b5998; 
+  color: white; 
+  border: none; 
+  border-radius: 5px; 
+  padding: 10px 15px; 
+  font-size: 16px; 
+  cursor: pointer; 
+  text-align: center; 
+  display: inline-flex; 
+  align-items: center; 
+  transition: background-color 0.3s;
+}
+
+.btn-facebook:hover {
+  background-color: #2d4373; 
+}

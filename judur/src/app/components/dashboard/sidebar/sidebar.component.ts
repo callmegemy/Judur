@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, CommonModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
@@ -14,7 +15,7 @@ export class SidebarComponent implements OnInit {
   loggedIn: boolean = false;
   isadmin:boolean=false;
   isMentor: boolean = false;
-  isOrgnizer: boolean = false;
+  isOrganizer: boolean = false;
   constructor(
     private router: Router,
     public authService: AuthService,
@@ -29,7 +30,7 @@ export class SidebarComponent implements OnInit {
   
         if (user) {
           if (user.role_id == 5 || user.role_id == 1) { 
-            this.isOrgnizer = true;
+            this.isOrganizer = true;
 
           }
           if (user.role_id == 1 ) { 

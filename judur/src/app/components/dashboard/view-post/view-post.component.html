@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    
+
     <title>Judur - Dashboard</title>
 
     <link href="../../../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -16,6 +16,9 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
     <link href="../../../../assets/css/sb-admin-2.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
@@ -25,7 +28,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-            <app-sidebar class="bg-gradient-judur"></app-sidebar>
+        <app-sidebar class="bg-gradient-judur"></app-sidebar>
         <!-- End of Sidebar -->
 
 
@@ -34,84 +37,101 @@
             <!-- Main Content -->
             <div id="content">
                 <!-- Begin Page Content -->
-                                <!-- Topbar -->
-<app-topbar></app-topbar>
-<!-- End of Topbar -->
+                <!-- Topbar -->
+                <app-topbar></app-topbar>
+                <!-- End of Topbar -->
 
                 <div class="container-fluid">
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-judur font-weight-bold">Post Details</h1>
-                    </div>
-
                     <!-- Post Details -->
                     <div class="post-list-container" *ngIf="post">
                         <div class="post-header">
                             <i class="fa-solid fa-newspaper post-icon text-judur"></i>
                             <h2>Post Title: {{ post.title }}</h2>
                         </div>
-                    
+
                         <div class="post-body">
                             <div class="post-detail">
                                 <span class="post-label">Posted on:</span>
                                 <span class="post-value">{{ post.created_at | date:'medium'}}</span>
                             </div>
-                    
-                            <div class="post-detail">
+
+                            <div class="post-detail" >
                                 <span class="post-value">
-                                    <img [src]="post.image" alt="Post Image" >
+                                    <img [src]="post.image" alt="Post Image">
                                 </span>
                             </div>
-                    
-                            <div class="post-detail">
+
+                            <div class="post-detail1" style="margin-top: 35px; margin-bottom: 15px;">
                                 <span class="post-label">Description:</span>
-                                <span class="post-value post-description">
-                                    {{ post.content }}
-                                </span>
+                                <span class="post-value post-description">{{ post.content }}</span>
                             </div>
                         </div>
-                    
+
+                        <!-- Comments Section -->
+                        <div class="comments-section" *ngIf="comments.length > 0">
+                            <h3 class=" mb-4">Comments</h3>
+                            <div *ngFor="let comment of comments" class="comment-wrapper">
+                                <div class="comment p-3 shadow-sm rounded mb-3 animate__animated animate__fadeInUp">
+                                    <p class="mb-2 d-flex justify-content-between">
+                                        <span><strong>Comment :</strong> {{ comment.content }}</span>
+                                        <span>{{ comment.created_at | date:'medium' }}</span>
+                                    </p>
+                                    
+                                    <p class="mb-2 d-flex ">
+                                        <strong>Commented by:</strong> {{ comment.user?.name }}
+
+                                    </p>
+                                    
+                                    <button *ngIf="isAdmin" class="btn btn-sm btn-danger"
+                                        (click)="deleteComment(comment.id)">
+                                        Delete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+
                         <div class="text-center">
                             <button class="btn btn-judur btn-back" (click)="goBack()">Back to Posts</button>
                         </div>
                     </div>
-                    
                 </div>
-                <!-- /.container-fluid -->
-            </div>
-            <!-- End of Main Content -->
 
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Judur 2024</span>
+                <!-- End of Main Content -->
+
+                <!-- Footer -->
+                <!-- <footer class="sticky-footer bg-white">
+                    <div class="container my-auto ">
+                        <div class="copyright text-center my-auto">
+                            <span>Copyright &copy; Judur 2024</span>
+                        </div>
                     </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
+                </footer> -->
+                <!-- End of Footer -->
+            </div>
         </div>
-    </div>
 
-    <!-- Scroll to Top Button -->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
+        <!-- Scroll to Top Button -->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
 
-    <!-- Logout Modal -->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+        <!-- Logout Modal -->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="login.html">Logout</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -120,4 +140,3 @@
 </body>
 
 </html>
-

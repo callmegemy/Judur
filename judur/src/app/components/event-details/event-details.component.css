@@ -1,105 +1,188 @@
-body, html {
-  margin: 0;
-  padding: 0;
-  font-family: 'Roboto', sans-serif; /* Use a clean, modern font */
-  background-color: #f7f7f7; /* Light background for contrast */
-  color: #333; /* Dark text for readability */
+:root {
+  --primary: #16423C;
+  --secondary: #6A9C89;
+  --light: #E9EFEC;
+  --dark: #001D23;
 }
 
-.event-details {
-  background-color: #fff; /* White background for card */
-  border-radius: 10px;
-  padding: 40px;
-  max-width: 800px;
-  margin: 80px auto;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  transition: transform 0.3s ease;
+.container {
+  max-width: 1100px;
+  margin: 110px auto;
+  padding: 20px;
 }
 
-.event-details:hover {
-  transform: translateY(-5px); /* Slight hover lift effect */
-}
-
-.event-header {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.event-header h1 {
-  color: #16423C; /* Dark green for the title */
-  font-size: 2.5rem;
-  margin-bottom: 20px;
+.event-container {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 30px;
 }
 
 .event-image {
   max-width: 100%;
-  border-radius: 10px;
-  margin-top: 15px;
-  border: 2px solid #6A9C89; /* Light green border for the image */
+  height: auto;
+  border-radius: 12px;
+  border: 2px solid var(--primary);
 }
 
-.event-info-horizontal {
+.event-details {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  flex-wrap: wrap;
+  margin-left: 50px;
+}
+
+.event-header h1 {
+  color: var(--primary);
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.event-info {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
+}
+
+.event-info h3 {
+  font-size: 1.3rem;
+  color: var(--primary);
+}
+
+.event-description {
   margin-top: 30px;
 }
 
-.event-section {
-  flex: 1 1 calc(50% - 20px); /* Each section takes 50% of width */
-  background-color: #f4f4f4;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Light shadow */
-  text-align: center; /* Center-align text */
+.event-description h3 {
+  font-size: 1.4rem;
+  color: var(--primary);
 }
 
-.event-section h3 {
-  color: #16423C;
-  font-size: 1.3rem;
-  margin-bottom: 10px;
-}
-
-.event-section p {
+.event-description p {
   font-size: 1.1rem;
-  color: #555; /* Softer text color */
+  line-height: 1.5;
+  text-align: justify;
 }
 
 .event-actions {
-  margin-top: 40px;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
+  margin-top: 20px; /* Reduced margin to bring elements closer */
+  display: flex; /* Use flexbox layout */
+  justify-content: flex-start; /* Align items to the start */
+  gap: 20px; /* Space between buttons */
 }
 
-.btn, app-event-join {
-  padding: 12px 25px;
-  background-color: #16423C;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+/* Optional: If you want to adjust button styles further */
+.btn-custom {
+  margin: 0; /* Ensure no extra margin around buttons */
 }
 
-.btn:hover, app-event-join:hover {
-  background-color: #6A9C89; /* Light green on hover */
-  transform: translateY(-3px);
+.qr-code-container {
+  background-color: #f9f9f9; /* Light background color for contrast */
+  border: 1px solid #e0e0e0; /* Subtle border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 15px; /* Reduced padding */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  text-align: center; /* Center align text */
+  margin-top: 20px; /* Space above the QR code container */
+  max-width: 300px; /* Limit the width of the container */
+  margin-left: auto; /* Center the container */
+  margin-right: auto; /* Center the container */
 }
 
-/* Mobile Optimization */
+.qr-code-wrapper {
+  margin: 10px 0; /* Adjust space around the QR code */
+  max-width: 100%; /* Ensure it fits the container */
+}
+
+.qr-code-note {
+  font-size: 0.9em; /* Smaller note text */
+  color: #555; /* Darker text color for better readability */
+}
+
+h2 {
+  font-size: 1.3em; /* Smaller heading size */
+  margin-bottom: 10px; /* Space below the heading */
+  color: #333; /* Dark text color */
+}
+
+.qr-code-container:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow on hover */
+  transition: box-shadow 0.3s; /* Smooth transition for shadow */
+}
+
+.btn {
+  background-color: var(--primary);
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  padding: 12px 20px;
+  transition: background-color 0.3s ease, transform 0.2s;
+  margin-top: 20px; /* Ensure there's space above the button */
+}
+
+.btn:hover {
+  background-color: var(--dark);
+  transform: translateY(-2px);
+}
+
 @media (max-width: 768px) {
-  .event-info-horizontal {
-    flex-direction: column;
+  .event-container {
+    padding: 20px;
   }
 
-  .event-section {
-    flex: 1 1 100%;
+  .event-image {
+    margin-bottom: 20px;
   }
 
   .event-header h1 {
     font-size: 2rem;
   }
+
+  .event-info {
+    grid-template-columns: 1fr;
+  }
+
+  .event-section h3 {
+    font-size: 1.5rem;
+  }
+
+  .event-description p {
+    font-size: 1rem;
+  }
+
+  .event-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .qr-code-container {
+    max-width: 90%; /* Make the container wider on small screens */
+  }
+
+  h2 {
+    font-size: 1.1em; /* Smaller font size for headings on mobile */
+  }
+
+  .qr-code-wrapper {
+    margin: 5px 0; /* Adjust margin on smaller screens */
+  }
+}
+
+
+.btn-facebook {
+  background-color: #3b5998; 
+  color: white; 
+  border: none; 
+  border-radius: 5px; 
+  padding: 10px 15px; 
+  font-size: 16px; 
+  cursor: pointer; 
+  text-align: center; 
+  display: inline-flex; 
+  align-items: center; 
+  transition: background-color 0.3s;
+}
+
+.btn-facebook:hover {
+  background-color: #2d4373; 
 }

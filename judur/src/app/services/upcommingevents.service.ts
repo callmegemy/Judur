@@ -6,8 +6,7 @@ import { Observable } from 'rxjs';
 })
 export class UpcommingeventsService {
 
-  private apiUrl = 'http://localhost:8000/api'; // Update with your Laravel API URL
-
+  private apiUrl = 'http://localhost:8000/api'; 
   constructor(private http: HttpClient) { }
 
   getEvents(): Observable<any> {
@@ -15,7 +14,7 @@ export class UpcommingeventsService {
   }
 
   getEventById(id: number): Observable<any> {
-    const token = localStorage.getItem('auth_token');  // Use correct token key
+    const token = localStorage.getItem('auth_token');  
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
       'Accept': 'application/json'
@@ -26,16 +25,17 @@ export class UpcommingeventsService {
   
 
   joinEvent(eventId: number): Observable<any> {
-    const token = localStorage.getItem('auth_token');  // Use correct token key
+    const token = localStorage.getItem('auth_token');  
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`,
-      'Accept': 'application/json'
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
     });
 
     return this.http.post(`${this.apiUrl}/list-event/join-event`, { event_id: eventId }, { headers });
-  }
+}
+
   isVolunteerJoined(eventId: number, userId: number): Observable<any> {
-    const token = localStorage.getItem('auth_token');  // Use correct token key
+    const token = localStorage.getItem('auth_token');  
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
       'Accept': 'application/json'
@@ -47,9 +47,9 @@ export class UpcommingeventsService {
   
 
   cancelEvent(eventId: number): Observable<any> {
-    const token = localStorage.getItem('auth_token'); // Retrieve the token from localStorage
+    const token = localStorage.getItem('auth_token');
     const headers = new HttpHeaders({
-        'Authorization': `Bearer ${token}` // Include the token in the Authorization header
+        'Authorization': `Bearer ${token}`
     });
 
     return this.http.delete(`${this.apiUrl}/list-event/cancel-event/${eventId}`, { headers });
@@ -58,7 +58,7 @@ export class UpcommingeventsService {
 //   return this.http.get<any>(`http://localhost:8000/api/list-event/${eventId}/status`);
 // }
 getVolunteerProfile(userId: number): Observable<any> {
-  return this.http.get<any>(`${this.apiUrl}/volunteers/${userId}`); // Adjust the endpoint as needed
+  return this.http.get<any>(`${this.apiUrl}/volunteers/${userId}`); 
 }
 checkVolunteerStatus(eventId: number): Observable<any> {
   return this.http.get<any>(`http://localhost:8000/api/volunteer-status/${eventId}`);

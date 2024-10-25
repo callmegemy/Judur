@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'; // Import HttpClient for API calls
+import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -8,18 +8,18 @@ export interface BlogPost {
   title: string;
   description: string;
   content: string;
-  image: string; // This should be included
+  image: string; 
   category: string;
 }
 
 export interface Comment {
-  id: number; // Assuming you have an ID for each comment
+  id: number; 
   post_id: number;
-  user_id: number; // User who posted the comment
+  user_id: number; 
   content: string;
-  created_at: string; // Assuming this is the date format you are using
+  created_at: string; 
   user?: {
-    name: string; // Include user name if needed
+    name: string; 
   };
 }
 
@@ -30,6 +30,8 @@ export class BlogService {
   private apiUrl = 'http://localhost:8000/api/posts'; // URL of your Laravel API
   private commentsApiUrl = 'http://localhost:8000/api/comments'; // URL for comments API
   private usersApiUrl = 'http://localhost:8000/api/users'; // URL for users API
+  private apiUrlc = 'http://localhost:8000/api';
+
 
   constructor(private http: HttpClient) {}
 
@@ -62,6 +64,14 @@ export class BlogService {
       })
     );
   }
+  getRecentPostsinhome(limit: number = 3): Observable<BlogPost[]> {
+    return this.http.get<BlogPost[]>(`${this.apiUrl}?_limit=${limit}&sort=recent`).pipe(
+      catchError((error) => {
+        console.error('Error fetching recent posts:', error);
+        return throwError(() => new Error('Error fetching recent posts; please try again later.'));
+      })
+    );
+  }
 
   // Fetch comments for a specific post
   getCommentsByPost(postId: number): Observable<Comment[]> {
@@ -72,6 +82,10 @@ export class BlogService {
       })
     );
   }
+  deleteComment(commentId: number): Observable<any> {
+    return this.http.delete(`${this.apiUrlc}/comments/${commentId}`);
+  }
+  
 
   // Post a new comment
   addComment(comment: { post_id: number; user_id: number; content: string }): Observable<Comment> {
@@ -83,6 +97,7 @@ export class BlogService {
       })
     );
   }
+
 
   // Fetch user by ID
   getUserById(userId: number): Observable<any> {

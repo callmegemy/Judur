@@ -1,15 +1,29 @@
-<div class="notifications-container">
-  <h3>Notifications</h3>
-  <ul *ngIf="notifications.length > 0; else noNotifications">
-    <li *ngFor="let notification of notifications" class="notification-item">
-      <p>{{ notification.message }}</p>
-      <span class="notification-time">{{ notification.time }}</span>
+
+
+
+<app-navbar></app-navbar>
+
+<div class="notifications-container container" style="margin-top: 115px;">
+  <h3 class="text-center mb-5">Notifications</h3>
+
+  <ul class="list-group" *ngIf="notifications.length > 0; else noNotifications">
+    <li *ngFor="let notification of notifications"
+      class="list-group-item notification-item animated fadeInUp d-flex justify-content-between align-items-center"
+>
+      <div class="d-flex align-items-center">
+        <i class="bi bi-bell-fill text-primary me-2"></i> 
+
+        <span class="ms-4">{{ notification.message }}</span>
+      </div>
+
+      <span class=" notification-time">{{ notification.time }}</span>
     </li>
   </ul>
+
   <ng-template #noNotifications>
-    <p>No notifications available.</p>
+    <div class="alert alert-info text-center mt-4" role="alert">
+      <i class="bi bi-info-circle-fill"></i> No notifications available.
+    </div>
   </ng-template>
-  <button (click)="clearNotifications()" class="clear-button" *ngIf="notifications.length > 0">
-    Clear Notifications
-  </button>
 </div>
+

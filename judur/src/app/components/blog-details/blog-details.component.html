@@ -12,6 +12,9 @@
           />
           <h2>{{ postTitle }}</h2>
           <p>{{ postContent }}</p>
+          <a class="btn btn-facebook mt-3" (click)="shareOnFacebook()" title="Share on Facebook">
+            <i class="fab fa-facebook-f"></i> 
+          </a>
         </div>
         <hr />
         <!-- Comments Section -->
@@ -21,7 +24,7 @@
             <div class="comment d-flex align-items-start">
               <img
                 *ngIf="comment.user?.profile_picture"
-                [src]="comment.user.profile_picture"
+                [src]="getProfilePictureUrl(comment.user.profile_picture)"
                 alt="Profile Picture"
                 class="profile-picture"
                 style="
@@ -36,6 +39,7 @@
                 <!-- Display the user's name -->
                 <p>{{ comment.content }}</p>
                 <small>{{ comment.created_at | date : "short" }}</small>
+
               </div>
             </div>
           </div>

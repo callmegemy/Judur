@@ -8,7 +8,7 @@ import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-view-profile',
-  standalone: true,  // Make this a standalone component
+  standalone: true,  
   imports: [
     RouterLink, 
     RouterLinkActive, 
@@ -17,7 +17,7 @@ import { AuthService } from '../../services/auth.service';
     ReactiveFormsModule
   ],
   templateUrl: './view-profile.component.html',
-  styleUrls: ['./view-profile.component.css']  // Ensure correct plural "styleUrls"
+  styleUrls: ['./view-profile.component.css'] 
 })
 export class ViewProfileComponent {
   userType: string = '';
@@ -34,7 +34,7 @@ export class ViewProfileComponent {
   ngOnInit() {
     try {
         const currentUser = this.authService.getUserData();
-        console.log('Current User Data:', currentUser); // Log user data for debugging
+        console.log('Current User Data:', currentUser); 
         if (!currentUser || !currentUser.id) {
             this.errorMessage = 'User ID is not available.';
             return; // Exit if no valid user ID

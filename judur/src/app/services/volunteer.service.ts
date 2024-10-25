@@ -39,7 +39,7 @@ export class VolunteerService {
 getExaminerLandData(volunteerId: number): Observable<any> {
   console.log(`Calling API: ${this.apiUrl}/examiner-lands/${volunteerId}`);
   return this.http.get(`${this.apiUrl}/examiner-lands/${volunteerId}`).pipe(
-      tap(data => console.log('API response:', data)), // Log the API response
+      tap(data => console.log('API response:', data)), 
       catchError((error) => {
           console.error('Error fetching data:', error);
           return throwError(error);
@@ -56,7 +56,14 @@ getPendingLands(): Observable<any> {
 }
 
 notifyLandOwner(request: { landId: any; inspectionDate: string }): Observable<any> {
-  return this.http.post(`${this.apiUrl}/lands/notify-land-owners`, request);
+  const token = localStorage.getItem('auth_token');
+
+  const headers = new HttpHeaders({
+    Authorization: `Bearer ${token}`,
+    'Content-Type': 'application/json', 
+  });
+
+  return this.http.post(`${this.apiUrl}/lands/notify-land-owners`, request, { headers });
 }
 
 

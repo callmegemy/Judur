@@ -1,0 +1,6 @@
+<div class="broadcaster-container">
+    <button (click)="startLiveStream()" [disabled]="isLive" class="btn-live">Start Live Stream</button>
+    <button (click)="endLiveStream()" [disabled]="!isLive" class="btn-live">End Live Stream</button>
+    <video #localVideo autoplay muted class="video-element"></video>
+    <a [routerLink]="['/']" routerLinkActive="router-link-active" >Back To Home</a>
+  </div>

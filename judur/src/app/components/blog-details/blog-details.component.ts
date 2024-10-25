@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { BlogService } from '../../services/blog.service';
-import { AuthService } from '../../services/auth.service'; // Import AuthService to handle user authentication
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-blog-details',
@@ -17,25 +17,24 @@ export class BlogDetailsComponent implements OnInit {
   mainImage: string = '';
   postTitle: string = '';
   postContent: string = '';
-  comments: any[] = []; // Initialize comments array
-  commentContent: string = ''; // Store comment input
+  comments: any[] = [];
+  commentContent: string = '';
   recentPosts: any[] = [];
   sidebarImage1: string = 'assets/img/blog-1.jpg';
 
   constructor(
     private route: ActivatedRoute,
     private blogService: BlogService,
-    private authService: AuthService // Inject AuthService
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       const id = Number(params.get('id'));
       this.loadPostDetails(id);
-      this.loadComments(id); // Load comments when post details are loaded
+      this.loadComments(id);
     });
 
-    // Fetch recent posts from the service
     this.blogService.getRecentPosts(10).subscribe((posts: any[]) => {
       this.recentPosts = posts;
     }, (error: any) => {
@@ -57,11 +56,10 @@ export class BlogDetailsComponent implements OnInit {
     this.blogService.getCommentsByPost(postId).subscribe(comments => {
       this.comments = comments;
 
-      // Enrich comments with user names and profile pictures
       this.comments.forEach(comment => {
         const userId = comment.user_id;
         this.blogService.getUserById(userId).subscribe(user => {
-          comment.user = user; // Assuming the user object contains a `name` and `image` field
+          comment.user = user;
         });
       });
     }, (error: any) => {
@@ -70,16 +68,15 @@ export class BlogDetailsComponent implements OnInit {
   }
 
   submitComment(): void {
-    const userId = this.authService.getUserId(); // Retrieve the logged-in user's ID
-    const postId = Number(this.route.snapshot.paramMap.get('id')); // Get the current post ID
+    const userId = this.authService.getUserId();
+    const postId = Number(this.route.snapshot.paramMap.get('id'));
 
     this.blogService.addComment({ post_id: postId, user_id: userId, content: this.commentContent })
       .subscribe(response => {
-        // Enrich the new comment with the user's name and profile picture
         this.blogService.getUserById(userId).subscribe(user => {
-          response.user = user; // Add the user info to the new comment
-          this.comments.unshift(response); // Add the new comment to the beginning of the comments array
-          this.commentContent = ''; // Clear the input field
+          response.user = user;
+          this.comments.unshift(response);
+          this.commentContent = '';
         });
       }, (error: any) => {
         console.error('Error posting comment:', error);
@@ -88,5 +85,19 @@ export class BlogDetailsComponent implements OnInit {
 
   onPostClick(postId: number): void {
     this.loadPostDetails(postId);
+  }
+
+  getProfilePictureUrl(picture: string): string {
+    return picture ? `http://127.0.0.1:8000/storage/${picture}` : 'assets/img/profile-picture.jpg';
+  }
+
+  shareOnFacebook(): void {
+    const postId = this.route.snapshot.paramMap.get('id'); 
+    const ngrokUrl = `https://bb6a-102-185-35-68.ngrok-free.app/blog/${postId}`;
+    const title = encodeURIComponent(this.postTitle);
+    const image = encodeURIComponent(this.mainImage);
+    const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(ngrokUrl)}&quote=${title}&picture=${image}`;
+  
+    window.open(facebookShareUrl, '_blank');
   }
 }

@@ -1,36 +1,55 @@
 <app-navbar></app-navbar>
 
-<div class="event-details" *ngIf="event">
-  <div class="event-header">
-    <h1 class="event-title">{{ event.title }}</h1>
-    <img [src]="event.image_url" alt="{{ event.title }} Image" loading="lazy" class="event-image">
-  </div>
+<div class="container event-container">
+  <div class="row align-items-center">
+    <!-- Image Section -->
+    <div class="col-md-4">
+      <div class="image-container">
+        <img [src]="event.image_url" alt="{{ event.title }} Image" loading="lazy" class="event-image">
+      </div>
+    </div>
 
-  <div class="event-info-horizontal">
-    <div class="event-section">
-      <h3><i class="fas fa-map-marker-alt"></i> Location:</h3>
-      <p>{{ event.location }}</p>
-    </div>
-    <div class="event-section">
-      <h3><i class="fas fa-calendar-alt"></i> Date & Time:</h3>
-      <p>{{ event.date }} - {{ event.time }}</p>
-    </div>
-    <div class="event-section">
-      <h3><i class="fas fa-clock"></i> Duration:</h3>
-      <p>{{ event.duration }} hours</p>
-    </div>
-    <div class="event-section">
-      <h3><i class="fas fa-users"></i> Expected Organizers:</h3>
-      <p>{{ event.expected_organizer_number }}</p>
-    </div>
-    <div class="event-section">
-      <h3><i class="fas fa-info-circle"></i> Description:</h3>
-      <p>{{ event.description }}</p>
+    <!-- Event Details Section -->
+    <div class="col-md-8">
+      <div class="event-details">
+        <div class="event-header">
+          <h1 class="event-title">{{ event.title }}</h1>
+        </div>
+
+        <div class="event-info">
+          <div class="event-section">
+            <h3>Location:</h3>
+            <p>{{ event.location }}</p>
+          </div>
+          <div class="event-section">
+            <h3>Date & Time:</h3>
+            <p>{{ event.date }} - {{ event.time }}</p>
+          </div>
+          <div class="event-section">
+            <h3>Duration:</h3>
+            <p>{{ event.duration }} hours</p>
+          </div>
+          <div class="event-section">
+            <h3>Expected Organizers:</h3>
+            <p>{{ event.expected_organizer_number }}</p>
+          </div>
+        </div>
+
+        <div class="event-description">
+          <h3>Description</h3>
+          <p>{{ event.description }}</p>
+        </div>
+
+        <a class="btn btn-facebook mt-3 justify-content-center" (click)="shareOnFacebook()" title="Share on Facebook">
+          <i class="fab fa-facebook-f "></i> 
+        </a>
+      </div>
     </div>
   </div>
+  <div class="event-actions d-flex justify-content-center">
+    <app-event-join style="background-color: transparent; border: none;" [eventId]="event.id"></app-event-join>
+  </div>
+  <div>
 
-  <div class="event-actions">
-    <app-event-join [eventId]="event.id"></app-event-join>
-    <a class="btn btn-custom" routerLink="/list-event">Back</a>
   </div>
 </div>
