@@ -7,19 +7,26 @@ import { FeedbackService } from '../../feedback.service';
 import { BlogPost, BlogService } from '../../services/blog.service';
 import { ChatbotService } from '../../services/chatbot.service';
 
+
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [RouterLink, RouterLinkActive, CommonModule, NavbarComponent, ReactiveFormsModule],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  
 })
 export class HomeComponent implements OnInit {
-
   testimonials: any[] = [];
   recentPosts: BlogPost[] = [];
   isChatOpen = false;
   chatForm: FormGroup;
+  showDonationSection = false;
+  showAboutUsSection = false;
+  showServiceSection = false;
+  showBlogSection = false;
+
+
   chatMessages: { text: string, fromUser: boolean }[] = [];
   suggestedQuestions: string[] = [];  
 
@@ -36,7 +43,23 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadFeedback();
+    const footer = document.querySelector('.footer')!; 
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          footer.classList.add('animate__fadeIn');
+          observer.disconnect();
+        }
+      });
+    });
+
+    if (footer) {
+      observer.observe(footer);
+    }
+  
     this.loadRecentPosts();
+    this.loadSections();
+
   }
 
   loadFeedback(): void {
@@ -103,7 +126,23 @@ export class HomeComponent implements OnInit {
       );
     }
   }
+  loadSections() {
+    setTimeout(() => {
+      this.showDonationSection = true;
 
+      setTimeout(() => {
+        this.showAboutUsSection = true;
+
+        setTimeout(() => {
+          this.showServiceSection = true;
+
+          setTimeout(() => {
+            this.showBlogSection = true;
+          }, 1400); 
+        }, 1200);
+      }, 1000); 
+    }, 800); 
+  }
   // Handle suggested question click
   selectSuggestedQuestion(question: string) {
     this.chatForm.patchValue({ message: question });
