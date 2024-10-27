@@ -30,6 +30,7 @@
     </div>
   </div>
   <!-- Chatbot Section -->
+<<<<<<< HEAD
 <div class="chat-container">
   <!-- Chat Toggle Button -->
   <button class="chat-toggle" (click)="toggleChat()"><span>Chat</span></button>
@@ -38,6 +39,32 @@
   <div class="chat-window" [class.open]="isChatOpen">
     <div *ngFor="let message of chatMessages" [ngClass]="{'user-message': message.fromUser, 'bot-message': !message.fromUser}">
       {{ message.text }}
+=======
+  <div class="chat-container">
+    <!-- Chat Toggle Button -->
+    <button class="chat-toggle" (click)="toggleChat()"><span>Chat</span></button>
+  
+    <!-- Chat Window -->
+    <div class="chat-window" [class.open]="isChatOpen">
+      <!-- Chat Messages -->
+      <div *ngFor="let message of chatMessages" [ngClass]="{'user-message': message.fromUser, 'bot-message': !message.fromUser}">
+        {{ message.text }}
+      </div>
+  
+      <!-- Suggested Questions -->
+      <div *ngIf="suggestedQuestions.length > 0" class="suggestions">
+        <p style="color: #16423C;font-weight: bold;">Suggested Questions:</p>
+        <button *ngFor="let question of suggestedQuestions" (click)="selectSuggestedQuestion(question)">
+          {{ question }}
+        </button>
+      </div>
+      
+      <!-- Chat Input Form -->
+      <form [formGroup]="chatForm" (ngSubmit)="sendMessage()">
+        <input formControlName="message" placeholder="Type your message..." required>
+        <button type="submit">Send</button>
+      </form>
+>>>>>>> 830dcce0ac65a8fbd624958203fbd9203b011c25
     </div>
 
     <form [formGroup]="chatForm" (ngSubmit)="sendMessage()">
@@ -206,6 +233,7 @@
     <div class="container mb-4">
       <h2 class="section-title mb-5 mt-4 text-center animate__animated animate__fadeIn">Latest News & Updates</h2>
       <div class="row">
+<<<<<<< HEAD
         <div 
           class="col-lg-4 col-md-6 blog-post animate__animated" 
           *ngFor="let post of recentPosts; let i = index" 
@@ -222,6 +250,19 @@
             </h3>
             <p class="post-excerpt">{{ post.description }}</p>
             <a [routerLink]="['/blog', post.id]" class="btn read-more">Read More</a>
+=======
+          <div class="col-lg-4 col-md-6 blog-post animate__animated animate__fadeIn" *ngFor="let post of recentPosts; let i = index" [ngClass]="{'animate__delay-1s': i > 0}">
+              <div class="post-card">
+                  <div class="post-image">
+                      <img [src]="post.image" alt="{{ post.title }}" class="img-fluid" />
+                  </div>
+                  <h3 class="post-title">
+                      <a [routerLink]="['/blog', post.id]" class="text-decoration-none text-dark">{{ post.title }}</a>
+                  </h3>
+                  <p class="post-excerpt">{{ post.description }}</p>
+                  <a [routerLink]="['/blog', post.id]" class="btn read-more">Read More</a>
+              </div>
+>>>>>>> 830dcce0ac65a8fbd624958203fbd9203b011c25
           </div>
         </div>
       </div>
@@ -229,7 +270,7 @@
         <a routerLink="/blog" class="btn btn-secondary mt-5 mb-5" style="background-color: #16423C; color: white;">View All Posts</a>
       </div>
     </div>
-  </section>
+
   
 
 

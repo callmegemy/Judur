@@ -33,7 +33,7 @@ interface Feedback {
 })
 export class EventDetailsComponent {
   event: any;
-  ngrokUrl: string = 'https://bb6a-102-185-35-68.ngrok-free.app'; 
+  ngrokUrl: string = 'https://cfef-102-185-9-243.ngrok-free.app'; 
 
   constructor(
     private route: ActivatedRoute,
@@ -54,7 +54,7 @@ export class EventDetailsComponent {
   setMetaTags(event: any) {
     this.renderer.setAttribute(document.querySelector('meta[property="og:title"]'), 'content', event.title);
     this.renderer.setAttribute(document.querySelector('meta[property="og:description"]'), 'content', event.description);
-    this.renderer.setAttribute(document.querySelector('meta[property="og:image"]'), 'content', event.image); // Use the correct image URL
+    this.renderer.setAttribute(document.querySelector('meta[property="og:image"]'), 'content', event.image_url); // Use the correct image URL
     this.renderer.setAttribute(document.querySelector('meta[property="og:url"]'), 'content', window.location.href);
   }
 
@@ -66,4 +66,13 @@ export class EventDetailsComponent {
     window.open(facebookShareUrl, '_blank');
   }
 
+  shareOnX() {
+    const eventId = this.route.snapshot.paramMap.get('id');
+    const url = `${this.ngrokUrl}/list-event/event-details/${eventId}`;
+    const title = encodeURIComponent(this.event.title);
+    const description = encodeURIComponent(this.event.description);
+    const xShareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${title}%0A${description}`;
+    
+    window.open(xShareUrl, '_blank');
+}
 }
