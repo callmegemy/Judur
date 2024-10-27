@@ -1,0 +1,46 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-5">
+  <div class="event-details" *ngIf="event">
+    <div class="event-header">
+      <h1>{{ event.title }}</h1>
+      <img [src]="event.image" alt="{{ event.title }} Image" loading="lazy">
+    </div>
+
+    <div class="event-info">
+      <div class="event-section">
+        <h3>Location</h3>
+        <p>{{ event.location }}</p>
+      </div>
+      <div class="event-section">
+        <h3>Date & Time</h3>
+        <p>{{ event.date }} - {{ event.duration }}</p>
+      </div>
+      <div class="event-section">
+        <h3>Status</h3>
+        <p>{{ event.status }}</p>
+      </div>
+    </div>
+
+    <div class="event-description">
+      <h3>Description</h3>
+      <p>{{ event.description }}</p>
+    </div>
+
+    <div class="event-actions">
+      <a class="btn" routerLink="/join-event">Join Now</a>
+      <a class="btn" routerLink="/list-event">Back To Events</a>
+    </div>
+
+    <div class="feedbacks">
+      <h2>Feedbacks</h2>
+      <div class="feedback-list" *ngIf="event.feedbacks.length > 0">
+        <div class="feedback" *ngFor="let feedback of event.feedbacks">
+          <p>"{{ feedback.text }}"</p>
+          <small>By {{ feedback.user }} on {{ feedback.date }}</small>
+        </div>
+      </div>
+      <p *ngIf="event.feedbacks.length === 0">No feedback yet.</p>
+    </div>
+  </div>
+</div>

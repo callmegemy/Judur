@@ -1,0 +1,39 @@
+<link href="/assets/css/anaylsis.css" rel="stylesheet">
+
+<div class="header">
+    <h1>Volunteer Analytics</h1>
+</div>
+
+<div class="container">
+    <div class="summary">
+        <div class="summary-card">
+          <h4>Total Events</h4>
+          <p>{{ summaryData?.totalEvents }}</p>
+        </div>
+        <div class="summary-card">
+          <h4>Total Hours</h4>
+          <p>{{ summaryData?.totalHours }}</p>
+        </div>
+        <div class="summary-card">
+          <h4>People Helped</h4>
+          <p>{{ summaryData?.peopleHelped }}</p>
+        </div>
+        <div class="summary-card">
+          <h4>Goods Distributed</h4>
+          <p>{{ summaryData?.goodsDistributed | currency }}</p>
+        </div>
+      </div>
+
+      <div class="graph-section">
+        <canvas id="activityChart"></canvas>
+      </div>
+      
+
+    <div class="navigation">
+        <a routerLink="/participation-details">View Participation Details</a>
+        <a routerLink="/performance-report">View Performance Report</a>
+        <a routerLink="/suitability-evaluations">View Suitability Evaluations</a>
+    </div>
+</div>
+
+

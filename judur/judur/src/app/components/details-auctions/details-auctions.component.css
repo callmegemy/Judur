@@ -1,0 +1,206 @@
+:root {
+    --primary: #16423C;   /* Primary color */
+    --secondary: #6A9C89; /* Secondary color */
+    --light: #E9EFEC;     /* Light background color */
+    --dark: #001D23;      /* Dark text color */
+    --accent: #C08962;    /* Accent color for contrast */
+}
+
+body {
+    background-color: var(--light); /* Light background */
+    font-family: 'Arial', sans-serif; /* Clean font */
+}
+
+.container {
+    max-width: 900px; /* Set a max-width for the container */
+    margin: 50px auto; /* Add more spacing at the top */
+    padding: 20px;
+}
+
+.card {
+    background-color: #fff; /* Keep card background white */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Enhanced shadow for depth */
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease; /* Add hover effect */
+}
+
+.card:hover {
+    transform: scale(1.02); /* Slightly enlarge the card on hover */
+}
+
+.card img {
+    width: 100%; 
+    border-radius: 0; /* No rounding for images */
+    height: 450px; /* Fixed height for better layout */
+    object-fit: cover; /* Ensures the image is cropped properly */
+}
+
+.card-body {
+    padding: 30px; /* Increased padding for better layout */
+    text-align: center; /* Center the content */
+}
+
+.card-title {
+    font-size: 1.8rem;
+    color: var(--primary); /* Primary color for the title */
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: var(--dark); /* Dark text for better readability */
+    line-height: 1.6;
+}
+
+.card-text strong {
+    color: var(--accent); /* Accent color for key text */
+}
+
+.btn-primary {
+    background-color: var(--secondary); /* Use secondary color for buttons */
+    border: none;
+    color: #fff;
+    padding: 12px 25px;
+    height: 50px;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary); /* Darker color on hover */
+}
+
+.input-group {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+input[type="number"] {
+    width: 200px;
+    padding: 12px 25px;
+
+    margin-right: 10px;
+    border: 1px solid var(--secondary);
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .card img {
+        height: auto; /* Make image responsive for smaller screens */
+    }
+    
+    .card-body {
+        padding: 20px;
+    }
+    
+    .container {
+        padding: 15px;
+    }:root {
+        --primary: #16423C;   /* Primary color */
+        --secondary: #6A9C89; /* Secondary color */
+        --light: #E9EFEC;     /* Light background color */
+        --dark: #001D23;      /* Dark text color */
+        --accent: #C08962;    /* Accent color for contrast */
+    }
+    
+    body {
+        background-color: var(--light); /* Light background */
+        font-family: 'Arial', sans-serif; /* Clean font */
+    }
+    
+    .container {
+        max-width: 900px; /* Set a max-width for the container */
+        margin: 50px auto; /* Center the container */
+        padding: 20px;
+    }
+    
+    .custom-card {
+        background-color: #fff; /* Keep card background white */
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Enhanced shadow for depth */
+        border-radius: 15px;
+        overflow: hidden;
+        transition: transform 0.3s ease; /* Add hover effect */
+    }
+    
+    .custom-card:hover {
+        transform: scale(1.02); /* Slightly enlarge the card on hover */
+    }
+    
+    .custom-img {
+        width: 100%; 
+        height: 300px; /* Fixed height for better layout */
+        object-fit: cover; /* Ensures the image is cropped properly */
+    }
+    
+    .card-body {
+        padding: 30px; /* Increased padding for better layout */
+        text-align: left; /* Align text to the left for better readability */
+    }
+    
+    .card-title {
+        font-size: 1.8rem;
+        color: var(--primary); /* Primary color for the title */
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+    
+    .card-text {
+        font-size: 1rem;
+        color: var(--dark); /* Dark text for better readability */
+        line-height: 1.6;
+        margin-bottom: 10px; /* Add margin for spacing */
+    }
+    
+    .card-text strong {
+        color: var(--accent); /* Accent color for key text */
+    }
+    
+    .btn-primary {
+        background-color: var(--secondary); /* Use secondary color for buttons */
+        border: none;
+        color: #fff;
+        padding: 12px 20px; /* Adjust padding for better button size */
+        border-radius: 30px; /* Rounded buttons */
+        font-size: 1rem;
+        font-weight: 500;
+        transition: background-color 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+        background-color: var(--primary); /* Darker color on hover */
+    }
+    
+    .input-group {
+        display: flex; /* Flexbox for layout */
+        justify-content: center; /* Center the button and input */
+        margin: 20px 0; /* Add vertical margin */
+    }
+    
+    input[type="number"] {
+        width: 180px; /* Adjust width for input */
+        padding: 10px; /* Padding for input */
+        margin-right: 10px; /* Space between input and button */
+        border: 2px solid var(--secondary); /* Border color */
+        border-radius: 20px; /* Rounded corners */
+        text-align: center; /* Centered text */
+    }
+    
+    @media (max-width: 768px) {
+        .custom-img {
+            height: auto; /* Make image responsive for smaller screens */
+        }
+        
+        .card-body {
+            padding: 20px; /* Adjust padding for smaller screens */
+        }
+        
+        .container {
+            padding: 15px; /* Adjust container padding */
+        }
+    }
+    
+}

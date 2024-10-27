@@ -1,0 +1,82 @@
+/* Container styles */
+.edit-auction {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background-color: #E9EFEC; /* Light background */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Form group styling */
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  label {
+    font-weight: bold;
+    color: #16423C; /* Dark green color for labels */
+  }
+  
+  /* Input fields */
+  .custom-input {
+    background-color: #E9EFEC;
+    border: 2px solid #C4DAD2; /* Light green border */
+    border-radius: 4px;
+    padding: 0.75rem;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+  }
+  
+  /* Focus state for input fields */
+  .custom-input:focus {
+    border-color: #6A9C89; /* Dark green border on focus */
+    outline: none;
+    box-shadow: 0 0 4px rgba(106, 156, 137, 0.5);
+  }
+  
+  /* Button styling */
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .submit-button {
+    background-color: #6A9C89;
+    border: none;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 48%;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-button:hover {
+    background-color: #558270; /* Darker green on hover */
+  }
+  
+  .back-button {
+    background-color: #C4DAD2;
+    border: none;
+    color: #16423C;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 48%;
+    transition: background-color 0.3s ease;
+  }
+  
+  .back-button:hover {
+    background-color: #A4BAB2;
+  }
+  
+  /* Invalid feedback */
+  .invalid-feedback {
+    color: #d9534f;
+    font-size: 0.875rem;
+  }

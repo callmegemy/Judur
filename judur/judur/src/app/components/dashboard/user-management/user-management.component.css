@@ -1,0 +1,20 @@
+ /* Custom styles for action buttons to make their shapes consistent */
+ .btn-circle {
+    width: 35px;
+    height: 35px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.btn-circle i {
+    font-size: 16px;
+}
+
+/* Additional hover effect for better user experience */
+.btn-circle:hover {
+    opacity: 0.9;
+}

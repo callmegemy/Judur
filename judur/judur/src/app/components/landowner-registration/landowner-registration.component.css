@@ -1,0 +1,39 @@
+/* Custom styles for the landowner registration form */
+.container {
+  margin-top: 150px;
+}
+
+.form-control {
+  padding: .75rem 1rem;
+  font-size: 1.1rem;
+  height: auto;
+  border: 2px solid #C4DAD2;
+  border-radius: .3rem;
+  background-color: #E9EFEC;
+}
+
+.form-control:focus {
+  border-color: #6A9C89;
+  box-shadow: 0 0 0 0.2rem rgba(106, 156, 137, 0.25);
+ 
+}
+
+.btn {
+  padding: .75rem 1.5rem;
+
+  font-size: 1.1rem;
+ 
+  border-radius: .3rem;
+  background-color: #2a7066;
+  color: #E9EFEC;
+}
+
+.btn:hover {
+  background-color: #6A9C89;
+  color: #E9EFEC;
+}
+
+.form-label {
+  font-size: 1.1rem;
+  margin-bottom: .5rem;
+}

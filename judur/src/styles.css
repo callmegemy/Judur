@@ -1,4 +1,6 @@
 /* profile css  */
+@import 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css';
+
 /* General body and container styling */
 body {
     font-family: "Saira",sans-serif !important;

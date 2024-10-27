@@ -1,0 +1,169 @@
+<app-navbar></app-navbar>
+
+<!-- Page Header Start -->
+<link href="/assets/css/style.css" rel="stylesheet">
+
+<div class="container-fluid page-header1 mb-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container text-center">
+
+        <h1 class="display-4 text-white animated slideInDown mb-4">Donate</h1>
+        <nav aria-label="breadcrumb animated slideInDown">
+            <ol class="breadcrumb justify-content-center mb-0">
+                <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
+                <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
+                <li class="breadcrumb-item text-primary active" aria-current="page">Donate</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<!-- Page Header End -->
+
+<!-- Hero Section -->
+<section class="hero-section text-center text-white py-1 "
+    style="background-image: url('/assets/img/hero-bg.jpg'); background-size: cover; background-position: center;">
+    <div class="container">
+        <h1 class="display-4">Make a Difference Today</h1>
+        <p class="lead text-dark">Your donations feed the hungry, provide shelter, and empower change.</p>
+       
+    </div>
+</section>
+
+<!-- Donation Options -->
+
+<section class="donation-options py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="card h-100 text-center p-4">
+                    <h3 class="card-title">Financial Donations</h3>
+                    <p class="card-text">Contribute funds to support our feeding programs and community initiatives.
+                    </p>
+                    <div class="col-12 text-center mb-4">
+                        <button type="submit" routerLink="/money-donation" class="btn btn-primary btn-lg">Donate Now</button>
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card h-100 text-center p-4">
+                    <h3 class="card-title">Donate Items</h3>
+                    <p class="card-text">Donate valuable items or personal belongings. Valuable items may be
+                        auctioned to maximize their impact.</p>
+                    
+                    <div class="col-12 text-center mb-4">
+                        <button type="submit" routerLink="/auction" class="btn btn-primary btn-lg">Donate Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card h-100 text-center p-4">
+                    <h3 class="card-title">Donate a Place</h3>
+                    <p class="card-text">Provide spaces for feeding programs or temporary shelters.</p>
+                    <div class="col-12 text-center mb-4">
+                        <button type="submit"  routerLink="/landowner-registration" class="btn btn-primary btn-lg">Donate Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Impact Section -->
+<!-- <section class="impact-section bg-light py-5">
+        <div class="container text-center">
+            <h2 class="mb-4">Your Impact</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <h3>Meals Served</h3>
+                    <p class="display-6">10,000+</p>
+                </div>
+                <div class="col-md-4">
+                    <h3>Families Supported</h3>
+                    <p class="display-6">500+</p>
+                </div>
+                <div class="col-md-4">
+                    <h3>Valuable Items Auctioned</h3>
+                    <p class="display-6">150+</p>
+                </div>
+            </div>
+            <div class="mt-4">
+                <h4>Success Stories</h4>
+                <p>Read inspiring stories of those who have benefited from your generosity.</p>
+                <a class="btn btn-primary" href="testimonial.html">Read More</a>
+            </div>
+        </div>
+    </section> -->
+
+<!-- Donation Form -->
+<!-- <section id="donation-form" class="donation-form-section py-1">
+    <div class="container">
+        <h2 class="text-center mb-4">Complete Your Donation</h2>
+        <form id="donationForm">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <input type="text" class="form-control" placeholder="Your Name" required>
+                </div>
+                <div class="col-md-6">
+                    <input type="email" class="form-control" placeholder="Your Email" required>
+                </div>
+                <div class="col-md-6">
+                    <input type="tel" class="form-control" placeholder="Phone Number" required>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" placeholder="Address" required>
+                </div>
+                <div class="col-12">
+                    <select class="form-select mb-3" id="donationType" required>
+                        <option selected>Type of Donation</option>
+                        <option value="financial">Financial</option>
+                        <option value="items">Items</option>
+                        <option value="place">Place</option>
+                    </select>
+                </div>
+                <div class="col-12" id="financialSection" style="display: none;">
+                    <textarea class="form-control" rows="4" placeholder="Financial Donation Amount" required></textarea>
+                </div>
+                <div class="col-12" id="itemsSection" style="display: none;">
+                    <input type="file" class="form-control mb-3" accept="image/*" multiple>
+                    <select class="form-select mb-3">
+                        <option selected>Choose Item Category</option>
+                        <option>Electronics</option>
+                        <option>Jewelry</option>
+                        <option>Clothes</option>
+                        <option>Food</option>
+                    </select>
+                    <textarea class="form-control" rows="4" placeholder="Description of items" required></textarea>
+                </div>
+                <div class="col-12" id="placeSection" style="display: none;">
+                    <input type="text" class="form-control mb-2" placeholder="Location" required>
+                    <input type="text" class="form-control mb-2" placeholder="Size (e.g., 1000 sq ft)" required>
+                    <input type="number" class="form-control mb-2" placeholder="Capacity" required>
+                    <select class="form-select mb-2" required>
+                        <option selected>Type of Place</option>
+                        <option>Kitchen</option>
+                        <option>Hall</option>
+                        <option>Outdoor Space</option>
+                    </select>
+                    <p class="small">* All places will be inspected for suitability.</p>
+                </div>
+                <div class="col-12">
+                    <input type="checkbox" required> I agree to the <a href="#">terms and conditions</a> of donations.
+                </div>
+                <div class="col-12 text-center mb-4">
+                    <button type="submit" class="btn btn-primary btn-lg">Submit Donation</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section> -->
+
+<!-- Footer Start -->
+<footer class="footer bg-dark text-white py-5">
+    <div class="container text-center">
+        <p class="mb-0">© 2023 JUDUR. All Rights Reserved.</p>
+    </div>
+</footer>
+<!-- Footer End -->
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>

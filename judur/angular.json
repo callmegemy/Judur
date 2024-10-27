@@ -33,7 +33,7 @@
               "src/styles.css",
               "src/assets/css/bootstrap.min.css",
               "node_modules/bootstrap-icons/font/bootstrap-icons.css",
-
+ "node_modules/animate.css/animate.min.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "node_modules/datatables.net-dt/css/dataTables.dataTables.min.css"
               
@@ -116,7 +116,7 @@
               "src/styles.css",
               "src/assets/css/bootstrap.min.css",
               "node_modules/bootstrap-icons/font/bootstrap-icons.css",
-
+ "node_modules/animate.css/animate.min.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "node_modules/datatables.net-dt/css/dataTables.dataTables.min.css"
             ],

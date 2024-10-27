@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Judur - Dashboard</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="../../../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="../../../../assets/css/sb-admin-2.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-judur-reverse sidebar sidebar-dark accordion" id="accordionSidebar">
+<app-sidebar></app-sidebar>
+</ul>
+
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+<app-topbar></app-topbar>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-judur font-weight-bold">Event Edit</h1>
+                    </div>
+
+
+                    <!-- volunteer-to-examiner.component.html -->
+<div class="container mt-5 text-judur">
+    <div class="card shadow custom-hover-shadow">
+      <div class="card-header">
+        <h2 ><i class="fa-regular fa-calendar-days"></i> (Events`s Title) Event</h2>
+      </div>
+      <div class="card-body">
+        <form action="#" method="POST">
+          <!-- Event Title -->
+          <div class="form-group mb-3">
+            <label for="eventTitle" class="font-weight-bold">Event Title</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa-solid fa-calendar"></i></span>
+              </div>
+              <input type="text" id="eventTitle" class="form-control" placeholder="Enter event title" required value="Feeding the Homeless Campaign">
+            </div>
+          </div>
+        
+          <!-- Event Location -->
+          <div class="form-group mb-3">
+            <label for="eventLocation" class="font-weight-bold">Event Location</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+              </div>
+              <input type="text" id="eventLocation" class="form-control" placeholder="Enter event location" required value="City Central Park">
+            </div>
+          </div>
+        
+          <!-- Event Date -->
+          <div class="form-group mb-3">
+            <label for="eventDate" class="font-weight-bold">Event Date</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+              </div>
+              <input type="date" id="eventDate" class="form-control" required value="2024-11-25">
+            </div>
+          </div>
+        
+          <!-- Event Time -->
+          <div class="form-group mb-3">
+            <label for="eventTime" class="font-weight-bold">Event Time</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-clock"></i></span>
+              </div>
+              <input type="time" id="eventTime" class="form-control" required value="12:00">
+            </div>
+          </div>
+        
+          <!-- Number of Volunteers -->
+          <div class="form-group mb-3">
+            <label for="volunteers" class="font-weight-bold">Number of Volunteers</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-users"></i></span>
+              </div>
+              <input type="number" id="volunteers" class="form-control" placeholder="Enter number of volunteers" required value="30">
+            </div>
+          </div>
+        
+          <!-- Event Description -->
+          <div class="form-group mb-4">
+            <label for="eventDescription" class="font-weight-bold">Event Description</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+              </div>
+              <textarea id="eventDescription" class="form-control" rows="3" placeholder="Enter event description" required>A charity event focused on feeding the homeless community. Volunteers will distribute meals and provide support services.</textarea>
+            </div>
+          </div>
+        
+          <!-- Submit Button -->
+          <div class="display-inline text-center">
+            <button type="submit" class="btn btn-success mx-3"><i class="fa-solid fa-check"></i> Update Event</button>
+            <button type="reset" class="btn btn-danger mx-3"><i class="fa-solid fa-xmark"></i> Cancel</button>
+          </div>
+        </form>
+        
+      </div>
+      <button type="submit" class="btn btn-judur mx-3"><i class="fa-solid fa-arrow-left"></i>  back</button>
+
+    </div>
+  </div>
+                
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Judur 2024</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<app-navbar></app-navbar>
+
+<!-- volunteer-to-examiner.component.html -->
+<div class="container mt-5">
+    <div class="card shadow custom-hover-shadow">
+      <div class="card-header">
+        <h2><i class="fas fa-user-check"></i> Become an Examiner</h2>
+      </div>
+      <div class="card-body">
+        <form action="#" method="POST">
+          <!-- Full Name -->
+          <div class="form-group mb-3">
+            <label for="fullName" class="font-weight-bold">Full Name</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+              </div>
+              <input type="text" id="fullName" class="form-control" placeholder="Enter full name" required>
+            </div>
+          </div>
+  
+          <!-- Email Address -->
+          <div class="form-group mb-3">
+            <label for="email" class="font-weight-bold">Email Address</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+              </div>
+              <input type="email" id="email" class="form-control" placeholder="Enter email address" required>
+            </div>
+          </div>
+  
+          <!-- Reason for Applying -->
+          <div class="form-group mb-4">
+            <label for="reason" class="font-weight-bold">Reason for Applying</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+              </div>
+              <textarea id="reason" class="form-control" rows="3" placeholder="Why do you want to become an examiner?" required></textarea>
+            </div>
+          </div>
+  
+          <!-- Availability -->
+          <div class="form-group mb-3">
+            <label for="availability" class="font-weight-bold">When are you available during the week?</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-clock"></i></span>
+              </div>
+              <input type="text" id="availability" class="form-control" placeholder="e.g., Monday to Friday, 5 PM - 8 PM" required>
+            </div>
+          </div>
+  
+          <!-- Hours per Week -->
+          <div class="form-group mb-3">
+            <label for="hours" class="font-weight-bold">How many hours can you dedicate per week?</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+              </div>
+              <input type="number" id="hours" class="form-control" placeholder="Enter hours" required>
+            </div>
+          </div>
+  
+          <!-- Non-Profit Awareness -->
+          <div class="form-group mb-4">
+            <label class="font-weight-bold">Are you aware that we are a non-profit charity?</label>
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="nonProfitAwareness" required>
+              <label class="form-check-label" for="nonProfitAwareness">Yes, I understand.</label>
+            </div>
+          </div>
+  
+          <!-- Submit Button -->
+          <button type="submit" class="btn btn-success btn-block">Submit Application</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,42 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <h1>Edit Profile</h1>
+
+  <div class="profile-container">
+    <div class="profile-pic">
+      <img src="assets/img/profile-picture.jpg" alt="Profile Picture">
+    </div>
+
+    <div class="profile-info">
+      <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" formControlName="name" />
+            <div *ngIf="profileForm.get('name')?.invalid && profileForm.get('name')?.touched">
+              <small class="error">Name is required.</small>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" formControlName="email" />
+            <div *ngIf="profileForm.get('email')?.invalid && profileForm.get('email')?.touched">
+              <small class="error">A valid email is required.</small>
+            </div>
+          </div>
+
+        <!-- <div class="form-group">
+          <label for="profile-picture">Update Profile Picture:</label>
+          <input type="file" id="profile-picture" (change)="onFileSelected($event)" />
+        </div> -->
+
+        <button type="submit" class="btn" (click)="navigateToEdit()" [disabled]="profileForm.invalid">Update Profile</button>
+    </form>
+
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+    </div>
+  </div>
+</div>

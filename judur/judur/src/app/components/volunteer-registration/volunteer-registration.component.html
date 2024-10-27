@@ -1,0 +1,82 @@
+<div class="register-container ">
+  <img src="assets/img/ju.png" alt="Judur Logo" class="logo">
+  <form [formGroup]="volunteerForm" (ngSubmit)="registerVolunteer()">
+    <div class="form-group">
+      <label for="name"><i class="fas fa-user me-2"></i>Full Name</label>
+      <input formControlName="name" type="text" class="form-control" id="name" placeholder="Enter full name">
+      <div *ngIf="volunteerForm.controls['name'].invalid && volunteerForm.controls['name'].touched" class="text-danger">
+        Full Name is required (min 2 characters).
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email"><i class="fas fa-envelope me-2"></i>Email Address</label>
+      <input formControlName="email" type="email" class="form-control" id="email" placeholder="Enter email">
+      <div *ngIf="volunteerForm.controls['email'].invalid && volunteerForm.controls['email'].touched" class="text-danger">
+        Valid Email is required.
+      </div>
+    </div>
+    
+    
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input formControlName="password" type="password" class="form-control" id="password"
+          placeholder="Enter your password" required>
+      <div *ngIf="volunteerForm.controls['password'].invalid && volunteerForm.controls['password'].touched"
+          class="text-danger">
+          Password is required (min 6 characters).
+      </div>
+  </div>
+  <div class="form-group">
+    <label for="phone">Phone Number</label>
+    <input formControlName="phone" type="tel" class="form-control" id="phone"
+        placeholder="Enter your phone number" required>
+    <div *ngIf="volunteerForm.controls['phone'].invalid && volunteerForm.controls['phone'].touched" class="text-danger">
+        Phone Number is required.
+    </div>
+</div>
+
+    <div class="form-group">
+      <label for="skills"><i class="fas fa-tools me-2"></i>Skills</label>
+      <input formControlName="skills" type="text" class="form-control" id="skills" placeholder="Specify skills">
+      <div *ngIf="volunteerForm.controls['skills'].invalid && volunteerForm.controls['skills'].touched" class="text-danger">
+        Skills are required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="age"><i class="fas fa-birthday-cake me-2"></i>Age</label>
+      <input formControlName="age" type="number" class="form-control" id="age" placeholder="Enter your age">
+      <div *ngIf="volunteerForm.controls['age'].invalid && volunteerForm.controls['age'].touched" class="text-danger">
+        Age is required (minimum 18).
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="availability"><i class="fas fa-calendar-alt me-2"></i>Availability</label>
+      <input formControlName="availability" type="text" class="form-control" id="availability" placeholder="Enter availability">
+      <div *ngIf="volunteerForm.controls['availability'].invalid && volunteerForm.controls['availability'].touched" class="text-danger">
+        Availability is required.
+      </div>
+    </div>
+
+   
+
+ 
+
+    <div class="form-group">
+      <label for="aim"><i class="fas fa-search me-2"></i>Why do you want to volunteer?</label>
+      <textarea formControlName="aim" class="form-control" id="aim" placeholder="What motivates you to volunteer with us?"></textarea>
+      <div *ngIf="volunteerForm.controls['aim'].invalid && volunteerForm.controls['aim'].touched" class="text-danger">
+        aim is required.
+      </div>
+    </div>
+
+    <button type="submit" class="btn register-btn btn-block" [disabled]="volunteerForm.invalid">
+      <i class="fas fa-paper-plane me-2"></i>Register
+    </button>
+
+    <a routerLink="/login" class="d-block mt-3 login-link">Already have an account? Login</a>
+
+  </form>
+</div>

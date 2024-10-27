@@ -1,12 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FeedbackService } from '../../feedback.service';
 import { BlogPost, BlogService } from '../../services/blog.service';
 import { ChatbotService } from '../../services/chatbot.service';
-
 
 @Component({
   selector: 'app-home',
@@ -14,21 +13,21 @@ import { ChatbotService } from '../../services/chatbot.service';
   imports: [RouterLink, RouterLinkActive, CommonModule, NavbarComponent, ReactiveFormsModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
   testimonials: any[] = [];
   recentPosts: BlogPost[] = [];
   isChatOpen = false;
   chatForm: FormGroup;
-  showDonationSection = false;
-  showAboutUsSection = false;
-  showServiceSection = false;
-  showBlogSection = false;
-
+  animationClasses: { [key: string]: boolean } = {
+    donationSection: false,
+    aboutUsSection: false,
+    serviceSection: false,
+    blogSection: false,
+  };
 
   chatMessages: { text: string, fromUser: boolean }[] = [];
-  suggestedQuestions: string[] = [];  
+  suggestedQuestions: string[] = [];
 
   constructor(
     private feedbackService: FeedbackService,
@@ -43,23 +42,11 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadFeedback();
-    const footer = document.querySelector('.footer')!; 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          footer.classList.add('animate__fadeIn');
-          observer.disconnect();
-        }
-      });
-    });
-
-    if (footer) {
-      observer.observe(footer);
-    }
-  
     this.loadRecentPosts();
-    this.loadSections();
+  }
 
+  ngAfterViewInit(): void {
+    this.setupScrollObservers();
   }
 
   loadFeedback(): void {
@@ -80,25 +67,17 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  // Toggle Chat Window
   toggleChat() {
     this.isChatOpen = !this.isChatOpen;
-    
     if (this.isChatOpen && this.chatMessages.length === 0) {
- 
       this.loadInitialSuggestions();
     }
   }
-  
 
-  // Load initial suggested questions from the chatbot
   loadInitialSuggestions() {
     this.chatbotService.sendMessage('').subscribe(
       (response) => {
-        // Display the initial greeting message
         this.chatMessages.push({ text: 'Hello! How can I assist you today?', fromUser: false });
-  
-        // Display suggested questions
         this.suggestedQuestions = response.suggestions || [];
       },
       (error) => {
@@ -106,17 +85,17 @@ export class HomeComponent implements OnInit {
       }
     );
   }
-  
+
   sendMessage() {
     const userMessage = this.chatForm.value.message;
     if (userMessage.trim()) {
       this.chatMessages.push({ text: userMessage, fromUser: true });
       this.chatForm.reset();
-      
+
       this.chatbotService.sendMessage(userMessage).subscribe(
         (response) => {
           this.chatMessages.push({ text: response.answer, fromUser: false });
-          this.suggestedQuestions = response.suggestions || [];  // Update suggested questions
+          this.suggestedQuestions = response.suggestions || [];
           this.scrollToBottom();
         },
         (error) => {
@@ -126,30 +105,45 @@ export class HomeComponent implements OnInit {
       );
     }
   }
-  loadSections() {
-    setTimeout(() => {
-      this.showDonationSection = true;
 
-      setTimeout(() => {
-        this.showAboutUsSection = true;
+  setupScrollObservers() {
+    const sections = [
+      { selector: '#donation-section', key: 'donationSection' },
+      { selector: '#aboutus', key: 'aboutUsSection' },
+      { selector: '#service-section', key: 'serviceSection' },
+      { selector: '#blog-section', key: 'blogSection' },
+    ];
 
-        setTimeout(() => {
-          this.showServiceSection = true;
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1, // Trigger when 10% of the section is visible
+    };
 
-          setTimeout(() => {
-            this.showBlogSection = true;
-          }, 1400); 
-        }, 1200);
-      }, 1000); 
-    }, 800); 
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const key = sections.find(section => section.selector === `#${entry.target.id}`)?.key;
+        if (entry.isIntersecting) {
+          if (key) {
+            this.animationClasses[key] = true; // Set animation class to true when in view
+          }
+        } else {
+          // Reset animation class when the section is out of view
+          if (key) {
+            this.animationClasses[key] = false; // Reset the animation class
+          }
+        }
+      });
+    }, options);
+
+    sections.forEach(section => {
+      const element = document.querySelector(section.selector);
+      if (element) {
+        observer.observe(element);
+      }
+    });
   }
-  // Handle suggested question click
-  selectSuggestedQuestion(question: string) {
-    this.chatForm.patchValue({ message: question });
-    this.sendMessage();
-  }
 
-  // Scroll to the bottom of the chat window
   private scrollToBottom() {
     setTimeout(() => {
       const chatWindow = document.querySelector('.chat-window');
@@ -157,5 +151,11 @@ export class HomeComponent implements OnInit {
         chatWindow.scrollTop = chatWindow.scrollHeight;
       }
     }, 0);
+  }
+
+  // Handle suggested question click
+  selectSuggestedQuestion(question: string) {
+    this.chatForm.patchValue({ message: question });
+    this.sendMessage();
   }
 }

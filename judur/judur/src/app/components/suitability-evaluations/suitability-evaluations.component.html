@@ -1,0 +1,40 @@
+<link href="/assets/css/anaylsis.css" rel="stylesheet">
+
+<div class="header">
+    <h1>Suitability Evaluations</h1>
+</div>
+
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Space</th>
+                <th>Date</th>
+                <th>Outcome</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let inspection of landData">
+                <td>{{ inspection.land.address }}</td>
+                <td>{{ inspection.date | date }}</td>
+                <td>{{ inspection.general_condition }}</td>
+            </tr>
+            <tr *ngIf="landData.length === 0">
+                <td colspan="4">No suitability evaluations found.</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+</div>
+
+<div class="navigation">
+    <a routerLink="/volunteer-analytics">Back to Dashboard</a>
+</div>
+
+<footer class="footer">
+    &copy; 2024 Judur. All rights reserved.
+</footer>

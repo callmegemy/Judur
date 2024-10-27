@@ -279,6 +279,7 @@ form button:hover {
   gap: 10px; /* Adds spacing between suggestion buttons */
 }
 
+
 /* Suggested Question Buttons */
 .suggestion-btn {
   background-color: #154C46; /* Matches your existing button style */
