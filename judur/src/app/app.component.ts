@@ -29,7 +29,7 @@ import { ReportDetailsComponent } from './components/dashboard/examiner-reports/
  ,RouterModule, RouterOutlet,NavbarComponent,DonationHistoryComponent , CommonModule ,ViewProfileComponent,
     EditProfileComponent, EventListComponent, EventDetailsComponent, ExaminerReportsComponent, ReportDetailsComponent,ReactiveFormsModule,ViewPostComponent,
     CreatePostComponent,PostsDashboardComponent,EditPostComponent,    BlogComponent,
-    BlogDetailsComponent,],
+    BlogDetailsComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })

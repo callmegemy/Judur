@@ -26,9 +26,9 @@ export class HomeComponent implements OnInit {
   showServiceSection = false;
   showBlogSection = false;
 
-  chatMessages: { text: string, fromUser: boolean }[] = [
-    { text: 'Hello! How can I assist you today?', fromUser: false }
-  ];
+
+  chatMessages: { text: string, fromUser: boolean }[] = [];
+  suggestedQuestions: string[] = [];  
 
   constructor(
     private feedbackService: FeedbackService,
@@ -80,10 +80,33 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  // Toggle Chat Window
   toggleChat() {
     this.isChatOpen = !this.isChatOpen;
+    
+    if (this.isChatOpen && this.chatMessages.length === 0) {
+ 
+      this.loadInitialSuggestions();
+    }
   }
+  
 
+  // Load initial suggested questions from the chatbot
+  loadInitialSuggestions() {
+    this.chatbotService.sendMessage('').subscribe(
+      (response) => {
+        // Display the initial greeting message
+        this.chatMessages.push({ text: 'Hello! How can I assist you today?', fromUser: false });
+  
+        // Display suggested questions
+        this.suggestedQuestions = response.suggestions || [];
+      },
+      (error) => {
+        console.error('Error fetching initial suggestions:', error);
+      }
+    );
+  }
+  
   sendMessage() {
     const userMessage = this.chatForm.value.message;
     if (userMessage.trim()) {
@@ -93,6 +116,7 @@ export class HomeComponent implements OnInit {
       this.chatbotService.sendMessage(userMessage).subscribe(
         (response) => {
           this.chatMessages.push({ text: response.answer, fromUser: false });
+          this.suggestedQuestions = response.suggestions || [];  // Update suggested questions
           this.scrollToBottom();
         },
         (error) => {
@@ -119,6 +143,13 @@ export class HomeComponent implements OnInit {
       }, 1000); 
     }, 800); 
   }
+  // Handle suggested question click
+  selectSuggestedQuestion(question: string) {
+    this.chatForm.patchValue({ message: question });
+    this.sendMessage();
+  }
+
+  // Scroll to the bottom of the chat window
   private scrollToBottom() {
     setTimeout(() => {
       const chatWindow = document.querySelector('.chat-window');

@@ -264,3 +264,42 @@ form button:hover {
 .chat-window::-webkit-scrollbar-thumb:hover {
   background-color: #aaa;
 }
+
+
+
+
+/* Suggested Questions Container */
+.suggestions-container {
+  margin-top: 15px;
+}
+
+.suggestions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Adds spacing between suggestion buttons */
+}
+
+/* Suggested Question Buttons */
+.suggestion-btn {
+  background-color: #154C46; /* Matches your existing button style */
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.suggestion-btn:hover {
+  background-color: #123E3A; /* Darker shade on hover */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+}
+
+/* Ensure suggestion buttons are responsive */
+@media (max-width: 768px) {
+  .suggestion-btn {
+    font-size: 14px; /* Slightly smaller text on mobile */
+    padding: 8px 12px;
+  }
+}
