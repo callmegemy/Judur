@@ -220,3 +220,34 @@ form button:hover {
     padding: 8px 12px;
   }
 }
+
+
+/* Suggestions Section */
+.suggestions {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.suggestions p {
+  color: #555;
+  font-weight: bold;
+}
+
+.suggestions button {
+  background-color:  #E9EFEC;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  color: #16423C;
+  margin: 2px 0;
+  padding: 4px 6px;
+  width: 100%;
+  text-align: left;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.suggestions button:hover {
+  background-color:  #cccecd;
+  
+}

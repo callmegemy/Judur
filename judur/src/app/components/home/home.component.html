@@ -41,7 +41,7 @@
   
       <!-- Suggested Questions -->
       <div *ngIf="suggestedQuestions.length > 0" class="suggestions">
-        <p>Suggested Questions:</p>
+        <p style="color: #16423C;font-weight: bold;">Suggested Questions:</p>
         <button *ngFor="let question of suggestedQuestions" (click)="selectSuggestedQuestion(question)">
           {{ question }}
         </button>
