@@ -40,9 +40,14 @@
           <p>{{ event.description }}</p>
         </div>
 
-        <button class="btn btn-facebook mt-3 justify-content-center" (click)="shareOnFacebook()" title="Share on Facebook">
-          <i class="fab fa-facebook-f "></i> 
-        </button>
+        <div class="share-buttons">
+          <button class="btn btn-facebook" (click)="shareOnFacebook()" title="Share on Facebook">
+              <i class="fab fa-facebook-f mx-2"></i> Share on Facebook
+          </button>
+          <button class="btn btn-x" (click)="shareOnX()" title="Share on X">
+              <i class="fab fa-twitter mx-2"></i> Share on X
+          </button>
+      </div>
       </div>
     </div>
   </div>

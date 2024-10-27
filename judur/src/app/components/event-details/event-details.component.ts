@@ -33,7 +33,7 @@ interface Feedback {
 })
 export class EventDetailsComponent {
   event: any;
-  ngrokUrl: string = 'https://323e-102-185-35-68.ngrok-free.app'; 
+  ngrokUrl: string = 'https://1c5a-102-185-223-40.ngrok-free.app'; 
 
   constructor(
     private route: ActivatedRoute,
@@ -66,4 +66,13 @@ export class EventDetailsComponent {
     window.open(facebookShareUrl, '_blank');
   }
 
+  shareOnX() {
+    const eventId = this.route.snapshot.paramMap.get('id');
+    const url = `${this.ngrokUrl}/list-event/event-details/${eventId}`;
+    const title = encodeURIComponent(this.event.title);
+    const description = encodeURIComponent(this.event.description);
+    const xShareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${title}%0A${description}`;
+    
+    window.open(xShareUrl, '_blank');
+}
 }

@@ -23,9 +23,14 @@
 
                 <p><strong>Number of Bidders:</strong> {{ auctionDetails.number_of_bidders || 'No bidders yet' }}</p>
 
-                <a class="btn btn-facebook mt-3" (click)="shareOnFacebook()" title="Share on Facebook">
-                    <i class="fab fa-facebook-f"></i> 
-                  </a>
+                <div class="share-buttons">
+                    <button class="btn btn-facebook" (click)="shareOnFacebook()" title="Share on Facebook">
+                      <i class="fab fa-facebook-f mx-2"></i> Share on Facebook
+                    </button>
+                    <button class="btn btn-x" (click)="shareOnX()" title="Share on X">
+                      <i class="fab fa-twitter mx-2"></i> Share on X
+                    </button>
+                </div>
             </div>
         </div>
     </div>

@@ -70,7 +70,7 @@ loadAuctionDetails(): void {
   }
 
   shareOnFacebook(): void {
-    const ngrokUrl = `https://323e-102-185-35-68.ngrok-free.app/auction-details/${this.auctionId}`; 
+    const ngrokUrl = `https://1c5a-102-185-223-40.ngrok-free.app/auction-details/${this.auctionId}`; 
     const title = encodeURIComponent(this.auctionDetails.title);
     const description = encodeURIComponent(this.auctionDetails.description);
     const image = encodeURIComponent(this.auctionDetails.imageUrl); 
@@ -78,5 +78,14 @@ loadAuctionDetails(): void {
   
     window.open(facebookShareUrl, '_blank');
   }
+
+  shareOnX(): void {
+    const ngrokUrl = `https://1c5a-102-185-223-40.ngrok-free.app/auction-details/${this.auctionId}`;
+    const title = encodeURIComponent(this.auctionDetails.title);
+    const description = encodeURIComponent(this.auctionDetails.description);
+    const xShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(ngrokUrl)}&text=${title}%0A${description}`;
+  
+    window.open(xShareUrl, '_blank');
+}
   
 }
