@@ -93,7 +93,7 @@ export class BlogDetailsComponent implements OnInit {
 
   shareOnFacebook(): void {
     const postId = this.route.snapshot.paramMap.get('id'); 
-    const ngrokUrl = `https://1c5a-102-185-223-40.ngrok-free.app/blog/${postId}`;
+    const ngrokUrl = `https://cfef-102-185-9-243.ngrok-free.app/blog/${postId}`;
     const title = encodeURIComponent(this.postTitle);
     const image = encodeURIComponent(this.mainImage);
     const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(ngrokUrl)}&quote=${title}&picture=${image}`;
@@ -103,7 +103,7 @@ export class BlogDetailsComponent implements OnInit {
 
   shareOnX(): void {
     const postId = this.route.snapshot.paramMap.get('id');
-    const ngrokUrl = `https://1c5a-102-185-223-40.ngrok-free.app/blog/${postId}`;
+    const ngrokUrl = `https://cfef-102-185-9-243.ngrok-free.app/blog/${postId}`;
     const title = encodeURIComponent(this.postTitle);
     const xShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(ngrokUrl)}&text=${title}`;
   

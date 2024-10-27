@@ -70,7 +70,7 @@ loadAuctionDetails(): void {
   }
 
   shareOnFacebook(): void {
-    const ngrokUrl = `https://1c5a-102-185-223-40.ngrok-free.app/auction-details/${this.auctionId}`; 
+    const ngrokUrl = `https://cfef-102-185-9-243.ngrok-free.app/auction-details/${this.auctionId}`; 
     const title = encodeURIComponent(this.auctionDetails.title);
     const description = encodeURIComponent(this.auctionDetails.description);
     const image = encodeURIComponent(this.auctionDetails.imageUrl); 
@@ -80,7 +80,7 @@ loadAuctionDetails(): void {
   }
 
   shareOnX(): void {
-    const ngrokUrl = `https://1c5a-102-185-223-40.ngrok-free.app/auction-details/${this.auctionId}`;
+    const ngrokUrl = `https://cfef-102-185-9-243.ngrok-free.app/auction-details/${this.auctionId}`;
     const title = encodeURIComponent(this.auctionDetails.title);
     const description = encodeURIComponent(this.auctionDetails.description);
     const xShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(ngrokUrl)}&text=${title}%0A${description}`;

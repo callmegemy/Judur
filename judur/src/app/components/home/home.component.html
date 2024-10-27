@@ -57,7 +57,6 @@
     </div>
 </div>
 
-<<<<<<< HEAD
 <section id="donation-section" *ngIf="showDonationSection" class="donation-section animate__animated animate__fadeIn">
   <div class="container">
       <div class="row align-items-center">
@@ -68,48 +67,6 @@
               <p class="subheading animate__animated animate__fadeInLeft">
                   Your donation helps us provide essential resources to those in need. Together, we can make a difference.
               </p>
-=======
-  
-
-  <section id="donation-section" class="donation-section">
-    <div class="container">
-        <div class="row align-items-center">
-            <!-- Left Column: Textual Content -->
-            <div class="col-lg-6 col-md-12 donation-text">
-                <!-- Headline and Subheading -->
-                <h2 class="headline">Turn Your Contribution into Real Impact</h2>
-                <p class="subheading">
-                    Your donation helps us provide essential resources to those in need. Together, we can make a difference.
-                </p>
-
-                <!-- Transparency and Impact Information -->
-                <div class="impact-details">
-                    <h3>Where Your Money Goes:</h3>
-                    <div class="impact-card">
-                        <div class="card-item">
-                            <div class="icon"><i class="fas fa-utensils"></i></div>
-                            <div class="card-info">
-                                <h4><strong>80%</strong> for Feeding Events</h4>
-                                <p>Your contributions help provide meals to those in need.</p>
-                            </div>
-                        </div>
-                        <div class="card-item">
-                            <div class="icon"><i class="fas fa-box"></i></div>
-                            <div class="card-info">
-                                <h4><strong>15%</strong> for Essential Goods</h4>
-                                <p>Support for providing vital supplies to families.</p>
-                            </div>
-                        </div>
-                        <div class="card-item">
-                            <div class="icon"><i class="fas fa-truck"></i></div>
-                            <div class="card-info">
-                                <h4><strong>5%</strong> for Logistics</h4>
-                                <p>Covers transportation and distribution costs.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
->>>>>>> 70a0b27f7614d1b129fca3491be53fe02001bba0
 
               <!-- Transparency and Impact Information -->
               <div class="impact-details">
@@ -300,7 +257,7 @@
           <div class="col-lg-4 col-md-6 blog-post animate__animated animate__fadeIn" *ngFor="let post of recentPosts; let i = index" [ngClass]="{'animate__delay-1s': i > 0}">
               <div class="post-card">
                   <div class="post-image">
-                      <img src="/assets/img/aboutus2.jpeg" alt="{{ post.title }}" class="img-fluid" />
+                      <img [src]="post.image" alt="{{ post.title }}" class="img-fluid" />
                   </div>
                   <h3 class="post-title">
                       <a [routerLink]="['/blog', post.id]" class="text-decoration-none text-dark">{{ post.title }}</a>
