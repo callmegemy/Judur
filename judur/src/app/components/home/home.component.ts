@@ -7,22 +7,28 @@ import { FeedbackService } from '../../feedback.service';
 import { BlogPost, BlogService } from '../../services/blog.service';
 import { ChatbotService } from '../../services/chatbot.service';
 
+
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [RouterLink, RouterLinkActive, CommonModule, NavbarComponent, ReactiveFormsModule],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  
 })
 export class HomeComponent implements OnInit {
-
   testimonials: any[] = [];
   recentPosts: BlogPost[] = [];
   isChatOpen = false;
   chatForm: FormGroup;
-  chatMessages: { text: string, fromUser: boolean }[] = [
-    { text: 'Hello! How can I assist you today?', fromUser: false }
-  ];
+  showDonationSection = false;
+  showAboutUsSection = false;
+  showServiceSection = false;
+  showBlogSection = false;
+
+
+  chatMessages: { text: string, fromUser: boolean }[] = [];
+  suggestedQuestions: string[] = [];  
 
   constructor(
     private feedbackService: FeedbackService,
@@ -37,7 +43,23 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadFeedback();
+    const footer = document.querySelector('.footer')!; 
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          footer.classList.add('animate__fadeIn');
+          observer.disconnect();
+        }
+      });
+    });
+
+    if (footer) {
+      observer.observe(footer);
+    }
+  
     this.loadRecentPosts();
+    this.loadSections();
+
   }
 
   loadFeedback(): void {
@@ -58,10 +80,33 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  // Toggle Chat Window
   toggleChat() {
     this.isChatOpen = !this.isChatOpen;
+    
+    if (this.isChatOpen && this.chatMessages.length === 0) {
+ 
+      this.loadInitialSuggestions();
+    }
   }
+  
 
+  // Load initial suggested questions from the chatbot
+  loadInitialSuggestions() {
+    this.chatbotService.sendMessage('').subscribe(
+      (response) => {
+        // Display the initial greeting message
+        this.chatMessages.push({ text: 'Hello! How can I assist you today?', fromUser: false });
+  
+        // Display suggested questions
+        this.suggestedQuestions = response.suggestions || [];
+      },
+      (error) => {
+        console.error('Error fetching initial suggestions:', error);
+      }
+    );
+  }
+  
   sendMessage() {
     const userMessage = this.chatForm.value.message;
     if (userMessage.trim()) {
@@ -71,6 +116,7 @@ export class HomeComponent implements OnInit {
       this.chatbotService.sendMessage(userMessage).subscribe(
         (response) => {
           this.chatMessages.push({ text: response.answer, fromUser: false });
+          this.suggestedQuestions = response.suggestions || [];  // Update suggested questions
           this.scrollToBottom();
         },
         (error) => {
@@ -80,7 +126,30 @@ export class HomeComponent implements OnInit {
       );
     }
   }
+  loadSections() {
+    setTimeout(() => {
+      this.showDonationSection = true;
 
+      setTimeout(() => {
+        this.showAboutUsSection = true;
+
+        setTimeout(() => {
+          this.showServiceSection = true;
+
+          setTimeout(() => {
+            this.showBlogSection = true;
+          }, 1400); 
+        }, 1200);
+      }, 1000); 
+    }, 800); 
+  }
+  // Handle suggested question click
+  selectSuggestedQuestion(question: string) {
+    this.chatForm.patchValue({ message: question });
+    this.sendMessage();
+  }
+
+  // Scroll to the bottom of the chat window
   private scrollToBottom() {
     setTimeout(() => {
       const chatWindow = document.querySelector('.chat-window');

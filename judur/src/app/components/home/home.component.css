@@ -12,24 +12,107 @@
 }
 
 
-@media (max-width: 768px) {
-  .post-card {
-    max-width: 100%;
-    height: auto;
-  }
+.blog-section {
+  padding: 40px 0; /* Increased padding for the section */
+}
 
-  .post-image {
-    height: 150px;
-  }
+.section-title {
+  font-family: 'Arial', sans-serif;
+  font-size: 2.5rem;
+  font-weight: bold; 
+}
+
+.post-card {
+  width: 100%; /* Full width */
+  max-width: 500px; /* Set max-width for larger screens */
+  height: 450px; /* Fixed height */
+  margin: 0 auto 30px; 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Distribute space evenly */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow */
+  border-radius: 10px;
+  overflow: hidden; /* Ensures children do not overflow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+}
+
+.post-card:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
 }
 
 .post-image {
   width: 100%;
-  height: 180px;
-  margin-bottom: 15px;
+  height: 200px; /* Fixed height for images */
   overflow: hidden;
-  border-radius: 10px;
 }
+
+.post-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the space without distortion */
+}
+
+.post-title {
+  font-size: 1.2rem; /* Adjust title size */
+  margin: 30px 10px; /* Spacing around the title */
+  color: #16423C; /* Color for the title */
+  transition: color 0.3s ease; /* Transition for color change */
+}
+
+.post-title a {
+  text-decoration: none; /* Remove underline from links */
+}
+
+.post-title a:hover {
+  color: #123E3A; /* Darker color on hover */
+}
+
+.post-excerpt {
+  flex-grow: 1;
+  color: #666; 
+  padding: 0 15px; 
+}
+
+.read-more {
+  background-color: #16423C; 
+  color: white;
+  border: none;
+  padding: 10px 15px; 
+  border-radius: 5px; 
+  transition: background-color 0.3s ease; 
+}
+
+.read-more:hover {
+  background-color: #123E3A; 
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .post-card {
+    max-width: 100%; /* Full width for smaller screens */
+    height: auto; /* Allow height to adjust */
+  }
+
+  .post-image {
+    height: 150px; /* Adjusted height for smaller screens */
+  }
+
+  .post-title {
+    font-size: 1.1rem; /* Smaller font size for smaller screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .post-card {
+    max-width: 100%; /* Allow full width on smaller screens */
+  }
+
+  .post-image {
+    height: 150px; /* Smaller image height for mobile */
+  }
+}
+
 .home-container {
   padding: 20px;
 }/* Chat Container */
@@ -180,4 +263,74 @@ form button:hover {
 
 .chat-window::-webkit-scrollbar-thumb:hover {
   background-color: #aaa;
+}
+
+
+
+
+/* Suggested Questions Container */
+.suggestions-container {
+  margin-top: 15px;
+}
+
+.suggestions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Adds spacing between suggestion buttons */
+}
+
+/* Suggested Question Buttons */
+.suggestion-btn {
+  background-color: #154C46; /* Matches your existing button style */
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.suggestion-btn:hover {
+  background-color: #123E3A; /* Darker shade on hover */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+}
+
+/* Ensure suggestion buttons are responsive */
+@media (max-width: 768px) {
+  .suggestion-btn {
+    font-size: 14px; /* Slightly smaller text on mobile */
+    padding: 8px 12px;
+  }
+}
+
+
+/* Suggestions Section */
+.suggestions {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.suggestions p {
+  color: #555;
+  font-weight: bold;
+}
+
+.suggestions button {
+  background-color:  #E9EFEC;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  color: #16423C;
+  margin: 2px 0;
+  padding: 4px 6px;
+  width: 100%;
+  text-align: left;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.suggestions button:hover {
+  background-color:  #cccecd;
+  
 }
