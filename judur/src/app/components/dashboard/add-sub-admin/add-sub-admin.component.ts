@@ -11,10 +11,9 @@ interface SubAdminData {
   name: string;
   email: string;
   password: string;
-  age:string;
-  role_id: 5 | 6 | null;    
-  
-  phone:string;
+  age: string;
+  role_id: 5 | 6 | null;  
+  phone: string;
 }
 
 @Component({
@@ -30,9 +29,11 @@ export class AddSubAdminComponent {
     email: '',
     password: '',
     age: '',
-    phone:'',
+    phone: '',
     role_id: null, 
   };
+
+  errorMessages: any = {};
 
   constructor(private userService: UserService, private router: Router) {}
 
@@ -41,12 +42,23 @@ export class AddSubAdminComponent {
       response => {
         console.log('Sub-admin added successfully:', response);
         this.router.navigate(['/management']);
-
       },
       error => {
         console.error('Error adding sub-admin:', error);
         
+        this.handleErrorResponse(error);
       }
     );
+  }
+
+  handleErrorResponse(error: any) {
+    const status = error?.status;
+    const errors = error?.error?.errors;
+
+    if (status === 422 && errors) {
+      this.errorMessages = errors; 
+    } else {
+      this.errorMessages = { general: 'An unexpected error occurred.' };
+    }
   }
 }

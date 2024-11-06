@@ -77,15 +77,15 @@ export class EditSubAdminComponent {
   onSubmit() {
     if (this.userForm.valid && this.userId !== undefined) {
       const formData = this.userForm.value;
-
+  
       if (!formData.password) {
-        delete formData.password;
+        delete formData.password;  // If password is not changed, don't send it
       }
-
+  
       this.userForm.patchValue({
         phone: this.userForm.get('phone')?.value?.toString()
       });
-
+  
       this.userService.updateUser(this.userId, formData).subscribe(
         () => {
           Swal.fire({
@@ -101,6 +101,23 @@ export class EditSubAdminComponent {
         },
         (error) => {
           console.error('Error updating user', error);
+  
+          // Check if the error is a validation error (assuming Laravel returns validation errors in `error.errors` object)
+          if (error?.error?.errors) {
+            const errors = error.error.errors;
+            
+            // Map Laravel validation errors to Angular form controls
+            for (const key in errors) {
+              if (errors[key]) {
+                // Set the errors on the form control
+                const control = this.userForm.get(key);
+                if (control) {
+                  control.setErrors({ serverError: errors[key][0] });
+                }
+              }
+            }
+          }
+  
           Swal.fire({
             icon: 'error',
             title: 'Update Failed',
@@ -114,4 +131,5 @@ export class EditSubAdminComponent {
       console.error('Form is invalid or userId is not defined. Cannot submit form.');
     }
   }
+  
 }
