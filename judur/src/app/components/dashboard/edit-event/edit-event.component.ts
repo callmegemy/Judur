@@ -18,6 +18,8 @@ export class EditEventComponent {
   eventId: any;
   lands: any[] = []; 
   selectedFile: File | null = null; 
+  validationErrors: any = {}; 
+  
 
   constructor(
     private eventsService: EventsService,
@@ -82,6 +84,12 @@ export class EditEventComponent {
             },
             error => {
                 console.error('Error occurred while updating the event', error);
+                if (error.error && error.error.errors) {
+                  this.validationErrors = error.error.errors; 
+
+                  console.log(this.validationErrors);
+
+                }
             }
         );
     };
@@ -113,6 +121,10 @@ export class EditEventComponent {
             },
             error => {
                 console.error('Error occurred while updating the event', error);
+                if (error.error && error.error.errors) {
+                  this.validationErrors = error.error.errors; 
+                  console.log(this.validationErrors);
+                }
             }
         );
     }

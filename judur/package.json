@@ -28,7 +28,6 @@
     "@stripe/stripe-js": "^4.7.0",
     "@techiediaries/ngx-qrcode": "^9.1.0",
     "@types/stripe-v3": "^3.1.33",
-    "angularx-social-login": "^4.1.0",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "chart.js": "^4.4.4",

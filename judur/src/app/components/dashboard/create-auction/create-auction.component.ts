@@ -17,6 +17,7 @@ export class CreateAuctionComponent {
   auction: any = {};
   statuses: any[] = [];
   items: any[] = []; 
+  errorMessages:any = {};
 
   constructor(
     private auctionService: AuctionService,
@@ -63,6 +64,12 @@ export class CreateAuctionComponent {
             },
             error => {
                 console.log('Error occurred while creating auction', error);
+                if (error.status === 422) { 
+                  this.errorMessages = error.error.errors; 
+                  console.log('Validation errors:', this.errorMessages);
+                } else {
+                  console.log('Error occurred', error);
+                }
             }
         );
     } else {

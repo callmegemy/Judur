@@ -39,16 +39,16 @@ export class CreateEventComponent {
 
   onSubmit() {
     const formData = new FormData();
-    formData.append('title', this.event.title);
-    formData.append('location', this.event.location);
+    formData.append('title', this.event.title || '');
     formData.append('land_id', this.event.land_id);
+    formData.append('location', this.event.location || '');
     formData.append('date', this.event.date);
     formData.append('time', this.event.time);
     formData.append('expected_organizer_number', this.event.expected_organizer_number);
     formData.append('allocatedMoney', this.event.allocatedMoney);
     formData.append('allocatedItems', this.event.allocatedItems);
     formData.append('event_status', this.event.event_status);
-    formData.append('description', this.event.description);
+    formData.append('description', this.event.description || '');
     formData.append('duration', this.event.duration);
     formData.append('people_helped', this.event.people_helped);
     formData.append('goods_distributed', this.event.goods_distributed);
@@ -65,6 +65,7 @@ export class CreateEventComponent {
       error => {
         if (error.status === 422) { 
           this.errorMessages = error.error.errors; 
+          console.log('Validation errors:', this.errorMessages);
         } else {
           console.log('Error occurred', error);
         }

@@ -61,8 +61,8 @@
                                         <label for="eventTitle" class="font-weight-bold">Event Title</label>
                                         <input type="text" id="eventTitle" class="form-control" [(ngModel)]="event.title" name="title" required
                                             placeholder="Enter event title">
-                                        <div *ngIf="errorMessages.title" class="text-danger">{{ errorMessages.title[0] }}</div>
-                                    </div>
+                                            <div *ngIf="errorMessages.title" class="text-danger">{{ errorMessages.title[0] }}</div>
+                                        </div>
                                 
                                     <!-- Event Status -->
                                     <div class="form-group mb-3">
@@ -120,7 +120,9 @@
                                         <label for="allocatedItems" class="font-weight-bold">Allocated Items</label>
                                         <input type="number" id="allocatedItems" class="form-control" [(ngModel)]="event.allocatedItems" name="allocatedItems"
                                             min="0" placeholder="Enter number of allocated items">
-                                        <div *ngIf="errorMessages.allocatedItems" class="text-danger">{{ errorMessages.allocatedItems[0] }}</div>
+                                            <div *ngIf="errorMessages.allocatedMoney" class="error-message text-danger">
+                                                {{ errorMessages.allocatedMoney[0] }}
+                                              </div>
                                     </div>
                                 
                                     <!-- Land -->
@@ -130,8 +132,10 @@
                                             <option value="" disabled>Select Land</option>
                                             <option *ngFor="let lands of land" [value]="lands.id">{{ lands.address }}</option>
                                         </select>
-                                        <div *ngIf="errorMessages.land_id" class="text-danger">{{ errorMessages.land_id[0] }}</div>
-                                    </div>
+                                        <div *ngIf="errorMessages.allocatedItems" class="error-message text-danger">
+                                            {{ errorMessages.allocatedItems[0] }}
+                                          </div>
+                                        </div>
                                 
                                     <!-- Event Description -->
                                     <div class="form-group mb-3">

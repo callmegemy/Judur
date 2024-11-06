@@ -15,9 +15,11 @@ import { CommonModule } from '@angular/common';
 })
 export class EditAuctionComponent {
   auction: any = {};
-  statuses: any[] = [];
+    statuses: any[] = [];
   items: any[] = [];
   auctionId: number | null = null;
+  errorMessages:any = {};
+
 
   constructor(
     private auctionService: AuctionService,
@@ -65,7 +67,7 @@ export class EditAuctionComponent {
   onSubmit() {
     const formData = {
       title: this.auction.title,
-      status: this.auction.status,
+      status: this.auction.auction_status_id,
       item_id: this.auction.item_id,
       start_date: this.auction.start_date,
       end_date: this.auction.end_date,
@@ -81,6 +83,12 @@ export class EditAuctionComponent {
         },
         error => {
           console.log('Error occurred while updating auction', error);
+          if (error.status === 422) { 
+            this.errorMessages = error.error.errors; 
+            console.log('Validation errors:', this.errorMessages);
+          } else {
+            console.log('Error occurred', error);
+          }
         }
       );
     } else {
