@@ -52,18 +52,30 @@ export class RegisterComponent {
         role_id: this.donorForm.value.role_id,
         profile_picture: this.profilePictureBase64 
       };
-
+  
       this.authService.registerDonor(formData).subscribe({
         next: (response) => {
           console.log('Donor registration successful:', response);
           this.router.navigate(['/login']); 
         },
         error: (err) => {
-          console.error('Error during donor registration:', err);
+          if (err.status === 422) {  // Laravel validation error status
+            const validationErrors = err.error.errors;
+            for (const field in validationErrors) {
+              if (validationErrors.hasOwnProperty(field)) {
+                this.donorForm.controls[field].setErrors({
+                  serverError: validationErrors[field].join(' ')
+                });
+              }
+            }
+          } else {
+            console.error('Error during donor registration:', err);
+          }
         }
       });
     } else {
       console.warn('Donor form is invalid');
-    }
-  }
+    }
+  }
+  
 }

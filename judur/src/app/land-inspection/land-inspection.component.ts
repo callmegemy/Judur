@@ -17,6 +17,7 @@ export class LandInspectionComponent {
   lands: any[] = []; 
   selectedFile: File | null = null;
   user: any;
+  minDate: string | undefined; 
   isExaminer: boolean = false; 
 
   constructor(
@@ -33,6 +34,8 @@ export class LandInspectionComponent {
       general_condition: ['', Validators.required],
       photo: [null] // Photo field
     });
+    const today = new Date();
+    this.minDate = today.toISOString().split('T')[0];  
   }
 
   ngOnInit(): void {
@@ -93,9 +96,9 @@ export class LandInspectionComponent {
     formData.append('land_id', this.inspectionForm.get('land_id')?.value);
 
     const dateValue = this.inspectionForm.get('date')?.value;
-    const formattedDate = new Date(dateValue).toISOString().split('T')[0]; // Format date as YYYY-MM-DD
+    const formattedDate = new Date(dateValue).toISOString().split('T')[0];
     formData.append('date', formattedDate);
-
+    
     formData.append('hygiene', this.inspectionForm.get('hygiene')?.value);
     formData.append('capacity', this.inspectionForm.get('capacity')?.value);
 

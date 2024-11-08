@@ -56,9 +56,16 @@
     <div class="form-group mb-3">
       <label for="condition" class="form-label"><i class="fas fa-info-circle"></i> Condition</label>
       <input type="text" class="form-control" id="condition" [(ngModel)]="itemCondition" name="itemCondition" [required]="!isValuable" #itemConditionField="ngModel">
-      <div *ngIf="itemConditionField.invalid && (itemConditionField.dirty || itemConditionField.touched) && !isValuable" class="text-danger">
-        Condition is required 
+      
+      <!-- Display server-side error if it exists -->
+      <div *ngIf="backendErrors['condition']" class="text-danger">
+        {{ backendErrors['condition'][0] }}
       </div>
+      
+      <!-- Client-side error, shown only if there's no server-side error -->
+      <div *ngIf="!backendErrors['condition'] && itemConditionField.invalid && (itemConditionField.dirty || itemConditionField.touched) && !isValuable" class="text-danger">
+        Condition is required
+      </div>
     </div>
 
     <!-- Submit Button -->

@@ -67,11 +67,13 @@
             <div class="mb-3">
               <label for="availability_time" class="form-label"><i class="fas fa-clock"></i> Availability Time</label>
               <input
-                type="date"
-                class="form-control form-control-lg"
-                id="availability_time"
-                formControlName="availability_time"
-              >
+              type="date"
+              class="form-control form-control-lg"
+              id="availability_time"
+              formControlName="availability_time"
+              [min]="todayDate"
+            />
+            
               <div *ngIf="isFieldInvalid('availability_time')" class="text-danger">
                 <ng-container *ngFor="let error of getFieldErrors('availability_time')">
                   <small>{{ error }}</small>

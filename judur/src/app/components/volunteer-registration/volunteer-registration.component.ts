@@ -21,7 +21,7 @@ export class VolunteerRegistrationComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
       role_id: [3],
-      age: ['', Validators.required],
+      age: ['',[Validators.required, Validators.min(19)]],
       phone: ['', Validators.required],
       skills: ['', Validators.required],
       availability: ['', Validators.required],

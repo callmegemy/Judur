@@ -25,14 +25,15 @@
               </div>
             </div>
             
-            <!-- Inspection Date -->
-            <div class="mb-3">
-              <label for="date" class="form-label"><i class="fas fa-calendar-alt"></i> Inspection Date</label>
-              <input type="date" class="form-control form-control-lg" formControlName="date" required />
-              <div *ngIf="inspectionForm.get('date')?.invalid && (inspectionForm.get('date')?.touched || inspectionForm.get('date')?.dirty)" class="text-danger">
-                <small *ngIf="inspectionForm.get('date')?.errors?.['required']">Inspection date is required.</small>
-              </div>
-            </div>
+           <!-- Inspection Date -->
+<div class="mb-3">
+  <label for="date" class="form-label"><i class="fas fa-calendar-alt"></i> Inspection Date</label>
+  <input type="date" class="form-control form-control-lg" formControlName="date" required [min]="minDate" />
+  <div *ngIf="inspectionForm.get('date')?.invalid && (inspectionForm.get('date')?.touched || inspectionForm.get('date')?.dirty)" class="text-danger">
+    <small *ngIf="inspectionForm.get('date')?.errors?.['required']">Inspection date is required.</small>
+  </div>
+</div>
+
 
             <!-- Hygiene -->
             <div class="mb-3">
