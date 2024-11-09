@@ -1,7 +1,7 @@
 import { Component, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
 import { PostService } from '../../../services/post.service';
@@ -13,7 +13,7 @@ import 'datatables.net';
 @Component({
   selector: 'app-posts-dashboard',
   standalone: true,
-  imports: [CommonModule, DatePipe, SidebarComponent, TopbarComponent, FormsModule, NgxPaginationModule],
+  imports: [CommonModule, DatePipe, SidebarComponent, TopbarComponent, FormsModule, NgxPaginationModule, RouterLink],
   templateUrl: './posts-dashboard.component.html',
   styleUrls: ['./posts-dashboard.component.css'] // Corrected 'styleUrl' to 'styleUrls'
 })

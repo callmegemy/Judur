@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { TopbarComponent } from '../topbar/topbar.component';
 import { RequestService } from '../../../services/dashboard/request.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-examiner-request',
   standalone: true,
-  imports: [SidebarComponent, TopbarComponent],
+  imports: [SidebarComponent, TopbarComponent, RouterLink],
   templateUrl: './examiner-request.component.html',
   styleUrl: './examiner-request.component.css'
 })

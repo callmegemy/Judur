@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { TopbarComponent } from '../topbar/topbar.component';
 import { UserService } from '../../../services/dashboard/users.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { RequestService } from '../../../services/dashboard/request.service';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
@@ -12,7 +12,7 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-volunteer-request',
   standalone: true,
-  imports: [SidebarComponent, TopbarComponent,CommonModule],
+  imports: [SidebarComponent, TopbarComponent,CommonModule, RouterLink],
   templateUrl: './volunteer-request.component.html',
   styleUrl: './volunteer-request.component.css'
 })

@@ -120,9 +120,7 @@
                                   </form>
                                   
                             </div>
-                            <button type="button" class="btn btn-judur mx-3">
-                                <a [routerLink]="['/management']" style="text-decoration: none; color: white!important;">Back to User List</a>
-                            </button>
+                                <a [routerLink]="['/management']" class="btn btn-judur mx-3" style="text-decoration: none; color: white!important;">Back to User List</a>
                         </div>
                     </div>
                 </div>
@@ -148,11 +146,10 @@
     <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
+    <a class="scroll-to-top rounded" [routerLink]="'#page-top'">
         <i class="fas fa-angle-up"></i>
     </a>
 
-   
 </body>
 
 </html>

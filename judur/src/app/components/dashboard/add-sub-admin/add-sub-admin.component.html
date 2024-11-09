@@ -21,7 +21,6 @@
     <link href="../../../../assets/css/sb-admin-2.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
-
 </head>
 
 <body id="page-top">
@@ -50,7 +49,6 @@
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-judur font-weight-bold"> Add A SubAdmin</h1>
                     </div>
-
 
                     <!-- volunteer-to-examiner.component.html -->
                     <div class="container mt-5 text-judur">
@@ -121,13 +119,8 @@
                                     <!-- Submit Button -->
                                     <button type="submit" class="btn btn-primary mt-3">Add Sub-Admin</button>
                                   </form>
-                                  
-
-
                             </div>
-                            <button type="submit" class="btn btn-judur mx-3"><i class="fa-solid fa-arrow-left"></i>
-                                back</button>
-
+                            <a [routerLink]="'/management'" class="btn btn-judur mx-3"><i class="fa-solid fa-arrow-left"></i> back</a>
                         </div>
                     </div>
 
@@ -155,7 +148,7 @@
     <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
+    <a class="scroll-to-top rounded" [routerLink]="'#page-top'">
         <i class="fas fa-angle-up"></i>
     </a>
 
@@ -173,13 +166,11 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" [routerLink]="['login.html']">Logout</a>
+                    <a class="btn btn-primary" [routerLink]="'/login'">Logout</a>
                 </div>
             </div>
         </div>
     </div>
-
-
 
 </body>
 

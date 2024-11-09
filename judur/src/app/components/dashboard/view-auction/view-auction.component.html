@@ -30,7 +30,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-<app-sidebar class="bg-gradient-judur"></app-sidebar>
+        <app-sidebar class="bg-gradient-judur"></app-sidebar>
 
         <!-- End of Sidebar -->
 
@@ -41,7 +41,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-<app-topbar></app-topbar>
+                <app-topbar></app-topbar>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -60,7 +60,6 @@
                       <div class="auction-image">
                         <img [src]="'http://localhost:8000/storage/' + item.image" alt="Auction Item Image" class="img-fluid">
                     </div>
-                    
                     
               
                       <!-- Auction Details -->
@@ -89,7 +88,7 @@
               
                       <!-- Back Button -->
                       <div class="text-center">
-                          <a href="/dashboard/auctions" class="btn btn-judur btn-back">Go Back</a>
+                          <a [routerLink]="'/dashboard/auctions'" class="btn btn-judur btn-back">Go Back</a>
                       </div>
                   </div>
               </div>
@@ -116,7 +115,7 @@
     <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
+    <a class="scroll-to-top rounded" [routerLink]="['#page-top']">
         <i class="fas fa-angle-up"></i>
     </a>
 
@@ -134,13 +133,11 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" [routerLink]="'/login'">Logout</a>
                 </div>
             </div>
         </div>
     </div>
-
-
 
 </body>
 

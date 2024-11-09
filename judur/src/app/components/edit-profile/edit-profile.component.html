@@ -85,8 +85,11 @@
         class="form-control" 
         name="profile_picture"
         (change)="onFileSelected($event)"
-      />
+      /> <div *ngIf="imageErrorMessage" class="invalid-feedback d-block">
+        {{ imageErrorMessage }}
+      </div>
     </div>
+
      <!-- Password -->
      <div class="form-group mb-3">
       <label for="password">Password</label>
@@ -107,5 +110,5 @@
     <!-- Submit Button -->
     <button type="submit" class="btn btn-primary" [disabled]="profileForm.invalid">Update Profile</button>
 
-  </form>
+  </form>
 </div>

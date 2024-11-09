@@ -30,7 +30,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-<app-sidebar class="bg-gradient-judur"></app-sidebar>
+        <app-sidebar class="bg-gradient-judur"></app-sidebar>
 
         <!-- End of Sidebar -->
 
@@ -41,7 +41,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-<app-topbar></app-topbar>
+                <app-topbar></app-topbar>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -49,14 +49,14 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-judur font-weight-bold"> {{event.title}} Event </h1>
+                        <h1 class="h3 mb-0 text-judur font-weight-bold">{{event.title}} Event</h1>
                     </div>
 
 
                     <div class="event-details-container">
                         <div class="event-header">
                           <i class="fa-solid fa-calendar-check event-icon text-judur"></i>
-                          <h2 >Event Title: {{event.title}}</h2>
+                          <h2>Event Title: {{event.title}}</h2>
                         </div>
                         <div class="event-body">
                           <div class="event-detail">
@@ -95,7 +95,7 @@
                           </div>
                         </div>
                         <div class="text-center">
-                        <a href="/dashboard/events" class="btn btn-judur btn-back ">Go Back</a>
+                        <a [routerLink]="'/dashboard/events'" class="btn btn-judur btn-back">Go Back</a>
                     </div>
                       </div>
                 </div>
@@ -121,7 +121,7 @@
     <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
+    <a class="scroll-to-top rounded" [routerLink]="'#page-top'">
         <i class="fas fa-angle-up"></i>
     </a>
 
@@ -139,13 +139,11 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a [routerLink]="'/login'" class="btn btn-primary">Logout</a>
                 </div>
             </div>
         </div>
     </div>
-
-
 
 </body>
 

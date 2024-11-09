@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AuctionService } from '../../../services/dashboard/auctions.service';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { TopbarComponent } from '../topbar/topbar.component';
@@ -7,7 +7,7 @@ import { TopbarComponent } from '../topbar/topbar.component';
 @Component({
     selector: 'app-view-auction',
     standalone: true,
-    imports: [SidebarComponent, TopbarComponent],
+    imports: [SidebarComponent, TopbarComponent, RouterLink],
     templateUrl: './view-auction.component.html',
     styleUrls: ['./view-auction.component.css'] 
 })

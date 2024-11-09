@@ -14,6 +14,8 @@ import { AuthService } from '../../services/auth.service';
 export class RegisterComponent {
   donorForm: FormGroup;
   profilePictureBase64: string | null = null; 
+  imageTypeError: string = ''; 
+
 
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.donorForm = this.fb.group({
@@ -22,22 +24,28 @@ export class RegisterComponent {
       password: ['', [Validators.required, Validators.minLength(8)]],
       role_id: [2],
       age: ['', Validators.required],
-      phone: ['', Validators.required],
+      phone: ['', [Validators.required, Validators.pattern(/^\d{11}$/)]],
       profile_picture: ['']  
     });
   }
 
   onFileSelected(event: Event) {
     const target = event.target as HTMLInputElement;
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+  
     if (target.files && target.files.length > 0) {
       const file = target.files[0];
-      const reader = new FileReader();
-
-      reader.onload = (e: any) => {
-        this.profilePictureBase64 = e.target.result.split(',')[1];  
-      };
-
-      reader.readAsDataURL(file);  
+      if (!allowedTypes.includes(file.type)) {
+        this.imageTypeError = 'Only JPEG, PNG, and JPG images are allowed.';
+        this.profilePictureBase64 = null;
+      } else {
+        this.imageTypeError = '';
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.profilePictureBase64 = e.target.result;  
+        };
+        reader.readAsDataURL(file);
+      }
     }
   }
 
@@ -52,18 +60,30 @@ export class RegisterComponent {
         role_id: this.donorForm.value.role_id,
         profile_picture: this.profilePictureBase64 
       };
-
+  
       this.authService.registerDonor(formData).subscribe({
         next: (response) => {
           console.log('Donor registration successful:', response);
           this.router.navigate(['/login']); 
         },
         error: (err) => {
-          console.error('Error during donor registration:', err);
+          if (err.status === 422) {  // Laravel validation error status
+            const validationErrors = err.error.errors;
+            for (const field in validationErrors) {
+              if (validationErrors.hasOwnProperty(field)) {
+                this.donorForm.controls[field].setErrors({
+                  serverError: validationErrors[field].join(' ')
+                });
+              }
+            }
+          } else {
+            console.error('Error during donor registration:', err);
+          }
         }
       });
     } else {
       console.warn('Donor form is invalid');
-    }
-  }
+    }
+  }
+  
 }

@@ -17,7 +17,7 @@ export class EditProfileComponent implements OnInit {
   profileForm: FormGroup;
   selectedFile: File | null = null;
   errorMessage: string = '';
-
+  imageErrorMessage: string = '';
   constructor(
     private formBuilder: FormBuilder,
     private profileService: ProfileService,
@@ -29,7 +29,7 @@ export class EditProfileComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       age: ['', [Validators.required, Validators.min(1)]],
       phone: ['', [Validators.required, Validators.pattern(/^\d{11}$/)]],
-      password: ['', [ Validators.minLength(6)]],
+      password: ['', [Validators.minLength(6)]],
       profilePicture: ['']
     });
   }
@@ -40,7 +40,6 @@ export class EditProfileComponent implements OnInit {
     if (userId) {
       this.profileService.getProfile(userId).subscribe(
         (data) => {
-          // Populate the form with user data
           this.profileForm.patchValue(data.user);
         },
         (error) => {
@@ -55,16 +54,25 @@ export class EditProfileComponent implements OnInit {
 
   onFileSelected(event: any) {
     const file = event.target.files[0];
-    const reader = new FileReader();
+    const validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
 
-    reader.onload = (e: any) => {
-      // Save Base64 string in the profile form control
-      this.profileForm.patchValue({ profilePicture: e.target.result });
-    };
-
-    reader.readAsDataURL(file);
+    // Check if the selected file is a valid image type and under size limit
+    if (file && !validImageTypes.includes(file.type)) {
+      this.imageErrorMessage = 'Only JPEG, PNG, or GIF images are allowed.';
+      this.profileForm.patchValue({ profilePicture: null });
+    } else if (file && file.size > 2 * 1024 * 1024) { // 2 MB size limit
+      this.imageErrorMessage = 'Image size should not exceed 2 MB.';
+      this.profileForm.patchValue({ profilePicture: null });
+    } else {
+      this.imageErrorMessage = '';
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.profileForm.patchValue({ profilePicture: e.target.result });
+      };
+      reader.readAsDataURL(file);
+    }
   }
-
+  
   onSubmit() {
     if (this.profileForm.invalid) {
       return;
@@ -77,14 +85,13 @@ export class EditProfileComponent implements OnInit {
       return;
     }
 
-    // Prepare the profile data object
     const profileData = {
       name: this.profileForm.value.name,
       email: this.profileForm.value.email,
       age: this.profileForm.value.age,
       phone: this.profileForm.value.phone,
-      password: this.profileForm.value.password, // Only send if provided
-      profile_picture: this.profileForm.value.profilePicture // Base64 encoded image
+      password: this.profileForm.value.password,
+      profile_picture: this.profileForm.value.profilePicture
     };
 
     this.profileService.updateProfile(userId, profileData).subscribe(
@@ -92,10 +99,13 @@ export class EditProfileComponent implements OnInit {
         this.router.navigate(['/view-profile']);
       },
       (error) => {
-        this.errorMessage = 'Error updating profile.';
+        if (error.status === 422 && error.error.errors?.email) {
+          this.errorMessage = 'This email is already taken.';
+        } else {
+          this.errorMessage = 'Error updating profile.';
+        }
         console.error('Error updating profile', error);
-      }
-    );
-  }
-  
+      }
+    );
+  }
 }

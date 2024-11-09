@@ -2,14 +2,14 @@ import { Component, NgModule } from '@angular/core';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { TopbarComponent } from '../topbar/topbar.component';
 import { EventsService } from '../../../services/dashboard/events.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TimeFormatPipe } from '../../../time-format.pipe';
 
 @Component({
   selector: 'app-view-event',
   standalone: true,
-  imports: [SidebarComponent, TopbarComponent, CommonModule, TimeFormatPipe],
+  imports: [SidebarComponent, TopbarComponent, CommonModule, TimeFormatPipe, RouterLink],
   templateUrl: './view-event.component.html',
   styleUrl: './view-event.component.css'
 })

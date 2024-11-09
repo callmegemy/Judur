@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./auction.component.css']
 })
 export class AuctionComponent {
+  imageError: string | null = null;
   itemName: string = '';
   quantity: number = 1;
   description: string = '';
@@ -23,7 +24,7 @@ export class AuctionComponent {
   statusId: number = 1;
   extraNotes: string = '';  
   imageFile: File | null = null;
-  backendErrors: string[] = []; 
+  backendErrors: { [key: string]: string[] } = {}; // Store errors for specific fields
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -42,6 +43,8 @@ export class AuctionComponent {
     formData.append('condition', this.itemCondition);
     formData.append('is_valuable', this.isValuable ? '1' : '0');
     formData.append('quantity', this.quantity.toString());
+    formData.append('description', this.description);
+    formData.append('extra_notes', this.extraNotes); // Include extra notes
 
     if (this.isValuable) {
       formData.append('value', this.estimatedValue); 
@@ -63,7 +66,7 @@ export class AuctionComponent {
     }
 
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
+      'Authorization': `Bearer ${token}` // Corrected string interpolation
     });
 
     this.http.post('http://localhost:8000/api/donate-item', formData, { headers })
@@ -84,7 +87,13 @@ export class AuctionComponent {
         (error: any) => {
           console.error('Error donating item:', error);
           if (error.status === 422) {
-            this.backendErrors = (Object.values(error.error.errors) as string[][]).flat();
+            // Capture specific field errors
+            this.backendErrors = error.error.errors;
+            Swal.fire({
+              icon: 'error',
+              title: 'Validation Errors',
+              text: 'Please check the form for errors.',
+            });
           } else {
             Swal.fire({
               icon: 'error',
@@ -96,11 +105,23 @@ export class AuctionComponent {
       );
   }
 
-  // Method to handle file input
-  onFileSelected(event: any) {
-    const input = event.target as HTMLInputElement;
-    if (input && input.files && input.files.length > 0) {
-      this.imageFile = input.files[0];
-    }
-  }
+     // Method to handle file input
+     onFileSelected(event: any) {
+      const input = event.target as HTMLInputElement;
+      if (input && input.files && input.files.length > 0) {
+        const file = input.files[0];
+        
+        // Validate file type and size
+        const validTypes = ['image/jpeg', 'image/png', 'image/gif'];
+        const maxSize = 2 * 1024 * 1024; // 2MB
+    
+        if (!validTypes.includes(file.type)) {
+          this.imageError = 'Invalid file type. Please upload a JPEG, PNG, or GIF image.';
+        } else if (file.size > maxSize) {
+          this.imageError = 'File size exceeds the 2MB limit. Please upload a smaller file.';
+        } else {
+          this.imageFile = file;
+        }
+      }
+    } 
 }

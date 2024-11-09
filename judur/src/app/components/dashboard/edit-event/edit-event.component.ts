@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { TopbarComponent } from '../topbar/topbar.component';
 import { EventsService } from '../../../services/dashboard/events.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-edit-event',
   standalone: true,
-  imports: [SidebarComponent, TopbarComponent, FormsModule, CommonModule],
+  imports: [SidebarComponent, TopbarComponent, FormsModule, CommonModule, RouterLink],
   templateUrl: './edit-event.component.html',
   styleUrls: ['./edit-event.component.css']
 })

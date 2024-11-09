@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -20,8 +19,6 @@
     <!-- Custom styles for this template-->
     <link href="../../../../assets/css/sb-admin-2.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
-
 </head>
 
 <body id="page-top">
@@ -30,8 +27,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-            <app-sidebar class="bg-gradient-judur"></app-sidebar>
-
+        <app-sidebar class="bg-gradient-judur"></app-sidebar>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -48,100 +44,98 @@
                 <div class="container-fluid">
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                      <h1 class="h3 mb-0 text-judur font-weight-bold">Auctions</h1>
-                      <a href="/dashboard/auctions/create" class="btn btn-judur btn-sm float-right">
-                        <i class="fa-solid fa-plus"></i> Add Auction
-                      </a>
-                    </div>
-                  
-                    <div class="card shadow mb-4">
-                      <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-judur">All Auctions</h6>
-                      </div>
-                      <div class="card-body">
-                        <div class="table-responsive">
-                          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                            <thead>
-                              <tr>
-                                <th>Title</th>
-                                <th>Item</th>
-                                <th>Date</th>
-                                <th>Actions</th>
-                              </tr>
-                            </thead>
-                            <tfoot>
-                              <tr>
-                                <th>Title</th>
-                                <th>Item</th>
-                                <th>Date</th>
-                                <th>Actions</th>
-                              </tr>
-                            </tfoot>
-                            <tbody>
-                              <tr *ngFor="let auction of auctions">
-                                <td>{{ auction.title }}</td>
-                                <td>{{ auction.item_donation.item_name }}</td>
-                                <td>{{ auction.created_at | date }}</td>
-                                <td>
-                                  <a [href]="'/dashboard/auctions/view/' + auction.id" class="btn-circle bg-judur rounded-circle">
-                                    <i class="fa-solid fa-eye"></i>
-                                  </a>
-                                  <a [href]="'/dashboard/auctions/edit/' + auction.id" class="btn-circle bg-primary rounded-circle mx-3">
-                                    <i class="fa-solid fa-pen text-white"></i>
-                                  </a>
-                                  <a (click)="onDelete(auction.id)" class="btn-circle bg-danger rounded-circle">
-                                    <i class="fa-solid fa-trash text-white"></i>
-                                  </a>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
+                        <h1 class="h3 mb-0 text-judur font-weight-bold">Auctions</h1>
+                        <a routerLink="/dashboard/auctions/create" class="btn btn-judur btn-sm float-right">
+                            <i class="fa-solid fa-plus"></i> Add Auction
+                        </a>
                     </div>
 
                     <div class="card shadow mb-4">
-                      <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-judur">Valuable Items</h6>
-                      </div>
-                      <div class="card-body">
-                        <div class="table-responsive">
-                          <table class="table table-bordered" id="valuedItemsTable" width="100%" cellspacing="0">
-                            <thead>
-                              <tr>
-                                <th>Item</th>
-                                <th>Condition</th>
-                                <th>Value</th>
-                                <th>Actions</th>
-                              </tr>
-                            </thead>
-                            <tfoot>
-                              <tr>
-                                <th>Item</th>
-                                <th>Condition</th>
-                                <th>Value</th>
-                                <th>Actions</th>
-                              </tr>
-                            </tfoot>
-                            <tbody>
-                              <tr *ngFor="let item of ValuableItems">
-                                <td>{{ item.item_name }}</td>
-                                <td>{{ item.condition}}</td>
-                                <td>{{ item.value }}</td>
-                                <td>
-                                  <a [href]="'dashboard/item/view/' + item.id" class="btn-circle bg-judur rounded-circle">
-                                    <i class="fa-solid fa-eye"></i>
-                                  </a>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-judur">All Auctions</h6>
                         </div>
-                      </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Title</th>
+                                            <th>Item</th>
+                                            <th>Date</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Title</th>
+                                            <th>Item</th>
+                                            <th>Date</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        <tr *ngFor="let auction of auctions">
+                                            <td>{{ auction.title }}</td>
+                                            <td>{{ auction.item_donation.item_name }}</td>
+                                            <td>{{ auction.created_at | date }}</td>
+                                            <td>
+                                                <a [routerLink]="['/dashboard/auctions/view', auction.id]" class="btn-circle bg-judur rounded-circle">
+                                                    <i class="fa-solid fa-eye"></i>
+                                                </a>
+                                                <a [routerLink]="['/dashboard/auctions/edit', auction.id]" class="btn-circle bg-primary rounded-circle mx-3">
+                                                    <i class="fa-solid fa-pen text-white"></i>
+                                                </a>
+                                                <a (click)="onDelete(auction.id)" class="btn-circle bg-danger rounded-circle">
+                                                    <i class="fa-solid fa-trash text-white"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                  
-                  
+
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-judur">Valuable Items</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="valuedItemsTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Item</th>
+                                            <th>Condition</th>
+                                            <th>Value</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Item</th>
+                                            <th>Condition</th>
+                                            <th>Value</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        <tr *ngFor="let item of ValuableItems">
+                                            <td>{{ item.item_name }}</td>
+                                            <td>{{ item.condition }}</td>
+                                            <td>{{ item.value }}</td>
+                                            <td>
+                                                <a [routerLink]="['/dashboard/item/view', item.id]" class="btn-circle bg-judur rounded-circle">
+                                                    <i class="fa-solid fa-eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- /.container-fluid -->
 
             </div>
@@ -187,8 +181,6 @@
             </div>
         </div>
     </div>
-
-
 
 </body>
 

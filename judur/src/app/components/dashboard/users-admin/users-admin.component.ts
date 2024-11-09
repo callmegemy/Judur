@@ -5,11 +5,12 @@ import { UserService } from '../../../services/dashboard/users.service';
 import { CommonModule } from '@angular/common';
 import $ from 'jquery';
 import 'datatables.net';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-users-admin',
   standalone: true,
-  imports: [SidebarComponent, TopbarComponent, CommonModule],
+  imports: [SidebarComponent, TopbarComponent, CommonModule, RouterLink],
   templateUrl: './users-admin.component.html',
   styleUrls: ['./users-admin.component.css']
 })

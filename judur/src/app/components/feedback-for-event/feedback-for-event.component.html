@@ -4,14 +4,28 @@
         <h2 class="mb-4">We Value Your Feedback</h2>
         <div class="row justify-content-center">
             <div class="col-md-8">
-               
-                <form (submit)="onSubmit()">
+                <form (ngSubmit)="onSubmit()" #feedbackForm="ngForm">
                     <div class="form-group">
-                      <label for="feedback">Feedback</label>
-                      <textarea id="feedback" [(ngModel)]="feedback" name="feedback" class="form-control" rows="5" placeholder="Enter your feedback" required></textarea>
+                        <label for="feedback">Feedback</label>
+                        <textarea
+                            id="feedback"
+                            [(ngModel)]="feedback"
+                            name="feedback"
+                            class="form-control"
+                            rows="5"
+                            placeholder="Enter your feedback"
+                            required
+                            pattern="^[a-zA-Z\s,.!?]*$"
+                            #feedbackCtrl="ngModel">
+                        </textarea>
+                        <div *ngIf="feedbackCtrl.invalid && feedbackCtrl.touched" class="text-danger">
+                            Feedback must only contain letters and common punctuation.
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block">Submit Feedback</button>
-                  </form>
+                    <button type="submit" class="btn btn-primary btn-block" [disabled]="feedbackForm.invalid">
+                        Submit Feedback
+                    </button>
+                </form>
             </div>
         </div>
     </div>

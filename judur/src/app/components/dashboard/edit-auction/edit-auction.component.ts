@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AuctionService } from '../../../services/dashboard/auctions.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { TopbarComponent } from '../topbar/topbar.component';
 import { FormsModule } from '@angular/forms';
@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-edit-auction',
   standalone: true,
-  imports: [SidebarComponent, TopbarComponent, FormsModule, CommonModule],
+  imports: [SidebarComponent, TopbarComponent, FormsModule, CommonModule, RouterLink],
   templateUrl: './edit-auction.component.html',
   styleUrl: './edit-auction.component.css'
 })

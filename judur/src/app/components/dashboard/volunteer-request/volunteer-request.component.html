@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,98 +12,82 @@
 
     <!-- Custom fonts for this template-->
     <link href="../../../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="../../../../assets/css/sb-admin-2.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
-
 </head>
 
 <body id="page-top">
-
     <!-- Page Wrapper -->
     <div id="wrapper">
-
         <!-- Sidebar -->
-<app-sidebar class="bg-gradient-judur"></app-sidebar>
-
+        <app-sidebar class="bg-gradient-judur"></app-sidebar>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
-
             <!-- Main Content -->
             <div id="content">
-
                 <!-- Topbar -->
-<app-topbar></app-topbar>
+                <app-topbar></app-topbar>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-judur font-weight-bold">{{volunteer.user.name}}s Request</h1>
-
+                        <h1 class="h3 mb-0 text-judur font-weight-bold">{{volunteer.user.name}}'s Request</h1>
                     </div>
 
                     <!-- volunteer-registration.component.html -->
-<div class="container mt-4">
-    <div class="card text-judur">
-
-      <div class="card-body bg-light">
-        <form>
-          <div class="mb-3">
-            <label for="fullName" class="form-label"><i class="fas fa-user me-2"></i>Full Name</label>
-            <input readonly type="text" class="form-control" id="fullName" placeholder="Enter full name" value="{{volunteer.user.name}}">
-          </div>
-          <div class="mb-3">
-            <label for="email" class="form-label"><i class="fas fa-envelope me-2"></i>Email Address</label>
-            <input readonly type="email" class="form-control" id="email" placeholder="Enter email" value="{{volunteer.user.email}}">
-          </div>
-          <div class="mb-3">
-            <label for="skills" class="form-label"><i class="fas fa-tools me-2"></i>Skills</label>
-            <input readonly type="text" class="form-control" id="skills" placeholder="Specify skills" value="{{volunteer.skills}}">
-          </div>
-          <div class="mb-3">
-            <label for="age" class="form-label"><i class="fas fa-birthday-cake me-2"></i>Age</label>
-            <input readonly type="number" class="form-control" id="age" placeholder="Enter your age" value="{{volunteer.user.age}}">
-          </div>
-          <div class="mb-3">
-            <label for="availability" class="form-label"><i class="fas fa-calendar-alt me-2"></i>Availability</label>
-            <input readonly type="text" class="form-control" id="availability" placeholder="Enter availability" value="{{volunteer.availability}}">
-          </div>
-          <div class="mb-3">
-            <label for="preferredRoles" class="form-label"><i class="fas fa-heart me-2"></i>Preferred Volunteer Roles</label>
-            <input readonly type="text" class="form-control" id="preferredRoles" placeholder="e.g., Fundraising, Teaching" value="Fundraising">
-          </div>
-          <div class="mb-3">
-            <label for="experience" class="form-label"><i class="fas fa-history me-2"></i>Past Volunteering Experience</label>
-            <textarea readonly class="form-control" id="experience" placeholder="Describe any past volunteering experience"> It was Great</textarea>
-          </div>
-          <div class="mb-3">
-            <label for="motivation" class="form-label"><i class="fas fa-search me-2"></i>Why do you want to volunteer?</label>
-            <textarea readonly class="form-control" id="motivation" placeholder="What motivates you to volunteer with us?">{{volunteer.aim}}</textarea>
-          </div>
-          <div class="display-inline text-center">
-            <button type="button" class="btn btn-success mx-3" (click)="confirmAccept()"><i class="fa-solid fa-check"></i> Accept</button>
-            <button type="button" class="btn btn-danger mx-3" (click)="confirmReject()"><i class="fa-solid fa-xmark"></i> Reject</button>
-          </div>
-        </form>
-      </div>
-      <button type="submit" class="btn btn-judur mx-3"><i class="fa-solid fa-arrow-left"></i>  back</button>
-
-    </div>
-  </div>
-
+                    <div class="container mt-4">
+                        <div class="card text-judur">
+                            <div class="card-body bg-light">
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="fullName" class="form-label"><i class="fas fa-user me-2"></i>Full Name</label>
+                                        <input readonly type="text" class="form-control" id="fullName" placeholder="Enter full name" value="{{volunteer.user.name}}">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label"><i class="fas fa-envelope me-2"></i>Email Address</label>
+                                        <input readonly type="email" class="form-control" id="email" placeholder="Enter email" value="{{volunteer.user.email}}">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="skills" class="form-label"><i class="fas fa-tools me-2"></i>Skills</label>
+                                        <input readonly type="text" class="form-control" id="skills" placeholder="Specify skills" value="{{volunteer.skills}}">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="age" class="form-label"><i class="fas fa-birthday-cake me-2"></i>Age</label>
+                                        <input readonly type="number" class="form-control" id="age" placeholder="Enter your age" value="{{volunteer.user.age}}">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="availability" class="form-label"><i class="fas fa-calendar-alt me-2"></i>Availability</label>
+                                        <input readonly type="text" class="form-control" id="availability" placeholder="Enter availability" value="{{volunteer.availability}}">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="preferredRoles" class="form-label"><i class="fas fa-heart me-2"></i>Preferred Volunteer Roles</label>
+                                        <input readonly type="text" class="form-control" id="preferredRoles" placeholder="e.g., Fundraising, Teaching" value="Fundraising">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="experience" class="form-label"><i class="fas fa-history me-2"></i>Past Volunteering Experience</label>
+                                        <textarea readonly class="form-control" id="experience" placeholder="Describe any past volunteering experience">It was Great</textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="motivation" class="form-label"><i class="fas fa-search me-2"></i>Why do you want to volunteer?</label>
+                                        <textarea readonly class="form-control" id="motivation" placeholder="What motivates you to volunteer with us?">{{volunteer.aim}}</textarea>
+                                    </div>
+                                    <div class="display-inline text-center">
+                                        <button type="button" class="btn btn-success mx-3" (click)="confirmAccept()"><i class="fa-solid fa-check"></i> Accept</button>
+                                        <button type="button" class="btn btn-danger mx-3" (click)="confirmReject()"><i class="fa-solid fa-xmark"></i> Reject</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <a routerLink="/dashboard/requests" class="btn btn-judur mx-3"><i class="fa-solid fa-arrow-left"></i> back</a>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
-
             </div>
             <!-- End of Main Content -->
 
@@ -117,21 +100,18 @@
                 </div>
             </footer>
             <!-- End of Footer -->
-
         </div>
         <!-- End of Content Wrapper -->
-
     </div>
     <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
+    <a class="scroll-to-top rounded" routerLink="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -143,14 +123,11 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a routerLink="/login" class="btn btn-primary">Logout</a>
                 </div>
             </div>
         </div>
     </div>
-
-
-
 </body>
 
 </html>

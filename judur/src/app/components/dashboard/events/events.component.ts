@@ -6,12 +6,12 @@ import 'datatables.net';
 import { EventsService } from '../../../services/dashboard/events.service';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-events',
   standalone: true,
-  imports: [SidebarComponent, TopbarComponent, CommonModule],
+  imports: [SidebarComponent, TopbarComponent, CommonModule, RouterLink],
   templateUrl: './events.component.html',
   styleUrl: './events.component.css'
 })

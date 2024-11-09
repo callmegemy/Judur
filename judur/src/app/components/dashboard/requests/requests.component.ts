@@ -5,11 +5,12 @@ import  $ from 'jquery';
 import 'datatables.net';
 import { CommonModule } from '@angular/common';
 import { RequestService } from '../../../services/dashboard/request.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-requests',
   standalone: true,
-  imports: [SidebarComponent, TopbarComponent, CommonModule],
+  imports: [SidebarComponent, TopbarComponent, CommonModule, RouterLink],
   templateUrl: './requests.component.html',
   styleUrl: './requests.component.css'
 })

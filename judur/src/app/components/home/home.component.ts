@@ -6,6 +6,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { FeedbackService } from '../../feedback.service';
 import { BlogPost, BlogService } from '../../services/blog.service';
 import { ChatbotService } from '../../services/chatbot.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -15,6 +16,9 @@ import { ChatbotService } from '../../services/chatbot.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit, AfterViewInit {
+  user: any; 
+  loggedIn: boolean = false;  
+  isDonor: boolean = false;
   testimonials: any[] = [];
   recentPosts: BlogPost[] = [];
   isChatOpen = false;
@@ -33,7 +37,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
     private feedbackService: FeedbackService,
     private blogService: BlogService,
     private fb: FormBuilder,
-    private chatbotService: ChatbotService
+    private chatbotService: ChatbotService,
+    private authService: AuthService
+
   ) {
     this.chatForm = this.fb.group({
       message: ['']
@@ -43,6 +49,23 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.loadFeedback();
     this.loadRecentPosts();
+    this.authService.isLoggedIn().subscribe((isLoggedIn) => {
+      this.loggedIn = isLoggedIn;
+      
+      if (this.loggedIn) {
+        const user = this.authService.getUserData();
+        this.user = user; 
+
+        if (user) {
+          if (user.role_id === 2) { 
+            this.isDonor = true;
+          }
+          
+        }
+
+        
+      }
+    });
   }
 
   ngAfterViewInit(): void {

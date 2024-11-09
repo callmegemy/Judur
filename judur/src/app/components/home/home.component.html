@@ -15,10 +15,10 @@
           <div class="container">
             <div class="row justify-content-center">
               <div class="col-lg-7 pt-5">
-                <h1 class="display-4 text-white mb-3 animated slideInDown">
+                <h1 class="display-4 text-white mb-3 ">
                   Empower Change Through Generosity:
                 </h1>
-                <p class="fs-5 text-white-50 mb-5 animated slideInDown">
+                <p class="fs-5 text-white-50 mb-5 ">
                   Together, We Can Feed, Support, and Transform Lives One Act of
                   Kindness at a Time.
                 </p>
@@ -29,62 +29,74 @@
       </div>
     </div>
   </div>
-  <!-- Chatbot Section -->
-  <div class="chat-container">
-    <!-- Chat Toggle Button -->
-    <button class="chat-toggle" (click)="toggleChat()"><span>Chat</span></button>
-  
-    <!-- Chat Window -->
-    <div class="chat-window" [class.open]="isChatOpen">
-      <!-- Chat Messages -->
-      <div *ngFor="let message of chatMessages" [ngClass]="{'user-message': message.fromUser, 'bot-message': !message.fromUser}">
-        {{ message.text }}
-      </div>
-  
-      <!-- Suggested Questions -->
-      <div *ngIf="suggestedQuestions.length > 0" class="suggestions">
-        <p style="color: #16423C;font-weight: bold;">Suggested Questions:</p>
-        <button *ngFor="let question of suggestedQuestions" (click)="selectSuggestedQuestion(question)">
-          {{ question }}
-        </button>
-      </div>
-      
-      <!-- Chat Input Form -->
-      <form [formGroup]="chatForm" (ngSubmit)="sendMessage()">
-        <input formControlName="message" placeholder="Type your message..." required>
-        <button type="submit">Send</button>
-      </form>
+<!-- Chatbot Section -->
+<div class="chat-container">
+  <!-- Chat Toggle Button -->
+  <button class="chat-toggle" (click)="toggleChat()"><span>Chat</span></button>
+
+  <!-- Chat Window -->
+  <div class="chat-window" [class.open]="isChatOpen">
+    <!-- Chat Messages -->
+    <div *ngFor="let message of chatMessages" [ngClass]="{'user-message': message.fromUser, 'bot-message': !message.fromUser}">
+      {{ message.text }}
     </div>
+
+    <!-- Suggested Questions -->
+    <div *ngIf="suggestedQuestions.length > 0" class="suggestions">
+      <p>Suggested Questions:</p>
+      <button *ngFor="let question of suggestedQuestions" (click)="selectSuggestedQuestion(question)">
+        {{ question }}
+      </button>
+    </div>
+    
+    <!-- Chat Input Form -->
+    <form [formGroup]="chatForm" (ngSubmit)="sendMessage()">
+      <input formControlName="message" placeholder="Type your message..." required>
+      <button type="submit">Send</button>
+    </form>
+  </div>
 </div>
 
-<section id="donation-section" class="donation-section" [ngClass]="{'animate__animated': animationClasses['donationSection'], 'animate__fadeIn': animationClasses['donationSection']}">
+  <section id="donation-section" class="donation-section"
+  >
 
     <div class="container">
       <div class="row align-items-center">
-        <div class="col-lg-6 col-md-12 donation-text" [ngClass]="{'animate__animated': animationClasses['donationSection'], 'animate__slideInLeft': animationClasses['donationSection']}">
-          <h2 class="headline" [ngClass]="{'animate__animated': animationClasses['donationSection'], 'animate__fadeInDown': animationClasses['donationSection']}">Turn Your Contribution into Real Impact</h2>
-          <p class="subheading" [ngClass]="{'animate__animated': animationClasses['donationSection'], 'animate__fadeInLeft': animationClasses['donationSection']}">
+        <div class="col-lg-6 col-md-12 donation-text"
+        >
+          <h2 class="headline"
+           >
+            Turn Your Contribution into Real Impact</h2>
+          <p class="subheading"
+           >
             Your donation helps us provide essential resources to those in need. Together, we can make a difference.
           </p>
 
           <div class="impact-details">
-            <h3 [ngClass]="{'animate__animated': animationClasses['donationSection'], 'animate__fadeInUp': animationClasses['donationSection']}">Where Your Money Goes:</h3>
+            <h3
+             >
+              Where Your Money Goes:</h3>
             <div class="impact-card">
-              <div class="card-item" [ngClass]="{'animate__animated': animationClasses['donationSection'], 'animate__fadeInLeft': animationClasses['donationSection']}">
+              <div class="card-item"
+               >
                 <div class="icon"><i class="fas fa-utensils"></i></div>
                 <div class="card-info">
                   <h4><strong>80%</strong> for Feeding Events</h4>
                   <p>Your contributions help provide meals to those in need.</p>
                 </div>
               </div>
-              <div class="card-item" [ngClass]="{'animate__animated': animationClasses['donationSection'], 'animate__fadeInLeft': animationClasses['donationSection']}" style="animation-delay: 0.2s;">
+              <div class="card-item"
+               
+                style="animation-delay: 0.2s;">
                 <div class="icon"><i class="fas fa-box"></i></div>
                 <div class="card-info">
                   <h4><strong>15%</strong> for Essential Goods</h4>
                   <p>Support for providing vital supplies to families.</p>
                 </div>
               </div>
-              <div class="card-item" [ngClass]="{'animate__animated': animationClasses['donationSection'], 'animate__fadeInLeft': animationClasses['donationSection']}" style="animation-delay: 0.4s;">
+              <div class="card-item"
+                
+                style="animation-delay: 0.4s;">
                 <div class="icon"><i class="fas fa-truck"></i></div>
                 <div class="card-info">
                   <h4><strong>5%</strong> for Logistics</h4>
@@ -94,12 +106,17 @@
             </div>
           </div>
 
-          <p class="cta" [ngClass]="{'animate__animated': animationClasses['donationSection'], 'animate__fadeInUp': animationClasses['donationSection']}" style="animation-delay: 0.6s;">Every dollar counts. Make a difference today!</p>
+          <p class="cta"
+          
+            style="animation-delay: 0.6s;">Every dollar counts. Make a difference today!</p>
 
-          <a href="/donate" class="btn donate-now-btn" [ngClass]="{'animate__animated': animationClasses['donationSection'], 'animate__pulse animate__infinite': animationClasses['donationSection']}">Donate Now</a>
+          <a href="/donate" class="btn donate-now-btn"
+          >Donate
+            Now</a>
         </div>
 
-        <div class="col-lg-6 col-md-12 donation-visual" [ngClass]="{'animate__animated': animationClasses['donationSection'], 'animate__zoomIn': animationClasses['donationSection']}">
+        <div class="col-lg-6 col-md-12 donation-visual">
+         
           <img src="/assets/img/aboutus2.jpeg" alt="Volunteers distributing food" class="img-fluid">
         </div>
       </div>
@@ -112,120 +129,119 @@
 
   <!-- Carousel End -->
 
-  <div id="aboutus" class="container-xxl py-5  animate__animated animate__fadeIn" [ngClass]="{'animate__animated': animationClasses['aboutUsSection'], 'animate__fadeIn': animationClasses['aboutUsSection']}">
+  <div id="aboutus" class="container-xxl py-5 "
+   >
 
     <div class="container">
       <div class="row g-5">
         <div class="col-lg-6">
-          <div class="position-relative overflow-hidden h-100" [ngClass]="{'animate__animated': animationClasses['aboutUsSection'], 'animate__zoomIn': animationClasses['aboutUsSection']}">
-            <img class="position-absolute w-100 h-100 pt-5 pe-5" src="/assets/img/aboutus.jpg" alt="" style="object-fit: cover" />
-            <img class="position-absolute top-0 end-0 bg-white ps-1 pb-1" src="/assets/img/aboutus2.jpeg" alt="" style="width: 200px; height: 200px" />
+          <div class="position-relative overflow-hidden h-100"
+           >
+            <img class="position-absolute w-100 h-100 pt-5 pe-5" src="/assets/img/aboutus.jpg" alt=""
+              style="object-fit: cover" />
+            <img class="position-absolute top-0 end-0 bg-white ps-1 pb-1" src="/assets/img/aboutus2.jpeg" alt=""
+              style="width: 200px; height: 200px" />
           </div>
         </div>
         <div class="col-lg-6">
           <div class="h-100">
-            <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3" [ngClass]="{'animate__animated': animationClasses['aboutUsSection'], 'animate__fadeInDown': animationClasses['aboutUsSection']}">
+            <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3"
+             >
               About Us
             </div>
-            <h1 class="display-5 mb-4" [ngClass]="{'animate__animated': animationClasses['aboutUsSection'], 'animate__fadeInUp': animationClasses['aboutUsSection']}">Turning Extra into Essentials</h1>
-            <p class="mb-4" [ngClass]="{'animate__animated': animationClasses['aboutUsSection'], 'animate__fadeInUp': animationClasses['aboutUsSection']}">
-              We are a dedicated charity organization committed to providing food, resources, and support to those in need. Our mission is to bridge the gap between excess and necessity, creating a sustainable future for our communities.
+            <h1 class="display-5 mb-4"
+             >
+              Turning Extra into Essentials</h1>
+            <p class="mb-4"
+              >
+              We are a dedicated charity organization committed to providing food, resources, and support to those in
+              need. Our mission is to bridge the gap between excess and necessity, creating a sustainable future for our
+              communities.
             </p>
-            <p class="mb-4" [ngClass]="{'animate__animated': animationClasses['aboutUsSection'], 'animate__fadeInUp': animationClasses['aboutUsSection']}">
-              Through community partnerships and volunteer efforts, we strive to make a positive impact on the lives of individuals and families.
+            <p class="mb-4"
+             >
+              Through community partnerships and volunteer efforts, we strive to make a positive impact on the lives of
+              individuals and families.
             </p>
-            <a class="btn btn-primary" href="/about" [ngClass]="{'animate__animated': animationClasses['aboutUsSection'], 'animate__fadeIn': animationClasses['aboutUsSection']}">Learn More</a>
+            <a class="btn btn-primary" href="/about"
+              >Learn
+              More</a>
           </div>
         </div>
       </div>
     </div>
   </div>
-<!-- Service Start -->
-<div   id="service-section"  class="container-xxl py-5 mb-5 animate__animated animate__fadeIn" [ngClass]="{'animate__animated': animationClasses['serviceSection'], 'animate__fadeIn': animationClasses['serviceSection']}">
+  <!-- Service Start -->
+  <div id="service-section" class="container-xxl py-5 mb-5 "
+    >
 
     <div class="container">
-        <div class="text-center mx-auto mb-5" style="max-width: 500px">
-            <div
-                class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3"
-                [ngClass]="{'animate__animated': animationClasses['serviceSection'], 'animate__fadeInLeft': animationClasses['serviceSection']}"
-            >
-                Latest Updates
-            </div>
-            <h1 class="display-6 mb-5" [ngClass]="{'animate__animated': animationClasses['serviceSection'], 'animate__fadeInRight': animationClasses['serviceSection']}">
-                Stay Informed About Our Latest News and Events
-            </h1>
+      <div class="text-center mx-auto mb-5" style="max-width: 500px">
+        <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3"
+         >
+          Latest Updates
         </div>
-        <div class="row g-4 justify-content-center">
-            <!-- Upcoming Events -->
-            <div class="col-lg-4 col-md-6" [ngClass]="{'animate__animated': animationClasses['serviceSection'], 'animate__fadeInUp': animationClasses['serviceSection']}">
-                <div
-                    class="service-item bg-light text-center h-100 p-4 p-xl-5"
-                    style="border: 2px solid var(--secondary)"
-                    [ngClass]="{'animate__animated': animationClasses['serviceSection'], 'animate__fadeIn': animationClasses['serviceSection']}"
-                >
-                    <i
-                        class="fa fa-calendar-alt mb-4 animate__animated animate__pulse animate__infinite"
-                        style="font-size: 48px; color: var(--primary)"
-                    ></i>
-                    <h4 class="mb-3">Upcoming Events</h4>
-                    <p class="mb-4">
-                        Check out our upcoming events, including meal preparation and feeding events to support those in need.
-                    </p>
-                    <a class="btn btn-outline-primary px-3" [routerLink]="['/list-event']">
-                        Learn More
-                        <div
-                            class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2"
-                        >
-                            <i class="fa fa-arrow-right"></i>
-                        </div>
-                    </a>
-                </div>
-            </div>
+        <h1 class="display-6 mb-5"
+         >
+          Stay Informed About Our Latest News and Events
+        </h1>
+      </div>
+      <div class="row g-4 justify-content-center">
+        <!-- Upcoming Events -->
+        <div class="col-lg-4 col-md-6"
+         >
+          <div class="service-item bg-light text-center h-100 p-4 p-xl-5" style="border: 2px solid var(--secondary)"
+           >
+            <i class="fa fa-calendar-alt mb-4 "
+              style="font-size: 48px; color: var(--primary)"></i>
+            <h4 class="mb-3">Upcoming Events</h4>
+            <p class="mb-4">
+              Check out our upcoming events, including meal preparation and feeding events to support those in need.
+            </p>
+            <a class="btn btn-outline-primary px-3" [routerLink]="['/list-event']">
+              Learn More
+              <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
+                <i class="fa fa-arrow-right"></i>
+              </div>
+            </a>
+          </div>
+        </div>
 
-            <!-- Upcoming Auctions -->
-            <div class="col-lg-4 col-md-6" [ngClass]="{'animate__animated': animationClasses['serviceSection'], 'animate__fadeInUp': animationClasses['serviceSection']}">
-                <div
-                    class="service-item bg-light text-center h-100 p-4 p-xl-5"
-                    style="border: 2px solid var(--secondary)"
-                    [ngClass]="{'animate__animated': animationClasses['serviceSection'], 'animate__fadeIn': animationClasses['serviceSection']}"
-                >
-                    <i
-                        class="fa fa-gavel mb-4 animate__animated animate__pulse animate__infinite"
-                        style="font-size: 48px; color: var(--primary)"
-                    ></i>
-                    <h4 class="mb-3">Upcoming Auctions</h4>
-                    <p class="mb-4">
-                        Discover upcoming auctions where valuable items are sold, with proceeds supporting our charitable programs.
-                    </p>
-                    <a class="btn btn-outline-primary px-3" [routerLink]="['/auction-list']">
-                        Learn More
-                        <div
-                            class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2"
-                        >
-                            <i class="fa fa-arrow-right"></i>
-                        </div>
-                    </a>
-                </div>
-            </div>
+        <!-- Upcoming Auctions -->
+        <div class="col-lg-4 col-md-6"
+         >
+          <div class="service-item bg-light text-center h-100 p-4 p-xl-5" style="border: 2px solid var(--secondary)"
+            >
+            <i class="fa fa-gavel mb-4 "
+              style="font-size: 48px; color: var(--primary)"></i>
+            <h4 class="mb-3">Upcoming Auctions</h4>
+            <p class="mb-4">
+              Discover upcoming auctions where valuable items are sold, with proceeds supporting our charitable
+              programs.
+            </p>
+            <a class="btn btn-outline-primary px-3" [routerLink]="['/auction-list']">
+              Learn More
+              <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
+                <i class="fa fa-arrow-right"></i>
+              </div>
+            </a>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-<!-- Service End -->
+  </div>
+  <!-- Service End -->
 
   <section id="blog-section" class="blog-section mb-5 mt-5" style="box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
     <div class="container mb-4">
-      <h2 class="section-title mb-5 mt-4 text-center animate__animated animate__fadeIn">Latest News & Updates</h2>
+      <h2 class="section-title mb-5 mt-4 text-center ">Latest News & Updates</h2>
       <div class="row">
-        <div 
-          class="col-lg-4 col-md-6 blog-post animate__animated" 
-          *ngFor="let post of recentPosts; let i = index" 
-          [ngClass]="{
-            'animate__fadeIn': animationClasses['blogSection'],
-            'animate__delay-1s': i > 0
-          }">
+        <div class="col-lg-4 col-md-6 blog-post " *ngFor="let post of recentPosts; let i = index"
+         >
           <div class="post-card">
             <div class="post-image">
-              <img src="{{post.image}}" alt="{{ post.title }}" class="img-fluid" />
+              <!-- Use the fallback image if no image exists in the post -->
+              <img [src]="post.image || '/assets/img/profile-picture.jpg'" alt="{{ post.title }}" class="img-fluid" />
             </div>
             <h3 class="post-title">
               <a [routerLink]="['/blog', post.id]" class="text-decoration-none text-dark">{{ post.title }}</a>
@@ -239,139 +255,115 @@
         <a routerLink="/blog" class="btn btn-secondary mt-5 mb-5" style="background-color: #16423C; color: white;">View All Posts</a>
       </div>
     </div>
-
-  
-
+  </section>
 
 
 
-<div class="container-xxl py-5">
-  <div class="container">
-      <div class="text-center mx-auto mb-5" style="max-width: 800px">
+
+    <div class="container-xxl py-5">
+      <div class="container">
+        <div class="text-center mx-auto mb-5" style="max-width: 800px">
           <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">
-              Testimonial
+            Testimonial
           </div>
           <h1 class="display-6 mb-5">
-              Trusted By Communities, Donors, and Volunteers Alike
+            Trusted By Communities, Donors, and Volunteers Alike
           </h1>
-      </div>
+        </div>
 
-      <div class="text-center my-5">
+        <div class="text-center my-5">
           <h1><a href="/feedback" class="feedback-btn btn">Leave Your Feedback</a></h1>
-      </div>
+        </div>
 
-      <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel" >
-        <div class="carousel-inner">
-              <div
-                  *ngFor="let testimonial of testimonials; let i = index"
-                  [ngClass]="{ 'carousel-item': true, active: i === 0 }"
-              >
-                  <div class="testimonial-item text-center animate__animated animate__fadeIn">
-                      <img
-                          class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4"
-                          [src]="testimonial.user.profile_picture"
-                          style="width: 100px; height: 100px"
-                      />
-                      <div class="testimonial-text rounded text-center p-4">
-                          <p>{{ testimonial.feedback }}</p>
-                          <h5 class="mb-1">{{ testimonial.user.name }}</h5>
-                          <span class="fst-italic">
-                              @if(testimonial.user.role_id == 2){Donor} @else if(testimonial.user.role_id == 3){Volunteer}
-                          </span>
-                      </div>
-                  </div>
+        <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div *ngFor="let testimonial of testimonials; let i = index"
+              [ngClass]="{ 'carousel-item': true, active: i === 0 }">
+              <div class="testimonial-item text-center ">
+                <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" [src]="testimonial.user.profile_picture"
+                  style="width: 100px; height: 100px" />
+                <div class="testimonial-text rounded text-center p-4">
+                  <p>{{ testimonial.feedback }}</p>
+                  <h5 class="mb-1">{{ testimonial.user.name }}</h5>
+                  <span class="fst-italic">
+                    @if(testimonial.user.role_id == 2){Donor} @else if(testimonial.user.role_id == 3){Volunteer}
+                  </span>
+                </div>
               </div>
+            </div>
           </div>
-          <button
-              class="carousel-control-prev"
-              type="button"
-              data-bs-target="#testimonialCarousel"
-              data-bs-slide="prev"
-          >
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
+          <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
           </button>
-          <button
-              class="carousel-control-next"
-              type="button"
-              data-bs-target="#testimonialCarousel"
-              data-bs-slide="next"
-          >
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
+          <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
           </button>
+        </div>
       </div>
-  </div>
-</div>
+    </div>
 
-<!-- Footer Start -->
-<div class="container-fluid bg-dark text-white-50 footer mt-5 pt-5">
-  <div class="container py-5">
-      <div class="row g-5">
-          <div class="col-lg-3 col-md-6 animate__animated animate__fadeInLeft" style="animation-delay: 0.2s;">
-              <h1 class="fw-bold text-primary mb-4">Judur</h1>
-              <p>
-                  Judur connects donors, providers, and landowners to support
-                  community feeding programs, offering transparency through auctions
-                  and property evaluations.
-              </p>
-              <div class="d-flex pt-2">
-                  <a class="btn btn-square me-1" href="#">
-                      <i class="fab fa-twitter"></i>
-                  </a>
-                  <a class="btn btn-square me-1" href="#">
-                      <i class="fab fa-facebook-f"></i>
-                  </a>
-                  <a class="btn btn-square me-1" href="#">
-                      <i class="fab fa-youtube"></i>
-                  </a>
-                  <a class="btn btn-square me-0" href="#">
-                      <i class="fab fa-linkedin-in"></i>
-                  </a>
-              </div>
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-white-50 footer mt-5 pt-5">
+      <div class="container py-5">
+        <div class="row g-5">
+          <div class="col-lg-3 col-md-6 " >
+            <h1 class="fw-bold text-primary mb-4">Judur</h1>
+            <p>
+              Judur connects donors, providers, and landowners to support
+              community feeding programs, offering transparency through auctions
+              and property evaluations.
+            </p>
+            <div class="d-flex pt-2">
+              <a class="btn btn-square me-1" href="#">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a class="btn btn-square me-1" href="#">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a class="btn btn-square me-1" href="#">
+                <i class="fab fa-youtube"></i>
+              </a>
+              <a class="btn btn-square me-0" href="#">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </div>
           </div>
-          <div class="col-lg-3 col-md-6 animate__animated animate__fadeInLeft" style="animation-delay: 0.4s;">
-              <h5 class="text-light mb-4">Contact Us</h5>
-              <p><i class="fa fa-map-marker-alt me-3"></i>Cairo, Egypt</p>
-              <p><i class="fa fa-phone-alt me-3"></i>+987 654 3210</p>
-              <p><i class="fa fa-envelope me-3"></i>judur.com</p>
+          <div class="col-lg-3 col-md-6 " >
+            <h5 class="text-light mb-4">Contact Us</h5>
+            <p><i class="fa fa-map-marker-alt me-3"></i>Cairo, Egypt</p>
+            <p><i class="fa fa-phone-alt me-3"></i>+987 654 3210</p>
+            <p><i class="fa fa-envelope me-3"></i>judur.com</p>
           </div>
-          <div class="col-lg-3 col-md-6 animate__animated animate__fadeInLeft" style="animation-delay: 0.6s;">
-              <h5 class="text-light mb-4">Quick Links</h5>
-              <a class="btn btn-link" href="#">Our Mission</a>
-              <a class="btn btn-link" href="#">How It Works</a>
-              <a class="btn btn-link" href="#">Donate Now</a>
-              <a class="btn btn-link" href="#">Terms & Conditions</a>
-              <a class="btn btn-link" href="#">Help & Support</a>
+          <div class="col-lg-3 col-md-6 ">
+            <h5 class="text-light mb-4">Quick Links</h5>
+            <a class="btn btn-link" href="#">Our Mission</a>
+            <a class="btn btn-link" href="#">How It Works</a>
+            <a class="btn btn-link" href="#">Donate Now</a>
+            <a class="btn btn-link" href="#">Terms & Conditions</a>
+            <a class="btn btn-link" href="#">Help & Support</a>
           </div>
-          <div class="col-lg-3 col-md-6 animate__animated animate__fadeInLeft" style="animation-delay: 0.8s;">
-              <h5 class="text-light mb-4">Stay Updated</h5>
-              <p>
-                  Join our mailing list to receive the latest news on Judur’s impact
-                  and opportunities to get involved.
-              </p>
-              <div class="position-relative mx-auto" style="max-width: 400px">
-                  <input
-                      class="form-control bg-transparent w-100 py-3 ps-4 pe-5"
-                      type="text"
-                      placeholder="Your email"
-                  />
-                  <button
-                      type="button"
-                      class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2"
-                  >
-                      Sign Up
-                  </button>
-              </div>
+          <div class="col-lg-3 col-md-6">
+            <h5 class="text-light mb-4">Stay Updated</h5>
+            <p>
+              Join our mailing list to receive the latest news on Judur’s impact
+              and opportunities to get involved.
+            </p>
+            <div class="position-relative mx-auto" style="max-width: 400px">
+              <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email" />
+              <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">
+                Sign Up
+              </button>
+            </div>
           </div>
+        </div>
       </div>
-  </div>
-</div>
-<!-- Footer End -->
 
-<div>
-  <!-- Back to Top -->
-  <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"
-    ><i class="bi bi-arrow-up"></i
-  ></a>
-</div>
+      <!-- Footer End -->
+
+
+      <!-- Back to Top -->
+      <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>

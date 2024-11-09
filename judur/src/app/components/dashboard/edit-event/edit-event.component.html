@@ -171,62 +171,26 @@
                   <!-- People Helped -->
                   <div class="form-group mb-3">
                     <label for="peopleHelped" class="font-weight-bold">People Helped</label>
-                    <input type="number" id="peopleHelped" class="form-control" [(ngModel)]="event.people_helped" name="people_helped"
-                      min="0" #peopleHelped="ngModel" required />
+                    <input type="number" id="peopleHelped" class="form-control" [(ngModel)]="event.people_helped" name="people_helped" min="0"
+                      #peopleHelped="ngModel" required/>
                     <div *ngIf="peopleHelped.invalid && peopleHelped.touched" class="text-danger">
                       People helped must be 0 or more.
                     </div>
                   </div>
                 
-                  <!-- Goods Distributed -->
-                  <div class="form-group mb-3">
-                    <label for="goodsDistributed" class="font-weight-bold">Goods Distributed</label>
-                    <input type="number" id="goodsDistributed" class="form-control" [(ngModel)]="event.goods_distributed"
-                      name="goods_distributed" min="0" #goodsDistributed="ngModel" required />
-                    <div *ngIf="goodsDistributed.invalid && goodsDistributed.touched" class="text-danger">
-                      Goods distributed must be 0 or more.
-                    </div>
-                  </div>
+                  <!-- Form Submit -->
+                  <button type="submit" [disabled]="eventForm.invalid" class="btn btn-primary">Submit</button>
                 
-                  <!-- Image Upload -->
-                  <div class="form-group mb-3">
-                    <label for="eventImage" class="font-weight-bold">Upload Event Image</label>
-                    <input type="file" id="eventImage" (change)="onFileSelected($event)" />
-                    <div *ngIf="validationErrors.image" class="text-danger">{{ validationErrors.image[0] }}</div>
-
-                  </div>
-                
-                  <button type="submit" class="btn btn-judur" [disabled]="eventForm.invalid">Update Event</button>
                 </form>
-                
-                
               </div>
             </div>
           </div>
         </div>
+
       </div>
-
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>&copy; Judur 2024</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
     </div>
+
   </div>
-
-  <!-- Bootstrap core JavaScript-->
-  <script src="../../../../assets/vendor/jquery/jquery.min.js"></script>
-  <script src="../../../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Core plugin JavaScript-->
-  <script src="../../../../assets/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="../../../../assets/js/sb-admin-2.min.js"></script>
 </body>
 
 </html>

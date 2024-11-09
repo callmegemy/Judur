@@ -14,7 +14,6 @@
             <p><strong>Email:</strong> {{ user.email }}</p>
 
 
-            <!-- Link to Edit Profile Page -->
             <a [routerLink]="['/profile/edit', user.id]" class="btn">Edit Profile</a>
         </div>
     </div>
@@ -40,7 +39,6 @@
         <p>Skills: {{ additionalInfo.skills }}</p>
         <p>Availability: {{ additionalInfo.availability }}</p>
         <p>Aim: {{ additionalInfo.aim }}</p>
-        <p>Status: {{ additionalInfo.volunteer_status }}</p>
         <a routerLink="/volunteer-analytics" class="btn"> History</a>
       </div>
    

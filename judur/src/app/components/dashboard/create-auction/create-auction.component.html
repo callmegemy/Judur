@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -20,18 +19,14 @@
     <!-- Custom styles for this template-->
     <link href="../../../../assets/css/sb-admin-2.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
-
 </head>
 
 <body id="page-top">
-
     <!-- Page Wrapper -->
     <div id="wrapper">
 
         <!-- Sidebar -->
         <app-sidebar class="bg-gradient-judur"></app-sidebar>
-
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -66,7 +61,8 @@
                                         <div *ngIf="auctionForm.submitted && !auction.title" class="text-danger">
                                             Auction Title is required.
                                         </div>
-                                        <div *ngIf="errorMessages.title" class="text-danger">{{ errorMessages.title[0] }}</div>
+                                        <div *ngIf="errorMessages.title" class="text-danger">{{ errorMessages.title[0]
+                                            }}</div>
                                     </div>
 
                                     <div class="form-group">
@@ -79,7 +75,6 @@
                                         <div *ngIf="auctionForm.submitted && !auction.status" class="text-danger">
                                             Auction Status is required.
                                         </div>
-
                                     </div>
 
                                     <div class="form-group">
@@ -97,22 +92,23 @@
                                     <div class="form-group">
                                         <label for="start_date">Start Date</label>
                                         <input type="date" id="start_date" [(ngModel)]="auction.start_date"
-                                            name="start_date" class="form-control" required>
+                                            name="start_date" class="form-control" [min]="minDate" required>
                                         <div *ngIf="auctionForm.submitted && !auction.start_date" class="text-danger">
                                             Start Date is required.
                                         </div>
-                                        <div *ngIf="errorMessages.start_date" class="text-danger">{{ errorMessages.start_date[0] }}</div>
+                                        <div *ngIf="errorMessages.start_date" class="text-danger">{{
+                                            errorMessages.start_date[0] }}</div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="end_date">End Date</label>
                                         <input type="date" id="end_date" [(ngModel)]="auction.end_date" name="end_date"
-                                            class="form-control" required>
+                                            class="form-control" [min]="auction.start_date || minDate" required>
                                         <div *ngIf="auctionForm.submitted && !auction.end_date" class="text-danger">
                                             End Date is required.
                                         </div>
-                                        <div *ngIf="errorMessages.end_date" class="text-danger">{{ errorMessages.end_date[0] }}</div>
-                                        
+                                        <div *ngIf="errorMessages.end_date" class="text-danger">{{
+                                            errorMessages.end_date[0] }}</div>
                                     </div>
 
                                     <div class="form-group">
@@ -123,8 +119,8 @@
                                             class="text-danger">
                                             Starting Price is required.
                                         </div>
-                                        <div *ngIf="errorMessages.starting_price" class="text-danger">{{ errorMessages.starting_price[0] }}</div>
-
+                                        <div *ngIf="errorMessages.starting_price" class="text-danger">{{
+                                            errorMessages.starting_price[0] }}</div>
                                     </div>
 
                                     <div class="form-group">
@@ -134,20 +130,18 @@
                                         <div *ngIf="auctionForm.submitted && !auction.description" class="text-danger">
                                             Description is required.
                                         </div>
-                                        <div *ngIf="errorMessages.description" class="text-danger">{{ errorMessages.description[0] }}</div>
-
+                                        <div *ngIf="errorMessages.description" class="text-danger">{{
+                                            errorMessages.description[0] }}</div>
                                     </div>
 
                                     <button type="submit" class="btn btn-primary">Create Auction</button>
                                 </form>
-
                             </div>
 
-                            <a href="/dashboard/auctions" class="btn btn-judur mx-3"><i
+                            <a routerLink="/dashboard/auctions" class="btn btn-judur mx-3"><i
                                     class="fa-solid fa-arrow-left"></i> Back</a>
                         </div>
                     </div>
-
 
                 </div>
                 <!-- /.container-fluid -->
@@ -190,14 +184,11 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a routerLink="login" class="btn btn-primary">Logout</a>
                 </div>
             </div>
         </div>
     </div>
-
-
-
 </body>
 
 </html>

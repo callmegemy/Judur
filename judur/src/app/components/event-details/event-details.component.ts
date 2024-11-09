@@ -33,7 +33,7 @@ interface Feedback {
 })
 export class EventDetailsComponent {
   event: any;
-  ngrokUrl: string = 'https://cfef-102-185-9-243.ngrok-free.app'; 
+  ngrokUrl: string = 'https://98b6-102-185-116-187.ngrok-free.app'; 
 
   constructor(
     private route: ActivatedRoute,

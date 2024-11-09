@@ -2,7 +2,7 @@
 
 <div class="container" style="max-width: 900px; margin: 150px auto 0;">
   <div class="row">
-    
+  
     <!-- Land Inspection Form -->
     <div class="col-md-12">
       <div class="card shadow-sm border-0 rounded-lg">
@@ -25,14 +25,18 @@
               </div>
             </div>
             
-            <!-- Inspection Date -->
-            <div class="mb-3">
-              <label for="date" class="form-label"><i class="fas fa-calendar-alt"></i> Inspection Date</label>
-              <input type="date" class="form-control form-control-lg" formControlName="date" required />
-              <div *ngIf="inspectionForm.get('date')?.invalid && (inspectionForm.get('date')?.touched || inspectionForm.get('date')?.dirty)" class="text-danger">
-                <small *ngIf="inspectionForm.get('date')?.errors?.['required']">Inspection date is required.</small>
-              </div>
+           <!-- Inspection Date -->
+           <div class="mb-3">
+            <label for="date" class="form-label"><i class="fas fa-calendar-alt"></i> Inspection Date</label>
+            <input type="date" class="form-control form-control-lg" formControlName="date" required [max]="maxDate" />
+            <div *ngIf="inspectionForm.get('date')?.invalid && (inspectionForm.get('date')?.touched || inspectionForm.get('date')?.dirty)" class="text-danger">
+              <small *ngIf="inspectionForm.get('date')?.errors?.['required']">Inspection date is required.</small>
+              <small *ngIf="inspectionForm.get('date')?.errors?.['futureDate']"></small>
             </div>
+          </div>
+          
+          
+
 
             <!-- Hygiene -->
             <div class="mb-3">
@@ -73,8 +77,12 @@
             <!-- Upload Photo -->
             <div class="mb-3">
               <label for="photo" class="form-label"><i class="fas fa-camera"></i> Upload Photo</label>
-              <input type="file" class="form-control form-control-lg" (change)="onFileSelect($event)" />
+              <input type="file" class="form-control form-control-lg" (change)="onFileSelect($event)" formControlName="photo" accept="image/jpeg,image/png,image/jpg" />
+              <div *ngIf="inspectionForm.get('photo')?.invalid && inspectionForm.get('photo')?.touched" class="text-danger">
+                <small *ngIf="inspectionForm.get('photo')?.errors?.['invalidFileType']">Please upload a valid image (JPEG, PNG, JPG).</small>
+              </div>
             </div>
+            
             
             <!-- Submit Button -->
             <button type="submit" class="btn btn-lg btn-dark btn-block mt-3" [disabled]="!inspectionForm.valid">

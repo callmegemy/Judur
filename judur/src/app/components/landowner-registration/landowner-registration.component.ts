@@ -17,11 +17,15 @@ export class LandownerRegistrationComponent {
   landDonationForm: FormGroup;
   selectedFile: File | null = null;
   user: any;
+  todayDate: string;
+
 
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+    this.todayDate = new Date().toISOString().split('T')[0];
+
     this.landDonationForm = this.fb.group({
       description: ['', Validators.required],
-      land_size: ['', [Validators.required, Validators.min(1)]],
+      land_size: ['', [Validators.required, Validators.min(200)]],  
       address: ['', Validators.required],
       proof_of_ownership: [null, Validators.required],
       status_id: [1, Validators.required],
@@ -47,7 +51,7 @@ export class LandownerRegistrationComponent {
       errorMessages.push(`${field} is required.`);
     }
     if (control.errors['min']) {
-      errorMessages.push(`${field} must be greater than 0.`);
+      errorMessages.push(`${field} must be greater than 200.`);
     }
     if (control.errors['email']) {
       errorMessages.push('Please enter a valid email.');
